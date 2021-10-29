@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.12, 29/10/21
+/// Version: 0.13, 30/10/21
 /// 
 /// Special thanks to Jaanus Varus for the use of the Penumbra library.
 /// </summary>
@@ -16,6 +16,14 @@ namespace Nosocomephobia
 {
     public class Kernel : Game
     {
+        // DECLARE a public static int to represent the Screen Width, call it 'SCREEN_WIDTH':
+        public static int SCREEN_WIDTH;
+        // DECLARE a public static int to represent the Screen Height, call it 'SCREEN_HEIGHT':
+        public static int SCREEN_HEIGHT;
+
+        // DECLARE a bool to toggle between full screen and windowed for development purposes:
+        private bool _devMode = true;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -34,30 +42,57 @@ namespace Nosocomephobia
 
         protected override void Initialize()
         {
-            // INITIALISE the window and set it to fullscreen:
-            _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            _graphics.IsFullScreen = true;
-            _graphics.ApplyChanges();
-
-            // INITIALISE the flashlight as a Spotlight:
-            flashlight = new Spotlight();
-            // INITIALISE flashlight attributes:
-            flashlight.Scale = new Vector2(1000f);
-            flashlight.ShadowType = ShadowType.Solid;
-            flashlight.Position = new Vector2(GraphicsDevice.DisplayMode.Width/2, GraphicsDevice.DisplayMode.Height/2);
-
+            // INITIALISE the game window:
+            this.InitialiseWindow();
+            // INITIALISE the flashlight:
+            this.InitialiseFlashlight();
             // INTIALISE penumbra as a PenumbraComponent:
             penumbra = new PenumbraComponent(this);
             // ADD the flashlight to the penumbra engine:
             penumbra.Lights.Add(flashlight);
             // ADD penumbra to game components:
             Components.Add(penumbra);
-
             // CALL penumbras intialize method:
             penumbra.Initialize();
+            // INITALISE the base class:
             base.Initialize();
+        }
 
+        /// <summary>
+        /// METHOD: Sets up the game window to windowed view if Dev Mode is enabled, or full screen if Dev Mode is disabled.
+        /// </summary>
+        private void InitialiseWindow()
+        {
+            // INITIALISE the window and set it to fullscreen if devMode is disabled. If devMode is enabled, set to windowed view:
+            if (_devMode)
+            {
+                _graphics.PreferredBackBufferHeight = 900;
+                _graphics.PreferredBackBufferWidth = 1600;
+                _graphics.ApplyChanges();
+            }
+            else
+            {
+                _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+                _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+                _graphics.IsFullScreen = true;
+                _graphics.ApplyChanges();
+            }
+            // STORE the windows new width and height in the public static int fields for ease of access later:
+            SCREEN_WIDTH = GraphicsDevice.Viewport.Width;
+            SCREEN_HEIGHT = GraphicsDevice.Viewport.Height;
+        }
+
+        /// <summary>
+        /// METHOD: Sets up the players flashlight.
+        /// </summary>
+        private void InitialiseFlashlight()
+        {
+            // INITIALISE the flashlight as a Spotlight:
+            flashlight = new Spotlight();
+            // INITIALISE flashlight attributes:
+            flashlight.Scale = new Vector2(1000f);
+            flashlight.ShadowType = ShadowType.Solid;
+            flashlight.Position = new Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
         }
 
         protected override void LoadContent()
@@ -80,7 +115,6 @@ namespace Nosocomephobia
                                          currentMouseState.X - flashlight.Position.X);
             // SET the rotation of the flashlight so that it faces the mouse cursor:
             flashlight.Rotation = (float)lookAngle;
-
 
             base.Update(gameTime);
         }
