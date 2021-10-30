@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Game_Code.Game_Entities;
 using Penumbra;
 using System;
 using System.Diagnostics;
@@ -9,7 +11,7 @@ using System.Diagnostics;
 /// Author: Kristopher J Randle
 /// Version: 0.13, 30/10/21
 /// 
-/// Special thanks to Jaanus Varus for the use of the Penumbra library.
+/// Penumbra Author: Jaanus Varus
 /// </summary>
 
 namespace Nosocomephobia
@@ -27,15 +29,17 @@ namespace Nosocomephobia
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        // DECLARE a PenumbraComponent, call it penumbra:
-        private PenumbraComponent penumbra;
-        // DECLARE a Light to represent the player light source, call it flashlight:
-        private Light flashlight;
+        // DECLARE a PenumbraComponent, call it _penumbra:
+        private PenumbraComponent _penumbra;
 
+        // DECLARE an Flashlight, call it _flashlight:
+        private Flashlight _flashlight;
+        
         public Kernel()
         {
             _graphics = new GraphicsDeviceManager(this);
-            
+            // INITIALISE _flashlight:
+            _flashlight = new Flashlight();
             Content.RootDirectory = "Content";
             IsMouseVisible = true; 
         }
@@ -45,15 +49,15 @@ namespace Nosocomephobia
             // INITIALISE the game window:
             this.InitialiseWindow();
             // INITIALISE the flashlight:
-            this.InitialiseFlashlight();
+            _flashlight.Initialise();
             // INTIALISE penumbra as a PenumbraComponent:
-            penumbra = new PenumbraComponent(this);
+            _penumbra = new PenumbraComponent(this);
             // ADD the flashlight to the penumbra engine:
-            penumbra.Lights.Add(flashlight);
+            _penumbra.Lights.Add(_flashlight.Light);
             // ADD penumbra to game components:
-            Components.Add(penumbra);
+            Components.Add(_penumbra);
             // CALL penumbras intialize method:
-            penumbra.Initialize();
+            _penumbra.Initialize();
             // INITALISE the base class:
             base.Initialize();
         }
@@ -82,24 +86,11 @@ namespace Nosocomephobia
             SCREEN_HEIGHT = GraphicsDevice.Viewport.Height;
         }
 
-        /// <summary>
-        /// METHOD: Sets up the players flashlight.
-        /// </summary>
-        private void InitialiseFlashlight()
-        {
-            // INITIALISE the flashlight as a Spotlight:
-            flashlight = new Spotlight();
-            // INITIALISE flashlight attributes:
-            flashlight.Scale = new Vector2(1000f);
-            flashlight.ShadowType = ShadowType.Solid;
-            flashlight.Position = new Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-        }
+        
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -107,14 +98,7 @@ namespace Nosocomephobia
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            // GET the current mouse state:
-            MouseState currentMouseState = Mouse.GetState();
-            // CALCULATE the position between the mouse pointer and flashlight in radians:
-            double lookAngle = Math.Atan2(currentMouseState.Y - flashlight.Position.Y,
-                                         currentMouseState.X - flashlight.Position.X);
-            // SET the rotation of the flashlight so that it faces the mouse cursor:
-            flashlight.Rotation = (float)lookAngle;
+            _flashlight.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -122,11 +106,9 @@ namespace Nosocomephobia
         protected override void Draw(GameTime gameTime)
         {
             // BEGIN penumbras drawing cycle:
-            penumbra.BeginDraw();
+            _penumbra.BeginDraw();
             // SET the window to dark gray:
             GraphicsDevice.Clear(Color.DarkGray);
-            
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -31,5 +31,8 @@
     <Reference Include="MonoGame.Penumbra.DesktopGL">
       <HintPath>bin\Debug\netcoreapp3.1\MonoGame.Penumbra.DesktopGL.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engine Code\Entities\" />
   </ItemGroup>
 </Project>
