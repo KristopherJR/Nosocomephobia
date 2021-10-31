@@ -105,7 +105,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         /// <param name="gameTime">A reference to the GameTime.</param>
         public void Update(GameTime gameTime)
         {
-            // IF the program is running:
+            // IF the program is RUNNING:
             if (isPlaying)
             {
                 // ADD the time elapsed in milliseconds to the timer:

@@ -179,11 +179,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia.csproj",
+      "projectUniqueName": "D:\\Documents\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia.csproj",
       "projectName": "Nosocomephobia",
-      "projectPath": "D:\\Documents\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia.csproj",
+      "projectPath": "D:\\Documents\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia.csproj",
       "packagesPath": "C:\\Users\\krist\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia\\obj\\",
+      "outputPath": "D:\\Documents\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\krist\\AppData\\Roaming\\NuGet\\NuGet.Config",

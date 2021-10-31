@@ -34,5 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Engine Code\Entities\" />
+    <Folder Include="Engine Code\Managers\" />
+    <Folder Include="Engine Code\UserEventArgs\" />
   </ItemGroup>
 </Project>

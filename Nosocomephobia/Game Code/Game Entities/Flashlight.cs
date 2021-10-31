@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Penumbra;
 using System;
@@ -17,6 +18,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         // DECLARE a Light to represent the player light source, call it _light:
         private Light _light;
         private double _lookAngle;
+        private GameEntity _focusedEntity;
         #endregion
 
         #region PROPERTIES
@@ -57,15 +59,27 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         }
 
         /// <summary>
+        /// Sets the focus of the _flashlight onto a specific GameEntity.
+        /// </summary>
+        /// <param name="entity">The entity to focus the _flashlight on.</param>
+        public void SetFocus(GameEntity entity)
+        {
+            // SET focusedEntity to the parameter:
+            this._focusedEntity = entity;
+        }
+
+        /// <summary>
         /// METHOD: Called on each pass of the update loop. Updates the flashlight position and look angle each frame.
         /// </summary>
         public void Update(GameTime gameTime)
         {
+            // SET the flashlights position to the _focusedEntity location:
+            _light.Position = _focusedEntity.EntityLocn;
             // GET the current mouse state:
             MouseState currentMouseState = Mouse.GetState();
             // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
             _lookAngle = Math.Atan2(currentMouseState.Y - _light.Position.Y,
-                                         currentMouseState.X - _light.Position.X);
+                                    currentMouseState.X - _light.Position.X);
             // SET the rotation of the flashlight so that it faces the mouse cursor:
             _light.Rotation = (float)_lookAngle;
         }
