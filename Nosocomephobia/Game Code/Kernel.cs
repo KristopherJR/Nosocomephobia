@@ -88,7 +88,7 @@ namespace Nosocomephobia
                                 _camera.OnNewMouseInput);
 
             // INITIALISE the flashlight:
-            _flashlight.Initialise();
+            _flashlight.Initialise(_camera);
             // INTIALISE penumbra as a PenumbraComponent:
             _penumbra = new PenumbraComponent(this);
             // ADD the flashlight to the penumbra engine:
@@ -199,7 +199,7 @@ namespace Nosocomephobia
 
         protected override void Draw(GameTime gameTime)
         {
-            
+            _penumbra.Transform = _camera.Transform;
             // BEGIN penumbras drawing cycle:
             _penumbra.BeginDraw();
             // SET the window to dark gray:

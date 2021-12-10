@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nosocomephobia.Engine_Code.Camera;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Penumbra;
@@ -19,6 +20,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         private Light _light;
         private double _lookAngle;
         private GameEntity _focusedEntity;
+        private Camera _gameCamera;
         #endregion
 
         #region PROPERTIES
@@ -37,8 +39,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         /// <summary>
         /// METHOD: Sets up the players flashlight with a default size, shadowtype and centres it in the middle of the screen.
         /// </summary>
-        public void Initialise()
+        public void Initialise(Camera c)
         {
+            _gameCamera = c;
             // INITIALISE flashlight attributes:
             _light.Scale = new Vector2(1000f);
             _light.ShadowType = ShadowType.Solid;
@@ -67,19 +70,45 @@ namespace Nosocomephobia.Game_Code.Game_Entities
             // SET focusedEntity to the parameter:
             this._focusedEntity = entity;
         }
+        
+        /// <summary>
+        /// Uses the Cameras position to gets the mouse position in world space.
+        /// </summary>
+        /// <returns></returns>
+        private Vector2 GetMouseWorldPosition()
+        {
+            // GET the cameras transform:
+            _gameCamera.Transform.Decompose(out Vector3 scaley, out _, out Vector3 trans);
+            // CONVERT the Vector3 translation to a Vector2 (discard Z):
+            Vector2 translation = new Vector2(trans.X, trans.Y);
+            // CONVERT the Vector3 scale to a Vector2 (discard Z):
+            Vector2 scale = new Vector2(scaley.X, scaley.Y);
+            // GET the current mouse state:
+            MouseState currentMouseState = Mouse.GetState();
+            // STORE the x and y of the mouse state in a Vector2:
+            Vector2 worldSpaceMousePosition = new Vector2(currentMouseState.X, currentMouseState.Y);
+            // APPLY translation:
+            worldSpaceMousePosition -= translation;
+            worldSpaceMousePosition /= scale;
+
+            return worldSpaceMousePosition;
+        }
 
         /// <summary>
         /// METHOD: Called on each pass of the update loop. Updates the flashlight position and look angle each frame.
         /// </summary>
         public void Update(GameTime gameTime)
         {
+            Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth/2),
+                                               _focusedEntity.EntityLocn.Y + (_focusedEntity.EntitySprite.TextureHeight/2));
             // SET the flashlights position to the _focusedEntity location:
-            _light.Position = _focusedEntity.EntityLocn;
-            // GET the current mouse state:
-            MouseState currentMouseState = Mouse.GetState();
+            _light.Position = playerCentre;
+
+            Vector2 worldSpaceMousePosition = GetMouseWorldPosition();
+
             // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
-            _lookAngle = Math.Atan2(currentMouseState.Y - _light.Position.Y,
-                                    currentMouseState.X - _light.Position.X);
+            _lookAngle = Math.Atan2(worldSpaceMousePosition.Y - _light.Position.Y,
+                                    worldSpaceMousePosition.X - _light.Position.X);
             // SET the rotation of the flashlight so that it faces the mouse cursor:
             _light.Rotation = (float)_lookAngle;
         }

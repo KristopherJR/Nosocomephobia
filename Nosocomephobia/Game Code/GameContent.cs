@@ -49,17 +49,17 @@ namespace Nosocomephobia.Game_Code
             tileSprites = new Dictionary<int, Sprite>();
 
             // LOAD Player's Spritesheet:
-            PlayerSpriteSheet = cm.Load<Texture2D>("sam_spritesheet");
+            PlayerSpriteSheet = cm.Load<Texture2D>("dummy_spite_sheets");
 
             #region SAM ANIMATIONS
             // LOAD Player Walking Down:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 1, 6, 15, 22, 16, 0, AnimationGroup.PlayerWalkDown);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 31, 67, 135, 82, 0, AnimationGroup.PlayerWalkDown);
             // LOAD Player Walking Right:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 38, 13, 22, 16, 0, AnimationGroup.PlayerWalkRight);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 327, 67, 135, 82, 0, AnimationGroup.PlayerWalkRight);
             // LOAD Player Walking Up:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 69, 15, 23, 16, 0, AnimationGroup.PlayerWalkUp);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 475, 67, 135, 82, 0, AnimationGroup.PlayerWalkUp);
             // LOAD Player Walking Left:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 1, 102, 13, 22, 16, 0, AnimationGroup.PlayerWalkLeft);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 179, 67, 135, 82, 0, AnimationGroup.PlayerWalkLeft);
 
             // LOAD Player Sprinting Down:
             LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 6, 16, 22, 16, 0, AnimationGroup.PlayerSprintDown);
@@ -70,7 +70,6 @@ namespace Nosocomephobia.Game_Code
             // LOAD Player Sprinting Left:
             LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 145, 102, 13, 22, 16, 0, AnimationGroup.PlayerSprintLeft);
             #endregion
-
 
         }
         /// <summary>
