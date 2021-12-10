@@ -3,6 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Entities;
 using System.Collections.Generic;
 
+/// <summary>
+/// Author: Kristopher J Randle
+/// Version: 1.1, 10-12-2021
+/// </summary>
 namespace Nosocomephobia.Game_Code
 {
     /// <summary>

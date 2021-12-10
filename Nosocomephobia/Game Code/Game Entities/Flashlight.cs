@@ -8,9 +8,8 @@ using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 30/10/21
+/// Version: 0.2, 10-12-2021
 /// </summary>
-
 namespace Nosocomephobia.Game_Code.Game_Entities
 { 
     public class Flashlight : IUpdatable

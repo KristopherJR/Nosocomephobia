@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Author: Kristopher J Randle
+/// Version: 1.0, 01-05-2021
+/// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
     class CollisionManager : ICollisionManager

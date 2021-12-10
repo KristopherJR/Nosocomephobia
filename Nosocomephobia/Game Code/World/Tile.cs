@@ -2,6 +2,10 @@
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 
+/// <summary>
+/// Author: Kristopher J Randle
+/// Version: 1.0, 01-05-2021
+/// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
     public class Tile : GameEntity, ICollidable

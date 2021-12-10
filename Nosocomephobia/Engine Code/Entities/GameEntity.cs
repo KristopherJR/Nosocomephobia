@@ -5,9 +5,8 @@ using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 30/10/21
+/// Version: 1.0, 01-05-2021
 /// </summary>
-
 namespace Nosocomephobia.Engine_Code.Entities
 {
     public abstract class GameEntity : Entity

@@ -6,6 +6,10 @@ using Nosocomephobia.Engine_Code.UserEventArgs;
 using System;
 using System.Diagnostics;
 
+/// <summary>
+/// Author: Kristopher J Randle
+/// Version: 1.0, 01-05-2021
+/// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
     public class Player : AnimatedEntity, ICollidable, ICollisionResponder, IInputListener
