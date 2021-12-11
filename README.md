@@ -1,4 +1,5 @@
-# Nosocomephobia
+# <img src="https://user-images.githubusercontent.com/47984645/145660822-044e06c7-313f-4579-a72e-b3073d3add4b.png"/>  Nosocomephobia 
+
 Nosocomephobia is a 2D top-down survival horror game written in C# using the MonoGame framework. It utilizes the engine previously developed for COMP2451 and serves as the submission artefact for my final year Advanced Game Design &amp; Development module. This project was developed with art assets provided from 3rd year game art students.
 
 Special thanks to <a href="https://github.com/discosultan">@Discosultan</a> for the use of the Penumbra library.
