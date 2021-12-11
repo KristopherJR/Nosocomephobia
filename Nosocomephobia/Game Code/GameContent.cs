@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 10-12-2021
+/// Version: 1.2, 11-12-2021
 /// </summary>
 namespace Nosocomephobia.Game_Code
 {
@@ -24,12 +24,10 @@ namespace Nosocomephobia.Game_Code
     public static class GameContent
     {
         #region FIELDS
-        // DECLARE a static Texture2D, call it PlayerSpriteSheet:
-        public static Texture2D PlayerSpriteSheet;
-        // DECLARE a static Dictionary to store all of the games animations. Reference each element via the AnimationGroup enum:
-        private static Dictionary<AnimationGroup, Animation> animations;
-        // DECLARE a stiatc Dictionary to store all Tile Sprites. Reference each one by an int id:
-        private static Dictionary<int, Sprite> tileSprites;
+        // DECLARE a static Texture2D, call it _playerSpriteSheet:
+        public static Texture2D _playerSpriteSheet;
+        // DECLARE a static Texture2D, call it _worldTileSheet:
+        public static Texture2D _worldTileSheet;
         // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 6fps:
         public const int DEFAULT_FRAMERATE = 6;
         // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 16:
@@ -37,9 +35,14 @@ namespace Nosocomephobia.Game_Code
         // DECLARE a const int, call it DEFAULT_TILE_HEIGHT and set it to 16:
         public const int DEFAULT_TILE_HEIGHT = 16;
         // DECLARE a const int, call it TILE_SHEET_WIDTH:
-        public const int TILE_SHEET_WIDTH = 352 / DEFAULT_TILE_WIDTH;
-        // DECLARE a const int, call it NUMBER_OF_TILES:
-        public const int NUMBER_OF_TILES = 397;
+        public const int TILE_SHEET_WIDTH = 160 / DEFAULT_TILE_WIDTH;
+        // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
+        public const int NUMBER_OF_TILES = 40;
+
+        // DECLARE a static Dictionary to store all of the games animations. Reference each element via the AnimationGroup enum:
+        private static Dictionary<AnimationGroup, Animation> animations;
+        // DECLARE a stiatc Dictionary to store all Tile Sprites. Reference each one by an int id:
+        private static Dictionary<int, Sprite> tileSprites;
         #endregion
 
         /// <summary>
@@ -53,26 +56,36 @@ namespace Nosocomephobia.Game_Code
             tileSprites = new Dictionary<int, Sprite>();
 
             // LOAD Player's Spritesheet:
-            PlayerSpriteSheet = cm.Load<Texture2D>("dummy_spite_sheets");
+            _playerSpriteSheet = cm.Load<Texture2D>("dummy_spite_sheets");
+            // LOAD the World Tile Sheet:
+            _worldTileSheet = cm.Load<Texture2D>("tilesheet1");
 
-            #region SAM ANIMATIONS
+            #region PLAYER ANIMATIONS
             // LOAD Player Walking Down:
-            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 31, 67, 135, 82, 0, AnimationGroup.PlayerWalkDown);
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 31, 67, 135, 82, 0, AnimationGroup.PlayerWalkDown);
             // LOAD Player Walking Right:
-            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 327, 67, 135, 82, 0, AnimationGroup.PlayerWalkRight);
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 327, 67, 135, 82, 0, AnimationGroup.PlayerWalkRight);
             // LOAD Player Walking Up:
-            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 475, 67, 135, 82, 0, AnimationGroup.PlayerWalkUp);
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 475, 67, 135, 82, 0, AnimationGroup.PlayerWalkUp);
             // LOAD Player Walking Left:
-            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 179, 67, 135, 82, 0, AnimationGroup.PlayerWalkLeft);
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 179, 67, 135, 82, 0, AnimationGroup.PlayerWalkLeft);
 
             // LOAD Player Sprinting Down:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 6, 16, 22, 16, 0, AnimationGroup.PlayerSprintDown);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 6, 16, 22, 16, 0, AnimationGroup.PlayerSprintDown);
             // LOAD Player Sprinting Right:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 146, 38, 14, 22, 16, 0, AnimationGroup.PlayerSprintRight);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 146, 38, 14, 22, 16, 0, AnimationGroup.PlayerSprintRight);
             // LOAD Player Sprinting Up:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 69, 16, 23, 16, 0, AnimationGroup.PlayerSprintUp);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 69, 16, 23, 16, 0, AnimationGroup.PlayerSprintUp);
             // LOAD Player Sprinting Left:
-            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 145, 102, 13, 22, 16, 0, AnimationGroup.PlayerSprintLeft);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 145, 102, 13, 22, 16, 0, AnimationGroup.PlayerSprintLeft);
+            #endregion
+
+            #region LOADING TILESPRITES
+            // LOAD the Tile Sprites:
+            for (int i = 0; i < NUMBER_OF_TILES; i++)
+            {
+                ExtractTile(i);
+            }
             #endregion
 
         }
@@ -105,6 +118,35 @@ namespace Nosocomephobia.Game_Code
 
             // STORE the new tempAnimation in the animations Dictionary, using the name provided from the enum:
             animations.Add(animationGroup, tempAnimation);
+        }
+
+        /// <summary>
+        /// Gets the Tile image from the tile sheet based on the tileID.
+        /// </summary>
+        /// <param name="tileID">An int representing the ID number of this Tile.</param>
+        private static void ExtractTile(int tileID)
+        {
+            // DECLARE an int, call it x. Set it to the remainder of tileID by Tile sheet width, * tile width.
+            int x = (tileID % TILE_SHEET_WIDTH) * DEFAULT_TILE_WIDTH;
+            // DECLARE an int, call it y. Set it to tileID / tile sheet width * tile width.
+            int y = (tileID / TILE_SHEET_WIDTH) * DEFAULT_TILE_WIDTH;
+            // LOAD the Tiles Sprite:
+            LoadTileSprite(x, y, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, tileID);
+        }
+        /// <summary>
+        /// Loads a Tiles Sprite and adds it to the total tileSprites List.
+        /// </summary>
+        /// <param name="x">The top-left x coordinate that the image originates from in the image file.</param>
+        /// <param name="y">The top-left y coordinate that the image originates from in the image file.</param>
+        /// <param name="width">The width of the texture in the spritesheet.</param>
+        /// <param name="height">The height of the texture in the spritesheet.</param>
+        /// <param name="tileID">The Tiles ID number.</param>
+        private static void LoadTileSprite(int x, int y, int width, int height, int tileID)
+        {
+            // CREATE a new Sprite, call it tempTileSprite and pass in the parameters:
+            Sprite tempTileSprite = new Sprite(_worldTileSheet, x, y, width, height);
+            // ADD the tempTileSprite to the tileSprites, saving them with a tileID:
+            tileSprites.Add(tileID, tempTileSprite);
         }
 
         /// <summary>

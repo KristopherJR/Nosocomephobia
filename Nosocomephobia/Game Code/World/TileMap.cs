@@ -63,7 +63,6 @@ namespace Nosocomephobia.Game_Code.World
                     if (tileIdParse < 0)
                     {
                         // This section is used to stop invisible tiles being loaded into the TileMap:
-
                         // SET tileIdParse to the total number of Tiles - 1:
                         tileIdParse = (GameContent.NUMBER_OF_TILES) - 1;
                         // SET isValidTile to false:

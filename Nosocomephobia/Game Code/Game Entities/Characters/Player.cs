@@ -40,8 +40,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// </summary>
         public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
         {
-            // SET Sams location in the world:
-            this.EntityLocn = new Vector2(100, 100);
+            // SET PLAYER location in the world:
+            this.EntityLocn = new Vector2(300, 2500);
             // INITIALIZE moveSpeed to '1.5f':
             this.moveSpeed = 1.5f;
             // SET isSprintEnabled to false as default:

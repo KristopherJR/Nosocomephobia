@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.14, 10-12-2021
+/// Version: 0.15, 11-12-2021
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -31,8 +31,13 @@ namespace Nosocomephobia
         // DECLARE a public static int to represent the Screen Height, call it 'SCREEN_HEIGHT':
         public static int SCREEN_HEIGHT;
 
+        // DECLARE a const String, call it TILE_MAP_FLOOR_PATH. Set it to the File Path of the floor layer: 
+        private const String TILE_MAP_FLOOR_PATH = "Content/nosocomephobia_tilemap_Floor.csv";
+        // DECLARE a const String, call it TILE_MAP_COLLISION_PATH. Set it to the File Path of the collision layer:
+        private const String TILE_MAP_COLLISION_PATH = "Content/nosocomephobia_tilemap_Walls.csv";
+
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
-        private bool _devMode = true;
+        private bool _devMode = false;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -50,6 +55,10 @@ namespace Nosocomephobia
 
         // DECLARE a Camera, call it '_camera':
         private Camera _camera;
+        // DECLARE a TileMap, call it '_tileMapFloor':
+        private TileMap _tileMapFloor;
+        // DECLARE a TileMap, call it '_tileMapCollisions':
+        private TileMap _tileMapCollisions;
 
         // DECLARE a PenumbraComponent, call it _penumbra:
         private PenumbraComponent _penumbra;
@@ -63,7 +72,7 @@ namespace Nosocomephobia
             // INITIALISE _flashlight:
             _flashlight = new Flashlight();
             Content.RootDirectory = "Content";
-            IsMouseVisible = true; 
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -137,22 +146,30 @@ namespace Nosocomephobia
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             // LOADING the game content:
             GameContent.LoadContent(Content);
+            // INITALIZE tilemaps:
+            _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
+            _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
             // SPAWN the game objects:
             this.SpawnObjects();
         }
 
         private void SpawnObjects()
         {
-            // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it Sam.:
+            // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
             IEntity _player = _eManager.createEntity<Player>();
             // SPAWN _player into the SceneGraph:
             _sManager.spawn(_player);
-
-
             // SET _camera focus onto Player:
             _camera.SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
             _flashlight.SetFocus(_player as GameEntity);
+
+            // FOREACH Tile in TileMap collision Layer:
+            foreach (Tile t in _tileMapCollisions.GetTileMap())
+            {
+                // SPAWN the Tiles into the SceneGraph:
+                _sManager.spawn(t);
+            }
 
             // ITERATE through the SceneGraph:
             for (int i = 0; i < _sManager.SceneGraph.Count; i++)
@@ -199,6 +216,7 @@ namespace Nosocomephobia
 
         protected override void Draw(GameTime gameTime)
         {
+            // SET the transform of the Penumbra engine to the Cameras Transform:
             _penumbra.Transform = _camera.Transform;
             // BEGIN penumbras drawing cycle:
             _penumbra.BeginDraw();
@@ -206,6 +224,9 @@ namespace Nosocomephobia
             GraphicsDevice.Clear(Color.DarkGray);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp,
                                transformMatrix: _camera.Transform);
+            // DRAW the TileMaps:
+            _tileMapFloor.DrawTileMap(_spriteBatch);
+            _tileMapCollisions.DrawTileMap(_spriteBatch);
             // DRAW the Entities that are in the SceneGraph:
             for (int i = 0; i < _sManager.SceneGraph.Count; i++)
             {

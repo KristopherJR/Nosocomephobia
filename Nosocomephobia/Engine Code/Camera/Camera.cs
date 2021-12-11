@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
-
+using System;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -65,7 +66,7 @@ namespace Nosocomephobia.Engine_Code.Camera
         {
             // SET up the transform via Matrix:
             transform = Matrix.CreateTranslation(-focusedEntity.EntityLocn.X, -focusedEntity.EntityLocn.Y, 0) * // Main Translation Matrix
-                        Matrix.CreateScale(new Vector3(zoomAspect, zoomAspect, 1)) * // Scale Matrix using zoomAspect
+                        Matrix.CreateScale(new Vector3(zoomAspect, zoomAspect, 0)) * // Scale Matrix using zoomAspect
                         Matrix.CreateTranslation(new Vector3(viewport.Width / 2, viewport.Height / 2, 0)); // Origin Offset Matrix
         }
         /// <summary>
@@ -77,7 +78,7 @@ namespace Nosocomephobia.Engine_Code.Camera
         {
             // SET zoomAspect to the scollValue in the eventInformation, * scrollSpeed:
             zoomAspect += eventInformation.ScrollValue * scrollSpeed;
-            //Console.WriteLine(zoomAspect);
+            Debug.WriteLine("Zoom Aspect: " + zoomAspect);
         }
         #region _
         public void OnNewInput(object sender, OnInputEventArgs eventInformation)
