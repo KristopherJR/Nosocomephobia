@@ -15,6 +15,6 @@ It’s 1834 and it’s been two years since the institution was legally pardoned
 
 
 <h2>Art Team</h2>
-Dan Congerton - Character, Items & HUD <br>
+Dan Congerton - Monster Design, Items & HUD <br>
 Tuomo Uusitalo - Environmental Art <br>
 Ryan Brewer - Character Design
