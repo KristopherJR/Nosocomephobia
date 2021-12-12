@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.15, 11-12-2021
+/// Version: 0.16, 11-12-2021
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -164,11 +164,26 @@ namespace Nosocomephobia
             // SET _flashlight focus onto Player:
             _flashlight.SetFocus(_player as GameEntity);
 
+            // FOREACH Tile in TileMap floor Layer:
+            foreach (Tile t in _tileMapFloor.GetTileMap())
+            {
+                // TEST that the tile is valid before spawning it to the scene graph:
+                if(t.IsValidTile)
+                {
+                    // SPAWN the Tiles into the SceneGraph:
+                    _sManager.spawn(t);
+                } 
+            }
+
             // FOREACH Tile in TileMap collision Layer:
             foreach (Tile t in _tileMapCollisions.GetTileMap())
             {
-                // SPAWN the Tiles into the SceneGraph:
-                _sManager.spawn(t);
+                // TEST that the tile is valid before spawning it to the scene graph:
+                if (t.IsValidTile)
+                {
+                    // SPAWN the Tiles into the SceneGraph:
+                    _sManager.spawn(t);
+                }
             }
 
             // ITERATE through the SceneGraph:
@@ -211,7 +226,6 @@ namespace Nosocomephobia
                 // UPDATE base class:
                 base.Update(gameTime);
             }
-            
         }
 
         protected override void Draw(GameTime gameTime)

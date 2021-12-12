@@ -7,7 +7,7 @@ using System.Linq;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 11-12-2021
 /// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
@@ -63,15 +63,22 @@ namespace Nosocomephobia.Game_Code.World
                     if (tileIdParse < 0)
                     {
                         // This section is used to stop invisible tiles being loaded into the TileMap:
+    
                         // SET tileIdParse to the total number of Tiles - 1:
                         tileIdParse = (GameContent.NUMBER_OF_TILES) - 1;
                         // SET isValidTile to false:
                         isValidTile = false;
+                        
                     }
                     // DECLARE a Tile, call it newTile and pass in tileIdParse:
                     Tile newTile = new Tile(tileIdParse);
                     // SET newTile.IsCollidable to true if the layer is collidable and it's a valid tile, else false:
                     newTile.IsCollidable = isLayerCollidable && isValidTile;
+                    // CHECK if the tile is valid based on its parse, if its not set the property to false:
+                    if(isValidTile == false)
+                    {
+                        newTile.IsValidTile = false;
+                    }
                     // SET the tiles position to the next space in the TileMap:
                     newTile.SetTilePosition(new Vector2(x * GameContent.DEFAULT_TILE_WIDTH,
                                                         y * GameContent.DEFAULT_TILE_HEIGHT));
@@ -125,8 +132,12 @@ namespace Nosocomephobia.Game_Code.World
             // FOREACH Tile in TileMap:
             foreach (Tile t in tileMap)
             {
-                // DRAW the Tile:
-                t.Draw(spriteBatch);
+                // IF the tile is valid:
+                if(t.IsValidTile)
+                {
+                    // DRAW the Tile:
+                    t.Draw(spriteBatch);
+                }
             }
         }
         /// <summary>

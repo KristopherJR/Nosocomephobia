@@ -4,13 +4,15 @@ using Nosocomephobia.Engine_Code.Interfaces;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 11-12-2021
 /// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
     public class Tile : GameEntity, ICollidable
     {
         #region FIELDS
+        // DECLARE a bool, call it _isValidTile:
+        private bool _isValidTile;
         #endregion
 
         #region PROPERTIES
@@ -18,6 +20,12 @@ namespace Nosocomephobia.Game_Code.World
         {
             get { return isCollidable; }
             set { isCollidable = value; }
+        }
+        // DECLARE a get-set property for _isValidTile:
+        public bool IsValidTile
+        {
+            get { return _isValidTile; }
+            set { _isValidTile = value; }
         }
         #endregion
 
@@ -30,6 +38,8 @@ namespace Nosocomephobia.Game_Code.World
             // INITIALIZE fields:
             this.entitySprite = this.LoadTileSprite(tileID);
             this.entityLocn = new Vector2(0, 0);
+            // MAKE all tiles valid by default:
+            _isValidTile = true;
         }
 
         /// <summary>
