@@ -41,7 +41,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
         {
             // SET PLAYER location in the world:
-            this.EntityLocn = new Vector2(300, 2500);
+            this.EntityLocn = new Vector2(4777, 8122);
             // INITIALIZE moveSpeed to '1.5f':
             this.moveSpeed = 1.5f;
             // SET isSprintEnabled to false as default:
@@ -64,6 +64,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             lastPosition = EntityLocn;
             // MOVE Player by his velocity:
             this.EntityLocn += entityVelocity;
+            Debug.WriteLine(entityLocn);
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
