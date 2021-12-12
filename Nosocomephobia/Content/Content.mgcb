@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin 3x-floors.csv
+/copy:3x-floors.csv
+
+#begin 3x-walls.csv
+/copy:3x-walls.csv
+
 #begin dummy_spite_sheets.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -24,12 +30,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:dummy_spite_sheets.png
-
-#begin nosocomephobia_tilemap_Floor.csv
-/copy:nosocomephobia_tilemap_Floor.csv
-
-#begin nosocomephobia_tilemap_Walls.csv
-/copy:nosocomephobia_tilemap_Walls.csv
 
 #begin tilesheet16.png
 /importer:TextureImporter

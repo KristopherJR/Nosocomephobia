@@ -31,11 +31,11 @@ namespace Nosocomephobia.Game_Code
         // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 6fps:
         public const int DEFAULT_FRAMERATE = 6;
         // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 16:
-        public const int DEFAULT_TILE_WIDTH = 48;
+        public const int DEFAULT_TILE_WIDTH = 16;
         // DECLARE a const int, call it DEFAULT_TILE_HEIGHT and set it to 16:
-        public const int DEFAULT_TILE_HEIGHT = 48;
+        public const int DEFAULT_TILE_HEIGHT = 16;
         // DECLARE a const int, call it TILE_SHEET_WIDTH:
-        public const int TILE_SHEET_WIDTH = 480 / DEFAULT_TILE_WIDTH;
+        public const int TILE_SHEET_WIDTH = 160 / DEFAULT_TILE_WIDTH;
         // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
         public const int NUMBER_OF_TILES = 40;
 
@@ -58,7 +58,7 @@ namespace Nosocomephobia.Game_Code
             // LOAD Player's Spritesheet:
             _playerSpriteSheet = cm.Load<Texture2D>("dummy_spite_sheets");
             // LOAD the World Tile Sheet:
-            _worldTileSheet = cm.Load<Texture2D>("tilesheet48");
+            _worldTileSheet = cm.Load<Texture2D>("tilesheet16");
 
             #region PLAYER ANIMATIONS
             // LOAD Player Walking Down:

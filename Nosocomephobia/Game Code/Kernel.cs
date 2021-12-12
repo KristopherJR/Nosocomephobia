@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.16, 11-12-2021
+/// Version: 0.2, 12-12-2021
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -32,9 +32,9 @@ namespace Nosocomephobia
         public static int SCREEN_HEIGHT;
 
         // DECLARE a const String, call it TILE_MAP_FLOOR_PATH. Set it to the File Path of the floor layer: 
-        private const String TILE_MAP_FLOOR_PATH = "Content/nosocomephobia_tilemap_Floor.csv";
+        private const String TILE_MAP_FLOOR_PATH = "Content/3x-floors.csv";
         // DECLARE a const String, call it TILE_MAP_COLLISION_PATH. Set it to the File Path of the collision layer:
-        private const String TILE_MAP_COLLISION_PATH = "Content/nosocomephobia_tilemap_Walls.csv";
+        private const String TILE_MAP_COLLISION_PATH = "Content/3x-walls.csv";
 
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
         private bool _devMode = false;

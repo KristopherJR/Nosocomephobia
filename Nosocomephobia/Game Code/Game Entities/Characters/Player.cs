@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 12-12-2021
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -41,7 +41,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
         {
             // SET PLAYER location in the world:
-            this.EntityLocn = new Vector2(4777, 8122);
+            this.EntityLocn = new Vector2(1534, 2894);
             // INITIALIZE moveSpeed to '1.5f':
             this.moveSpeed = 1.5f;
             // SET isSprintEnabled to false as default:
