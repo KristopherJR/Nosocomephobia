@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface ISceneManager
+    interface ISceneManager : IServiceManager
     {
         /// <summary>
         /// The SceneGraph.

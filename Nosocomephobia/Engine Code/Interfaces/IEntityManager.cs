@@ -6,7 +6,7 @@
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IEntityManager
+    interface IEntityManager : IServiceManager
     {
         /// <summary>
         /// Create an entity of the provided generic type (must be an IEntity).

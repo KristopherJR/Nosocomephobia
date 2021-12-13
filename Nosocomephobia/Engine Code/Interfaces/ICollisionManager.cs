@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface ICollisionManager
+    interface ICollisionManager : IServiceManager
     {
         /// <summary>
         /// Adds all ICollidables in the Scene Graph to the collidables List on start-up.

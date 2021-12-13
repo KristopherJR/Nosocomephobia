@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    public interface INavigationManager
+    public interface INavigationManager : IServiceManager
     {
         TileMap NavigationGrid { get; set; } // property
         List<IPathFinder> PathFinders { get; } // read-only property

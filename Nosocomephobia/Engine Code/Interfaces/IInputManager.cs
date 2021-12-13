@@ -6,7 +6,7 @@
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IInputManager : IInputPublisher
+    interface IInputManager : IInputPublisher, IServiceManager
     {
         /// <summary>
         /// Called when a new input occurs. Method from Marc Price, Week 18 Input slides on BlackBoard.

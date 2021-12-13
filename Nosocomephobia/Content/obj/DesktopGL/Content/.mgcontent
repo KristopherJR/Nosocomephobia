@@ -4,10 +4,10 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/dummy_spite_sheets.png</File>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
+    <File>C:/Users/krist/Desktop/Nosocomephobia/Nosocomephobia/Content/dummy_spite_sheets.png</File>
+    <File>C:/Users/krist/Desktop/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
+    <File>C:/Users/krist/Desktop/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
+    <File>C:/Users/krist/Desktop/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
