@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.2, 13-12-21
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IInputManager : IInputPublisher, IServiceManager
+    interface IInputManager : IInputPublisher, IService
     {
         /// <summary>
         /// Called when a new input occurs. Method from Marc Price, Week 18 Input slides on BlackBoard.

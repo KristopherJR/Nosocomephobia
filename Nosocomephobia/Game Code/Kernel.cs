@@ -42,6 +42,8 @@ namespace Nosocomephobia
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private IEngineManager _engineManager;
+
         // DECLARE an EntityManager, call it '_eManager'. Store it as its interface IEntityManager:
         private IEntityManager _eManager;
         // DECLARE a SceneManager, call it '_sManager'. Store it as its interface ISceneManager:
@@ -80,12 +82,9 @@ namespace Nosocomephobia
             // INITIALISE the game window:
             this.InitialiseWindow();
 
-            // INITIALIZE the Managers:
-            _eManager = new EntityManager();
-            _sManager = new SceneManager();
-            _cManager = new CollisionManager();
-            _iManager = new InputManager();
-            _nManager = new NavigationManager();
+            // INTIALISE the EngineManager:
+            _engineManager = new EngineManager();
+            
 
             // INITIALIZE the camera:
             _camera = new Camera(GraphicsDevice.Viewport);

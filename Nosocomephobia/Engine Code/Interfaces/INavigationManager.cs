@@ -1,14 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Nosocomephobia.Game_Code.World;
+using System;
 using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.2, 13-12-21
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    public interface INavigationManager : IServiceManager
+    public interface INavigationManager : IService
     {
         TileMap NavigationGrid { get; set; } // property
         List<IPathFinder> PathFinders { get; } // read-only property

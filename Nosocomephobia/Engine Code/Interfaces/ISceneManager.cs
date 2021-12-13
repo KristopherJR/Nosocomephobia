@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.2, 13-12-21
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface ISceneManager : IServiceManager
+    interface ISceneManager : IService
     {
         /// <summary>
         /// The SceneGraph.

@@ -9,9 +9,9 @@ using System.Text;
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
     /// <summary>
-    /// IServiceManager interface. Implemented by all of the engines service managers.
+    /// Generic IService interface. Implemented by all of the engines service managers.
     /// </summary>
-    public interface IServiceManager
+    public interface IService
     {
         // nothing for now
     }

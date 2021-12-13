@@ -4,7 +4,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.1, 13-12-21
+/// Version: 0.2, 13-12-21
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -14,15 +14,22 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     public interface IEngineManager
     {
         #region PROPERTIES
-        // DECLARE a get property for the IList of service managers:
-        IList<IServiceManager> ServiceManagers { get; }
+        // DECLARE a get property for the IDictionary of services:
+        IDictionary<Type, IService> Services { get; }
         #endregion
 
         #region METHODS
         /// <summary>
-        /// Initialises and adds the service managers to the _serviceManagers list.
+        /// Initialises and adds the services to the _services IDictionary.
         /// </summary>
-        void InitialiseServiceManagers();
+        void InitialiseServices();
+
+        /// <summary>
+        /// A method taking a generic type, where the type is an IService. Returns the requested IService from the _services dictionary.
+        /// </summary>
+        /// <typeparam name="T">The generic type to be retrieved from the Dictionary.</typeparam>
+        /// <returns>The element with the specified type.</returns>
+        T GetService<T>(Type pRequestedService) where T : IService;
         #endregion
     }
 }
