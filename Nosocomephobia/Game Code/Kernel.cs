@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 12-12-2021
+/// Version: 0.3, 17-01-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>

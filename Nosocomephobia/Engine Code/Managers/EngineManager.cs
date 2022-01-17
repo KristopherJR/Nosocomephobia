@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.2, 13-12-21
+/// Version: 0.3, 17-01-22
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -69,8 +69,6 @@ namespace Nosocomephobia.Engine_Code.Managers
             else
             {
                 throw new Exception("The requested service does not exist in the EngineManager.");
-                //IService newService = new EntityManager();
-                //return newService;
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.2, 13-12-21
+/// Version: 0.3, 17-01-22
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
