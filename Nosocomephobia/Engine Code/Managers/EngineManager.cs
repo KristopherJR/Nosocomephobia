@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher Randle
@@ -61,25 +60,17 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// </summary>
         /// <typeparam name="T">The generic type to be retrieved from the Dictionary.</typeparam>
         /// <returns>The element with the specified type.</returns>
-        public T GetService<T>(Type pRequestedService) where T : IService
+        public IService GetService<T>() where T : IService
         {
-            try
+            if (_services.ContainsKey(typeof(T)))
             {
-                if (_services.ContainsKey(pRequestedService))
-                {
-                    IService<Type> returnedService = _services[pRequestedService];
-                    return returnedService;
-
-                }
-                else
-                {
-                    throw new Exception("Requested Service does not exist in EngineManager Dictionary.");
-                }
-
+                return _services[typeof(T)];
             }
-            catch (Exception e)
+            else
             {
-                Debug.WriteLine("An Error occurred..." + e.Message);
+                throw new Exception("The requested service does not exist in the EngineManager.");
+                //IService newService = new EntityManager();
+                //return newService;
             }
         }
     }

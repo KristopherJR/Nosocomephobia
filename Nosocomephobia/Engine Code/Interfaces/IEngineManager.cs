@@ -29,7 +29,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// </summary>
         /// <typeparam name="T">The generic type to be retrieved from the Dictionary.</typeparam>
         /// <returns>The element with the specified type.</returns>
-        T GetService<T>(Type pRequestedService) where T : IService;
+        IService GetService<T>() where T : IService;
         #endregion
     }
 }
