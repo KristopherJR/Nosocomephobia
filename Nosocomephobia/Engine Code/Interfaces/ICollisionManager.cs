@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.2, 13-12-21
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface ICollisionManager
+    interface ICollisionManager : IService
     {
         /// <summary>
         /// Adds all ICollidables in the Scene Graph to the collidables List on start-up.

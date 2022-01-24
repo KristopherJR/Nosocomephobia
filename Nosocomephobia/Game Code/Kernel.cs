@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 12-12-2021
+/// Version: 0.3, 17-01-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -42,16 +42,18 @@ namespace Nosocomephobia
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        // DECLARE an EntityManager, call it '_eManager'. Store it as its interface IEntityManager:
-        private IEntityManager _eManager;
-        // DECLARE a SceneManager, call it '_sManager'. Store it as its interface ISceneManager:
-        private ISceneManager _sManager;
-        // DECLARE a CollisionManager, call it '_cManager'. Store it as its interface ICollisionManager:
-        private ICollisionManager _cManager;
-        // DECLARE an InputManager, call it '_iManager'. Store it as its interface IInputManager:
-        private IInputManager _iManager;
-        // DECLARE an NavigationManager, call it '_nManager'. Store it as its interface INavigationManager:
-        private INavigationManager _nManager;
+        private IEngineManager _engineManager;
+
+        // DECLARE an EntityManager, call it 'entityManager'. Store it as its interface IEntityManager:
+        private IEntityManager _entityManager;
+        // DECLARE a SceneManager, call it '_sceneManager'. Store it as its interface ISceneManager:
+        private ISceneManager _sceneManager;
+        // DECLARE a CollisionManager, call it '_collisionManager'. Store it as its interface ICollisionManager:
+        private ICollisionManager _collisionManager;
+        // DECLARE an InputManager, call it '_inputManager'. Store it as its interface IInputManager:
+        private IInputManager _inputManager;
+        // DECLARE an NavigationManager, call it '_navigationManager'. Store it as its interface INavigationManager:
+        private INavigationManager _navigationManager;
 
         // DECLARE a Camera, call it '_camera':
         private Camera _camera;
@@ -80,22 +82,35 @@ namespace Nosocomephobia
             // INITIALISE the game window:
             this.InitialiseWindow();
 
-            // INITIALIZE the Managers:
-            _eManager = new EntityManager();
-            _sManager = new SceneManager();
-            _cManager = new CollisionManager();
-            _iManager = new InputManager();
-            _nManager = new NavigationManager();
+            // INTIALISE the EngineManager:
+            _engineManager = new EngineManager();
+
+            // INITIALISE the EngineManagers Services:
+            _engineManager.InitialiseServices();
+
+            // STORE a copy reference of the EngineManagers services for use in the Kernel:
+
+            _entityManager = (_engineManager.GetService<IEntityManager>() as IEntityManager);
+            _sceneManager = (_engineManager.GetService<ISceneManager>() as ISceneManager);
+            _collisionManager = (_engineManager.GetService<ICollisionManager>() as ICollisionManager);
+            _inputManager = (_engineManager.GetService<IInputManager>() as IInputManager);
+            _navigationManager = (_engineManager.GetService<INavigationManager>() as INavigationManager);
+
 
             // INITIALIZE the camera:
             _camera = new Camera(GraphicsDevice.Viewport);
 
             // SUBSCRIBE the camera to listen for input events:
-            _iManager.Subscribe(_camera,
+
+            
+
+            _inputManager.Subscribe(_camera,
                                 _camera.OnNewInput,
                                 _camera.OnKeyReleased,
                                 _camera.OnNewMouseInput);
 
+
+            
             // INITIALISE the flashlight:
             _flashlight.Initialise(_camera);
             // INTIALISE penumbra as a PenumbraComponent:
@@ -156,9 +171,9 @@ namespace Nosocomephobia
         private void SpawnObjects()
         {
             // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
-            IEntity _player = _eManager.createEntity<Player>();
+            IEntity _player = _entityManager.createEntity<Player>();
             // SPAWN _player into the SceneGraph:
-            _sManager.spawn(_player);
+            _sceneManager.spawn(_player);
             // SET _camera focus onto Player:
             _camera.SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
@@ -171,7 +186,7 @@ namespace Nosocomephobia
                 if(t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sManager.spawn(t);
+                    _sceneManager.spawn(t);
                 } 
             }
 
@@ -182,25 +197,25 @@ namespace Nosocomephobia
                 if (t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sManager.spawn(t);
+                    _sceneManager.spawn(t);
                 }
             }
 
             // ITERATE through the SceneGraph:
-            for (int i = 0; i < _sManager.SceneGraph.Count; i++)
+            for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
             {
-                if (_sManager.SceneGraph[i] is Player)
+                if (_sceneManager.SceneGraph[i] is Player)
                 {
                     // SUBSCRIBE the paddle to listen for input events and key release events:
-                    _iManager.Subscribe((_sManager.SceneGraph[0] as IInputListener),
-                                       (_sManager.SceneGraph[0] as Player).OnNewInput,
-                                       (_sManager.SceneGraph[0] as Player).OnKeyReleased,
-                                       (_sManager.SceneGraph[0] as Player).OnNewMouseInput);
+                    _inputManager.Subscribe((_sceneManager.SceneGraph[0] as IInputListener),
+                                       (_sceneManager.SceneGraph[0] as Player).OnNewInput,
+                                       (_sceneManager.SceneGraph[0] as Player).OnKeyReleased,
+                                       (_sceneManager.SceneGraph[0] as Player).OnNewMouseInput);
                 }
             }
 
             // POPULATE the CollisionManagers collidables List with objects from the Scene Graph:
-            _cManager.PopulateCollidables(_sManager.SceneGraph);
+            _collisionManager.PopulateCollidables(_sceneManager.SceneGraph);
         }
 
 
@@ -212,13 +227,13 @@ namespace Nosocomephobia
             if (RUNNING)
             {
                 // UPDATE the CollisionManager first:
-                _cManager.update();
+                _collisionManager.update();
                 // UPDATE the NavigationManager:
-                _nManager.Update(gameTime);
+                _navigationManager.Update(gameTime);
                 // THEN Update the SceneManager:
-                _sManager.Update(gameTime);
+                _sceneManager.Update(gameTime);
                 // UPDATE the InputManager:
-                _iManager.update();
+                _inputManager.update();
                 // UPDATE the flashlight:
                 _flashlight.Update(gameTime);
                 // UPDATE the Camera:
@@ -242,16 +257,16 @@ namespace Nosocomephobia
             _tileMapFloor.DrawTileMap(_spriteBatch);
             _tileMapCollisions.DrawTileMap(_spriteBatch);
             // DRAW the Entities that are in the SceneGraph:
-            for (int i = 0; i < _sManager.SceneGraph.Count; i++)
+            for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
             {
                 // STOP this loop from drawing the TileMap, as tiles are in the SceneGraph but have their own unique draw method in TileMap:
-                if (_sManager.SceneGraph[i] is Tile)
+                if (_sceneManager.SceneGraph[i] is Tile)
                 {
                     // IF it's a Tile, break the loop:
                     break;
                 }
                 // IF not, draw the GameEntity to the SpriteBatch:
-                (_sManager.SceneGraph[i] as GameEntity).Draw(_spriteBatch);
+                (_sceneManager.SceneGraph[i] as GameEntity).Draw(_spriteBatch);
             }
             _spriteBatch.End();
 
