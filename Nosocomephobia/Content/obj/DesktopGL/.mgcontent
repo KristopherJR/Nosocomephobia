@@ -1,15 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Profile>Reach</Profile>
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/dummy_spite_sheets.png</File>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
-    <File>D:/Documents/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test01.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/PixelArtMonster_Test.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/circles.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/hand1.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/journal.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/planks.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/skull.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/tiles.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/walls.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/wing.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy spite sheets.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_001.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_002.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_003.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_001.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_002.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_003.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_001.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_002.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_003.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_001.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_002.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprite test in engine.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprites.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/dummy_spite_sheets.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
+    <File>C:/Users/krist/source/repos/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

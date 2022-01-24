@@ -56,19 +56,20 @@ namespace Nosocomephobia.Game_Code
             tileSprites = new Dictionary<int, Sprite>();
 
             // LOAD Player's Spritesheet:
-            _playerSpriteSheet = cm.Load<Texture2D>("dummy_spite_sheets");
+            //_playerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/sprites");
+            _playerSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test01");
             // LOAD the World Tile Sheet:
             _worldTileSheet = cm.Load<Texture2D>("tilesheet16");
 
             #region PLAYER ANIMATIONS
             // LOAD Player Walking Down:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 31, 67, 135, 82, 0, AnimationGroup.PlayerWalkDown);
+            LoadAnimation(_playerSpriteSheet, 1, DEFAULT_FRAMERATE, 0, 0, 64, 64, 0, 0, AnimationGroup.PlayerWalkDown);
             // LOAD Player Walking Right:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 327, 67, 135, 82, 0, AnimationGroup.PlayerWalkRight);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 75, 128, 64, 157, 0, AnimationGroup.PlayerWalkLeft);
             // LOAD Player Walking Up:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 475, 67, 135, 82, 0, AnimationGroup.PlayerWalkUp);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 151, 128, 64, 157, 0, AnimationGroup.PlayerWalkRight);
             // LOAD Player Walking Left:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 34, 179, 67, 135, 82, 0, AnimationGroup.PlayerWalkLeft);
+            LoadAnimation(_playerSpriteSheet, 1, DEFAULT_FRAMERATE, 0, 231, 64, 128, 0, 0, AnimationGroup.PlayerWalkUp);
 
             // LOAD Player Sprinting Down:
             LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 6, 16, 22, 16, 0, AnimationGroup.PlayerSprintDown);

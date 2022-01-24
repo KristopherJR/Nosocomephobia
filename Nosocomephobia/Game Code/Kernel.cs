@@ -37,7 +37,7 @@ namespace Nosocomephobia
         private const String TILE_MAP_COLLISION_PATH = "Content/3x-walls.csv";
 
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
-        private bool _devMode = false;
+        private bool _devMode = true;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
