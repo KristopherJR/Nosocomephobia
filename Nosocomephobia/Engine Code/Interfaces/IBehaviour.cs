@@ -4,7 +4,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 24-01-2022
+/// Version: 0.2, 30-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -12,7 +12,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     {
         #region PROPERTIES
         // Get-Set property for Entity:
-        IEntity Entity { get;  set; }
+        IEntity MyEntity { get;  set; }
         #endregion
     }
 }

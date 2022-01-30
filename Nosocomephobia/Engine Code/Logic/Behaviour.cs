@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 24-01-2022
+/// Version: 0.2, 30-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Logic
 {
@@ -20,8 +20,9 @@ namespace Nosocomephobia.Engine_Code.Logic
 
         #region PROPERTIES
         // Set property for Entity:
-        public IEntity Entity // property
+        public IEntity MyEntity // property
         {
+            get { return _myEntity; }
             set { _myEntity = value; }
         }
         #endregion

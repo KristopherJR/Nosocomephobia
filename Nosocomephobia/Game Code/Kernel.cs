@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.3, 17-01-2022
+/// Version: 0.4, 30-01-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -68,8 +68,11 @@ namespace Nosocomephobia
         // DECLARE an Flashlight, call it _flashlight:
         private Flashlight _flashlight;
         
-        public Kernel()
+        public Kernel(IEngineManager pEngineManager)
         {
+            // INTIALISE the EngineManager:
+            _engineManager = pEngineManager;
+
             _graphics = new GraphicsDeviceManager(this);
             // INITIALISE _flashlight:
             _flashlight = new Flashlight();
@@ -82,11 +85,9 @@ namespace Nosocomephobia
             // INITIALISE the game window:
             this.InitialiseWindow();
 
-            // INTIALISE the EngineManager:
-            _engineManager = new EngineManager();
-
             // INITIALISE the EngineManagers Services:
             _engineManager.InitialiseServices();
+            // CREATE
 
             // STORE a copy reference of the EngineManagers services for use in the Kernel:
 
@@ -109,8 +110,6 @@ namespace Nosocomephobia
                                 _camera.OnKeyReleased,
                                 _camera.OnNewMouseInput);
 
-
-            
             // INITIALISE the flashlight:
             _flashlight.Initialise(_camera);
             // INTIALISE penumbra as a PenumbraComponent:
@@ -173,7 +172,7 @@ namespace Nosocomephobia
             // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
             IEntity _player = _entityManager.createEntity<Player>();
             // SPAWN _player into the SceneGraph:
-            _sceneManager.spawn(_player);
+            _sceneManager.Spawn(_player, "GameScene");
             // SET _camera focus onto Player:
             _camera.SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
@@ -186,7 +185,7 @@ namespace Nosocomephobia
                 if(t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sceneManager.spawn(t);
+                    _sceneManager.Spawn(t, "GameScene");
                 } 
             }
 
@@ -197,11 +196,11 @@ namespace Nosocomephobia
                 if (t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sceneManager.spawn(t);
+                    _sceneManager.Spawn(t, "GameScene");
                 }
             }
 
-            // ITERATE through the SceneGraph:
+            // ITERATE through the GameSceneGraph:
             for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
             {
                 if (_sceneManager.SceneGraph[i] is Player)

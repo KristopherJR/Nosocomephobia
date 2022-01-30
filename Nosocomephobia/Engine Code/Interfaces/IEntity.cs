@@ -4,7 +4,7 @@
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IEntity : IUpdatable
+    public interface IEntity : IUpdatable
     {
         #region PROPERTIES
         int UID { get; set; }

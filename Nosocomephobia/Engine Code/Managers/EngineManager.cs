@@ -1,4 +1,5 @@
-﻿using Nosocomephobia.Engine_Code.Interfaces;
+﻿using Nosocomephobia.Engine_Code.Factories;
+using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,8 @@ namespace Nosocomephobia.Engine_Code.Managers
         #region FIELDS
         // DECLARE an IDictionary<Type,IService> used to store all of the Engines Services, call it _services:
         private IDictionary<Type, IService> _services;
+        // DECLARE an IServiceFactory, call it _serviceFactory:
+        private IServiceFactory _serviceFactory;
         #endregion
 
         #region PROPERTIES
@@ -31,7 +34,17 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// </summary>
         public EngineManager()
         {
-            
+            // nothing for now
+        }
+
+        /// <summary>
+        /// Injects an IServiceFactory to be used by the EngineManager when creating Engine Services.
+        /// </summary>
+        /// <param name="pServiceFactory">An IServiceFactory object.</param>
+        public void InjectServiceFactory(IServiceFactory pServiceFactory)
+        {
+            // SET _serviceFactory to pServiceFactory:
+            _serviceFactory = pServiceFactory;
         }
 
         /// <summary>
@@ -47,6 +60,11 @@ namespace Nosocomephobia.Engine_Code.Managers
             ICollisionManager collisionManager = new CollisionManager();
             IInputManager inputManager = new InputManager();
             INavigationManager navigationManager = new NavigationManager();
+
+            // INJECT a SceneGraphFactory into the SceneManager:
+            sceneManager.InjectSceneGraphFactory(new SceneGraphFactory());
+
+
             // ADD the service managers to _services:
             _services.Add(typeof(IEntityManager), entityManager);
             _services.Add(typeof(ISceneManager), sceneManager);
