@@ -18,6 +18,8 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         string UName { get; set; }
         // get-set property for IsActive:
         bool IsActive { get; set; }
+        // get property for Entities:
+        IList<IEntity> Entities { get; }
         #endregion
 
         #region METHODS

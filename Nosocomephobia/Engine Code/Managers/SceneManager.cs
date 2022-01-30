@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Exceptions;
 using Nosocomephobia.Engine_Code.Factories;
@@ -111,6 +112,19 @@ namespace Nosocomephobia.Engine_Code.Managers
                     }
                 }
             }         
+        }
+
+        /// <summary>
+        /// Draws the SceneGraph with the matching name.
+        /// </summary>
+        /// <param name="pName">The name of the SceneGraph to be drawn.</param>
+        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graph should be drawn onto.</param>
+        public void DrawSceneGraph(string pName, SpriteBatch pSpriteBatch)
+        {
+            for(int i = 0; i < _sceneGraphs.Count; i++)
+            {
+                if(_sceneGraphs)
+            }
         }
 
         /// <summary>

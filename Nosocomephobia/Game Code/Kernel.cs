@@ -217,6 +217,46 @@ namespace Nosocomephobia
             _collisionManager.PopulateCollidables(_sceneManager.SceneGraph);
         }
 
+        private void DrawSceneGraphs()
+        {
+            // CHECK which Scene Graphs are active:
+            for (int i = 0; i < _sceneManager.SceneGraphs.Count; i++)
+            {
+                if (_sceneManager.SceneGraphs[i].IsActive)
+                {
+                    // IF the active graph is the "GameScene":
+                    if(_sceneManager.SceneGraphs[i].UName == "GameScene")
+                    {
+                        // DRAW the game graph separately:
+                        this.DrawGameSceneGraph(i);
+                    }
+                    else
+                    {
+                        // DRAW the Entities that are in the active SceneGraph:
+                        
+                        // STOP this loop from drawing the TileMap, as tiles are in the SceneGraph but have their own unique draw method in TileMap:
+                        if (_sceneManager.SceneGraph[i] is Tile)
+                        {
+                            // IF it's a Tile, break the loop:
+                            break;
+                        }
+                        // IF not, draw the GameEntity to the SpriteBatch:
+                        (_sceneManager.SceneGraph[i] as GameEntity).Draw(_spriteBatch);
+                        
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Draws the Game Scene Graph when it is active. This should be called before other graphs to ensure the draw order is correct.
+        /// </summary>
+        /// <param name="pGameGraphIndex">the index where the Game Scene Graph is stored in the SceneManager.</param>
+        private void DrawGameSceneGraph(int pGameGraphIndex)
+        {
+            for(int i = 0; i < _sceneManager.SceneGraphs[pGameGraphIndex].
+
+        }
+
 
         protected override void Update(GameTime gameTime)
         {
@@ -255,18 +295,10 @@ namespace Nosocomephobia
             // DRAW the TileMaps:
             _tileMapFloor.DrawTileMap(_spriteBatch);
             _tileMapCollisions.DrawTileMap(_spriteBatch);
-            // DRAW the Entities that are in the SceneGraph:
-            for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
-            {
-                // STOP this loop from drawing the TileMap, as tiles are in the SceneGraph but have their own unique draw method in TileMap:
-                if (_sceneManager.SceneGraph[i] is Tile)
-                {
-                    // IF it's a Tile, break the loop:
-                    break;
-                }
-                // IF not, draw the GameEntity to the SpriteBatch:
-                (_sceneManager.SceneGraph[i] as GameEntity).Draw(_spriteBatch);
-            }
+            
+            // DRAW the Active Scene Graphs:
+            this.DrawSceneGraphs();
+    
             _spriteBatch.End();
 
             base.Draw(gameTime);

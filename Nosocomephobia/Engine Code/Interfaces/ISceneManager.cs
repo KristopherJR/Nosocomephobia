@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
@@ -24,6 +25,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// </summary>
         /// <param name="pSGFactory">An IServiceFactory object.</param>
         void InjectSceneGraphFactory(ISceneGraphFactory pSGFactory);
+
         /// <summary>
         /// Creates a new SceneGraph and adds it to the SceneManagers SceneGraph List.
         /// </summary>
@@ -36,6 +38,13 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// <param name="pName">A unique name for the new SceneGraph.</param>
         /// <param name="pIsActive">Determines whether this SceneGraph is currently 'Active' or not.</param>
         void CreateSceneGraph(string pName, bool pIsActive);
+
+        /// <summary>
+        /// Draws the SceneGraph with the matching name.
+        /// </summary>
+        /// <param name="pName">The name of the SceneGraph to be drawn.</param>
+        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graph should be drawn onto.</param>
+        void DrawSceneGraph(string pName, SpriteBatch pSpriteBatch);
 
         /// <summary>
         /// Add an object of type 'IEntity' to the specified 'SceneGraph'.

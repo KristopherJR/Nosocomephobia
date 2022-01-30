@@ -34,6 +34,12 @@ namespace Nosocomephobia.Engine_Code.Components
             get { return _isActive; }
             set { _isActive = value; }
         }
+
+        // get property for Entities:
+        public IList<IEntity> Entities
+        { 
+            get { return _entities; } 
+        }
         #endregion
 
         #region METHODS
