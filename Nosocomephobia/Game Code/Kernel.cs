@@ -249,9 +249,7 @@ namespace Nosocomephobia
             GraphicsDevice.Clear(Color.DarkGray);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp,
                                transformMatrix: _camera.Transform);
-            // DRAW the TileMaps:
-            _tileMapFloor.DrawTileMap(_spriteBatch);
-            _tileMapCollisions.DrawTileMap(_spriteBatch);
+            _sceneManager.DrawSceneGraphs(_spriteBatch);
             
     
             _spriteBatch.End();
