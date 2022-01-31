@@ -11,7 +11,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     /// <summary>
     /// Interface IEngineManager.
     /// </summary>
-    public interface IEngineManager
+    public interface IEngineManager : IUpdatable
     {
         #region PROPERTIES
         // DECLARE a get property for the IDictionary of services:
@@ -19,6 +19,13 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         #endregion
 
         #region METHODS
+
+        /// <summary>
+        /// Injects an IServiceFactory to be used by the EngineManager when creating Engine Services.
+        /// </summary>
+        /// <param name="pServiceFactory">An IServiceFactory object.</param>
+        void InjectServiceFactory(IServiceFactory pServiceFactory);
+
         /// <summary>
         /// Initialises and adds the services to the _services IDictionary.
         /// </summary>

@@ -1,25 +1,39 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Nosocomephobia.Engine_Code.Components;
+using Nosocomephobia.Engine_Code.Entities;
+using Nosocomephobia.Engine_Code.Exceptions;
+using Nosocomephobia.Engine_Code.Factories;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Game_Code.Game_Entities.Characters;
+using System;
 using System.Collections.Generic;
-
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.4, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
     class SceneManager : ISceneManager, IUpdatable
     {
         #region FIELDS
-        // DECLARE a new 'List' storing 'IEntity' objects, call it 'sceneGraph':
-        private List<IEntity> sceneGraph;
+        // DECLARE a new 'IDictionary' storing 'ISceneGraph' objects. Use a string as the key for the SceneGraph names. call it '_sceneGraphs':
+        private IDictionary<string, ISceneGraph> _sceneGraphs;
+        // DECLARE an ISceneGraphFactory, call it _sceneGraphFactory:
+        private ISceneGraphFactory _sceneGraphFactory;
+        // DECLARE an IInputManager, call it _inputManager. Stores a reference to the Engines primary InputManager.
+        private IInputManager _inputManager;
+        // DECLARE an ICollisionManager, call it _collisionManager. Stores a reference to the Engines primary CollisionManager.
+        private ICollisionManager _collisionManager;
+        // DECLARE a string, call it _previouslyActiveSceneGraph:
+        private string _previouslyActiveSceneGraph;
         #endregion
 
         #region PROPERTIES
-        public List<IEntity> SceneGraph // read-only property
+        public IDictionary<string, ISceneGraph> SceneGraphs // read-only property
         {
-            get { return sceneGraph; } // get method
+            get { return _sceneGraphs; } // get method
         }
         #endregion
 
@@ -28,55 +42,227 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// </summary>
         public SceneManager()
         {
-            // INITIALIZE fields:
-            sceneGraph = new List<IEntity>();
+            // INITIALISE _sceneGraphs:
+            _sceneGraphs = new Dictionary<string, ISceneGraph>();
         }
 
         #region IMPLEMENTATION OF ISceneManager
         /// <summary>
-        /// Add an object of type 'IEntity' to the 'sceneGraph'. The entity should be provided by the Kernel.
+        /// Injects an ISceneGraphFactory to be used by the SceneManager when creating SceneGraphs.
         /// </summary>
-        /// <param name="e">An object of type IEntity to be added to the Scene Graph.</param>
-        public void spawn(IEntity e)
+        /// <param name="pSGFactory">An ISceneGraphFactory object.</param>
+        public void InjectSceneGraphFactory(ISceneGraphFactory pSGFactory)
         {
-            // ADD the provided IEntity to the scene graph:
-            sceneGraph.Add(e);
+            // SET _sceneGraphFactory to pSGFactory:
+            _sceneGraphFactory = pSGFactory;
         }
 
         /// <summary>
-        /// Removes an object from the Scene Graph. The object can be specified by either its unique name or unique id number.
+        /// Injects a reference to the Engines InputManager so the SceneManager can subscribe entities to Input events when their SceneGraph becomes active.
         /// </summary>
-        /// <param name="UName">The Unique Name of the entity to be removed from the Scene Graph.</param>
-        /// <param name="UID">The Unique ID of the entity to be removed from the Scene Graph.</param>
-        public void despawn(string UName, int UID)
+        /// <param name="pInputManager">A reference to the Engines InputManager.</param>
+        public void InjectInputManager(IInputManager pInputManager)
         {
-            // DECLARE a temporary int to store the index of the object to despawn:
-            int temp = 0;
-            // ITERATE through the 'sceneGraph':
-            for (int i = 0; i < sceneGraph.Count; i++)
+            // ASSIGN pInputManager to _inputManager:
+            _inputManager = pInputManager;
+        }
+
+        /// <summary>
+        /// Injects a reference to the Engines CollisionManager so the SceneManager can subscribe entities to collision events when their SceneGraph becomes active.
+        /// </summary>
+        /// <param name="pCollisionManager">A reference to the Engines CollisionManager.</param>
+        public void InjectCollisionManager(ICollisionManager pCollisionManager)
+        {
+            // ASSIGN pCollisionManager to _collisionManager:
+            _collisionManager = pCollisionManager;
+        }
+
+        /// <summary>
+        /// Creates a new SceneGraph and adds it to the SceneManagers SceneGraph Dictionary.
+        /// </summary>
+        /// <param name="pSceneGraphName">A unique name for the new SceneGraph.</param>
+        public void CreateSceneGraph(string pSceneGraphName)
+        {
+            // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
+            if(_sceneGraphs.ContainsKey(pSceneGraphName))
             {
-                // CHECK if the entity UName matches the provided String or if the entity UID matches the provided int:
-                if (sceneGraph[i].UName == UName || (sceneGraph[i].UID == UID))
+                // THROW a NameNotUniqueException:
+                throw new NameNotUniqueException("The specified name: " + pSceneGraphName + " is not unique.");
+            }
+            else
+            {
+                // CREATE the new SceneGraph using the SceneGraphFactory and store it using the name as its key:
+                _sceneGraphs.Add(pSceneGraphName, _sceneGraphFactory.Create<SceneGraph>(pSceneGraphName));
+            }
+        }
+
+        /// <summary>
+        /// OVERLOAD: Creates a new SceneGraph and adds it to the SceneManagers SceneGraph Dictionary.
+        /// </summary>
+        /// <param name="pSceneGraphName">A unique name for the new SceneGraph.</param>
+        /// <param name="pIsActive">Determines whether this SceneGraph is currently 'Active' or not.</param>
+        public void CreateSceneGraph(string pSceneGraphName, bool pIsActive)
+        {
+            // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
+            if (_sceneGraphs.ContainsKey(pSceneGraphName))
+            {
+                // THROW a NameNotUniqueException:
+                throw new NameNotUniqueException("The specified name: " + pSceneGraphName + " is not unique.");
+            }
+            else
+            {
+                // CREATE the new SceneGraph using the SceneGraphFactory and store it using the name as its key. Pass in the graphs active status:
+                _sceneGraphs.Add(pSceneGraphName, _sceneGraphFactory.Create<SceneGraph>(pSceneGraphName, pIsActive));
+            }
+        }
+
+        /// <summary>
+        /// Draws all Active SceneGraphs to the provided SpriteBatch.
+        /// </summary>
+        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graphs should be drawn onto.</param>
+        public void DrawSceneGraphs(SpriteBatch pSpriteBatch)
+        {
+            // ITERATE through all SceneGraphs:
+            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
+            {
+                // CHECK that the specified SceneGraph is currently 'Active':
+                if (sceneGraph.Value.IsActive)
                 {
-                    // STORE the index of the item to remove in a temporary int:
-                    temp = i;
+                    // DRAW each entity to the provided SpriteBatch:
+                    sceneGraph.Value.Draw(pSpriteBatch);  
                 }
             }
-            // REMOVE the entity from the 'sceneGraph':
-            sceneGraph.RemoveAt(temp);
         }
+
+        /// <summary>
+        /// Add an object of type 'IEntity' to the specified 'SceneGraph'.
+        /// </summary>
+        /// <param name="pSceneGraphName">The unique name of the SceneGraph to add the Entity to.</param>
+        /// <param name="pLayerName">The unique name of the Layer within the SceneGraph to add the Entity to.</param>
+        /// <param name="pEntity">An object of type IEntity to be added to the Scene Graph.</param>
+        public void Spawn(string pSceneGraphName, string pLayerName, IEntity pEntity)
+        {
+            // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
+            if (_sceneGraphs.ContainsKey(pSceneGraphName))
+            {
+
+                    // SPAWN the provided IEntity onto the specified SceneGraph:
+                    _sceneGraphs[pSceneGraphName].Spawn(pLayerName, pEntity);
+            }
+            else
+            {
+                // THROW a ElementNotFoundException:
+                throw new ElementNotFoundException("The specified SceneGraph with name: " + pSceneGraphName + " could not be found in the SceneGraph Dictionary.");
+            }
+        }
+
+        // <summary>
+        /// Removes an Entity from the specified Scene Graph. The object can be specified by either its unique name or unique id number.
+        /// </summary>
+        /// <param name="pSceneGraphName">The name of the SceneGraph the Entity is in.</param>
+        /// <param name="pLayerName">The unique name of the Layer within the SceneGraph to add the Entity to.</param>
+        /// <param name="pUName">The unique name of the Entity to despawn.</param>
+        /// <param name="pUID">The unique ID of the Entity to despawn.</param>
+        public void Despawn(string pSceneGraphName, string pLayerName, string pUName, int pUID)
+        {
+            // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
+            if (_sceneGraphs.ContainsKey(pSceneGraphName))
+            {
+                // DESPAWN the specified IEntity from the SceneGraph:
+                _sceneGraphs[pSceneGraphName].Despawn(pLayerName,pUName, pUID);
+            }
+            else
+            {
+                // THROW a ElementNotFoundException:
+                throw new ElementNotFoundException("The specified SceneGraph with name: " + pSceneGraphName + " could not be found in the SceneGraph Dictionary.");
+            }
+        }
+
+        /// <summary>
+        /// Called whenever the 'Active' SceneGraph changes. Subscribes Entities in the new Active SceneGraph to the InputManagers events.
+        /// Unsubscribes entities in previously 'Active' SceneGraph from Input events.
+        /// This is because different Scene may has different input functionality.
+        /// </summary>
+        public void UpdateInputEvents()
+        {
+            // ITERATE through all SceneGraphs:
+            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
+            {
+                // CHECK which ones are active:
+                if(sceneGraph.Value.IsActive)
+                {
+                    // IF The name of the active SceneGraph is "GameScene":
+                    if (sceneGraph.Value.UName == "GameScene")
+                    {
+                        // ITERATE through all layers in the SceneGraph:
+                        foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
+                        {
+                            // ITERATE through all entities in the layer:
+                            foreach(IEntity entity in layer.Value.Entities)
+                            {
+                                // CHECK if the current entity is of type 'Player':
+                                if (entity is Player)
+                                {
+                                    // SUBSCRIBE the player to listen for input events and key release events:
+                                    _inputManager.Subscribe((entity as IInputListener),
+                                                            (entity as Player).OnNewInput,
+                                                            (entity as Player).OnKeyReleased,
+                                                            (entity as Player).OnNewMouseInput);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called whenever the 'Active' SceneGraph changes. Subscribes Entities in the new Active SceneGraph to the CollisionManagers events.
+        /// Unsubscribes entities in previously 'Active' SceneGraph from collision events.
+        /// This is because different Scene may has different collision functionality.
+        /// </summary>
+        public void UpdateCollisionEvents()
+        {
+            // ITERATE through all SceneGraphs:
+            foreach (KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
+            {
+                // CHECK which ones are active:
+                if (sceneGraph.Value.IsActive)
+                {
+                    // IF The name of the active SceneGraph is "GameScene":
+                    if (sceneGraph.Value.UName == "GameScene")
+                    {
+                        // ITERATE through all layers in the SceneGraph:
+                        foreach(KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
+                        {
+                            _collisionManager.PopulateCollidables(layer.Value.Entities);
+                        }  
+                    }
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// METHOD: Calls the Update method of each entity in the sceneGraph to make them move.
         /// </summary>
-        private void moveEntities(GameTime gameTime)
+        private void MoveEntities(GameTime gameTime)
         {
-            // ITERATE through the 'sceneGraphCopy':
-            foreach (IEntity entity in sceneGraph)
+            // ITERATE through all SceneGraphs:
+            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
             {
-                // CALL the entity's Update method and pass in GameTime:
-                entity.Update(gameTime);
-            }
+                // CHECK that the SceneGraph is active:
+                if(sceneGraph.Value.IsActive == true)
+                {
+                    // ITERATE through all Layers in that graph:
+                    foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
+                    {
+                        // Update each Layer:
+                        layer.Value.Update(gameTime);
+                    }
+                }
+            } 
         }
         #endregion
 
@@ -86,8 +272,8 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            // CALL the moveEntities() method:
-            this.moveEntities(gameTime);
+            // CALL the MoveEntities() method:
+            this.MoveEntities(gameTime);
         }
         #endregion
     }

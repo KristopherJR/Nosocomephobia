@@ -6,7 +6,7 @@
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IUpdatable
+    public interface IUpdatable
     {
         /// <summary>
         /// Default update loop for an IUpdatable.

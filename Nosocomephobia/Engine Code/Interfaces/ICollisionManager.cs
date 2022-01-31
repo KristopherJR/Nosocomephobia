@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 13-12-21
+/// Version: 1.3, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface ICollisionManager : IService
+    interface ICollisionManager : IService, IUpdatable
     {
         /// <summary>
         /// Adds all ICollidables in the Scene Graph to the collidables List on start-up.
         /// </summary>
-        void PopulateCollidables(List<IEntity> sceneGraphCopy);
+        void PopulateCollidables(IList<IEntity> sceneGraphCopy);
 
         /// <summary>
         /// Remove the specified item matching the provided uName and uID from the collidables List. Usually called after an item has been
@@ -32,10 +32,5 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// Iterate through the stored entities and check if a Collision has occured. React appropriately if a collision has occured.
         /// </summary>
         void CheckEntityCollisions();
-
-        /// <summary>
-        /// Default Update method for objects implementing the ICollisionManager interface.
-        /// </summary>
-        void update();
     }
 }

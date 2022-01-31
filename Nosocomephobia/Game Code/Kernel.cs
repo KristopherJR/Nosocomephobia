@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.3, 17-01-2022
+/// Version: 0.5, 31-01-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -68,8 +68,11 @@ namespace Nosocomephobia
         // DECLARE an Flashlight, call it _flashlight:
         private Flashlight _flashlight;
         
-        public Kernel()
+        public Kernel(IEngineManager pEngineManager)
         {
+            // INTIALISE the EngineManager:
+            _engineManager = pEngineManager;
+
             _graphics = new GraphicsDeviceManager(this);
             // INITIALISE _flashlight:
             _flashlight = new Flashlight();
@@ -82,9 +85,6 @@ namespace Nosocomephobia
             // INITIALISE the game window:
             this.InitialiseWindow();
 
-            // INTIALISE the EngineManager:
-            _engineManager = new EngineManager();
-
             // INITIALISE the EngineManagers Services:
             _engineManager.InitialiseServices();
 
@@ -96,21 +96,20 @@ namespace Nosocomephobia
             _inputManager = (_engineManager.GetService<IInputManager>() as IInputManager);
             _navigationManager = (_engineManager.GetService<INavigationManager>() as INavigationManager);
 
+            // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
+            _sceneManager.InjectInputManager(_inputManager);
+            _sceneManager.InjectCollisionManager(_collisionManager);
+
 
             // INITIALIZE the camera:
             _camera = new Camera(GraphicsDevice.Viewport);
 
             // SUBSCRIBE the camera to listen for input events:
-
-            
-
             _inputManager.Subscribe(_camera,
-                                _camera.OnNewInput,
-                                _camera.OnKeyReleased,
-                                _camera.OnNewMouseInput);
+                                    _camera.OnNewInput,
+                                    _camera.OnKeyReleased,
+                                    _camera.OnNewMouseInput);
 
-
-            
             // INITIALISE the flashlight:
             _flashlight.Initialise(_camera);
             // INTIALISE penumbra as a PenumbraComponent:
@@ -152,7 +151,7 @@ namespace Nosocomephobia
         }
 
         /// <summary>
-        /// SpawnObjects is used to spawn all game objects into the SceneGraph/EntityPool/CollisionMap. Called in Kernel from LoadContent().
+        /// SpawnGameEntities is used to spawn all game objects into the SceneGraph/EntityPool/CollisionMap. Called in Kernel from LoadContent().
         /// </summary>
 
 
@@ -164,16 +163,32 @@ namespace Nosocomephobia
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
             _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
+            // CREATE the games SceneGraphs:
+            this.CreateSceneGraphs();
             // SPAWN the game objects:
-            this.SpawnObjects();
+            this.SpawnGameEntities();
         }
 
-        private void SpawnObjects()
+        /// <summary>
+        /// Sets up all of the SceneGraphs in the Game. I.E MenuScene, GameScene.
+        /// This is also responsible for specifying the Layers within each SceneGraph.
+        /// </summary>
+        private void CreateSceneGraphs()
+        {
+            // CREATE GameScene:
+            _sceneManager.CreateSceneGraph("GameScene", true);
+            // CREATE Layers for GameScene:
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapFloor", 1);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapWalls", 2);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Entities", 3);
+        }
+
+        private void SpawnGameEntities()
         {
             // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
             IEntity _player = _entityManager.createEntity<Player>();
             // SPAWN _player into the SceneGraph:
-            _sceneManager.spawn(_player);
+            _sceneManager.Spawn("GameScene", "Entities", _player);
             // SET _camera focus onto Player:
             _camera.SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
@@ -186,7 +201,7 @@ namespace Nosocomephobia
                 if(t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sceneManager.spawn(t);
+                    _sceneManager.Spawn("GameScene", "TileMapFloor", t);
                 } 
             }
 
@@ -197,27 +212,14 @@ namespace Nosocomephobia
                 if (t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sceneManager.spawn(t);
+                    _sceneManager.Spawn("GameScene", "TileMapWalls", t);
                 }
             }
-
-            // ITERATE through the SceneGraph:
-            for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
-            {
-                if (_sceneManager.SceneGraph[i] is Player)
-                {
-                    // SUBSCRIBE the paddle to listen for input events and key release events:
-                    _inputManager.Subscribe((_sceneManager.SceneGraph[0] as IInputListener),
-                                       (_sceneManager.SceneGraph[0] as Player).OnNewInput,
-                                       (_sceneManager.SceneGraph[0] as Player).OnKeyReleased,
-                                       (_sceneManager.SceneGraph[0] as Player).OnNewMouseInput);
-                }
-            }
-
-            // POPULATE the CollisionManagers collidables List with objects from the Scene Graph:
-            _collisionManager.PopulateCollidables(_sceneManager.SceneGraph);
+            // SUSCRIBE entities on the active scene graph to Input events:
+            _sceneManager.UpdateInputEvents();
+            // SUBSCRIBE entities on the active scene graph to Collision events:
+            _sceneManager.UpdateCollisionEvents();
         }
-
 
         protected override void Update(GameTime gameTime)
         {
@@ -226,14 +228,8 @@ namespace Nosocomephobia
             // CALL the SceneManagers and CollisionManagers Update method if the program is running:
             if (RUNNING)
             {
-                // UPDATE the CollisionManager first:
-                _collisionManager.update();
-                // UPDATE the NavigationManager:
-                _navigationManager.Update(gameTime);
-                // THEN Update the SceneManager:
-                _sceneManager.Update(gameTime);
-                // UPDATE the InputManager:
-                _inputManager.update();
+                // UPDATE the EngineManager:
+                _engineManager.Update(gameTime);
                 // UPDATE the flashlight:
                 _flashlight.Update(gameTime);
                 // UPDATE the Camera:
@@ -256,18 +252,8 @@ namespace Nosocomephobia
             // DRAW the TileMaps:
             _tileMapFloor.DrawTileMap(_spriteBatch);
             _tileMapCollisions.DrawTileMap(_spriteBatch);
-            // DRAW the Entities that are in the SceneGraph:
-            for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
-            {
-                // STOP this loop from drawing the TileMap, as tiles are in the SceneGraph but have their own unique draw method in TileMap:
-                if (_sceneManager.SceneGraph[i] is Tile)
-                {
-                    // IF it's a Tile, break the loop:
-                    break;
-                }
-                // IF not, draw the GameEntity to the SpriteBatch:
-                (_sceneManager.SceneGraph[i] as GameEntity).Draw(_spriteBatch);
-            }
+            
+    
             _spriteBatch.End();
 
             base.Draw(gameTime);
