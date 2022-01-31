@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.4, 31-01-2022
+/// Version: 0.5, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -64,7 +64,11 @@ namespace Nosocomephobia.Engine_Code.Managers
 
             // INJECT a SceneGraphFactory into the SceneManager:
             sceneManager.InjectSceneGraphFactory(new SceneGraphFactory());
-
+            // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
+            sceneManager.InjectInputManager(inputManager);
+            sceneManager.InjectCollisionManager(collisionManager);
+            // INJECT an EntityFactory into the EntityManager:
+            entityManager.InjectEntityFactory(new EntityFactory());
 
             // ADD the service managers to _services:
             _services.Add(typeof(IEntityManager), entityManager);

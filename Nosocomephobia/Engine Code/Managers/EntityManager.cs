@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Exceptions;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
@@ -6,17 +7,17 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.3, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
     class EntityManager : IEntityManager
     {
         #region FIELDS
-        // DECLARE a 'List' to contain all objects of type 'IEntity', this 'List' contains a reference to ALL entityPool in the program:
-        private List<IEntity> entityPool;
-        // DECLARE an int, call it 'idCounter':
-        private int idCounter;
+        // DECLARE a 'List' to contain all objects of type 'IEntity', this 'List' contains a reference to ALL IEntities in the program:
+        private List<IEntity> _entityPool;
+        // DECLARE an IEntityFactory, call it _entityFactory:
+        private IEntityFactory _entityFactory;
         #endregion
 
         #region PROPERTIES
@@ -28,90 +29,89 @@ namespace Nosocomephobia.Engine_Code.Managers
         public EntityManager()
         {
             // INITIALIZE the fields:
-            entityPool = new List<IEntity>();
-            idCounter = 1;
+            _entityPool = new List<IEntity>();
         }
 
         #region IMPLEMENTATION OF IEntityManager
         /// <summary>
-        /// Create an entity of the provided generic type (must be an IEntity).
+        /// Injects an IEntityFactory to be used by the EntityManager when creating Entities.
         /// </summary>
-        /// <typeparam name="T">The Generic type to be created.</typeparam>
-        /// <returns></returns>
-        public IEntity createEntity<T>() where T : IEntity, new()
+        /// <param name="pEntityFactory">An ISceneGraphFactory object.</param>
+        public void InjectEntityFactory(IEntityFactory pEntityFactory)
         {
-            // CREATE a new object of the generic type provided:
-            IEntity newEntity = new T();
-            // SET a unique id:
-            newEntity.UID = idCounter;
-            // INCREMENT the idCounter:
-            idCounter++;
-            // STORE that new 'Player' in the entityPool reference List:
-            entityPool.Add(newEntity);
-            // SET a unique name:
-            this.setUniqueName(newEntity);
-            // RETURN the new 'Player' object to the caller as an 'IEntity':
+            // SET _entityFactory to pEntityFactory:
+            _entityFactory = pEntityFactory;
+        }
+
+        /// <summary>
+        /// Creates a new IEntity using the EntityFactory. Adds the newly returned IEntity to the _entityPool.
+        /// Automatically assigns a Unique name to the Entity.
+        /// </summary>
+        /// <typeparam name="T">An object of Type IEntity to be created.</typeparam>
+        /// <returns>The newly created IEntity.</returns>
+        public IEntity CreateEntity<T>() where T : IEntity, new()
+        {
+            // USE the EntityFactory to create a new IEntity of the specified type:
+            IEntity newEntity = _entityFactory.Create<T>();
+            // ADD the new Entity to the EntityPool:
+            _entityPool.Add(newEntity);
+            // RETURN the new IEntity:
             return newEntity;
         }
 
         /// <summary>
-        /// Destroy an entity by removing it from the Entity Pool.
+        /// OVERLOAD: Creates a new IEntity using the EntityFactory. Adds the newly returned IEntity to the _entityPool.
+        /// Allows the User to specify a name rather than have a randomly generated one.
         /// </summary>
-        /// <param name="UName">The Unique Name of the entity to be destroyed.</param>
-        /// <param name="UID">The Unique ID of the entity to be destroyed.</param>
-        public void destroyEntity(String UName, int UID)
+        /// <typeparam name="T">An object of Type IEntity to be created.</typeparam>
+        /// <param name="pUName">A Unique name for the new IEntity.</param>
+        /// <returns>The newly created IEntity.</returns>
+        public IEntity CreateEntity<T>(string pUName) where T : IEntity, new()
+        {
+            // CHECK that the name provided does not already exist in the _entityPool:
+            for(int i = 0; i < _entityPool.Count; i++)
+            {
+                // IF the name is already in the Entity Pool:
+                if (_entityPool[i].UName == pUName)
+                {
+                    // THROW a new NameNotUniqueException:
+                    throw new NameNotUniqueException("The specified name: " + pUName + " is not unique and is already present in the Entity Pool.");
+                }
+            }
+
+            // USE the EntityFactory to create a new IEntity of the specified type:
+            IEntity newEntity = _entityFactory.Create<T>();
+            // SET the name of the newEntity to the provided name:
+            newEntity.UName = pUName;
+            // ADD the new Entity to the EntityPool:
+            _entityPool.Add(newEntity);
+            // RETURN the new IEntity:
+            return newEntity;
+        }
+
+        /// <summary>
+        /// Destroy an entity by removing it from the entity list.
+        /// </summary>
+        /// <param name="pUName">The Unique Name of the entity to be destroyed.</param>
+        /// <param name="pUID">The Unique ID of the entity to be destroyed.</param>
+        public void DestroyEntity(string pUName, int pUID)
         {
             // DECLARE a temporary int to store the index of the object to destroy:
             int temp = 0;
             // ITERATE through the 'entityPool':
-            for (int i = 0; i < entityPool.Count; i++)
+            for (int i = 0; i < _entityPool.Count; i++)
             {
                 // CHECK if the entity UName matches the provided String or if the entity UID matches the provided int:
-                if (entityPool[i].UName == UName || (entityPool[i].UID == UID))
+                if (_entityPool[i].UName == pUName || (_entityPool[i].UID == pUID))
                 {
                     // STORE the index of the item to remove in a temporary int:
                     temp = i;
                 }
             }
             // REMOVE the entity from the 'sceneGraph':
-            entityPool.RemoveAt(temp);
+            _entityPool.RemoveAt(temp);
         }
         #endregion
-
-        private void setUniqueName(IEntity e)
-        {
-            // DECLARE an int called 'tempCounter' and set it to '0':
-            int tempCounter = 0;
-
-            // CHECK if the IEntity passed in is a 'Player' object:
-            if (e is Player)
-            {
-                // STEP-THROUGH the 'entityPool' List for each 'Player':
-                for (int i = 0; i < entityPool.Count; i++)
-                {
-                    if (entityPool[i] is Player)
-                    {
-                        // INCREASE the 'tempCounter' for each 'Player':
-                        tempCounter++;
-                    }
-                }
-                // STEP-THROUGH the 'entityPool' List again for each 'Player':
-                for (int i = 0; i < entityPool.Count; i++)
-                {
-                    if (entityPool[i] is Player)
-                    {
-                        // CHECK that the name isn't already being used:
-                        if (entityPool[i].UName == ("Player" + tempCounter))
-                        {
-                            // IF the name is being used, increase the counter again:
-                            tempCounter++;
-                        }
-                    }
-                }
-                // SET the entityPool name to "Player" plus the 'tempCounter':
-                e.UName = ("Player" + tempCounter);
-            }
-        }
 
         /// <summary>
         /// Defaults update loop for EntityManager.

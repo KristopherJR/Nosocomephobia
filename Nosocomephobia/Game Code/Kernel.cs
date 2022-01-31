@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.5, 31-01-2022
+/// Version: 0.6, 31-01-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -89,17 +89,11 @@ namespace Nosocomephobia
             _engineManager.InitialiseServices();
 
             // STORE a copy reference of the EngineManagers services for use in the Kernel:
-
             _entityManager = (_engineManager.GetService<IEntityManager>() as IEntityManager);
             _sceneManager = (_engineManager.GetService<ISceneManager>() as ISceneManager);
             _collisionManager = (_engineManager.GetService<ICollisionManager>() as ICollisionManager);
             _inputManager = (_engineManager.GetService<IInputManager>() as IInputManager);
             _navigationManager = (_engineManager.GetService<INavigationManager>() as INavigationManager);
-
-            // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
-            _sceneManager.InjectInputManager(_inputManager);
-            _sceneManager.InjectCollisionManager(_collisionManager);
-
 
             // INITIALIZE the camera:
             _camera = new Camera(GraphicsDevice.Viewport);
@@ -185,9 +179,9 @@ namespace Nosocomephobia
 
         private void SpawnGameEntities()
         {
-            // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
-            IEntity _player = _entityManager.createEntity<Player>();
-            // SPAWN _player into the SceneGraph:
+            // REQUEST a new 'Player' object from the EntityManager (uses EntityFactory to create) and call it _player:
+            IEntity _player = _entityManager.CreateEntity<Player>();
+            // SPAWN _player into the 'GameSceneGraph' on the 'Entities' layer:
             _sceneManager.Spawn("GameScene", "Entities", _player);
             // SET _camera focus onto Player:
             _camera.SetFocus(_player as GameEntity);
