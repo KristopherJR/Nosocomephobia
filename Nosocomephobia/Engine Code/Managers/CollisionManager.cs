@@ -1,4 +1,5 @@
-﻿using Nosocomephobia.Engine_Code.Entities;
+﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,17 +7,17 @@ using System.Linq;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.3, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
     class CollisionManager : ICollisionManager
     {
         #region FIELDS
-        // DECLARE a new 'List' storing 'ICollidable' objects, call it 'collidables'. This will hold a reference to all objects in the SceneGraph implementing ICollidable (Balls and Paddles):
-        private List<ICollidable> collidables;
-        // DECLARE a new List storing ICollisionResponders, call it collisionGraph:
-        private List<ICollisionResponder> collisionGraph;
+        // DECLARE a new 'IList' storing 'ICollidable' objects, call it 'collidables'. This will hold a reference to all objects in the SceneGraph implementing ICollidable (Balls and Paddles):
+        private IList<ICollidable> collidables;
+        // DECLARE a new IList storing ICollisionResponders, call it collisionGraph:
+        private IList<ICollisionResponder> collisionGraph;
         #endregion
 
         #region PROPERTIES
@@ -37,7 +38,7 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// <summary>
         /// Adds all ICollidables in the Scene Graph to the collidables List on start-up.
         /// </summary>
-        public void PopulateCollidables(List<IEntity> sceneGraphCopy)
+        public void PopulateCollidables(IList<IEntity> sceneGraphCopy)
         {
             // ITERATE through the sceneGraphCopy:
             foreach (ICollidable c in sceneGraphCopy)
@@ -111,7 +112,7 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// <summary>
         /// Default Update method for objects implementing the ICollisionManager interface.
         /// </summary>
-        public void update()
+        public void Update(GameTime pGameTime)
         {
             // CALL 'CheckEntityCollisions()':
             this.CheckEntityCollisions();

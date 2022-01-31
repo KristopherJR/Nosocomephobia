@@ -11,7 +11,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     /// <summary>
     /// Interface IEngineManager.
     /// </summary>
-    public interface IEngineManager
+    public interface IEngineManager : IUpdatable
     {
         #region PROPERTIES
         // DECLARE a get property for the IDictionary of services:

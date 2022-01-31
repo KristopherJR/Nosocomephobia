@@ -87,7 +87,6 @@ namespace Nosocomephobia
 
             // INITIALISE the EngineManagers Services:
             _engineManager.InitialiseServices();
-            // CREATE
 
             // STORE a copy reference of the EngineManagers services for use in the Kernel:
 
@@ -96,6 +95,10 @@ namespace Nosocomephobia
             _collisionManager = (_engineManager.GetService<ICollisionManager>() as ICollisionManager);
             _inputManager = (_engineManager.GetService<IInputManager>() as IInputManager);
             _navigationManager = (_engineManager.GetService<INavigationManager>() as INavigationManager);
+
+            // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
+            _sceneManager.InjectInputManager(_inputManager);
+            _sceneManager.InjectCollisionManager(_collisionManager);
 
 
             // INITIALIZE the camera:
@@ -106,9 +109,9 @@ namespace Nosocomephobia
             
 
             _inputManager.Subscribe(_camera,
-                                _camera.OnNewInput,
-                                _camera.OnKeyReleased,
-                                _camera.OnNewMouseInput);
+                                    _camera.OnNewInput,
+                                    _camera.OnKeyReleased,
+                                    _camera.OnNewMouseInput);
 
             // INITIALISE the flashlight:
             _flashlight.Initialise(_camera);
@@ -172,7 +175,7 @@ namespace Nosocomephobia
             // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
             IEntity _player = _entityManager.createEntity<Player>();
             // SPAWN _player into the SceneGraph:
-            _sceneManager.Spawn(_player, "GameScene");
+            _sceneManager.Spawn("GameScene", _player);
             // SET _camera focus onto Player:
             _camera.SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
@@ -185,7 +188,7 @@ namespace Nosocomephobia
                 if(t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sceneManager.Spawn(t, "GameScene");
+                    _sceneManager.Spawn("GameScene", t);
                 } 
             }
 
@@ -196,29 +199,23 @@ namespace Nosocomephobia
                 if (t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
-                    _sceneManager.Spawn(t, "GameScene");
+                    _sceneManager.Spawn("GameScene", t);
                 }
             }
-
-            // ITERATE through the GameSceneGraph:
-            for (int i = 0; i < _sceneManager.SceneGraph.Count; i++)
-            {
-                if (_sceneManager.SceneGraph[i] is Player)
-                {
-                    // SUBSCRIBE the paddle to listen for input events and key release events:
-                    _inputManager.Subscribe((_sceneManager.SceneGraph[0] as IInputListener),
-                                       (_sceneManager.SceneGraph[0] as Player).OnNewInput,
-                                       (_sceneManager.SceneGraph[0] as Player).OnKeyReleased,
-                                       (_sceneManager.SceneGraph[0] as Player).OnNewMouseInput);
-                }
-            }
-
-            // POPULATE the CollisionManagers collidables List with objects from the Scene Graph:
-            _collisionManager.PopulateCollidables(_sceneManager.SceneGraph);
+            // SUSCRIBE entities on the active scene graph to Input events:
+            _sceneManager.UpdateInputEvents();
+            // SUBSCRIBE entities on the active scene graph to Collision events:
+            _sceneManager.UpdateCollisionEvents();
         }
 
         private void DrawSceneGraphs()
         {
+
+
+
+
+
+
             // CHECK which Scene Graphs are active:
             for (int i = 0; i < _sceneManager.SceneGraphs.Count; i++)
             {
@@ -265,14 +262,8 @@ namespace Nosocomephobia
             // CALL the SceneManagers and CollisionManagers Update method if the program is running:
             if (RUNNING)
             {
-                // UPDATE the CollisionManager first:
-                _collisionManager.update();
-                // UPDATE the NavigationManager:
-                _navigationManager.Update(gameTime);
-                // THEN Update the SceneManager:
-                _sceneManager.Update(gameTime);
-                // UPDATE the InputManager:
-                _inputManager.update();
+                // UPDATE the EngineManager:
+                _engineManager.Update(gameTime);
                 // UPDATE the flashlight:
                 _flashlight.Update(gameTime);
                 // UPDATE the Camera:

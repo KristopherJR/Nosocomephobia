@@ -11,7 +11,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     /// <summary>
     /// Generic IService interface. Implemented by all of the engines service managers.
     /// </summary>
-    public interface IService
+    public interface IService : IUpdatable
     {
         // nothing for now
     }

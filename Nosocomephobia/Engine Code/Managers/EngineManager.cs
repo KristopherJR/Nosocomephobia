@@ -1,4 +1,5 @@
-﻿using Nosocomephobia.Engine_Code.Factories;
+﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Factories;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,14 +7,14 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.3, 17-01-22
+/// Version: 0.4, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
     /// <summary>
     /// Class EngineManager. Has an aggregation relationship with all of the Engines services.
     /// </summary>
-    public class EngineManager : IEngineManager
+    public class EngineManager : IEngineManager, IUpdatable
     {
         #region FIELDS
         // DECLARE an IDictionary<Type,IService> used to store all of the Engines Services, call it _services:
@@ -87,6 +88,19 @@ namespace Nosocomephobia.Engine_Code.Managers
             else
             {
                 throw new Exception("The requested service does not exist in the EngineManager.");
+            }
+        }
+        /// <summary>
+        /// Default Update method for the EngineManager. Updates all of the Engines Services.
+        /// </summary>
+        /// <param name="pGameTime">a reference to the GameTime.</param>
+        public void Update(GameTime pGameTime)
+        {
+            // ITERATE through the _services Dictionary:
+            foreach(KeyValuePair<Type, IService> service in _services)
+            {
+                // UPDATE each service:
+                service.Value.Update(pGameTime);
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 13-12-21
+/// Version: 1.3, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -13,10 +13,10 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     {
         #region PROPERTIES
         /// <summary>
-        /// A List of SceneGraphs.
+        /// An IDictionary of SceneGraphs.
         /// </summary>
         /// <returns>The SceneGraphs.</returns>
-        IList<ISceneGraph> SceneGraphs { get; }
+        IDictionary<string, ISceneGraph> SceneGraphs { get; }
         #endregion
 
         #region METHODS
@@ -27,39 +27,67 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         void InjectSceneGraphFactory(ISceneGraphFactory pSGFactory);
 
         /// <summary>
-        /// Creates a new SceneGraph and adds it to the SceneManagers SceneGraph List.
+        /// Injects a reference to the Engines InputManager so the SceneManager can subscribe entities to Input events when their SceneGraph becomes active.
         /// </summary>
-        /// <param name="pName">A unique name for the new SceneGraph.</param>
-        void CreateSceneGraph(string pName);
+        /// <param name="pInputManager">A reference to the Engines InputManager.</param>
+        void InjectInputManager(IInputManager pInputManager);
 
         /// <summary>
-        /// OVERLOAD: Creates a new SceneGraph and adds it to the SceneManagers SceneGraph List.
+        /// Injects a reference to the Engines CollisionManager so the SceneManager can subscribe entities to collision events when their SceneGraph becomes active.
         /// </summary>
-        /// <param name="pName">A unique name for the new SceneGraph.</param>
+        /// <param name="pInputManager">A reference to the Engines CollisionManager.</param>
+        void InjectCollisionManager(ICollisionManager pCollisionManager);
+
+        /// <summary>
+        /// Creates a new SceneGraph and adds it to the SceneManagers SceneGraph Dictionary.
+        /// </summary>
+        /// <param name="pSceneGraphName">A unique name for the new SceneGraph.</param>
+        void CreateSceneGraph(string pSceneGraphName);
+
+        /// <summary>
+        /// OVERLOAD: Creates a new SceneGraph and adds it to the SceneManagers SceneGraph Dictionary.
+        /// </summary>
+        /// <param name="pSceneGraphName">A unique name for the new SceneGraph.</param>
         /// <param name="pIsActive">Determines whether this SceneGraph is currently 'Active' or not.</param>
-        void CreateSceneGraph(string pName, bool pIsActive);
+        void CreateSceneGraph(string pSceneGraphName, bool pIsActive);
 
         /// <summary>
         /// Draws the SceneGraph with the matching name.
         /// </summary>
-        /// <param name="pName">The name of the SceneGraph to be drawn.</param>
+        /// <param name="pSceneGraphName">The name of the SceneGraph to be drawn.</param>
         /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graph should be drawn onto.</param>
-        void DrawSceneGraph(string pName, SpriteBatch pSpriteBatch);
+        void DrawSceneGraph(string pSceneGraphName, SpriteBatch pSpriteBatch);
 
         /// <summary>
         /// Add an object of type 'IEntity' to the specified 'SceneGraph'.
         /// </summary>
-        /// <param name="pEntity">An object of type IEntity to be added to the Scene Graph.</param>
         /// <param name="pSceneGraphName">The unique name of the SceneGraph to add the Entity to.</param>
-        void Spawn(IEntity pEntity, string pSceneGraphName);
+        /// <param name="pEntity">An object of type IEntity to be added to the Scene Graph.</param>
+        void Spawn(string pSceneGraphName, IEntity pEntity);
 
         /// <summary>
         /// Removes an Entity from the specified Scene Graph. The object can be specified by either its unique name or unique id number.
         /// </summary>
+        /// <param name="pSceneGraphName">The name of the SceneGraph the Entity is in.</param>
         /// <param name="pUName">The unique name of the Entity to despawn.</param>
         /// <param name="pUID">The unique ID of the Entity to despawn.</param>
-        /// <param name="pSceneGraphName">The name of the SceneGraph the Entity is in.</param>
-        void Despawn(string pUName, int pUID, string pSceneGraphName);
+
+        void Despawn(string pSceneGraphName, string pUName, int pUID);
+
+        /// <summary>
+        /// Called whenever the 'Active' SceneGraph changes. Subscribes Entities in the new Active SceneGraph to the InputManagers events.
+        /// Unsubscribes entities in previously 'Active' SceneGraph from Input events.
+        /// This is because different Scene may has different input functionality.
+        /// </summary>
+        void UpdateInputEvents();
+
+        /// <summary>
+        /// Called whenever the 'Active' SceneGraph changes. Subscribes Entities in the new Active SceneGraph to the CollisionManagers events.
+        /// Unsubscribes entities in previously 'Active' SceneGraph from collision events.
+        /// This is because different Scene may has different collision functionality.
+        /// </summary>
+        void UpdateCollisionEvents();
+
 
         /// <summary>
         /// Default Update method for objects implementing the ISceneManager interface.
