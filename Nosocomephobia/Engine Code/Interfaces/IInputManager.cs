@@ -27,10 +27,5 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// <param name="mouseState">A Snapshot of the mouse state.</param>
         /// <param name="scrollValue">An int representing which direction the scroll wheel is moving.</param>
         void OnNewMouseInput(MouseState mouseState, int scrollValue);
-
-        /// <summary>
-        /// Default Update method for classes implementing IInputManager Interface.
-        /// </summary>
-        void update();
     }
 }

@@ -145,8 +145,9 @@ namespace Nosocomephobia.Engine_Code.Managers
             // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
             if (_sceneGraphs.ContainsKey(pSceneGraphName))
             {
-                // SPAWN the provided IEntity onto the specified SceneGraph:
-                _sceneGraphs[pSceneGraphName].Spawn(pEntity);
+
+                    // SPAWN the provided IEntity onto the specified SceneGraph:
+                    _sceneGraphs[pSceneGraphName].Spawn(pLayerName, pEntity);
             }
             else
             {
@@ -168,7 +169,7 @@ namespace Nosocomephobia.Engine_Code.Managers
             if (_sceneGraphs.ContainsKey(pSceneGraphName))
             {
                 // DESPAWN the specified IEntity from the SceneGraph:
-                _sceneGraphs[pSceneGraphName].Despawn(pUName, pUID);
+                _sceneGraphs[pSceneGraphName].Despawn(pLayerName,pUName, pUID);
             }
             else
             {
@@ -193,17 +194,21 @@ namespace Nosocomephobia.Engine_Code.Managers
                     // IF The name of the active SceneGraph is "GameScene":
                     if (sceneGraph.Value.UName == "GameScene")
                     {
-                        // ITERATE through the GameSceneGraph entities:
-                        foreach (IEntity entity in sceneGraph.Value.Entities)
+                        // ITERATE through all layers in the SceneGraph:
+                        foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
                         {
-                            // CHECK if the current entity is of type 'Player':
-                            if (entity is Player)
+                            // ITERATE through all entities in the layer:
+                            foreach(IEntity entity in layer.Value.Entities)
                             {
-                                // SUBSCRIBE the player to listen for input events and key release events:
-                                _inputManager.Subscribe((entity as IInputListener),
-                                                        (entity as Player).OnNewInput,
-                                                        (entity as Player).OnKeyReleased,
-                                                        (entity as Player).OnNewMouseInput);
+                                // CHECK if the current entity is of type 'Player':
+                                if (entity is Player)
+                                {
+                                    // SUBSCRIBE the player to listen for input events and key release events:
+                                    _inputManager.Subscribe((entity as IInputListener),
+                                                            (entity as Player).OnNewInput,
+                                                            (entity as Player).OnKeyReleased,
+                                                            (entity as Player).OnNewMouseInput);
+                                }
                             }
                         }
                     }
@@ -227,8 +232,11 @@ namespace Nosocomephobia.Engine_Code.Managers
                     // IF The name of the active SceneGraph is "GameScene":
                     if (sceneGraph.Value.UName == "GameScene")
                     {
-                        // POPULATE the CollisionManagers collidables List with objects from the GameSceneGraph:
-                        _collisionManager.PopulateCollidables(sceneGraph.Value.Entities);
+                        // ITERATE through all layers in the SceneGraph:
+                        foreach(KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
+                        {
+                            _collisionManager.PopulateCollidables(layer.Value.Entities);
+                        }  
                     }
                 }
             }
@@ -247,12 +255,12 @@ namespace Nosocomephobia.Engine_Code.Managers
                 // CHECK that the SceneGraph is active:
                 if(sceneGraph.Value.IsActive == true)
                 {
-                    // THEN move all Entities in that SceneGraph:
-                    foreach (IEntity entity in sceneGraph.Value.Entities)
+                    // ITERATE through all Layers in that graph:
+                    foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
                     {
-                        // CALL the entity's Update method and pass in GameTime:
-                        entity.Update(gameTime);
-                    }     
+                        // Update each Layer:
+                        layer.Value.Update(gameTime);
+                    }
                 }
             } 
         }

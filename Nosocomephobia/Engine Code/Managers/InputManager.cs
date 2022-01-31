@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.InputClasses;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
@@ -192,7 +193,8 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// <summary>
         /// Default Update method for classes implementing IInputManager Interface.
         /// </summary>
-        public void update()
+        /// <param name="pGameTime">A reference to the GameTime.</param>
+        public void Update(GameTime pGameTime)
         {
             // look for changes in input data
             this.CheckNewInput();

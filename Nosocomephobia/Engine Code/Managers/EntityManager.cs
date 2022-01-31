@@ -1,4 +1,5 @@
-﻿using Nosocomephobia.Engine_Code.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
@@ -110,6 +111,15 @@ namespace Nosocomephobia.Engine_Code.Managers
                 // SET the entityPool name to "Player" plus the 'tempCounter':
                 e.UName = ("Player" + tempCounter);
             }
+        }
+
+        /// <summary>
+        /// Defaults update loop for EntityManager.
+        /// </summary>
+        /// <param name="pGameTime">A reference to GameTime.</param>
+        public void Update(GameTime pGameTime)
+        {
+
         }
     }
 }

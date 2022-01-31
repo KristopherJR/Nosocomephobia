@@ -12,7 +12,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     /// <summary>
     /// ILayer interface
     /// </summary>
-    public interface ILayer
+    public interface ILayer : IUpdatable
     {
         #region PROPERTIES
         // get-set property for DrawOrder:

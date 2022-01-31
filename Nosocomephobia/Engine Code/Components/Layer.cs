@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System;
@@ -77,6 +78,24 @@ namespace Nosocomephobia.Engine_Code.Components
             {
                 // DRAW each Entity onto the SpriteBatch:
                 (_entities[i] as GameEntity).Draw(pSpriteBatch);
+            }
+        }
+
+        /// <summary>
+        /// Default update loop for Layer.
+        /// </summary>
+        /// <param name="pGameTime"></param>
+        public void Update(GameTime pGameTime)
+        {
+            // CHECK the current layer is active:
+            if(_isActive)
+            {
+                // ITERATE through all entities on the layer:
+                foreach(IEntity entity in _entities)
+                {
+                    // UPDATE each entity:
+                    entity.Update(pGameTime);
+                }
             }
         }
         #endregion

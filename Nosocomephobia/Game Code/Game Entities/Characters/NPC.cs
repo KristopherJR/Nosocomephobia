@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {

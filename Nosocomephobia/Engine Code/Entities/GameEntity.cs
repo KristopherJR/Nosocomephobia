@@ -50,6 +50,12 @@ namespace Nosocomephobia.Engine_Code.Entities
             set { entityVelocity = value; } // set method
         }
 
+        public Boolean IsCollidable
+        {
+            get { return isCollidable; }
+            set { isCollidable = value; }
+        }
+
         #endregion PROPERTIES
 
         /// <summary>
