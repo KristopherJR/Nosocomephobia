@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 31-01-2022
+/// Version: 1.4, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -70,7 +70,7 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// <summary>
         /// Injects a reference to the Engines CollisionManager so the SceneManager can subscribe entities to collision events when their SceneGraph becomes active.
         /// </summary>
-        /// <param name="pInputManager">A reference to the Engines CollisionManager.</param>
+        /// <param name="pCollisionManager">A reference to the Engines CollisionManager.</param>
         public void InjectCollisionManager(ICollisionManager pCollisionManager)
         {
             // ASSIGN pCollisionManager to _collisionManager:
@@ -117,36 +117,20 @@ namespace Nosocomephobia.Engine_Code.Managers
         }
 
         /// <summary>
-        /// Draws the SceneGraph with the matching name.
+        /// Draws all Active SceneGraphs to the provided SpriteBatch.
         /// </summary>
-        /// <param name="pSceneGraphName">The name of the SceneGraph to be drawn.</param>
-        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graph should be drawn onto.</param>
-        public void DrawSceneGraph(string pSceneGraphName, SpriteBatch pSpriteBatch)
+        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graphs should be drawn onto.</param>
+        public void DrawSceneGraphs(SpriteBatch pSpriteBatch)
         {
-            // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
-            if (_sceneGraphs.ContainsKey(pSceneGraphName))
+            // ITERATE through all SceneGraphs:
+            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
             {
                 // CHECK that the specified SceneGraph is currently 'Active':
-                if (_sceneGraphs[pSceneGraphName].IsActive == true)
+                if (sceneGraph.Value.IsActive)
                 {
-                    // ITERATE through the specified SceneGraph:
-                    foreach (var entity in _sceneGraphs[pSceneGraphName].Entities)
-                    {
-                        // DRAW each entity to the provided SpriteBatch:
-                        (entity as GameEntity).Draw(pSpriteBatch);
-                    }
+                    // DRAW each entity to the provided SpriteBatch:
+                    sceneGraph.Value.Draw(pSpriteBatch);  
                 }
-                else
-                {
-                    // THROW a SceneGraphNotActiveException
-                    throw new SceneGraphNotActiveException("The specified SceneGraph: " + pSceneGraphName + " is not active and therefore can not be drawn.");
-                }
-                
-            }
-            else
-            {
-                // THROW an ElementNotFoundException:
-                throw new ElementNotFoundException("The specified key: " + pSceneGraphName + " is not present in the SceneGraph Dictionary.");
             }
         }
 
@@ -154,8 +138,9 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// Add an object of type 'IEntity' to the specified 'SceneGraph'.
         /// </summary>
         /// <param name="pSceneGraphName">The unique name of the SceneGraph to add the Entity to.</param>
+        /// <param name="pLayerName">The unique name of the Layer within the SceneGraph to add the Entity to.</param>
         /// <param name="pEntity">An object of type IEntity to be added to the Scene Graph.</param>
-        public void Spawn(string pSceneGraphName, IEntity pEntity)
+        public void Spawn(string pSceneGraphName, string pLayerName, IEntity pEntity)
         {
             // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
             if (_sceneGraphs.ContainsKey(pSceneGraphName))
@@ -170,13 +155,14 @@ namespace Nosocomephobia.Engine_Code.Managers
             }
         }
 
-        /// <summary>
+        // <summary>
         /// Removes an Entity from the specified Scene Graph. The object can be specified by either its unique name or unique id number.
         /// </summary>
         /// <param name="pSceneGraphName">The name of the SceneGraph the Entity is in.</param>
+        /// <param name="pLayerName">The unique name of the Layer within the SceneGraph to add the Entity to.</param>
         /// <param name="pUName">The unique name of the Entity to despawn.</param>
         /// <param name="pUID">The unique ID of the Entity to despawn.</param>
-        public void Despawn(string pSceneGraphName, string pUName, int pUID)
+        public void Despawn(string pSceneGraphName, string pLayerName, string pUName, int pUID)
         {
             // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
             if (_sceneGraphs.ContainsKey(pSceneGraphName))

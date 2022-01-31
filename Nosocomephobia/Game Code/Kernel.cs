@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.4, 30-01-2022
+/// Version: 0.5, 31-01-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -154,7 +154,7 @@ namespace Nosocomephobia
         }
 
         /// <summary>
-        /// SpawnObjects is used to spawn all game objects into the SceneGraph/EntityPool/CollisionMap. Called in Kernel from LoadContent().
+        /// SpawnGameEntities is used to spawn all game objects into the SceneGraph/EntityPool/CollisionMap. Called in Kernel from LoadContent().
         /// </summary>
 
 
@@ -166,11 +166,27 @@ namespace Nosocomephobia
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
             _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
+            // CREATE the games SceneGraphs:
+            this.CreateSceneGraphs();
             // SPAWN the game objects:
-            this.SpawnObjects();
+            this.SpawnGameEntities();
         }
 
-        private void SpawnObjects()
+        /// <summary>
+        /// Sets up all of the SceneGraphs in the Game. I.E MenuScene, GameScene.
+        /// This is also responsible for specifying the Layers within each SceneGraph.
+        /// </summary>
+        private void CreateSceneGraphs()
+        {
+            // CREATE GameScene:
+            _sceneManager.CreateSceneGraph("GameScene", true);
+            // CREATE Layers for GameScene:
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapFloor", 1);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapWalls", 2);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Entities", 3);
+        }
+
+        private void SpawnGameEntities()
         {
             // REQUEST a new 'Player' object from the EntityManager, and pass it to the SceneManager. Call it _player.:
             IEntity _player = _entityManager.createEntity<Player>();
@@ -210,9 +226,8 @@ namespace Nosocomephobia
 
         private void DrawSceneGraphs()
         {
-
-
-
+            
+            
 
 
 

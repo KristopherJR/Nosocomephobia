@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 31-01-2022
+/// Version: 1.4, 31-01-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -52,27 +52,27 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         void CreateSceneGraph(string pSceneGraphName, bool pIsActive);
 
         /// <summary>
-        /// Draws the SceneGraph with the matching name.
+        /// Draws all Active SceneGraphs to the provided SpriteBatch.
         /// </summary>
-        /// <param name="pSceneGraphName">The name of the SceneGraph to be drawn.</param>
-        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graph should be drawn onto.</param>
-        void DrawSceneGraph(string pSceneGraphName, SpriteBatch pSpriteBatch);
+        /// <param name="pSpriteBatch">A reference to the SpriteBatch that the graphs should be drawn onto.</param>
+        void DrawSceneGraphs(SpriteBatch pSpriteBatch);
 
         /// <summary>
         /// Add an object of type 'IEntity' to the specified 'SceneGraph'.
         /// </summary>
         /// <param name="pSceneGraphName">The unique name of the SceneGraph to add the Entity to.</param>
+        /// <param name="pLayerName">The unique name of the Layer within the SceneGraph to add the Entity to.</param>
         /// <param name="pEntity">An object of type IEntity to be added to the Scene Graph.</param>
-        void Spawn(string pSceneGraphName, IEntity pEntity);
+        void Spawn(string pSceneGraphName, string pLayerName, IEntity pEntity);
 
         /// <summary>
         /// Removes an Entity from the specified Scene Graph. The object can be specified by either its unique name or unique id number.
         /// </summary>
         /// <param name="pSceneGraphName">The name of the SceneGraph the Entity is in.</param>
+        /// <param name="pLayerName">The unique name of the Layer within the SceneGraph to add the Entity to.</param>
         /// <param name="pUName">The unique name of the Entity to despawn.</param>
         /// <param name="pUID">The unique ID of the Entity to despawn.</param>
-
-        void Despawn(string pSceneGraphName, string pUName, int pUID);
+        void Despawn(string pSceneGraphName, string pLayerName, string pUName, int pUID);
 
         /// <summary>
         /// Called whenever the 'Active' SceneGraph changes. Subscribes Entities in the new Active SceneGraph to the InputManagers events.
@@ -87,12 +87,6 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// This is because different Scene may has different collision functionality.
         /// </summary>
         void UpdateCollisionEvents();
-
-
-        /// <summary>
-        /// Default Update method for objects implementing the ISceneManager interface.
-        /// </summary>
-        void Update(GameTime gameTime);
         #endregion
     }
 }
