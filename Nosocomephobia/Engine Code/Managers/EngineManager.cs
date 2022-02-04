@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.5, 31-01-2022
+/// Version: 0.6, 04-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -55,12 +55,12 @@ namespace Nosocomephobia.Engine_Code.Managers
         {
             // INITIALISE _services:
             _services = new Dictionary<Type, IService>();
-            // CREATE the service managers:
-            IEntityManager entityManager = new EntityManager();
-            ISceneManager sceneManager = new SceneManager();
-            ICollisionManager collisionManager = new CollisionManager();
-            IInputManager inputManager = new InputManager();
-            INavigationManager navigationManager = new NavigationManager();
+            // CREATE the service managers using the abstract Service Factory:
+            IEntityManager entityManager = (_serviceFactory.Create<EntityManager>() as EntityManager);
+            ISceneManager sceneManager = (_serviceFactory.Create<SceneManager>() as SceneManager);
+            ICollisionManager collisionManager = (_serviceFactory.Create<CollisionManager>() as CollisionManager);
+            IInputManager inputManager = (_serviceFactory.Create<InputManager>() as InputManager);
+            INavigationManager navigationManager = (_serviceFactory.Create<NavigationManager>() as NavigationManager);
 
             // INJECT a SceneGraphFactory into the SceneManager:
             sceneManager.InjectSceneGraphFactory(new SceneGraphFactory());

@@ -248,3 +248,66 @@ C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreap
 C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_right_003.xnb
 C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\sprite test in engine.xnb
 C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\sprites.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\3x-floors.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\3x-walls.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\floor.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\floors.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\nosocomephobia_tilemap_Floor.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\nosocomephobia_tilemap_Walls.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\tilesheet1.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\walls.csv
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Test_Sprites\Asset_Pack_Monster_Test01.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Test_Sprites\PixelArtMonster_Test.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\circles.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\hand1.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\journal.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\planks.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\skull.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\tiles.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\walls.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\wing.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy spite sheets.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_back_001.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_back_002.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_back_003.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_front_001.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_front_002.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_front_003.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_left_001.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_left_002.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_left_003.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_right_001.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_right_002.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character_Dummy Sprites\dummy sprite_right_003.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\sprite test in engine.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\sprites.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\dummy_spite_sheets.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\tilesheet16.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\tilesheet32.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\tilesheet48.xnb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Nosocomephobia.exe
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Nosocomephobia.deps.json
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Nosocomephobia.runtimeconfig.json
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Nosocomephobia.runtimeconfig.dev.json
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Nosocomephobia.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Nosocomephobia.pdb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\MonoGame.Penumbra.DesktopGL.pdb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\MonoGame.Penumbra.DesktopGL.xml
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.csproj.AssemblyReference.cache
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.AssemblyInfoInputs.cache
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.AssemblyInfo.cs
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.csproj.CoreCompileInputs.cache
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.csproj.CopyComplete
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.dll
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.pdb
+C:\Users\krist\Desktop\Nosocomephobia\Nosocomephobia\obj\Debug\netcoreapp3.1\Nosocomephobia.genruntimeconfig.cache

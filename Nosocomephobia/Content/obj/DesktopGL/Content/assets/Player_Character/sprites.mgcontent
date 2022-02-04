@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprites.png</SourceFile>
-  <SourceTime>2022-01-31T16:40:23.4476837+00:00</SourceTime>
-  <DestFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/bin/DesktopGL/Content/assets/Player_Character/sprites.xnb</DestFile>
-  <DestTime>2022-01-31T16:40:35.5484142+00:00</DestTime>
+  <SourceFile>C:/Users/krist/Desktop/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprites.png</SourceFile>
+  <SourceTime>2022-02-04T16:39:50.8188924+00:00</SourceTime>
+  <DestFile>C:/Users/krist/Desktop/Nosocomephobia/Nosocomephobia/Content/bin/DesktopGL/Content/assets/Player_Character/sprites.xnb</DestFile>
+  <DestTime>2022-02-04T16:41:34.2812525+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T17:17:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
