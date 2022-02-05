@@ -23,10 +23,5 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// </summary>
         /// <param name="pathFinder">The IPathFinder to add to the NavigationManager.</param>
         void RemovePathFinder(IPathFinder pathFinder);
-        /// <summary>
-        /// Default Update loop.
-        /// </summary>
-        /// <param name="gameTime">A Snapshot of the GameTime.</param>
-        void Update(GameTime gameTime);
     }
 }

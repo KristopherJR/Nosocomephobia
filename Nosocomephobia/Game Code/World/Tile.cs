@@ -16,11 +16,6 @@ namespace Nosocomephobia.Game_Code.World
         #endregion
 
         #region PROPERTIES
-        public bool IsCollidable // property
-        {
-            get { return isCollidable; }
-            set { isCollidable = value; }
-        }
         // DECLARE a get-set property for _isValidTile:
         public bool IsValidTile
         {

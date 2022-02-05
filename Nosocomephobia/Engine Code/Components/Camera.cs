@@ -11,11 +11,13 @@ using System.Diagnostics;
 /// Author: Kristopher J Randle
 /// Version: 1.0, 01-05-2021
 /// </summary>
-namespace Nosocomephobia.Engine_Code.Camera
+namespace Nosocomephobia.Engine_Code.Components
 {
-    public class Camera : IUpdatable, IInputListener
+    public class Camera : IEntity, IUpdatable, IInputListener
     {
         #region FIELDS
+        private int _uid;
+        private string _uName;
         // DECLARE a Matrix, call it 'transform':
         private Matrix transform;
         // DECLARE a float, call it 'zoomAspect':
@@ -28,6 +30,16 @@ namespace Nosocomephobia.Engine_Code.Camera
         private GameEntity focusedEntity;
         #endregion
         #region PROPERTIES
+        public int UID
+        {
+            get { return _uid; }
+            set { _uid = value; }
+        }
+        public string UName
+        {
+            get { return _uName; }
+            set { _uName = value; }
+        }
         public Matrix Transform
         {
             get { return transform; } // read-only
@@ -37,14 +49,21 @@ namespace Nosocomephobia.Engine_Code.Camera
         /// <summary>
         /// Camera Constructor.
         /// </summary>
-        /// <param name="viewport">A reference to the viewport.</param>
-        public Camera(Viewport viewport)
+        public Camera()
         {
             // INITIALIZE fields:
             transform = new Matrix();
             zoomAspect = 2.0f;
             scrollSpeed = 0.1f;
-            this.viewport = viewport;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pViewPort">A reference to the viewport.</param>
+        public void InjectViewPort(Viewport pViewPort)
+        {
+            this.viewport = pViewPort;
         }
 
         /// <summary>

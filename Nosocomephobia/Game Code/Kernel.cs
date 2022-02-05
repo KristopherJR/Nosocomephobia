@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Nosocomephobia.Engine_Code.Camera;
+using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.Managers;
@@ -74,8 +74,7 @@ namespace Nosocomephobia
             _engineManager = pEngineManager;
 
             _graphics = new GraphicsDeviceManager(this);
-            // INITIALISE _flashlight:
-            _flashlight = new Flashlight();
+            
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -95,8 +94,11 @@ namespace Nosocomephobia
             _inputManager = (_engineManager.GetService<IInputManager>() as IInputManager);
             _navigationManager = (_engineManager.GetService<INavigationManager>() as INavigationManager);
 
-            // INITIALIZE the camera:
-            _camera = new Camera(GraphicsDevice.Viewport);
+            // INITIALIZE the Camera:
+            _camera = _entityManager.CreateEntity<Camera>() as Camera;
+            _camera.InjectViewPort(_graphics.GraphicsDevice.Viewport);
+            // INITIALISE _flashlight:
+            _flashlight = _entityManager.CreateEntity<Flashlight>() as Flashlight;
 
             // SUBSCRIBE the camera to listen for input events:
             _inputManager.Subscribe(_camera,

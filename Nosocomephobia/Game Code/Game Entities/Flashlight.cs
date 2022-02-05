@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Nosocomephobia.Engine_Code.Camera;
+using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Penumbra;
@@ -12,7 +12,7 @@ using System;
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities
 { 
-    public class Flashlight : IUpdatable
+    public class Flashlight : GameEntity
     {
         #region FIELDS
         // DECLARE a Light to represent the player light source, call it _light:
@@ -94,9 +94,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         }
 
         /// <summary>
-        /// METHOD: Called on each pass of the update loop. Updates the flashlight position and look angle each frame.
+        /// Update loop for Flashlight, overrides the parent Update() method. Updates the flashlight position and look angle each frame.
         /// </summary>
-        public void Update(GameTime gameTime)
+        /// <param name="gameTime">A snapshot of the GameTime.</param>
+        public override void Update(GameTime gameTime)
         {
             Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth/2),
                                                _focusedEntity.EntityLocn.Y + (_focusedEntity.EntitySprite.TextureHeight/2));

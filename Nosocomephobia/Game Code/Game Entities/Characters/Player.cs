@@ -28,11 +28,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         #endregion
 
         #region PROPERTIES
-        public bool IsCollidable // property
-        {
-            get { return isCollidable; }
-            set { isCollidable = value; }
-        }
         #endregion
 
         /// <summary>
