@@ -9,7 +9,7 @@ using System.Collections.Generic;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface ISceneManager : IService
+    interface ISceneManager : IService, IUpdatable
     {
         #region PROPERTIES
         /// <summary>

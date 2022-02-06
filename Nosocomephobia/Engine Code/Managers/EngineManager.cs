@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.6, 04-02-2022
+/// Version: 0.7, 06-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -62,14 +62,14 @@ namespace Nosocomephobia.Engine_Code.Managers
             IInputManager inputManager = (_serviceFactory.Create<InputManager>() as InputManager);
             INavigationManager navigationManager = (_serviceFactory.Create<NavigationManager>() as NavigationManager);
 
-            // INJECT a SceneGraphFactory into the SceneManager:
-            sceneManager.InjectSceneGraphFactory(new SceneGraphFactory());
+            // INJECT a SceneGraphFactory into the SceneManager, create it using the abstract Service Factory:
+            sceneManager.InjectSceneGraphFactory(_serviceFactory.Create<SceneGraphFactory>() as SceneGraphFactory);
+            // INJECT an EntityFactory into the EntityManager, create it using the abstract Service Factory:
+            entityManager.InjectEntityFactory(_serviceFactory.Create<EntityFactory>() as EntityFactory);
             // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
             sceneManager.InjectInputManager(inputManager);
             sceneManager.InjectCollisionManager(collisionManager);
-            // INJECT an EntityFactory into the EntityManager:
-            entityManager.InjectEntityFactory(new EntityFactory());
-
+            
             // ADD the service managers to _services:
             _services.Add(typeof(IEntityManager), entityManager);
             _services.Add(typeof(ISceneManager), sceneManager);
@@ -104,7 +104,7 @@ namespace Nosocomephobia.Engine_Code.Managers
             foreach(KeyValuePair<Type, IService> service in _services)
             {
                 // UPDATE each service:
-                service.Value.Update(pGameTime);
+                (service.Value as IUpdatable).Update(pGameTime);
             }
         }
     }

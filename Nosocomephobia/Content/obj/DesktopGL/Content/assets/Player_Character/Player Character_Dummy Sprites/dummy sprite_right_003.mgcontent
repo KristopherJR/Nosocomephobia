@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.png</SourceFile>
-  <SourceTime>2022-02-05T20:08:51.8073579+00:00</SourceTime>
-  <DestFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/bin/DesktopGL/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.xnb</DestFile>
-  <DestTime>2022-02-05T20:09:26.2964962+00:00</DestTime>
+  <SourceFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.png</SourceFile>
+  <SourceTime>2022-02-05T23:47:49.1280836+00:00</SourceTime>
+  <DestFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Nosocomephobia/Content/bin/DesktopGL/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.xnb</DestFile>
+  <DestTime>2022-02-05T23:48:11.1668192+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T17:17:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

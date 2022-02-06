@@ -1,13 +1,13 @@
 ﻿/// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 30-01-2022
+/// Version: 0.2, 05-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
     /// <summary>
     /// ISceneGraphFactory Interface
     /// </summary>
-    public interface ISceneGraphFactory
+    public interface ISceneGraphFactory : IService
     {
         // DECLARE a generic method returning an ISceneGraph, where the specified type is an ISceneGraph. Call it Create:
         ISceneGraph Create<T>() where T : ISceneGraph, new();
