@@ -15,7 +15,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         void PopulateCollidables(IList<IEntity> sceneGraphCopy);
 
         /// <summary>
-        /// Remove the specified item matching the provided uName and uID from the collidables List. Usually called after an item has been
+        /// Remove the specified item matching the provided _uName and _uID from the collidables List. Usually called after an item has been
         /// terminated from the game.
         /// </summary>
         /// <param name="uName">The unique name of the object to be removed from collidables.</param>

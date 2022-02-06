@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Nosocomephobia.Engine_Code.Exceptions;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Engine_Code.Interfaces.CommandScheduler;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 31-01-2022
+/// Version: 1.4, 06-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -18,6 +19,8 @@ namespace Nosocomephobia.Engine_Code.Managers
         private List<IEntity> _entityPool;
         // DECLARE an IEntityFactory, call it _entityFactory:
         private IEntityFactory _entityFactory;
+        // DECLARE a reference to an ICommandScheduler, call it _commandScheduler. This is a reference to the EngineManagers CommandScheduler Service:
+        private ICommandScheduler _commandScheduler;
         #endregion
 
         #region PROPERTIES
@@ -44,6 +47,16 @@ namespace Nosocomephobia.Engine_Code.Managers
         }
 
         /// <summary>
+        /// Injects a reference to the EngineManagers CommandScheduler Service to be used by the EntityManager when creating Entities.
+        /// </summary>
+        /// <param name="pCommandScheduler">The EngineManagers CommandScheduler Service.</param>
+        public void InjectCommandScheduler(ICommandScheduler pCommandScheduler)
+        {
+            // SET _commandScheduler to pCommandScheduler:
+            _commandScheduler = pCommandScheduler;
+        }
+
+        /// <summary>
         /// Creates a new IEntity using the EntityFactory. Adds the newly returned IEntity to the _entityPool.
         /// Automatically assigns a Unique name to the Entity.
         /// </summary>
@@ -53,6 +66,8 @@ namespace Nosocomephobia.Engine_Code.Managers
         {
             // USE the EntityFactory to create a new IEntity of the specified type:
             IEntity newEntity = _entityFactory.Create<T>();
+            // MAKE the Action<ICommand> property in the Entity point to the ExecuteCommand method in EngineManagers CommandScheduler Service:
+            (newEntity as ICommandSender).ScheduleCommand = _commandScheduler.ExecuteCommand;
             // ADD the new Entity to the EntityPool:
             _entityPool.Add(newEntity);
             // RETURN the new IEntity:

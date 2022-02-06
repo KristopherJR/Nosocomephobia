@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Nosocomephobia.Engine_Code.Interfaces.CommandScheduler;
+using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 31-01-21
+/// Version: 1.4, 06-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -15,6 +16,12 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// </summary>
         /// <param name="pEntityFactory">An ISceneGraphFactory object.</param>
         void InjectEntityFactory(IEntityFactory pEntityFactory);
+
+        /// <summary>
+        /// Injects a reference to the EngineManagers CommandScheduler Service to be used by the EntityManager when creating Entities.
+        /// </summary>
+        /// <param name="pCommandScheduler">The EngineManagers CommandScheduler Service.</param>
+        void InjectCommandScheduler(ICommandScheduler pCommandScheduler);
 
         /// <summary>
         /// Creates a new IEntity using the EntityFactory. Adds the newly returned IEntity to the _entityPool.

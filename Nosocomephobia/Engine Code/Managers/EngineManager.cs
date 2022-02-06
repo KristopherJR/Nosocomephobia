@@ -1,13 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Factories;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Engine_Code.Interfaces.CommandScheduler;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
-/// Version: 0.7, 06-02-2022
+/// Version: 0.8, 06-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -62,20 +64,26 @@ namespace Nosocomephobia.Engine_Code.Managers
             IInputManager inputManager = (_serviceFactory.Create<InputManager>() as InputManager);
             INavigationManager navigationManager = (_serviceFactory.Create<NavigationManager>() as NavigationManager);
 
+            // CREATE the CommandScheduler:
+            ICommandScheduler commandScheduler = (_serviceFactory.Create<CommandScheduler>() as CommandScheduler);
+
             // INJECT a SceneGraphFactory into the SceneManager, create it using the abstract Service Factory:
             sceneManager.InjectSceneGraphFactory(_serviceFactory.Create<SceneGraphFactory>() as SceneGraphFactory);
             // INJECT an EntityFactory into the EntityManager, create it using the abstract Service Factory:
             entityManager.InjectEntityFactory(_serviceFactory.Create<EntityFactory>() as EntityFactory);
+            // INJECT a reference to the CommandScheduler Service into the EntityManager to be used when setting up Entity Commands on creation:
+            entityManager.InjectCommandScheduler(commandScheduler);
             // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
             sceneManager.InjectInputManager(inputManager);
             sceneManager.InjectCollisionManager(collisionManager);
             
-            // ADD the service managers to _services:
+            // ADD the Engine Services to _services:
             _services.Add(typeof(IEntityManager), entityManager);
             _services.Add(typeof(ISceneManager), sceneManager);
             _services.Add(typeof(ICollisionManager), collisionManager);
             _services.Add(typeof(IInputManager), inputManager);
             _services.Add(typeof(INavigationManager), navigationManager);
+            _services.Add(typeof(ICommandScheduler), commandScheduler);
         }
 
         /// <summary>

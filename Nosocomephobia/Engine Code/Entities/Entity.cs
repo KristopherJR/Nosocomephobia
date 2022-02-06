@@ -1,40 +1,75 @@
 ﻿using Microsoft.Xna.Framework;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Engine_Code.Interfaces.CommandScheduler;
+using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 06-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Entities
 {
-    public abstract class Entity : IEntity
+    public abstract class Entity : IEntity, IEntityInternal, ICommandSender
     {
         #region FIELDS
 
-        // DECLARE an int, call it 'uID':
-        private int uID;
+        // DECLARE an int, call it '_uID':
+        private int _uID;
+        // DECLARE a string, call it '_uName':
+        private string _uName;
 
-        // DECLARE a string, call it 'uName':
-        private string uName;
-
+        // DECLARE an ICommand, call it _terminateMe:
+        private ICommand _terminateMe;
+        // DECLARE an ICommand, call it _removeMe:
+        private ICommand _removeMe;
+        // DECLARE an Action<ICommand>, call it _scheduledCommand:
+        Action<ICommand> _scheduledCommand;
         #endregion FIELDS
 
         #region PROPERTIES
-
+        /// <summary>
+        /// UID get-set Property.
+        /// </summary>
         public int UID
         {
-            get { return uID; }
-            set { uID = value; }
+            get { return _uID; }
+            set { _uID = value; }
         }
-
+        /// <summary>
+        /// UName get-set Property.
+        /// </summary>
         public string UName
         {
-            get { return uName; }
-            set { uName = value; }
+            get { return _uName; }
+            set { _uName = value; }
         }
-
+        /// <summary>
+        /// TerminateMe get-set property.
+        /// </summary>
+        public ICommand TerminateMe
+        {
+            get { return _removeMe; }
+            set { _removeMe = value; }   
+        }
+        /// <summary>
+        /// RemoveMe get-set property.
+        /// </summary>
+        public ICommand RemoveMe
+        {
+            get { return _removeMe; }
+            set { _removeMe = value; }
+        }
+        /// <summary>
+        /// ScheduleCommand property. Returns/Sets an Action of type ICommand. Points to the CommandSchedulers ExecuteCommand method.
+        /// </summary>
+        public Action<ICommand> ScheduleCommand
+        {
+            get { return _scheduledCommand; }
+            set { _scheduledCommand = value; }
+        }
         #endregion PROPERTIES
 
+        #region METHODS
         /// <summary>
         /// Default Update loop of Entity.
         /// </summary>
@@ -43,5 +78,6 @@ namespace Nosocomephobia.Engine_Code.Entities
         {
             // do nothing
         }
+        #endregion
     }
 }
