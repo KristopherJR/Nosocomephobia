@@ -9,15 +9,13 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 07-02-2022
+/// Version: 1.2, 07-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Components
 {
     public class Camera : Entity, IInputListener
     {
         #region FIELDS
-        private int _uid;
-        private string _uName;
         // DECLARE a Matrix, call it 'transform':
         private Matrix transform;
         // DECLARE a float, call it 'zoomAspect':
@@ -30,16 +28,6 @@ namespace Nosocomephobia.Engine_Code.Components
         private GameEntity focusedEntity;
         #endregion
         #region PROPERTIES
-        public int UID
-        {
-            get { return _uid; }
-            set { _uid = value; }
-        }
-        public string UName
-        {
-            get { return _uName; }
-            set { _uName = value; }
-        }
         public Matrix Transform
         {
             get { return transform; } // read-only
@@ -81,7 +69,7 @@ namespace Nosocomephobia.Engine_Code.Components
         /// Default update loop for an IUpdatable.
         /// </summary>
         /// <param name="gameTime">A reference to the GameTime.</param>
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             // SET up the transform via Matrix:
             transform = Matrix.CreateTranslation(-focusedEntity.EntityLocn.X, -focusedEntity.EntityLocn.Y, 0) * // Main Translation Matrix
