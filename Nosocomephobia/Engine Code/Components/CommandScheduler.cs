@@ -1,12 +1,13 @@
-﻿using Nosocomephobia.Engine_Code.Interfaces;
-using Nosocomephobia.Engine_Code.Interfaces.CommandScheduler;
+﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 06-02-2022
+/// Version: 0.2, 07-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Components
 {
@@ -34,9 +35,15 @@ namespace Nosocomephobia.Engine_Code.Components
         /// <summary>
         /// ExecuteCommand will trigger a scheduled Entity command when called.
         /// </summary>
-        public void ExecuteCommand()
+        /// <param name="pCommand">The command to be executed.</param>
+        public void ExecuteCommand(ICommand pCommand)
         {
+            
+        }
 
+        public void Update(GameTime pGameTime)
+        {
+            // oops
         }
         #endregion
         #endregion METHODS

@@ -55,7 +55,7 @@ namespace Nosocomephobia
         // DECLARE an NavigationManager, call it '_navigationManager'. Store it as its interface INavigationManager:
         private INavigationManager _navigationManager;
 
-        // DECLARE a Camera, call it '_camera':
+        // DECLARE an IEntity, call it '_camera':
         private Camera _camera;
         // DECLARE a TileMap, call it '_tileMapFloor':
         private TileMap _tileMapFloor;
@@ -93,21 +93,20 @@ namespace Nosocomephobia
             _collisionManager = (_engineManager.GetService<ICollisionManager>() as ICollisionManager);
             _inputManager = (_engineManager.GetService<IInputManager>() as IInputManager);
             _navigationManager = (_engineManager.GetService<INavigationManager>() as INavigationManager);
-
             // INITIALIZE the Camera:
             _camera = _entityManager.CreateEntity<Camera>() as Camera;
-            _camera.InjectViewPort(_graphics.GraphicsDevice.Viewport);
+            (_camera as Camera).InjectViewPort(_graphics.GraphicsDevice.Viewport);
             // INITIALISE _flashlight:
             _flashlight = _entityManager.CreateEntity<Flashlight>() as Flashlight;
 
             // SUBSCRIBE the camera to listen for input events:
-            _inputManager.Subscribe(_camera,
-                                    _camera.OnNewInput,
-                                    _camera.OnKeyReleased,
-                                    _camera.OnNewMouseInput);
+            _inputManager.Subscribe((_camera as Camera),
+                                    (_camera as Camera).OnNewInput,
+                                    (_camera as Camera).OnKeyReleased,
+                                    (_camera as Camera).OnNewMouseInput);
 
             // INITIALISE the flashlight:
-            _flashlight.Initialise(_camera);
+            _flashlight.Initialise((_camera as Camera));
             // INTIALISE penumbra as a PenumbraComponent:
             _penumbra = new PenumbraComponent(this);
             // ADD the flashlight to the penumbra engine:
@@ -132,6 +131,9 @@ namespace Nosocomephobia
             {
                 _graphics.PreferredBackBufferHeight = 900;
                 _graphics.PreferredBackBufferWidth = 1600;
+                //_graphics.GraphicsProfile = GraphicsProfile.HiDef;
+                //_graphics.PreferMultiSampling = true;
+                //GraphicsDevice.PresentationParameters.MultiSampleCount = 4;
                 _graphics.ApplyChanges();
             }
             else
@@ -139,8 +141,12 @@ namespace Nosocomephobia
                 _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
                 _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
                 _graphics.IsFullScreen = true;
+                //_graphics.graphicsprofile = graphicsprofile.hidef;
+                //_graphics.prefermultisampling = true;
+                //graphicsdevice.presentationparameters.multisamplecount = 4;
                 _graphics.ApplyChanges();
             }
+            
             // STORE the windows new width and height in the public static int fields for ease of access later:
             SCREEN_WIDTH = GraphicsDevice.Viewport.Width;
             SCREEN_HEIGHT = GraphicsDevice.Viewport.Height;
@@ -149,8 +155,6 @@ namespace Nosocomephobia
         /// <summary>
         /// SpawnGameEntities is used to spawn all game objects into the SceneGraph/EntityPool/CollisionMap. Called in Kernel from LoadContent().
         /// </summary>
-
-
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -186,7 +190,7 @@ namespace Nosocomephobia
             // SPAWN _player into the 'GameSceneGraph' on the 'Entities' layer:
             _sceneManager.Spawn("GameScene", "Entities", _player);
             // SET _camera focus onto Player:
-            _camera.SetFocus(_player as GameEntity);
+            (_camera as Camera).SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
             _flashlight.SetFocus(_player as GameEntity);
 
@@ -238,13 +242,15 @@ namespace Nosocomephobia
         protected override void Draw(GameTime gameTime)
         {
             // SET the transform of the Penumbra engine to the Cameras Transform:
-            _penumbra.Transform = _camera.Transform;
+            _penumbra.Transform = (_camera as Camera).Transform;
             // BEGIN penumbras drawing cycle:
             _penumbra.BeginDraw();
             // SET the window to dark gray:
             GraphicsDevice.Clear(Color.DarkGray);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp,
-                               transformMatrix: _camera.Transform);
+                               transformMatrix: (_camera as Camera).Transform);
+
+
             _sceneManager.DrawSceneGraphs(_spriteBatch);
             
     

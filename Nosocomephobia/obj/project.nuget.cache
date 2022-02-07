@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qiqHmjGq+VmSE7zzRtt6h+qI6ZBEOya85ah6QmGMLPqF4XHxu1ER0bsw5STRY3zrNJ0kAZIpLpqpO7F4eI809A==",
+  "dgSpecHash": "+8LWWNiGL3H10c9GWP0V2ObGSiRvfyGRcIZKsGMjJyMk/yWOuVnBXF0dnP54PvHJV2xsaKLDPIBeJJ5bBRkdpw==",
   "success": true,
-  "projectFilePath": "D:\\University\\Year 3\\COMP3451 - Advanced Game Design\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia.csproj",
+  "projectFilePath": "C:\\Users\\rank1_18\\Source\\Repos\\Nosocomephobia\\Nosocomephobia\\Nosocomephobia.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\krist\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\krist\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\rank1_18\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\rank1_18\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
   ],
   "logs": []
 }

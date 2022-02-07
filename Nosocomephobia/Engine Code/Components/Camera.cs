@@ -9,11 +9,11 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 07-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Components
 {
-    public class Camera : IEntity, IUpdatable, IInputListener
+    public class Camera : Entity, IInputListener
     {
         #region FIELDS
         private int _uid;
@@ -49,7 +49,7 @@ namespace Nosocomephobia.Engine_Code.Components
         /// <summary>
         /// Camera Constructor.
         /// </summary>
-        public Camera()
+        public Camera() : base()
         {
             // INITIALIZE fields:
             transform = new Matrix();

@@ -6,16 +6,17 @@ using System.Text;
 /// Author: Kristopher J Randle
 /// Version: 0.1, 06-02-2022
 /// </summary>
-namespace Nosocomephobia.Engine_Code.Interfaces.CommandScheduler
+namespace Nosocomephobia.Engine_Code.Interfaces
 {
     /// <summary>
     /// ICommandScheduler Interface.
     /// </summary>
-    public interface ICommandScheduler : IService
+    public interface ICommandScheduler : IService, IUpdatable
     {
         /// <summary>
         /// ExecuteCommand will trigger a scheduled Entity command when called.
         /// </summary>
-        void ExecuteCommand();
+        /// <param name="pCommand">The command to be executed.</param>
+        void ExecuteCommand(ICommand pCommand);
     }
 }

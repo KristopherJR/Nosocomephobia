@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Nosocomephobia.Engine_Code.Interfaces;
-using Nosocomephobia.Engine_Code.Interfaces.CommandScheduler;
 using System;
 
 /// <summary>
@@ -23,7 +22,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         // DECLARE an ICommand, call it _removeMe:
         private ICommand _removeMe;
         // DECLARE an Action<ICommand>, call it _scheduledCommand:
-        Action<ICommand> _scheduledCommand;
+        protected Action<ICommand> _scheduledCommand;
         #endregion FIELDS
 
         #region PROPERTIES
@@ -64,7 +63,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         /// </summary>
         public Action<ICommand> ScheduleCommand
         {
-            get { return _scheduledCommand; }
+            // get { return _scheduledCommand; }
             set { _scheduledCommand = value; }
         }
         #endregion PROPERTIES

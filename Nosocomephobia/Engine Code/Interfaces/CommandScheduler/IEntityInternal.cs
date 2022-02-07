@@ -6,10 +6,10 @@ using System.Text;
 /// Author: Kristopher J Randle
 /// Version: 0.1, 06-02-2022
 /// </summary>
-namespace Nosocomephobia.Engine_Code.Interfaces.CommandScheduler
+namespace Nosocomephobia.Engine_Code.Interfaces
 {
     /// <summary>
-    /// IEntityInternal Interface. Definies ICommand properties for the Command Pattern.
+    /// IEntityInternal Interface. Defines ICommand properties for the Command Pattern.
     /// </summary>
     public interface IEntityInternal
     {
