@@ -5,7 +5,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 14-02-2022
+/// Version: 0.3, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Logic
 {

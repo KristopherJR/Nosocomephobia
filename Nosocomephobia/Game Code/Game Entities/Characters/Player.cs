@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 14-02-2022
+/// Version: 1.3, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -23,8 +23,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.LeftShift };
         // DECLARE a Vector2, call it 'lastPosition'. Used to keep track of Sams position and reset him if he collides with something:
         private Vector2 lastPosition;
-        // DECLARE a bool, call it 'isSprintEnabled'. Used to toggle between Sprint mode:
-        private bool isSprintEnabled;
         // DECLARE a bool, call it 'isSprintReleased'. Used to flag when the user lets go off sprint:
         private bool isSprintReleased;
         #endregion
@@ -43,10 +41,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.moveSpeed = 1.5f;
             // SET _sprintModifier to 50% (1.5f):
             this._sprintModifier = 1.5f;
-            // SET isSprintEnabled to false as default:
-            this.isSprintEnabled = false;
-            // SET isSprintReleased to true as default:
-            this.isSprintReleased = true;
+            // SET isSprintReleased to false as default:
+            this.isSprintReleased = false;
             // SET isCharacter to true:
             this.isCharacter = true;
 
@@ -178,7 +174,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
                     this.isSprintReleased = !isSprintReleased;
-                    //this.ScheduleCommand(RemoveMe);
+                    // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
+                    this.ScheduleCommand(RemoveMe);
+                    // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
                     this.ScheduleCommand(TerminateMe);
                     break;
                 case Keys.W:

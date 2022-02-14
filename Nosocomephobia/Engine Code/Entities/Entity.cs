@@ -4,7 +4,7 @@ using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 14-02-2022
+/// Version: 1.3, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Entities
 {
@@ -47,8 +47,8 @@ namespace Nosocomephobia.Engine_Code.Entities
         /// </summary>
         public ICommand TerminateMe
         {
-            get { return _removeMe; }
-            set { _removeMe = value; }   
+            get { return _terminateMe; }
+            set { _terminateMe = value; }   
         }
         /// <summary>
         /// RemoveMe get-set property.

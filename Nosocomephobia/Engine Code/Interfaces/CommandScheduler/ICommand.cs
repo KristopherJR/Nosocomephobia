@@ -36,14 +36,14 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     }
 
     /// <summary>
-    /// Interace ICommand<T1,T2>. Used for Commands that take three parameters.
+    /// Interace ICommand<T1,T2,T3>. Used for Commands that take three parameters.
     /// </summary>
     public interface ICommand<T1,T2,T3> : ICommand
     {
     }
 
     /// <summary>
-    /// Interace ICommand<T1,T2>. Used for Commands that take four parameters.
+    /// Interace ICommand<T1,T2,T3,T4>. Used for Commands that take four parameters.
     /// </summary>
     public interface ICommand<T1,T2,T3,T4> : ICommand
     {

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.5, 14-02-2022
+/// Version: 1.6, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
