@@ -45,6 +45,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.isSprintReleased = true;
             // SET isCharacter to true:
             this.isCharacter = true;
+
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             lastPosition = EntityLocn;
             // MOVE Player by his velocity:
             this.EntityLocn += entityVelocity;
-            Debug.WriteLine(entityLocn);
+            //Debug.WriteLine(entityLocn);
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
@@ -140,27 +141,29 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkRight);
                     break;
                 case Keys.LeftShift:
-                    // IF sprint is off, the user is trying to turn it on. Only turn it off once they let go of shift:
-                    if (isSprintEnabled == false && isSprintReleased == true)
-                    {
-                        // INCREASE Sams speed by 50%:
-                        this.moveSpeed *= 1.5f;
-                        // FLAG that he is now sprinting:
-                        this.isSprintEnabled = true;
-                        // FLAG that sprint hasn't been released:
-                        this.isSprintReleased = false;
-                        break;
-                    }
-                    // IF sprint is on, the user is trying to turn it off. Only turn it off once they let go of shift:
-                    if (isSprintEnabled == true && isSprintReleased == true)
-                    {
-                        // DECREASE Sams speed by 50%:
-                        this.moveSpeed /= 1.5f;
-                        // FLAG that he is not sprinting anymore:
-                        this.isSprintEnabled = false;
-                        // FLAG that sprint hasn't been released:
-                        this.isSprintReleased = false;
-                    }
+                    Debug.WriteLine("SHIFT PRESSED!!!");
+                    TerminateMe.Execute();
+                    //// IF sprint is off, the user is trying to turn it on. Only turn it off once they let go of shift:
+                    //if (isSprintEnabled == false && isSprintReleased == true)
+                    //{
+                    //    // INCREASE Sams speed by 50%:
+                    //    this.moveSpeed *= 1.5f;
+                    //    // FLAG that he is now sprinting:
+                    //    this.isSprintEnabled = true;
+                    //    // FLAG that sprint hasn't been released:
+                    //    this.isSprintReleased = false;
+                    //    break;
+                    //}
+                    //// IF sprint is on, the user is trying to turn it off. Only turn it off once they let go of shift:
+                    //if (isSprintEnabled == true && isSprintReleased == true)
+                    //{
+                    //    // DECREASE Sams speed by 50%:
+                    //    this.moveSpeed /= 1.5f;
+                    //    // FLAG that he is not sprinting anymore:
+                    //    this.isSprintEnabled = false;
+                    //    // FLAG that sprint hasn't been released:
+                    //    this.isSprintReleased = false;
+                    //}
                     break;
             }
         }

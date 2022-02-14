@@ -61,7 +61,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         /// <summary>
         /// Constructor for objects of class GameEntity.
         /// </summary>
-        public GameEntity()
+        public GameEntity() : base()
         {
             // INITALIZE entityLocn to default 0,0:
             this.entityLocn = new Vector2(0, 0);

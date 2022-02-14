@@ -187,6 +187,8 @@ namespace Nosocomephobia
         {
             // REQUEST a new 'Player' object from the EntityManager (uses EntityFactory to create) and call it _player:
             IEntity _player = _entityManager.CreateEntity<Player>();
+
+            Debug.WriteLine("PLAYERS NAME: "+_player.UName+ " PLAYERS ID: "+ _player.UID);
             // SPAWN _player into the 'GameSceneGraph' on the 'Entities' layer:
             _sceneManager.Spawn("GameScene", "Entities", _player);
             // SET _camera focus onto Player:

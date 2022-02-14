@@ -5,6 +5,7 @@ using Nosocomephobia.Engine_Code.Logic;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -75,6 +76,8 @@ namespace Nosocomephobia.Engine_Code.Managers
             (newEntity as ICommandSender).ScheduleCommand = _commandScheduler.ExecuteCommand;
             // ADD the new Entity to the EntityPool:
             _entityPool.Add(newEntity);
+
+            Debug.WriteLine("ENTITY POOL COUNT: " + _entityPool.Count);
             // RETURN the new IEntity:
             return newEntity;
         }
@@ -128,7 +131,7 @@ namespace Nosocomephobia.Engine_Code.Managers
                     temp = i;
                 }
             }
-            // REMOVE the entity from the 'sceneGraph':
+            // REMOVE the entity from the 'entity pool':
             _entityPool.RemoveAt(temp);
         }
         #endregion
