@@ -4,7 +4,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 06-02-2022
+/// Version: 0.2, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -14,7 +14,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     public interface ICommandScheduler : IService, IUpdatable
     {
         /// <summary>
-        /// ExecuteCommand will trigger a scheduled Entity command when called.
+        /// ExecuteCommand will trigger a scheduled Entity command when called. The Command is first stored in the ScheduledCommands list to be executed in the Update loop.
         /// </summary>
         /// <param name="pCommand">The command to be executed.</param>
         void ExecuteCommand(ICommand pCommand);

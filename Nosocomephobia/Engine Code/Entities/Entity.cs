@@ -4,7 +4,7 @@ using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 06-02-2022
+/// Version: 1.2, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Entities
 {

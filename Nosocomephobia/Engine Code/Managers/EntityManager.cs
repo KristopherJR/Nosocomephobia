@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Nosocomephobia.Engine_Code.Exceptions;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Engine_Code.Logic;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.5, 07-02-2022
+/// Version: 1.6, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -65,6 +66,11 @@ namespace Nosocomephobia.Engine_Code.Managers
         {
             // USE the EntityFactory to create a new IEntity of the specified type:
             IEntity newEntity = _entityFactory.Create<T>();
+            
+            // CREATE a new ICommand, call it terminateMe. Make the Command of type <string,int>. Pass in an action that points to this.DestroyEntity and the newEntities unique name and ID:
+            ICommand terminateMe = new Command<string, int>(this.DestroyEntity, newEntity.UName, newEntity.UID);
+            // SET the ICommand TerminateMe in the newEntity to terminateMe:
+            (newEntity as IEntityInternal).TerminateMe = terminateMe;
             // MAKE the Action<ICommand> property in the Entity point to the ExecuteCommand method in EngineManagers CommandScheduler Service:
             (newEntity as ICommandSender).ScheduleCommand = _commandScheduler.ExecuteCommand;
             // ADD the new Entity to the EntityPool:
