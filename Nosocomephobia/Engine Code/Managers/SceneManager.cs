@@ -183,7 +183,7 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// Unsubscribes entities in previously 'Active' SceneGraph from Input events.
         /// This is because different Scene may has different input functionality.
         /// </summary>
-        public void UpdateInputEvents()
+        public void RefreshInputEvents()
         {
             // ITERATE through all SceneGraphs:
             foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
@@ -221,7 +221,7 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// Unsubscribes entities in previously 'Active' SceneGraph from collision events.
         /// This is because different Scene may has different collision functionality.
         /// </summary>
-        public void UpdateCollisionEvents()
+        public void RefreshCollisionEvents()
         {
             // ITERATE through all SceneGraphs:
             foreach (KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)

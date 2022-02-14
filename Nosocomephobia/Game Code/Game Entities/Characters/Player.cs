@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 12-12-2021
+/// Version: 1.2, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -17,6 +17,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         #region FIELDS
         // DECLARE a float, call it 'moveSpeed':
         private float moveSpeed;
+        // DECLARE a float, call it '_sprintModifier':
+        private float _sprintModifier;
         // DECLARE an array of Keys[] called keysOfInterest. This will contain only the keys that we need to know about being pressed:
         private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.LeftShift };
         // DECLARE a Vector2, call it 'lastPosition'. Used to keep track of Sams position and reset him if he collides with something:
@@ -39,6 +41,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.EntityLocn = new Vector2(1534, 2894);
             // INITIALIZE moveSpeed to '1.5f':
             this.moveSpeed = 1.5f;
+            // SET _sprintModifier to 50% (1.5f):
+            this._sprintModifier = 1.5f;
             // SET isSprintEnabled to false as default:
             this.isSprintEnabled = false;
             // SET isSprintReleased to true as default:
@@ -85,85 +89,78 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <param name="eventInformation">Information about the input event.</param>
         public virtual void OnNewInput(object sender, OnInputEventArgs eventInformation)
         {
+
             // RESPOND to new input, checking which key was pressed by the user:
             switch (eventInformation.KeyInput)
             {
                 case Keys.W:
-                    // MOVE player UP by movespeed:
-                    this.EntityVelocity = new Vector2(0, -moveSpeed);
-                    // IF the player is sprinting:
-                    if (isSprintEnabled)
+                    if(isSprintReleased)
                     {
+                        // MOVE player UP by movespeed:
+                        this.EntityVelocity = new Vector2(0, -moveSpeed * _sprintModifier);
                         // SET Sams animation to sprint UP:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintUp);
-                        break;
+
                     }
-                    // SET Sams entityAnimation to walking UP:
-                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkUp);
+                    else
+                    {
+                        // MOVE player UP by movespeed:
+                        this.EntityVelocity = new Vector2(0, -moveSpeed);
+                        // SET Sams entityAnimation to walking UP:
+                        this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkUp);
+                        
+                    }
                     break;
                 case Keys.A:
-                    // MOVE player LEFT by movespeed:
-                    this.EntityVelocity = new Vector2(-moveSpeed, 0);
-                    // IF the player is sprinting:
-                    if (isSprintEnabled)
+                    if (isSprintReleased)
                     {
+                        // MOVE player LEFT by movespeed:
+                        this.EntityVelocity = new Vector2(-moveSpeed * _sprintModifier, 0);
                         // SET Sams animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintLeft);
-                        break;
+
                     }
-                    // SET Sams entityAnimation to walking LEFT:
-                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkLeft);
+                    else
+                    {
+                        // MOVE player LEFT by movespeed:
+                        this.EntityVelocity = new Vector2(-moveSpeed, 0);
+                        // SET Sams entityAnimation to walking LEFT:
+                        this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkLeft);
+
+                    }
                     break;
                 case Keys.S:
-                    // MOVE player RIGHT by movespeed:
-                    this.EntityVelocity = new Vector2(0, moveSpeed);
-                    // IF the player is sprinting:
-                    if (isSprintEnabled)
+                    if (isSprintReleased)
                     {
-                        // SET Sams animation to sprint DOWN:
+                        // MOVE player DOWN by movespeed:
+                        this.EntityVelocity = new Vector2(0, moveSpeed * _sprintModifier);
+                        // SET Sams animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintDown);
-                        break;
+
                     }
-                    // SET Sams entityAnimation to walking DOWN:
-                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkDown);
+                    else
+                    {
+                        // MOVE player DOWN by movespeed:
+                        this.EntityVelocity = new Vector2(0, moveSpeed);
+                        // SET Sams entityAnimation to walking LEFT:
+                        this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkDown);
+                    }
                     break;
                 case Keys.D:
-                    // MOVE player DOWN by movespeed:
-                    this.EntityVelocity = new Vector2(moveSpeed, 0);
-                    // IF the player is sprinting:
-                    if (isSprintEnabled)
+                    if (isSprintReleased)
                     {
+                        // MOVE player RIGHT by movespeed:
+                        this.EntityVelocity = new Vector2(moveSpeed * _sprintModifier, 0);
                         // SET Sams animation to sprint RIGHT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintRight);
-                        break;
                     }
-                    // SET Sams entityAnimation to walking RIGHT:
-                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkRight);
-                    break;
-                case Keys.LeftShift:
-                    Debug.WriteLine("SHIFT PRESSED!!!");
-                    TerminateMe.Execute();
-                    //// IF sprint is off, the user is trying to turn it on. Only turn it off once they let go of shift:
-                    //if (isSprintEnabled == false && isSprintReleased == true)
-                    //{
-                    //    // INCREASE Sams speed by 50%:
-                    //    this.moveSpeed *= 1.5f;
-                    //    // FLAG that he is now sprinting:
-                    //    this.isSprintEnabled = true;
-                    //    // FLAG that sprint hasn't been released:
-                    //    this.isSprintReleased = false;
-                    //    break;
-                    //}
-                    //// IF sprint is on, the user is trying to turn it off. Only turn it off once they let go of shift:
-                    //if (isSprintEnabled == true && isSprintReleased == true)
-                    //{
-                    //    // DECREASE Sams speed by 50%:
-                    //    this.moveSpeed /= 1.5f;
-                    //    // FLAG that he is not sprinting anymore:
-                    //    this.isSprintEnabled = false;
-                    //    // FLAG that sprint hasn't been released:
-                    //    this.isSprintReleased = false;
-                    //}
+                    else
+                    {
+                        // MOVE player RIGHT by movespeed:
+                        this.EntityVelocity = new Vector2(moveSpeed, 0);
+                        // SET Sams entityAnimation to walking RIGHT:
+                        this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkRight);
+                    }
                     break;
             }
         }
@@ -178,6 +175,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // RESPOND to new input, checking which key was released by the user:
             switch (eventInformation.KeyReleased)
             {
+                case Keys.LeftShift:
+                    // FLAG the player has released sprint key:
+                    this.isSprintReleased = !isSprintReleased;
+                    this.TerminateMe.Execute();
+                    break;
                 case Keys.W:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
@@ -193,11 +195,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                 case Keys.D:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
-                    break;
-                case Keys.LeftShift:
-                    // FLAG the player has released sprint key:
-                    this.isSprintReleased = true;
-                    break;
+                    break; 
             }
         }
 

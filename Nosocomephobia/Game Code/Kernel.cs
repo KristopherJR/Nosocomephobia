@@ -217,10 +217,10 @@ namespace Nosocomephobia
                     _sceneManager.Spawn("GameScene", "TileMapWalls", t);
                 }
             }
-            // SUSCRIBE entities on the active scene graph to Input events:
-            _sceneManager.UpdateInputEvents();
+            // SUBSCRIBE entities on the active scene graph to Input events:
+            _sceneManager.RefreshInputEvents();
             // SUBSCRIBE entities on the active scene graph to Collision events:
-            _sceneManager.UpdateCollisionEvents();
+            _sceneManager.RefreshCollisionEvents();
         }
 
         protected override void Update(GameTime gameTime)

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -100,6 +100,8 @@ namespace Nosocomephobia.Engine_Code.Managers
         /// </summary>
         private void CheckNewInput()
         {
+            // SET oldKeyboardState to newKeyboardState:
+            oldKeyboardState = newKeyboardState;
             // GET the current Keyboard State:
             newKeyboardState = ((input as Input).KeyboardInput).GetCurrentState();
 
@@ -123,8 +125,6 @@ namespace Nosocomephobia.Engine_Code.Managers
                             {
                                 // FIRE the event and pass in the key that was pressed:
                                 this.OnNewInput(key);
-                                // SET oldKeyboardState to newKeyboardState:
-                                oldKeyboardState = newKeyboardState;
                             }
                         }
                     }

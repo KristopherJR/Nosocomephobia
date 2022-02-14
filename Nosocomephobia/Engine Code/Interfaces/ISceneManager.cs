@@ -79,14 +79,14 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// Unsubscribes entities in previously 'Active' SceneGraph from Input events.
         /// This is because different Scene may has different input functionality.
         /// </summary>
-        void UpdateInputEvents();
+        void RefreshInputEvents();
 
         /// <summary>
         /// Called whenever the 'Active' SceneGraph changes. Subscribes Entities in the new Active SceneGraph to the CollisionManagers events.
         /// Unsubscribes entities in previously 'Active' SceneGraph from collision events.
         /// This is because different Scene may has different collision functionality.
         /// </summary>
-        void UpdateCollisionEvents();
+        void RefreshCollisionEvents();
         #endregion
     }
 }
