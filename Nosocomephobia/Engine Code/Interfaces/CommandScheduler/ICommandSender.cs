@@ -4,7 +4,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 06-02-2022
+/// Version: 0.2, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -16,6 +16,6 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// <summary>
         /// ScheduleCommand property. Returns/Sets an Action of type ICommand. Points to the CommandSchedulers ExecuteCommand method.
         /// </summary>
-        Action<ICommand> ScheduleCommand { set; }
+        Action<ICommand> ScheduleCommand { get; set; }
     }
 }

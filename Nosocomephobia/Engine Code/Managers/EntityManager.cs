@@ -106,6 +106,12 @@ namespace Nosocomephobia.Engine_Code.Managers
             IEntity newEntity = _entityFactory.Create<T>();
             // SET the name of the newEntity to the provided name:
             newEntity.UName = pUName;
+            // CREATE a new ICommand, call it terminateMe. Make the Command of type <string,int>. Pass in an action that points to this.DestroyEntity and the newEntities unique name and ID:
+            ICommand terminateMe = new Command<string, int>(this.DestroyEntity, newEntity.UName, newEntity.UID);
+            // SET the ICommand TerminateMe in the newEntity to terminateMe:
+            (newEntity as IEntityInternal).TerminateMe = terminateMe;
+            // MAKE the Action<ICommand> property in the Entity point to the ExecuteCommand method in EngineManagers CommandScheduler Service:
+            (newEntity as ICommandSender).ScheduleCommand = _commandScheduler.ExecuteCommand;
             // ADD the new Entity to the EntityPool:
             _entityPool.Add(newEntity);
             // RETURN the new IEntity:

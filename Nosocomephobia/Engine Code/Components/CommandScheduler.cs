@@ -17,8 +17,8 @@ namespace Nosocomephobia.Engine_Code.Components
     public class CommandScheduler : ICommandScheduler, IUpdatable
     {
         #region FIELDS
-        // DECLARE an IList<ICommand>, call it _scheduledCommands:
-        private IList<ICommand> _scheduledCommands;
+        // DECLARE a Queue<ICommand>, call it _scheduledCommands:
+        private Queue<ICommand> _scheduledCommands;
         #endregion FIELDS
 
         #region PROPERTIES
@@ -31,7 +31,7 @@ namespace Nosocomephobia.Engine_Code.Components
         public CommandScheduler()
         {
             // INITIALISE fields:
-            _scheduledCommands = new List<ICommand>();
+            _scheduledCommands = new Queue<ICommand>();
         }
 
         #region IMPLEMENTATION of ICommandScheduler
@@ -42,7 +42,7 @@ namespace Nosocomephobia.Engine_Code.Components
         public void ExecuteCommand(ICommand pCommand)
         {
             // QUEUE the provided ICommand by adding it to _scheduledCommands:
-            _scheduledCommands.Add(pCommand);
+            _scheduledCommands.Enqueue(pCommand);
         }
         #endregion IMPLEMENTATION of ICommandScheduler
 
@@ -53,11 +53,11 @@ namespace Nosocomephobia.Engine_Code.Components
         /// <param name="pGameTime">A reference to the GameTime.</param>
         public void Update(GameTime pGameTime)
         {
-            // ITERATE through _scheduledCommands:
-            foreach(ICommand command in _scheduledCommands)
+            // IF there are commands in the Queue:
+            if(_scheduledCommands.Count > 0)
             {
-                // EXECUTE each command:
-                command.Execute();
+                // DEQUEUE the Command and Execute it:
+                (_scheduledCommands.Dequeue()).Execute();
             }
         }
         #endregion IMPLEMENTATION of IUpdatable

@@ -63,7 +63,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         /// </summary>
         public Action<ICommand> ScheduleCommand
         {
-            // get { return _scheduledCommand; }
+            get { return _scheduledCommand; }
             set { _scheduledCommand = value; }
         }
         #endregion PROPERTIES

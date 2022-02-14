@@ -178,7 +178,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
                     this.isSprintReleased = !isSprintReleased;
-                    this.TerminateMe.Execute();
+                    //this.ScheduleCommand(RemoveMe);
+                    this.ScheduleCommand(TerminateMe);
                     break;
                 case Keys.W:
                     // STOP the players movement:

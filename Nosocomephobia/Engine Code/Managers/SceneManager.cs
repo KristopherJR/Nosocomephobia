@@ -5,13 +5,14 @@ using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Exceptions;
 using Nosocomephobia.Engine_Code.Factories;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Engine_Code.Logic;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.4, 31-01-2022
+/// Version: 1.5, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -145,9 +146,13 @@ namespace Nosocomephobia.Engine_Code.Managers
             // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
             if (_sceneGraphs.ContainsKey(pSceneGraphName))
             {
+                // CREATE a new ICommand, call it removeMe. Make the Command of type <string,string,string,int>. Pass in an action that points to this.Despawn and the newEntities unique name and ID:
+                ICommand removeMe = new Command<string,string,string,int>(this.Despawn, pSceneGraphName, pLayerName, pEntity.UName, pEntity.UID);
+                // SET the ICommand TerminateMe in the newEntity to terminateMe:
+                (pEntity as IEntityInternal).RemoveMe = removeMe;
 
-                    // SPAWN the provided IEntity onto the specified SceneGraph:
-                    _sceneGraphs[pSceneGraphName].Spawn(pLayerName, pEntity);
+                // SPAWN the provided IEntity onto the specified SceneGraph:
+                _sceneGraphs[pSceneGraphName].Spawn(pLayerName, pEntity);
             }
             else
             {

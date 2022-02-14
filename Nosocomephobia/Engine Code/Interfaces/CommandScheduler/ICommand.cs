@@ -4,7 +4,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 14-02-2022
+/// Version: 0.3, 14-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -32,6 +32,20 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     /// Interace ICommand<T1,T2>. Used for Commands that take two parameters.
     /// </summary>
     public interface ICommand<T1,T2> : ICommand
+    {
+    }
+
+    /// <summary>
+    /// Interace ICommand<T1,T2>. Used for Commands that take three parameters.
+    /// </summary>
+    public interface ICommand<T1,T2,T3> : ICommand
+    {
+    }
+
+    /// <summary>
+    /// Interace ICommand<T1,T2>. Used for Commands that take four parameters.
+    /// </summary>
+    public interface ICommand<T1,T2,T3,T4> : ICommand
     {
     }
 }
