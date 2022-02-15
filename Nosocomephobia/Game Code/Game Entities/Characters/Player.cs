@@ -9,15 +9,18 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.4, 15-02-2022
+/// Version: 1.5, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
     public class Player : AnimatedEntity, ICollidable, ICollisionResponder, IInputListener
     {
         #region FIELDS
+        // DECLARE an EventHandler for UpdateEvents:
         private EventHandler<OnUpdateEventArgs> _updateBehaviourHandler;
+        // DECLARE an EventHandler for CollisionEvents:
         private EventHandler<OnCollisionEventArgs> _collisionBehaviourHandler;
+        // DECLARE a reference to IBehaviour, call it _playerBehaviour:
         private IBehaviour _playerBehaviour;
         // DECLARE a float, call it 'moveSpeed':
         private float moveSpeed;
@@ -25,19 +28,33 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private float _sprintModifier;
         // DECLARE an array of Keys[] called keysOfInterest. This will contain only the keys that we need to know about being pressed:
         private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.LeftShift };
-        
         // DECLARE a bool, call it 'isSprintReleased'. Used to flag when the user lets go off sprint:
         private bool isSprintReleased;
+        // DECLARE a reference to a Flashlight, call it _flashlight:
+        private Flashlight _flashlight;
         #endregion
+
+        #region PROPERTIES
+        // DECLARE a get-set property for the Players Flashlight:
+        public Flashlight Flashlight
+        {
+            get { return _flashlight; }
+            set { _flashlight = value; }
+        }
+        #endregion PROPERTIES
 
         /// <summary>
         /// Constructor for objects of class Player.
         /// </summary>
         public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
         {
+            // INITALISE _playerBehaviour:
             _playerBehaviour = new PlayerBehaviour();
+            // SET the Entity in PlayerBehaviour to point to this Player object:
             _playerBehaviour.MyEntity = this;
+            // SUBSCRIBE the PlayerBehaviour to listen for update events published by Player:
             _updateBehaviourHandler += (_playerBehaviour as IUpdateEventListener).OnUpdate;
+            // SUBSCRIBE the PlayerBehaviour to listen for collision events published by Player:
             _collisionBehaviourHandler += (_playerBehaviour as ICollisionEventListener).OnCollision;
 
             // SET PLAYER location in the world:
@@ -50,19 +67,18 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.isSprintReleased = false;
             // SET isCharacter to true:
             this.isCharacter = true;
-
         }
 
         /// <summary>
-        /// Update loop for Player, overrides the parent Update() method. Stores his lastPosition before moving him on each update loop.
+        /// Update loop for Player, overrides the parent Update() method. Delegates Update functionality to PlayerBehaviour OnUpdate() Method.
         /// </summary>
         /// <param name="gameTime">A snapshot of the GameTime.</param>
         public override void Update(GameTime gameTime)
         {
             // UPDATE the parent class:
             base.Update(gameTime);
-            // INVOKE the Update Behaviour Handler to enact player update behaviour:
-            _updateBehaviourHandler.Invoke(this, new OnUpdateEventArgs());
+            // INVOKE the Update Behaviour Handler to enact player update behaviour, pass in GameTime to the EventArgs:
+            _updateBehaviourHandler.Invoke(this, new OnUpdateEventArgs(gameTime));
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
@@ -177,6 +193,12 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
                     this.isSprintReleased = !isSprintReleased;
+
+                    // SCHEDULE the Terminate Command for the Player Flashlight:
+                    _flashlight.ScheduleCommand(_flashlight.TerminateMe);
+                    // REMOVE the _flashlight from the Penumbra Engine:
+                    Kernel.PENUMBRA.Lights.Remove(_flashlight.Light);
+
                     // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
                     this.ScheduleCommand(RemoveMe);
                     // FIRE the TerminateMe Command to remove the Entity from the EntityPool:

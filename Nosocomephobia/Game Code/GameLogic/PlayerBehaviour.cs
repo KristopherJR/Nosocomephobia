@@ -1,6 +1,7 @@
 ﻿using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
+using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,9 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 (MyEntity as GameEntity).LastPosition = (MyEntity as GameEntity).EntityLocn;
                 // MOVE Player by velocity:
                 (MyEntity as GameEntity).EntityLocn += (MyEntity as GameEntity).EntityVelocity;
-            }  
+            }
+            // UPDATE the Player's Flashlight:
+            (MyEntity as Player).Flashlight.Update(args.GameTime);
         }
         /// <summary>
         /// Called whenever a Collision Event involving the Entity occurs.
