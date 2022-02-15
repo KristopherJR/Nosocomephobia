@@ -22,6 +22,9 @@ namespace Nosocomephobia.Engine_Code.Entities
         // DECLARE a reference to a Vector2 object, call it "entityVelocity". This is used to represent entityVelocity values of PongEntities:
         protected Vector2 entityVelocity;
 
+        // DECLARE a Vector2, call it 'lastPosition'. Used to keep track of the Entity position and reset it if it collides with something:
+        private Vector2 lastPosition;
+
         // DECLARE a bool, call it isCollidable:
         protected bool isCollidable;
 
@@ -48,6 +51,12 @@ namespace Nosocomephobia.Engine_Code.Entities
         {
             get { return entityVelocity; } // get method
             set { entityVelocity = value; } // set method
+        }
+
+        public Vector2 LastPosition
+        {
+            get { return lastPosition; }
+            set { lastPosition = value; }
         }
 
         public Boolean IsCollidable

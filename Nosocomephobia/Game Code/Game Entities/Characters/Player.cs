@@ -3,31 +3,31 @@ using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
+using Nosocomephobia.Game_Code.GameLogic;
 using System;
 using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 14-02-2022
+/// Version: 1.4, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
     public class Player : AnimatedEntity, ICollidable, ICollisionResponder, IInputListener
     {
         #region FIELDS
+        private EventHandler<OnUpdateEventArgs> _updateBehaviourHandler;
+        private EventHandler<OnCollisionEventArgs> _collisionBehaviourHandler;
+        private IBehaviour _playerBehaviour;
         // DECLARE a float, call it 'moveSpeed':
         private float moveSpeed;
         // DECLARE a float, call it '_sprintModifier':
         private float _sprintModifier;
         // DECLARE an array of Keys[] called keysOfInterest. This will contain only the keys that we need to know about being pressed:
         private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.LeftShift };
-        // DECLARE a Vector2, call it 'lastPosition'. Used to keep track of Sams position and reset him if he collides with something:
-        private Vector2 lastPosition;
+        
         // DECLARE a bool, call it 'isSprintReleased'. Used to flag when the user lets go off sprint:
         private bool isSprintReleased;
-        #endregion
-
-        #region PROPERTIES
         #endregion
 
         /// <summary>
@@ -35,6 +35,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// </summary>
         public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
         {
+            _playerBehaviour = new PlayerBehaviour();
+            _playerBehaviour.MyEntity = this;
+            _updateBehaviourHandler += (_playerBehaviour as IUpdateEventListener).OnUpdate;
+            _collisionBehaviourHandler += (_playerBehaviour as ICollisionEventListener).OnCollision;
+
             // SET PLAYER location in the world:
             this.EntityLocn = new Vector2(1534, 2894);
             // INITIALIZE moveSpeed to '1.5f':
@@ -56,11 +61,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         {
             // UPDATE the parent class:
             base.Update(gameTime);
-            // STORE Sams last position as his current one before he moves:
-            lastPosition = EntityLocn;
-            // MOVE Player by his velocity:
-            this.EntityLocn += entityVelocity;
-            //Debug.WriteLine(entityLocn);
+            // INVOKE the Update Behaviour Handler to enact player update behaviour:
+            _updateBehaviourHandler.Invoke(this, new OnUpdateEventArgs());
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
@@ -72,7 +74,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         {
             if (GameEntity.hasCollided(this, collidee))
             {
-                entityLocn = lastPosition;
+                // INVOKE the PlayerBehaviour Collision Handler if the collision occured:
+                _collisionBehaviourHandler.Invoke(this, new OnCollisionEventArgs(collidee));
             }
         }
         #endregion
@@ -94,7 +97,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player UP by movespeed:
                         this.EntityVelocity = new Vector2(0, -moveSpeed * _sprintModifier);
-                        // SET Sams animation to sprint UP:
+                        // SET player animation to sprint UP:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintUp);
 
                     }
@@ -102,7 +105,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player UP by movespeed:
                         this.EntityVelocity = new Vector2(0, -moveSpeed);
-                        // SET Sams entityAnimation to walking UP:
+                        // SET player entityAnimation to walking UP:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkUp);
                         
                     }
@@ -112,7 +115,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player LEFT by movespeed:
                         this.EntityVelocity = new Vector2(-moveSpeed * _sprintModifier, 0);
-                        // SET Sams animation to sprint LEFT:
+                        // SET player animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintLeft);
 
                     }
@@ -130,7 +133,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player DOWN by movespeed:
                         this.EntityVelocity = new Vector2(0, moveSpeed * _sprintModifier);
-                        // SET Sams animation to sprint LEFT:
+                        // SET player animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintDown);
 
                     }
@@ -138,7 +141,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player DOWN by movespeed:
                         this.EntityVelocity = new Vector2(0, moveSpeed);
-                        // SET Sams entityAnimation to walking LEFT:
+                        // SET player entityAnimation to walking LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkDown);
                     }
                     break;
@@ -154,7 +157,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player RIGHT by movespeed:
                         this.EntityVelocity = new Vector2(moveSpeed, 0);
-                        // SET Sams entityAnimation to walking RIGHT:
+                        // SET player entityAnimation to walking RIGHT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkRight);
                     }
                     break;

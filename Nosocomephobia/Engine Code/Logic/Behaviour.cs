@@ -1,9 +1,10 @@
 ﻿using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Engine_Code.UserEventArgs;
 using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 30-01-2022
+/// Version: 0.3, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Logic
 {
@@ -15,24 +16,21 @@ namespace Nosocomephobia.Engine_Code.Logic
         #region FIELDS
         // DECLARE an IEntity, call it '_myEntity':
         private IEntity _myEntity;
-
         #endregion
 
+        #region IMPLEMENTATION OF IBehaviour
         #region PROPERTIES
-        // Set property for Entity:
+        // get-set property for Entity:
         public IEntity MyEntity // property
         {
             get { return _myEntity; }
             set { _myEntity = value; }
         }
         #endregion
-
-        #region IMPLEMENTATION OF IBehaviour
-
         #endregion
 
         #region IMPLEMENTATION OF IUpdateEventListener
-        public void OnUpdate()
+        public virtual void OnUpdate(object source, OnUpdateEventArgs args)
         {
          
         }
