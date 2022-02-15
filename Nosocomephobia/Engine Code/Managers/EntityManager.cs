@@ -76,8 +76,6 @@ namespace Nosocomephobia.Engine_Code.Managers
             (newEntity as ICommandSender).ScheduleCommand = _commandScheduler.ExecuteCommand;
             // ADD the new Entity to the EntityPool:
             _entityPool.Add(newEntity);
-
-            Debug.WriteLine("ENTITY POOL COUNT: " + _entityPool.Count);
             // RETURN the new IEntity:
             return newEntity;
         }
@@ -139,6 +137,7 @@ namespace Nosocomephobia.Engine_Code.Managers
             }
             // REMOVE the entity from the 'entity pool':
             _entityPool.RemoveAt(temp);
+            Debug.WriteLine("ENTITY MANAGER: Successfully Removed All References to Object: " + pUName);
         }
         #endregion
 

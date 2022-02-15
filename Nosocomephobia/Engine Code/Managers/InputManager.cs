@@ -5,10 +5,11 @@ using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 14-02-2022
+/// Version: 1.2, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -241,6 +242,8 @@ namespace Nosocomephobia.Engine_Code.Managers
             KeyReleased -= releaseHandler;
             // // UNSUBSCRIBE from the mouse input event:
             NewMouseInput -= mouseInputHandler;
+
+            Debug.WriteLine("INPUT MANAGER: Successfully Removed All References to Object: " + (subscriber as IEntity).UName + " and Unsubscribed from Input Events.");
         }
         #endregion
     }

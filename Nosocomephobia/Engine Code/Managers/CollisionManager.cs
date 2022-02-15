@@ -3,11 +3,12 @@ using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 31-01-2022
+/// Version: 1.4, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -70,12 +71,21 @@ namespace Nosocomephobia.Engine_Code.Managers
             for (int i = 0; i < collidables.Count(); i++)
             {
                 // CHECK the unique name and ID matches the provided parameters:
-                if (((collidables[i] as Entity).UName == uName) & ((collidables[i] as Entity).UID == uID))
+                if (((collidables[i] as IEntity).UName == uName) & ((collidables[i] as IEntity).UID == uID))
                 {
                     // REMOVE the object from collidables List:
                     collidables.Remove(collidables[i]);
                     // BREAK out of the loop once the object has been found and removed:
                     break;
+                }
+            }
+            for (int i = 0; i < collisionGraph.Count(); i++)
+            {
+                if((collisionGraph[i] as IEntity).UName == uName)
+                {
+
+                        collisionGraph.Remove(collisionGraph[i] as ICollisionResponder);
+                        Debug.WriteLine("COLLISION MANAGER: Successfully Removed All References to Object: " + uName);
                 }
             }
         }

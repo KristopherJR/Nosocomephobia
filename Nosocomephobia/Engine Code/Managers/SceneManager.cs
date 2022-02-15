@@ -9,10 +9,11 @@ using Nosocomephobia.Engine_Code.Logic;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.6, 14-02-2022
+/// Version: 1.7, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Managers
 {
@@ -173,8 +174,32 @@ namespace Nosocomephobia.Engine_Code.Managers
             // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
             if (_sceneGraphs.ContainsKey(pSceneGraphName))
             {
+                // ITERATE through all Entites on the specified Layer in the specified SceneGraph:
+                for (int i = 0; i < _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities.Count; i++)
+                {
+                    // IF the current entity matches the provided UID or UName:
+                    if (_sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i].UName == pUName || _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i].UID == pUID)
+                    {
+                        // STORE a reference to matching Entity, call it entityToDespawn:
+                        IEntity entityToDespawn = _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i];
+
+                        // REMOVE all references to entityToDespawn from the InputManager, by unsubscribing to its events:
+                        _inputManager.Unsubscribe((entityToDespawn as IInputListener),
+                                                  (entityToDespawn as IInputListener).OnNewInput,
+                                                  (entityToDespawn as IInputListener).OnKeyReleased,
+                                                  (entityToDespawn as IInputListener).OnNewMouseInput);
+                        
+                        // BREAK the for loop:
+                        break;
+                    }
+                }
+
+                // REMOVE all references of the entity from the Collision Manager:
+                _collisionManager.removeCollidable(pUName, pUID);
+
                 // DESPAWN the specified IEntity from the SceneGraph:
-                _sceneGraphs[pSceneGraphName].Despawn(pLayerName,pUName, pUID);
+                _sceneGraphs[pSceneGraphName].Despawn(pLayerName, pUName, pUID);
+                Debug.WriteLine("SCENE MANAGER: Successfully Removed All References to Object: " + pUName);
             }
             else
             {
