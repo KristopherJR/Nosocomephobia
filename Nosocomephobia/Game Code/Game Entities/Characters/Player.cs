@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.5, 15-02-2022
+/// Version: 1.6, 18-02-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -27,7 +27,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         // DECLARE a float, call it '_sprintModifier':
         private float _sprintModifier;
         // DECLARE an array of Keys[] called keysOfInterest. This will contain only the keys that we need to know about being pressed:
-        private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.LeftShift };
+        private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.F, Keys.LeftShift };
         // DECLARE a bool, call it 'isSprintReleased'. Used to flag when the user lets go off sprint:
         private bool isSprintReleased;
         // DECLARE a reference to a Flashlight, call it _flashlight:
@@ -46,7 +46,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <summary>
         /// Constructor for objects of class Player.
         /// </summary>
-        public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
+        public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerIdleDown))
         {
             // INITALISE _playerBehaviour:
             _playerBehaviour = new PlayerBehaviour();
@@ -104,7 +104,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <param name="eventInformation">Information about the input event.</param>
         public virtual void OnNewInput(object sender, OnInputEventArgs eventInformation)
         {
-
             // RESPOND to new input, checking which key was pressed by the user:
             switch (eventInformation.KeyInput)
             {
@@ -123,7 +122,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(0, -moveSpeed);
                         // SET player entityAnimation to walking UP:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkUp);
-                        
                     }
                     break;
                 case Keys.A:
@@ -133,7 +131,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(-moveSpeed * _sprintModifier, 0);
                         // SET player animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintLeft);
-
                     }
                     else
                     {
@@ -141,7 +138,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(-moveSpeed, 0);
                         // SET Sams entityAnimation to walking LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkLeft);
-
                     }
                     break;
                 case Keys.S:
@@ -151,7 +147,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(0, moveSpeed * _sprintModifier);
                         // SET player animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintDown);
-
                     }
                     else
                     {
@@ -190,10 +185,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // RESPOND to new input, checking which key was released by the user:
             switch (eventInformation.KeyReleased)
             {
-                case Keys.LeftShift:
-                    // FLAG the player has released sprint key:
-                    this.isSprintReleased = !isSprintReleased;
-
+                case Keys.F:
                     // SCHEDULE the Terminate Command for the Player Flashlight:
                     _flashlight.ScheduleCommand(_flashlight.TerminateMe);
                     // REMOVE the _flashlight from the Penumbra Engine:
@@ -204,21 +196,31 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
                     this.ScheduleCommand(TerminateMe);
                     break;
+                case Keys.LeftShift:
+                    // FLAG the player has released sprint key:
+                    this.isSprintReleased = !isSprintReleased;
+
+                    break;
+
                 case Keys.W:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleUp);
                     break;
                 case Keys.A:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleLeft);
                     break;
                 case Keys.S:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleDown);
                     break;
                 case Keys.D:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleRight);
                     break; 
             }
         }

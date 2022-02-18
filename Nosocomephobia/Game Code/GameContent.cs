@@ -15,8 +15,12 @@ namespace Nosocomephobia.Game_Code
     public enum AnimationGroup
     {
         // DEFINE Player's Enums for its animations:
+        PlayerIdleDown, PlayerIdleUp, PlayerIdleLeft, PlayerIdleRight,
         PlayerWalkDown, PlayerWalkUp, PlayerWalkLeft, PlayerWalkRight,
         PlayerSprintDown, PlayerSprintUp, PlayerSprintLeft, PlayerSprintRight,
+
+        // DEFINE Monster's Enums for its animations:
+        MonsterWalkDown, MonsterWalkUp, MonsterWalkLeft, MonsterWalkRight,
     }
     /// <summary>
     /// Static class GameContent. Used to store all of the games images, sounds and font in one contained place.
@@ -26,10 +30,12 @@ namespace Nosocomephobia.Game_Code
         #region FIELDS
         // DECLARE a static Texture2D, call it _playerSpriteSheet:
         public static Texture2D _playerSpriteSheet;
+        // DECLARE a static Texture2D, call it _monsterSpriteSheet:
+        public static Texture2D _monsterSpriteSheet;
         // DECLARE a static Texture2D, call it _worldTileSheet:
         public static Texture2D _worldTileSheet;
-        // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 6fps:
-        public const int DEFAULT_FRAMERATE = 6;
+        // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 4fps:
+        public const int DEFAULT_FRAMERATE = 4;
         // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 16:
         public const int DEFAULT_TILE_WIDTH = 16;
         // DECLARE a const int, call it DEFAULT_TILE_HEIGHT and set it to 16:
@@ -56,29 +62,50 @@ namespace Nosocomephobia.Game_Code
             tileSprites = new Dictionary<int, Sprite>();
 
             // LOAD Player's Spritesheet:
-            //_playerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/sprites");
-            _playerSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test01");
+            _playerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet");
+            // LOAD Monster's Spritesheet:
+            _monsterSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation");
             // LOAD the World Tile Sheet:
             _worldTileSheet = cm.Load<Texture2D>("tilesheet16");
 
             #region PLAYER ANIMATIONS
+            // LOAD Player Idle Down:
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 2, 0, 57, 128, 71, 0, AnimationGroup.PlayerIdleDown);
+            // LOAD Player Idle Up:
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 1, 405, 57, 128, 71, 0, AnimationGroup.PlayerIdleUp);
+            // LOAD Player Idle Left:
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 7, 270, 51, 128, 71, 0, AnimationGroup.PlayerIdleLeft);
+            // LOAD Player Idle Right:
+            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 3, 135, 51, 128, 71, 0, AnimationGroup.PlayerIdleRight);
+
             // LOAD Player Walking Down:
-            LoadAnimation(_playerSpriteSheet, 1, DEFAULT_FRAMERATE, 0, 0, 64, 64, 0, 0, AnimationGroup.PlayerWalkDown);
-            // LOAD Player Walking Right:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 75, 128, 64, 157, 0, AnimationGroup.PlayerWalkLeft);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 5, 540, 55, 128, 71, 0, AnimationGroup.PlayerWalkDown);
             // LOAD Player Walking Up:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 151, 128, 64, 157, 0, AnimationGroup.PlayerWalkRight);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 675, 55, 128, 71, 0, AnimationGroup.PlayerWalkUp);
             // LOAD Player Walking Left:
-            LoadAnimation(_playerSpriteSheet, 1, DEFAULT_FRAMERATE, 0, 231, 64, 128, 0, 0, AnimationGroup.PlayerWalkUp);
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 4, 945, 57, 128, 71, 0, AnimationGroup.PlayerWalkLeft);
+            // LOAD Player Walking Right:
+            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 810, 57, 128, 71, 0, AnimationGroup.PlayerWalkRight);
 
             // LOAD Player Sprinting Down:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 6, 16, 22, 16, 0, AnimationGroup.PlayerSprintDown);
-            // LOAD Player Sprinting Right:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 146, 38, 14, 22, 16, 0, AnimationGroup.PlayerSprintRight);
+            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 6, 1080, 53, 128, 71, 0, AnimationGroup.PlayerSprintDown);
             // LOAD Player Sprinting Up:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 144, 69, 16, 23, 16, 0, AnimationGroup.PlayerSprintUp);
+            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 1, 1215, 53, 128, 71, 0, AnimationGroup.PlayerSprintUp);
             // LOAD Player Sprinting Left:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 145, 102, 13, 22, 16, 0, AnimationGroup.PlayerSprintLeft);
+            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1485, 64, 128, 71, 0, AnimationGroup.PlayerSprintLeft);
+            // LOAD Player Sprinting Right:
+            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1350, 64, 128, 71, 0, AnimationGroup.PlayerSprintRight);
+            #endregion
+
+            #region MONSTER ANIMATIONS
+            // LOAD Monster Walking Down:
+            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 0, 64, 64, 74, 0, AnimationGroup.MonsterWalkDown);
+            // LOAD Monster Walking Up:
+            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 228, 64, 128, 74, 0, AnimationGroup.MonsterWalkUp);
+            // LOAD Monster Walking Left:
+            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 76, 128, 64, 131, 0, AnimationGroup.MonsterWalkLeft);
+            // LOAD Monster Walking Right:
+            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 152, 128, 64, 131, 0, AnimationGroup.MonsterWalkRight);
             #endregion
 
             #region LOADING TILESPRITES

@@ -85,7 +85,6 @@ namespace Nosocomephobia.Engine_Code.Components
         {
             // SET zoomAspect to the scollValue in the eventInformation, * scrollSpeed:
             zoomAspect += eventInformation.ScrollValue * scrollSpeed;
-            Debug.WriteLine("Zoom Aspect: " + zoomAspect);
         }
         #region _
         public void OnNewInput(object sender, OnInputEventArgs eventInformation)

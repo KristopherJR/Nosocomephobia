@@ -1,4 +1,5 @@
-﻿using Nosocomephobia.Engine_Code.Entities;
+﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
@@ -44,6 +45,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
             {
                 // RESET MyEntities location to its last position:
                 (MyEntity as GameEntity).EntityLocn = (MyEntity as GameEntity).LastPosition;
+                                                                 
             }
         }
     }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
-using Nosocomephobia.Engine_Code.Managers;
+using Nosocomephobia.Engine_Code.Services;
 using Nosocomephobia.Game_Code;
 using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
