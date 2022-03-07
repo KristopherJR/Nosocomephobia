@@ -58,7 +58,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             _collisionBehaviourHandler += (_playerBehaviour as ICollisionEventListener).OnCollision;
 
             // SET PLAYER location in the world:
-            this.EntityLocn = new Vector2(1534, 2894);
+            this.EntityLocn = new Vector2(3000, 5500);
             // INITIALIZE moveSpeed to '1.5f':
             this.moveSpeed = 1.5f;
             // SET _sprintModifier to 50% (1.5f):

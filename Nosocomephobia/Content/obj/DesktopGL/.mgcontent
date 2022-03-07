@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Profile>Reach</Profile>
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/Concepts&amp;MB.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/EnemyConceptDesign_PNG.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/EnemyConceptDesigns.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/FinalEnemyConceptArThree.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/FinalEnemyConceptOne.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/FinalEnemyConceptTwo.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test_02.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test01.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/PixelArtMonster_Test.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/hand.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/journal.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/skeleton_key.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/skull_key.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/wings_key.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/furniture_tileset.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/planks_tileset.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/tiles_tileset.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/walls_tileset.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy spite sheets.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_001.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_002.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_003.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_001.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_002.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_003.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_001.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_002.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_003.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_001.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_002.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprite test in engine.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprites.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Font_&amp;_Buttons.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Moodboard.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/UI_Concepts.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Paused_Text.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_button.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_Button_Selected.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Selected_Botton.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_01.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_02.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/UI_Item_Bar_Test.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background011.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background01.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background02.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background03.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/Concepts&amp;MB.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/EnemyConceptDesign_PNG.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/EnemyConceptDesigns.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/FinalEnemyConceptArThree.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/FinalEnemyConceptOne.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Concept_Designs/FinalEnemyConceptTwo.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test_02.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/Asset_Pack_Monster_Test01.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Enemy_Character/Test_Sprites/PixelArtMonster_Test.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/hand.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/journal.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/skeleton_key.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/skull_key.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/wings_key.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/furniture_tileset.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/planks_tileset.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/tiles_tileset.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/walls_tileset.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy spite sheets.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_001.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_002.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_003.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_001.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_002.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_front_003.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_001.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_002.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_left_003.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_001.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_002.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_right_003.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprite test in engine.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprites.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Font_&amp;_Buttons.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Moodboard.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/UI_Concepts.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Paused_Text.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_button.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_Button_Selected.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Selected_Botton.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_01.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_02.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/UI_Item_Bar_Test.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background011.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background01.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background02.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background03.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/worldTilesheet16.png</File>
+    <File>C:/Users/rank1_18/source/repos/Nosocomephobia/Nosocomephobia/Content/worldTilesheet32.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

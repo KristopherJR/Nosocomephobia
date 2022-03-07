@@ -36,14 +36,14 @@ namespace Nosocomephobia.Game_Code
         public static Texture2D _worldTileSheet;
         // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 4fps:
         public const int DEFAULT_FRAMERATE = 4;
-        // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 16:
-        public const int DEFAULT_TILE_WIDTH = 16;
-        // DECLARE a const int, call it DEFAULT_TILE_HEIGHT and set it to 16:
-        public const int DEFAULT_TILE_HEIGHT = 16;
+        // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 32:
+        public const int DEFAULT_TILE_WIDTH = 32;
+        // DECLARE a const int, call it DEFAULT_TILE_HEIGHT and set it to 32:
+        public const int DEFAULT_TILE_HEIGHT = 32;
         // DECLARE a const int, call it TILE_SHEET_WIDTH:
-        public const int TILE_SHEET_WIDTH = 160 / DEFAULT_TILE_WIDTH;
+        public const int TILE_SHEET_WIDTH = 800 / DEFAULT_TILE_WIDTH;
         // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
-        public const int NUMBER_OF_TILES = 40;
+        public const int NUMBER_OF_TILES = 250;
 
         // DECLARE a static Dictionary to store all of the games animations. Reference each element via the AnimationGroup enum:
         private static Dictionary<AnimationGroup, Animation> animations;
@@ -66,7 +66,7 @@ namespace Nosocomephobia.Game_Code
             // LOAD Monster's Spritesheet:
             _monsterSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation");
             // LOAD the World Tile Sheet:
-            _worldTileSheet = cm.Load<Texture2D>("tilesheet16");
+            _worldTileSheet = cm.Load<Texture2D>("worldTilesheet32");
 
             #region PLAYER ANIMATIONS
             // LOAD Player Idle Down:

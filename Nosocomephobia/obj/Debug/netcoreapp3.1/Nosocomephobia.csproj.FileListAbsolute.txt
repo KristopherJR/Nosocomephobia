@@ -413,3 +413,44 @@ D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephob
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Pause_Menu_Backgrounds\Pause_Menu_Background02.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Pause_Menu_Backgrounds\Pause_Menu_Background03.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player_Character_Assets\Nosocomephobia_Player_Character_Sprite_Sheet.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player Character Assets\Nosocomephobia Player Character Sprite Sheet.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Concept_Designs\Concepts&MB.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Concept_Designs\EnemyConceptDesigns.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Concept_Designs\EnemyConceptDesign_PNG.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Concept_Designs\FinalEnemyConceptArThree.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Concept_Designs\FinalEnemyConceptOne.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Concept_Designs\FinalEnemyConceptTwo.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Final_Assets\Asset_Pack_Monster_Animation.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Enemy_Character\Test_Sprites\Asset_Pack_Monster_Test_02.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\artefact_pngs\hand.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\artefact_pngs\journal.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\artefact_pngs\skeleton_key.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\artefact_pngs\skull_key.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\artefact_pngs\wings_key.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\furniture_tileset.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\planks_tileset.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\tiles_tileset.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\walls_tileset.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Player_Character\Player_Character_Assets\Nosocomephobia_Player_Character_Sprite_Sheet.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Concept_Art\Font_&_Buttons.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Concept_Art\Moodboard.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Concept_Art\UI_Concepts.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Paused_Text.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Quit_Button.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Quit_Button_Selected.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Resume_button.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Resume_Button_Selected.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Selected_Botton.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Start_Button.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Start_Button_Selected.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Buttons_Text_Assets\Title_Text.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\HUD\HUD_01.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\HUD\HUD_02.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\HUD\UI_Item_Bar_Test.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Main_Menu_Backgrounds\Main_Menu_Background011.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Main_Menu_Backgrounds\Main_Menu_Background022.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Pause_Menu_Backgrounds\Pause_Menu_Background01.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Pause_Menu_Backgrounds\Pause_Menu_Background02.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Testing\Pause_Menu_Backgrounds\Pause_Menu_Background03.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\worldTilesheet16.xnb
+C:\Users\rank1_18\Source\Repos\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\worldTilesheet32.xnb
