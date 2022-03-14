@@ -97,7 +97,7 @@ namespace Nosocomephobia.Engine_Code.Services
                 {
                     // SET tileFound to true:
                     tileFound = true;
-                    Debug.WriteLine("PathFinder Target Tile = X: " + destinationX + " Y: " + destinationY);
+                    //Debug.WriteLine("PathFinder Target Tile = X: " + destinationX + " Y: " + destinationY);
                     // STORE the newly selected tile as destinationTile. Save it in the navGrid at destinationX/Ys Location:
                     return destinationTile = navGrid[destinationX, destinationY];
                 }

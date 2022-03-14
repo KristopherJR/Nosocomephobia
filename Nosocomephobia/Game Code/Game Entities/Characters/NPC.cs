@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 14-03-2022
+/// Version: 1.4, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -73,8 +73,31 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     // NORMALIZE the Vector or else it will be set to infinity!!!:
                     direction.Normalize();
                 }
+                if (direction.Y == 1)
+                {
+                    // moving down
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.MonsterWalkDown);
+
+                }
+                if (direction.Y == -1)
+                {
+                    // moving up
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.MonsterWalkUp);
+                }
+                if (direction.X == 1)
+                {
+                    // moving right
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.MonsterWalkRight);
+                }
+                if (direction.X == -1)
+                {
+                    // moving left
+                    this.entityAnimation = GameContent.GetAnimation(AnimationGroup.MonsterWalkLeft);
+                }
+                
                 // DECLARE a Vector2, call it newVelocity and set it to speed * direction:
                 Vector2 newVelocity = direction * speed;
+                
                 // ADD the velocity to the entity location:
                 this.EntityLocn += newVelocity;
                 // IF the Distance between the entity location and the current tile in the path is less than 0.5 (I.E the entity is close enough to its goal tile):
