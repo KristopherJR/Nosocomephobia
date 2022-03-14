@@ -5,7 +5,7 @@ using Nosocomephobia.Game_Code;
 using Nosocomephobia.Game_Code.World;
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -20,6 +20,8 @@ namespace Nosocomephobia.Engine_Code.Services
         private TileMap navigationGrid;
         // DECLARE a List<IPathFinder>, call it pathFinders. This will hold all A.I entities that navigate the world by themselves:
         private List<IPathFinder> pathFinders;
+        // DECLARE a GameEntity, call it _target:
+        private GameEntity _target;
         #endregion
 
         #region PROPERTIES
@@ -32,6 +34,12 @@ namespace Nosocomephobia.Engine_Code.Services
         public List<IPathFinder> PathFinders // read-only property
         {
             get { return pathFinders; }
+        }
+
+        public GameEntity Target
+        {
+            get { return _target; }
+            set { _target = value; }
         }
         #endregion
 
@@ -75,25 +83,21 @@ namespace Nosocomephobia.Engine_Code.Services
             bool tileFound = false;
             // DECLARE a 2D array, call it navGrid. Set it to the TileMap in the navgiationGrid:
             Tile[,] navGrid = navigationGrid.GetTileMap();
-            // DECLARE an int, call it rows. Set it to the length of the navGrids rows:
-            int rows = navGrid.GetLength(0);
-            // DECLARE an int, call it columns. Set it to the length of the navGrids columns:
-            int columns = navGrid.GetLength(1);
+
             // WHILE the pathfinder does not have a destination tile:
             while (!tileFound)
             {
-                // DECLARE a new instance of Random, call it random:
-                Random random = new Random();
 
                 // DECLARE an int, call it destinationX. Set it to a random number between 0 - rows:
-                int destinationX = random.Next(0, rows);
+                int destinationX = (int)(_target.EntityLocn.X / GameContent.DEFAULT_TILE_WIDTH) + 1;
                 // DECLARE an int, call it destinationY. Set it to a random number between 0 - columns:
-                int destinationY = random.Next(0, columns);
+                int destinationY = (int)(_target.EntityLocn.Y / GameContent.DEFAULT_TILE_HEIGHT);
                 // IF the randomly selected tile is NOT collidable:
                 if (navGrid[destinationX, destinationY].IsCollidable == false) // Walkable tile
                 {
                     // SET tileFound to true:
                     tileFound = true;
+                    Debug.WriteLine("PathFinder Target Tile = X: " + destinationX + " Y: " + destinationY);
                     // STORE the newly selected tile as destinationTile. Save it in the navGrid at destinationX/Ys Location:
                     return destinationTile = navGrid[destinationX, destinationY];
                 }

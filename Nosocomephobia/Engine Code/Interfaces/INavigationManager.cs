@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Game_Code.World;
 using System;
 using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 05-02-2022
+/// Version: 1.4, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
@@ -13,6 +14,7 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     {
         TileMap NavigationGrid { get; set; } // property
         List<IPathFinder> PathFinders { get; } // read-only property
+        GameEntity Target { get; set; }
         /// <summary>
         /// Adds a new IPathFinder to the NavigationManager.
         /// </summary>

@@ -2,10 +2,11 @@
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 31-01-2022
+/// Version: 1.2, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -39,18 +40,18 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <summary>
         /// Constructor for objects of class NPC.
         /// </summary>
-        public NPC() : base(GameContent.GetAnimation(AnimationGroup.PlayerWalkDown))
+        public NPC() : base(GameContent.GetAnimation(AnimationGroup.MonsterWalkDown))
         {
             // INITIALIZE fields:
             this.path = new List<Vector2>();
-            this.speed = 1;
+            this.speed = 1.0f;
             this.i = 0;
             this.idleTimer = 0.0f;
-            this.waitDuration = 5.0f;
+            this.waitDuration = 0.0f;
             this.isWaiting = false;
 
             // SET NPC's location in the world:
-            this.EntityLocn = new Vector2(150, 150);
+            this.EntityLocn = new Vector2(3000, 5000);
         }
 
         /// <summary>
@@ -103,10 +104,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <param name="gameTime">A snapshot of the GameTime.</param>
         public override void Update(GameTime gameTime)
         {
+
             // UPDATE the parent class:
             base.Update(gameTime);
             // IF the Entity IS NOT waiting:
-            if (isWaiting == false)
+            if (!isWaiting)
             {
                 // FOLLOW its path:
                 this.FollowPath(gameTime);
@@ -136,11 +138,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         public void CheckAndRespond(ICollidable collidee)
         {
             // IF the GameEntitys have collided:
-            if (GameEntity.hasCollided(this, collidee))
-            {
-                // SET this location to its last position:
-                this.entityLocn = lastPosition;
-            }
+            //if (GameEntity.hasCollided(this, collidee))
+            //{
+            //    // SET this location to its last position:
+            //    this.entityLocn = lastPosition;
+            //}
         }
         #endregion
     }

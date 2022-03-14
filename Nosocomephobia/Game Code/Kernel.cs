@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.74, 18-02-2022
+/// Version: 2.1, 14-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -105,6 +105,9 @@ namespace Nosocomephobia
                                     (_camera as Camera).OnNewMouseInput);
 
             
+            
+
+            
             // INTIALISE penumbra as a PenumbraComponent:
             PENUMBRA = new PenumbraComponent(this);
             
@@ -176,6 +179,7 @@ namespace Nosocomephobia
 
         private void SpawnGameEntities()
         {
+            #region PLAYER
             // REQUEST a new 'Player' object from the EntityManager (uses EntityFactory to create) and call it _player:
             IEntity _player = _entityManager.CreateEntity<Player>();
             // CREATE the Players Flashlight using the EntityManager Factory:
@@ -192,7 +196,19 @@ namespace Nosocomephobia
             (_camera as Camera).SetFocus(_player as GameEntity);
             // SET _flashlight focus onto Player:
             (_player as Player).Flashlight.SetFocus(_player as GameEntity);
+            #endregion PLAYER
 
+            #region MONSTER
+            // REQUEST a new 'NPC' object from the EntityManager (uses EntityFactory to create) and call it _monster:
+            IEntity _monster = _entityManager.CreateEntity<NPC>();
+            // SPAWN _monster into the 'GameSceneGraph' on the 'Entities' layer:
+            _sceneManager.Spawn("GameScene", "Entities", _monster);
+            _navigationManager.NavigationGrid = _tileMapCollisions;
+            _navigationManager.Target = _player as GameEntity;
+            _navigationManager.AddPathFinder(_monster as IPathFinder);
+            #endregion MONSTER
+
+            #region TILES
             // FOREACH Tile in TileMap floor Layer:
             foreach (Tile t in _tileMapFloor.GetTileMap())
             {
@@ -214,6 +230,8 @@ namespace Nosocomephobia
                     _sceneManager.Spawn("GameScene", "TileMapWalls", t);
                 }
             }
+            #endregion TILES
+
             // SUBSCRIBE entities on the active scene graph to Input events:
             _sceneManager.RefreshInputEvents();
             // SUBSCRIBE entities on the active scene graph to Collision events:
