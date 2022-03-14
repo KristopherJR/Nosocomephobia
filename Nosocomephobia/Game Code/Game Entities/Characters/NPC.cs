@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 14-03-2022
+/// Version: 1.3, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -84,7 +84,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     i++;
                 }
                 // IF the player has moved through the entire path:
-                if (i == path.Count)
+                if (i == path.Count - (path.Count -2))
                 {
                     // SET the entity velocity to 0:
                     entityVelocity = Vector2.Zero;
