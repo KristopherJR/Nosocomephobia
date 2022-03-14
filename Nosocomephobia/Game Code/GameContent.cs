@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 11-12-2021
+/// Version: 1.3, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code
 {
@@ -49,6 +49,8 @@ namespace Nosocomephobia.Game_Code
         private static Dictionary<AnimationGroup, Animation> animations;
         // DECLARE a stiatc Dictionary to store all Tile Sprites. Reference each one by an int id:
         private static Dictionary<int, Sprite> tileSprites;
+        // DECLARE a stiatc Dictionary to store all Artefact Sprites. Reference each one by a string id:
+        private static Dictionary<string, Sprite> artefactSprites;
         #endregion
 
         /// <summary>
@@ -60,6 +62,7 @@ namespace Nosocomephobia.Game_Code
             // INITALIZE Fields:
             animations = new Dictionary<AnimationGroup, Animation>();
             tileSprites = new Dictionary<int, Sprite>();
+            artefactSprites = new Dictionary<string, Sprite>();
 
             // LOAD Player's Spritesheet:
             _playerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet");
@@ -114,6 +117,20 @@ namespace Nosocomephobia.Game_Code
             {
                 ExtractTile(i);
             }
+            #endregion
+
+            #region LOADING ARTEFACT SPRITES
+            Texture2D journalTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/journal");
+            Texture2D handTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/hand");
+            Texture2D skeletonKeyTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/skeleton_key");
+
+            Sprite journalSprite = new Sprite(journalTexture, 0, 0, journalTexture.Width, journalTexture.Height);
+            Sprite handSprite = new Sprite(handTexture, 0, 0, handTexture.Width, handTexture.Height);
+            Sprite skeletonKeySprite = new Sprite(skeletonKeyTexture, 0, 0, skeletonKeyTexture.Width, skeletonKeyTexture.Height);
+
+            artefactSprites.Add("Journal", journalSprite);
+            artefactSprites.Add("Hand", handSprite);
+            artefactSprites.Add("SkeletonKey", skeletonKeySprite);
             #endregion
 
         }
@@ -196,6 +213,16 @@ namespace Nosocomephobia.Game_Code
         {
             // RETURN tileSprites[tileID]:
             return tileSprites[tileID];
+        }
+        /// <summary>
+        /// Returns the image Sprite for an Artefact based on the string number.
+        /// </summary>
+        /// <param name="tileID">The ID Number linked to the Tile image.</param>
+        /// <returns>The TileSprite for the Tile matching the ID number.</returns>
+        public static Sprite GetArtefactSprite(string artefactID)
+        {
+            // RETURN artefactSprites[artefactID]:
+            return artefactSprites[artefactID];
         }
     }
 }

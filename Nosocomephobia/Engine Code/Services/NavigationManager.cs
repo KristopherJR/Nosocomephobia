@@ -91,7 +91,7 @@ namespace Nosocomephobia.Engine_Code.Services
                 // DECLARE an int, call it destinationX. Set it to a random number between 0 - rows:
                 int destinationX = (int)(_target.EntityLocn.X / GameContent.DEFAULT_TILE_WIDTH) + 1;
                 // DECLARE an int, call it destinationY. Set it to a random number between 0 - columns:
-                int destinationY = (int)(_target.EntityLocn.Y / GameContent.DEFAULT_TILE_HEIGHT);
+                int destinationY = (int)(_target.EntityLocn.Y / GameContent.DEFAULT_TILE_HEIGHT) + 2;
                 // IF the randomly selected tile is NOT collidable:
                 if (navGrid[destinationX, destinationY].IsCollidable == false) // Walkable tile
                 {

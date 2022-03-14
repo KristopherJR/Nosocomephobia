@@ -180,32 +180,32 @@ namespace Nosocomephobia
         private void SpawnGameEntities()
         {
             #region PLAYER
-            // REQUEST a new 'Player' object from the EntityManager (uses EntityFactory to create) and call it _player:
-            IEntity _player = _entityManager.CreateEntity<Player>();
+            // REQUEST a new 'Player' object from the EntityManager (uses EntityFactory to create) and call it player:
+            IEntity player = _entityManager.CreateEntity<Player>();
             // CREATE the Players Flashlight using the EntityManager Factory:
-            (_player as Player).Flashlight = _entityManager.CreateEntity<Flashlight>() as Flashlight;
+            (player as Player).Flashlight = _entityManager.CreateEntity<Flashlight>() as Flashlight;
             // INITIALISE the flashlight:
-            (_player as Player).Flashlight.Initialise((_camera as Camera));
+            (player as Player).Flashlight.Initialise((_camera as Camera));
             // ADD the flashlight to the penumbra engine:
-            PENUMBRA.Lights.Add((_player as Player).Flashlight.Light);
+            PENUMBRA.Lights.Add((player as Player).Flashlight.Light);
 
             // SPAWN _player into the 'GameSceneGraph' on the 'Entities' layer:
-            _sceneManager.Spawn("GameScene", "Entities", _player);
+            _sceneManager.Spawn("GameScene", "Entities",player);
 
             // SET _camera focus onto Player:
-            (_camera as Camera).SetFocus(_player as GameEntity);
+            (_camera as Camera).SetFocus(player as GameEntity);
             // SET _flashlight focus onto Player:
-            (_player as Player).Flashlight.SetFocus(_player as GameEntity);
+            (player as Player).Flashlight.SetFocus(player as GameEntity);
             #endregion PLAYER
 
             #region MONSTER
-            // REQUEST a new 'NPC' object from the EntityManager (uses EntityFactory to create) and call it _monster:
-            IEntity _monster = _entityManager.CreateEntity<NPC>();
+            // REQUEST a new 'NPC' object from the EntityManager (uses EntityFactory to create) and call it monster:
+            IEntity monster = _entityManager.CreateEntity<NPC>();
             // SPAWN _monster into the 'GameSceneGraph' on the 'Entities' layer:
-            _sceneManager.Spawn("GameScene", "Entities", _monster);
+            _sceneManager.Spawn("GameScene", "Entities", monster);
             _navigationManager.NavigationGrid = _tileMapCollisions;
-            _navigationManager.Target = _player as GameEntity;
-            _navigationManager.AddPathFinder(_monster as IPathFinder);
+            _navigationManager.Target = player as GameEntity;
+            _navigationManager.AddPathFinder(monster as IPathFinder);
             #endregion MONSTER
 
             #region TILES
@@ -231,6 +231,24 @@ namespace Nosocomephobia
                 }
             }
             #endregion TILES
+
+            #region ARTEFACTS
+            IEntity journalArtefact = _entityManager.CreateEntity<Artefact>();
+            IEntity handArtefact = _entityManager.CreateEntity<Artefact>();
+            IEntity skeletonKeyArtefact = _entityManager.CreateEntity<Artefact>();
+  
+            (journalArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Journal");
+            (handArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Hand");
+            (skeletonKeyArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("SkeletonKey");
+
+            (journalArtefact as GameEntity).EntityLocn = new Vector2(200, 7175);
+            (handArtefact as GameEntity).EntityLocn = new Vector2(1780, 4275);
+            (skeletonKeyArtefact as GameEntity).EntityLocn = new Vector2(5710, 3485);
+
+            _sceneManager.Spawn("GameScene", "Entities", journalArtefact);
+            _sceneManager.Spawn("GameScene", "Entities", handArtefact);
+            _sceneManager.Spawn("GameScene", "Entities", skeletonKeyArtefact);
+            #endregion ARTEFACTS
 
             // SUBSCRIBE entities on the active scene graph to Input events:
             _sceneManager.RefreshInputEvents();

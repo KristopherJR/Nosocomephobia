@@ -60,7 +60,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // SET PLAYER location in the world:
             this.EntityLocn = new Vector2(3000, 5500);
             // INITIALIZE moveSpeed to '1.5f':
-            this.moveSpeed = 1.5f;
+            this.moveSpeed = 10f;
             // SET _sprintModifier to 50% (1.5f):
             this._sprintModifier = 1.5f;
             // SET isSprintReleased to false as default:
@@ -75,6 +75,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <param name="gameTime">A snapshot of the GameTime.</param>
         public override void Update(GameTime gameTime)
         {
+            Debug.WriteLine(EntityLocn);
             // UPDATE the parent class:
             base.Update(gameTime);
             // INVOKE the Update Behaviour Handler to enact player update behaviour, pass in GameTime to the EventArgs:
