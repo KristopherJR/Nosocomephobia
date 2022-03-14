@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 2.1, 14-03-2022
+/// Version: 2.2, 14-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -174,7 +174,8 @@ namespace Nosocomephobia
             // CREATE Layers for GameScene:
             _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapFloor", 1);
             _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapWalls", 2);
-            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Entities", 3);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Artefacts", 3);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Entities", 4);
         }
 
         private void SpawnGameEntities()
@@ -190,7 +191,7 @@ namespace Nosocomephobia
             PENUMBRA.Lights.Add((player as Player).Flashlight.Light);
 
             // SPAWN _player into the 'GameSceneGraph' on the 'Entities' layer:
-            _sceneManager.Spawn("GameScene", "Entities",player);
+            _sceneManager.Spawn("GameScene", "Entities", player);
 
             // SET _camera focus onto Player:
             (_camera as Camera).SetFocus(player as GameEntity);
@@ -236,18 +237,22 @@ namespace Nosocomephobia
             IEntity journalArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity handArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity skeletonKeyArtefact = _entityManager.CreateEntity<Artefact>();
-  
+            IEntity bonesawArtefact = _entityManager.CreateEntity<Artefact>();
+
             (journalArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Journal");
             (handArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Hand");
             (skeletonKeyArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("SkeletonKey");
+            (bonesawArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Bonesaw");
 
             (journalArtefact as GameEntity).EntityLocn = new Vector2(200, 7175);
             (handArtefact as GameEntity).EntityLocn = new Vector2(1780, 4275);
             (skeletonKeyArtefact as GameEntity).EntityLocn = new Vector2(5710, 3485);
+            (bonesawArtefact as GameEntity).EntityLocn = new Vector2(4770, 6905);
 
-            _sceneManager.Spawn("GameScene", "Entities", journalArtefact);
-            _sceneManager.Spawn("GameScene", "Entities", handArtefact);
-            _sceneManager.Spawn("GameScene", "Entities", skeletonKeyArtefact);
+            _sceneManager.Spawn("GameScene", "Artefacts", journalArtefact);
+            _sceneManager.Spawn("GameScene", "Artefacts", handArtefact);
+            _sceneManager.Spawn("GameScene", "Artefacts", skeletonKeyArtefact);
+            _sceneManager.Spawn("GameScene", "Artefacts", bonesawArtefact);
             #endregion ARTEFACTS
 
             // SUBSCRIBE entities on the active scene graph to Input events:

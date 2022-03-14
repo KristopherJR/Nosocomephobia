@@ -123,14 +123,17 @@ namespace Nosocomephobia.Game_Code
             Texture2D journalTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/journal");
             Texture2D handTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/hand");
             Texture2D skeletonKeyTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/skeleton_key");
+            Texture2D bonesawTexture = cm.Load<Texture2D>("assets/Environmental_Assets/artefact_pngs/bonesaw");
 
             Sprite journalSprite = new Sprite(journalTexture, 0, 0, journalTexture.Width, journalTexture.Height);
             Sprite handSprite = new Sprite(handTexture, 0, 0, handTexture.Width, handTexture.Height);
             Sprite skeletonKeySprite = new Sprite(skeletonKeyTexture, 0, 0, skeletonKeyTexture.Width, skeletonKeyTexture.Height);
+            Sprite bonesaw = new Sprite(bonesawTexture, 0, 0, bonesawTexture.Width, bonesawTexture.Height);
 
             artefactSprites.Add("Journal", journalSprite);
             artefactSprites.Add("Hand", handSprite);
             artefactSprites.Add("SkeletonKey", skeletonKeySprite);
+            artefactSprites.Add("Bonesaw", bonesaw);
             #endregion
 
         }

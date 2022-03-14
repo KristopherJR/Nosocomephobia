@@ -139,6 +139,18 @@
 /processorParam:TextureFormat=Color
 /build:assets/Enemy_Character/Test_Sprites/PixelArtMonster_Test.png
 
+#begin assets/Environmental_Assets/artefact_pngs/bonesaw.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/Environmental_Assets/artefact_pngs/bonesaw.png
+
 #begin assets/Environmental_Assets/artefact_pngs/hand.png
 /importer:TextureImporter
 /processor:TextureProcessor

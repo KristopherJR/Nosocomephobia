@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
@@ -32,6 +33,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private bool isSprintReleased;
         // DECLARE a reference to a Flashlight, call it _flashlight:
         private Flashlight _flashlight;
+        // DECLARE a reference to an IInventory, call it _inventory:
+        private IInventory _inventory;
         #endregion
 
         #region PROPERTIES
@@ -40,6 +43,12 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         {
             get { return _flashlight; }
             set { _flashlight = value; }
+        }
+
+        // DECLARE a get property for the Players Inventory:
+        public IInventory Inventory
+        {
+            get { return _inventory; }
         }
         #endregion PROPERTIES
 
@@ -67,6 +76,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.isSprintReleased = false;
             // SET isCharacter to true:
             this.isCharacter = true;
+            // INITALISE _inventory:
+            _inventory = new Inventory();
+            this.UName = "Player1";
+            Debug.WriteLine("Player Unique Name is: " + UName);
         }
 
         /// <summary>
@@ -75,7 +88,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <param name="gameTime">A snapshot of the GameTime.</param>
         public override void Update(GameTime gameTime)
         {
-            Debug.WriteLine(EntityLocn);
             // UPDATE the parent class:
             base.Update(gameTime);
             // INVOKE the Update Behaviour Handler to enact player update behaviour, pass in GameTime to the EventArgs:
