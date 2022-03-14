@@ -30,7 +30,7 @@ namespace Nosocomephobia.Engine_Code.Factories
             // SET a unique id:
             newEntity.UID = _idCounter;
             // SET a unique name:
-            newEntity.UName = (newEntity.ToString() + _idCounter);
+            newEntity.UName = (newEntity.GetType().ToString() + _idCounter);
             // INCREMENT the idCounter:
             _idCounter++;
             // RETURN newEntity:

@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 15-02-2022
+/// Version: 1.3, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Services
 {
@@ -39,6 +39,11 @@ namespace Nosocomephobia.Engine_Code.Services
         #endregion
 
         #region PROPERTIES
+        // get property for subscribers
+        public List<IInputListener> Subscribers
+        {
+            get { return subscribers; }
+        }
         #endregion
 
         /// <summary>

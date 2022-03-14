@@ -180,17 +180,20 @@ namespace Nosocomephobia.Engine_Code.Services
                     // IF the current entity matches the provided UID or UName:
                     if (_sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i].UName == pUName || _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i].UID == pUID)
                     {
+                        
                         // STORE a reference to matching Entity, call it entityToDespawn:
                         IEntity entityToDespawn = _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i];
-
-                        // REMOVE all references to entityToDespawn from the InputManager, by unsubscribing to its events:
-                        _inputManager.Unsubscribe((entityToDespawn as IInputListener),
-                                                  (entityToDespawn as IInputListener).OnNewInput,
-                                                  (entityToDespawn as IInputListener).OnKeyReleased,
-                                                  (entityToDespawn as IInputListener).OnNewMouseInput);
+                        if (_inputManager.Subscribers.Contains((entityToDespawn as IInputListener)))
+                        {
+                            // REMOVE all references to entityToDespawn from the InputManager, by unsubscribing to its events:
+                            _inputManager.Unsubscribe((entityToDespawn as IInputListener),
+                                                (entityToDespawn as IInputListener).OnNewInput,
+                                                (entityToDespawn as IInputListener).OnKeyReleased,
+                                                (entityToDespawn as IInputListener).OnNewMouseInput);
                         
-                        // BREAK the for loop:
-                        break;
+                            // BREAK the for loop:
+                            break;
+                        }
                     }
                 }
 

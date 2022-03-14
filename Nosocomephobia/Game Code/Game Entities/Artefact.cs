@@ -8,10 +8,20 @@ using System.Diagnostics;
 /// Version: 0.1, 14-03-2022
 namespace Nosocomephobia.Game_Code.Game_Entities
 {
-    public class Artefact : GameEntity, ICollidable, ICollisionResponder
+    public class Artefact : GameEntity, ICollidable
     {
         #region FIELDS
+        // DECLARE a boolean flag to determine if this Artefact has been collected:
         private bool _collected;
+        #endregion
+
+        #region PROPERTIES
+        // property for _collected:
+        public bool Collected
+        {
+            get { return _collected; }
+            set { _collected = value; }
+        }
         #endregion
         /// <summary>
         /// Constructor for Artefact
@@ -20,22 +30,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         {
             // SET the Artefact to collected as false by default:
             _collected = false;
-        }
-
-        /// <summary>
-        /// Called when a collision happens, tells the object how to react.
-        /// </summary>
-        /// <param name="collidee">The object that this object collided into.</param>
-        public void CheckAndRespond(ICollidable collidee)
-        {
-            // IF the Player has ran into the Artefact
-            if((collidee as Entity).UName == "Player1")
-            {
-                // ADD the artefact to the player inventory
-                (collidee as Player).Inventory.Add(this.UName, this);
-                // FLAG the artefact for removal from the scene by setting it as collected:
-                _collected = true;
-            }
+            // SET the Artefact as Collidable so the CollisionManager listens for collisions:
+            isCollidable = true;
         }
     }
 }

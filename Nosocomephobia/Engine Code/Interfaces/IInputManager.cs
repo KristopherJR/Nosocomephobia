@@ -1,14 +1,18 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 13-12-21
+/// Version: 1.3, 14-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
     interface IInputManager : IInputPublisher, IService, IUpdatable
     {
+        // DECLARE a get property for Input Managers subscribers:
+        List<IInputListener> Subscribers { get; }
+
         /// <summary>
         /// Called when a new input occurs. Method from Marc Price, Week 18 Input slides on BlackBoard.
         /// </summary>

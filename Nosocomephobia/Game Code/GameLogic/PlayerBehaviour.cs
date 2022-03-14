@@ -2,9 +2,11 @@
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
+using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 /// <summary>
@@ -46,6 +48,18 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 // RESET MyEntities location to its last position:
                 (MyEntity as GameEntity).EntityLocn = (MyEntity as GameEntity).LastPosition;
                                                                  
+            }
+            if(args.CollidedObject is Artefact)
+            {
+                // COLLIDED with an Artefact:
+
+                // ADD the artefact to the player inventory
+
+                (MyEntity as Player).Inventory.Add((args.CollidedObject as IEntity).UName, (args.CollidedObject as Artefact));
+
+                // FLAG the artefact for removal from the scene by setting it as collected:
+                (args.CollidedObject as GameEntity).ScheduleCommand((args.CollidedObject as GameEntity).RemoveMe);
+
             }
         }
     }
