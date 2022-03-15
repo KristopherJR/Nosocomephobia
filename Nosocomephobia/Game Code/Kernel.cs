@@ -12,6 +12,8 @@ using Nosocomephobia.Game_Code.World;
 using Penumbra;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -65,6 +67,8 @@ namespace Nosocomephobia
         // DECLARE a TileMap, call it '_tileMapCollisions':
         private TileMap _tileMapCollisions;
 
+        private HullMap _wallHullMap;
+
         /// <summary>
         /// Constructor for Kernel.
         /// </summary>
@@ -110,7 +114,7 @@ namespace Nosocomephobia
             
             // INTIALISE penumbra as a PenumbraComponent:
             PENUMBRA = new PenumbraComponent(this);
-            
+            PENUMBRA.AmbientColor = new Color(new Vector3(0.1f));
             // ADD penumbra to game components:
             Components.Add(PENUMBRA);
             // CALL penumbras intialize method:
@@ -199,6 +203,8 @@ namespace Nosocomephobia
             (player as Player).Flashlight.SetFocus(player as GameEntity);
             #endregion PLAYER
 
+            
+
             #region MONSTER
             // REQUEST a new 'NPC' object from the EntityManager (uses EntityFactory to create) and call it monster:
             IEntity monster = _entityManager.CreateEntity<NPC>();
@@ -208,6 +214,14 @@ namespace Nosocomephobia
             _navigationManager.Target = player as GameEntity;
             _navigationManager.AddPathFinder(monster as IPathFinder);
             #endregion MONSTER
+
+            #region HULLS
+            _wallHullMap = new HullMap(_tileMapCollisions);
+            foreach (Hull h in _wallHullMap.GetHulls())
+            {
+                PENUMBRA.Hulls.Add(h); // works fine, adds all 6,210 wall tiles as hulls
+            }
+            #endregion HULLS
 
             #region TILES
             // FOREACH Tile in TileMap floor Layer:
@@ -259,7 +273,12 @@ namespace Nosocomephobia
             _sceneManager.RefreshInputEvents();
             // SUBSCRIBE entities on the active scene graph to Collision events:
             _sceneManager.RefreshCollisionEvents();
+
+           
+
+
         }
+
 
         protected override void Update(GameTime gameTime)
         {

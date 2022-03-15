@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Penumbra;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -49,6 +51,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.idleTimer = 0.0f;
             this.waitDuration = 0.0f;
             this.isWaiting = false;
+
 
             // SET NPC's location in the world:
             this.EntityLocn = new Vector2(3000, 5000);
@@ -150,7 +153,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     idleTimer = 0.0f;
                 }
             }
-
         }
 
         #region IMPLEMENTATION of ICollisionResponder

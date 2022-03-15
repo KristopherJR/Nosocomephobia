@@ -7,7 +7,7 @@ using System.Linq;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 11-12-2021
+/// Version: 1.2, 15-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
@@ -19,6 +19,8 @@ namespace Nosocomephobia.Game_Code.World
         private String tileMapFilePath;
         // DECLARE a bool, call it isLayerCollidable:
         private bool isLayerCollidable;
+        private StreamWriter _streamWriter;
+        private string _outputPath;
 
         /// <summary>
         /// Constructor for objects of class TileMap.
@@ -27,6 +29,7 @@ namespace Nosocomephobia.Game_Code.World
         /// <param name="isLayerCollidable">A boolean specifying if objects can collide with this Layer.</param>
         public TileMap(String tileMapFilePath, bool isLayerCollidable)
         {
+            _outputPath = Directory.GetCurrentDirectory() + "/TilePositions.csv";
             // SET fields to the incoming parameters:
             this.tileMapFilePath = tileMapFilePath;
             this.isLayerCollidable = isLayerCollidable;
@@ -59,6 +62,8 @@ namespace Nosocomephobia.Game_Code.World
                     int tileIdParse = int.Parse(tileStrings[x]);
                     // DECLARE a bool, call it isValidTile and set it to true:
                     bool isValidTile = true;
+                    // DECLARE a bool, call it isHull and set it to true:
+                    bool isHull = false;
                     // IF tileIdParse < 0:
                     if (tileIdParse < 0)
                     {
@@ -69,6 +74,10 @@ namespace Nosocomephobia.Game_Code.World
                         // SET isValidTile to false:
                         isValidTile = false;
                         
+                    }
+                    else
+                    {
+                        isHull = true;
                     }
                     // DECLARE a Tile, call it newTile and pass in tileIdParse:
                     Tile newTile = new Tile(tileIdParse);
@@ -82,8 +91,24 @@ namespace Nosocomephobia.Game_Code.World
                     // SET the tiles position to the next space in the TileMap:
                     newTile.SetTilePosition(new Vector2(x * GameContent.DEFAULT_TILE_WIDTH,
                                                         y * GameContent.DEFAULT_TILE_HEIGHT));
+                    newTile.IsHull = isHull;
                     // STORE the newly created Tile in the TileMap:
                     tileMap[x, y] = newTile;
+                }
+            }
+        }
+
+        public void WriteTilePositionsToText()
+        {
+            using (_streamWriter = new StreamWriter(_outputPath))
+            {
+                for (int y = 0; y < tileMap.GetLength(1); y++)
+                {
+                    for (int x = 0; x < tileMap.GetLength(0); x++)
+                    {
+                        _streamWriter.Write(tileMap[x, y].EntityLocn + ",");
+                    }
+                    _streamWriter.WriteLine(""); // new line
                 }
             }
         }

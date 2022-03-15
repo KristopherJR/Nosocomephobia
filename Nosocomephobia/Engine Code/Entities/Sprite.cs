@@ -3,16 +3,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.1, 15-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Entities
 {
     public class Sprite
     {
         #region FIELDS
-
         // DECLARE a Texture2D to store the sprites texture:
         private Texture2D spriteSheetTexture;
+
+        // DECLARE a float called opacity:
+        private float opacity;
 
         // DECLARE an int called xOrigin to store the x co-ordinate of the texture on the sprite sheet:
         private int xOrigin;
@@ -34,6 +36,12 @@ namespace Nosocomephobia.Engine_Code.Entities
         {
             get { return spriteSheetTexture; } // get method
             set { spriteSheetTexture = value; } // set method
+        }
+
+        public float Opacity
+        {
+            get { return opacity; }
+            set { opacity = value; }
         }
 
         public int TextureWidth
@@ -64,6 +72,7 @@ namespace Nosocomephobia.Engine_Code.Entities
             this.yOrigin = yOrigin;
             this.textureWidth = textureWidth;
             this.textureHeight = textureHeight;
+            this.opacity = 1.0f;
         }
 
         /// <summary>
@@ -73,7 +82,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         /// <param name="location">Where to draw the sprite on the SpriteBatch.</param>
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            spriteBatch.Draw(spriteSheetTexture, location, new Rectangle(xOrigin, yOrigin, textureWidth, textureHeight), Color.White);
+            spriteBatch.Draw(spriteSheetTexture, location, new Rectangle(xOrigin, yOrigin, textureWidth, textureHeight), Color.White * opacity);
         }
     }
 }

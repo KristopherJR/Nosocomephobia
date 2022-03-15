@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.0, 01-05-2021
+/// Version: 1.2, 15-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Services
 {
@@ -311,8 +311,22 @@ namespace Nosocomephobia.Engine_Code.Services
                         List<Vector2> newPath = this.AStar(currentTile, newDestinationTile);
                         // SET the PathFinders path to the newly generated one:
                         pathFinder.Path = newPath;
+
+                        
                     }
                 }
+                // IF the distance between the monster and player is greater than 300 pixels:
+                if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) >= 300f)
+                {
+                    // MAKE the monster invisible
+                    (pathFinder as GameEntity).EntitySprite.Opacity = 0.0f;
+                }
+                else
+                {
+                    // MAKE the monster visible
+                    (pathFinder as GameEntity).EntitySprite.Opacity = 1.0f;
+                }
+
             }
         }
         #endregion

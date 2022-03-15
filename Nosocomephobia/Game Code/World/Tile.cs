@@ -13,6 +13,8 @@ namespace Nosocomephobia.Game_Code.World
         #region FIELDS
         // DECLARE a bool, call it _isValidTile:
         private bool _isValidTile;
+        // DECLARE a bool, call it _isHull:
+        private bool _isHull;
         #endregion
 
         #region PROPERTIES
@@ -21,6 +23,12 @@ namespace Nosocomephobia.Game_Code.World
         {
             get { return _isValidTile; }
             set { _isValidTile = value; }
+        }
+        // DECLARE a get-set property for _isHull:
+        public bool IsHull
+        {
+            get { return _isHull; }
+            set { _isHull = value; }
         }
         #endregion
 
@@ -35,6 +43,9 @@ namespace Nosocomephobia.Game_Code.World
             this.entityLocn = new Vector2(0, 0);
             // MAKE all tiles valid by default:
             _isValidTile = true;
+            // MAKE all tiles non-hulls by default:
+            _isHull = false;
+
         }
 
         /// <summary>

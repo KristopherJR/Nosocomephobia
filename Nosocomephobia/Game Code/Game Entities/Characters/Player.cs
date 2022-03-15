@@ -92,6 +92,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             base.Update(gameTime);
             // INVOKE the Update Behaviour Handler to enact player update behaviour, pass in GameTime to the EventArgs:
             _updateBehaviourHandler.Invoke(this, new OnUpdateEventArgs(gameTime));
+
+            
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
