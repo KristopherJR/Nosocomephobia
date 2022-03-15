@@ -113,13 +113,9 @@ namespace Nosocomephobia
                                     (_camera as Camera).OnKeyReleased,
                                     (_camera as Camera).OnNewMouseInput);
 
-            
-            
-
-            
             // INTIALISE penumbra as a PenumbraComponent:
             PENUMBRA = new PenumbraComponent(this);
-            PENUMBRA.AmbientColor = new Color(new Vector3(0.05f));
+            PENUMBRA.AmbientColor = new Color(new Vector3(0.1f));
             // ADD penumbra to game components:
             Components.Add(PENUMBRA);
             // CALL penumbras intialize method:
