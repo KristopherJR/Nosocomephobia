@@ -23,5 +23,21 @@ torch origin = (56, 46)
 offset = (27, -18)
 
 
+QUATERNION ROTATIONS
 
+UP
+
+rotation range: (-3,0)
+
+DOWN
+
+rotation range: (3,0)
+
+LEFT
+
+rotation range: (1.5,-1.5)
+
+RIGHT
+
+rotation range: (1.5,-1.5)
 

@@ -6,6 +6,7 @@ using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Penumbra;
 using System;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -101,6 +102,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         public override void Update(GameTime gameTime)
         {
             Vector2 torchOriginOffest = new Vector2();
+            Vector2 worldSpaceMousePosition = GetMouseWorldPosition();
+            // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
+            _lookAngle = Math.Atan2(worldSpaceMousePosition.Y - _light.Position.Y,
+                                    worldSpaceMousePosition.X - _light.Position.X);
 
             // VERIFY type safety:
             if (_focusedEntity is Player)
@@ -109,21 +114,60 @@ namespace Nosocomephobia.Game_Code.Game_Entities
                 if((_focusedEntity as Player).WalkDirection == Kernel.UP)
                 {
                     torchOriginOffest = new Vector2(-20,-50);
+
+                    if(_lookAngle < -3f)
+                    {
+                        _lookAngle = -3f;
+                    }
+                    else if(_lookAngle > 0f)
+                    {
+                        _lookAngle = 0f;
+                    }
                 }
                 // player walking down
                 if ((_focusedEntity as Player).WalkDirection == Kernel.DOWN)
                 {
                     torchOriginOffest = new Vector2(13,-20);
+
+                    if (_lookAngle > 3f)
+                    {
+                        _lookAngle = 3f;
+                    }
+                    else if (_lookAngle < 0f)
+                    {
+                        _lookAngle = 0f;
+                    }
+
                 }
                 // player walking left
                 if ((_focusedEntity as Player).WalkDirection == Kernel.LEFT)
                 {
                     torchOriginOffest = new Vector2(-26,-18);
+
+                    if (_lookAngle > -1.5f)
+                    {
+                        _lookAngle = -1.5f;
+                    }
+                    if (_lookAngle < 1.5f)
+                    {
+                        _lookAngle = 1.5f;
+                    }
+
+
                 }
                 // player walking right
                 if ((_focusedEntity as Player).WalkDirection == Kernel.RIGHT)
                 {
                     torchOriginOffest = new Vector2(27,-18);
+
+                    if (_lookAngle > 1.5f)
+                    {
+                        _lookAngle = 1.5f;
+                    }
+                    else if (_lookAngle < -1.5f)
+                    {
+                        _lookAngle = -1.5f;
+                    }
                 }
 
                 Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth / 2),
@@ -132,13 +176,14 @@ namespace Nosocomephobia.Game_Code.Game_Entities
                 // SET the flashlights position to the player centre plus offset:
                 _light.Position = playerCentre += torchOriginOffest;
 
-                Vector2 worldSpaceMousePosition = GetMouseWorldPosition();
+                
 
-                // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
-                _lookAngle = Math.Atan2(worldSpaceMousePosition.Y - _light.Position.Y,
-                                        worldSpaceMousePosition.X - _light.Position.X);
+                
                 // SET the rotation of the flashlight so that it faces the mouse cursor:
                 _light.Rotation = (float)_lookAngle;
+
+
+                Debug.WriteLine(_light.Rotation);
             }
 
         }
