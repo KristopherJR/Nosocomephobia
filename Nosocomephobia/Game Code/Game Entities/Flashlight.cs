@@ -20,6 +20,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         // DECLARE a Light to represent the player light source, call it _light:
         private Light _light;
         private double _lookAngle;
+        private Vector2 _worldSpaceMousePosition;
         private GameEntity _focusedEntity;
         private Camera _gameCamera;
         #endregion
@@ -102,11 +103,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         public override void Update(GameTime gameTime)
         {
             Vector2 torchOriginOffest = new Vector2();
-            Vector2 worldSpaceMousePosition = GetMouseWorldPosition();
-            // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
-            _lookAngle = Math.Atan2(worldSpaceMousePosition.Y - _light.Position.Y,
-                                    worldSpaceMousePosition.X - _light.Position.X);
+            Vector2 torchOrigin = new Vector2();
+            Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth / 2),
+                                                   _focusedEntity.EntityLocn.Y + (_focusedEntity.EntitySprite.TextureHeight / 2));
 
+            _worldSpaceMousePosition = GetMouseWorldPosition();
             // VERIFY type safety:
             if (_focusedEntity is Player)
             {
@@ -114,76 +115,86 @@ namespace Nosocomephobia.Game_Code.Game_Entities
                 if((_focusedEntity as Player).WalkDirection == Kernel.UP)
                 {
                     torchOriginOffest = new Vector2(-20,-50);
-
-                    if(_lookAngle < -3f)
+                    torchOrigin = playerCentre + torchOriginOffest;
+                    // SET the flashlights position to the player centre plus offset:
+                    _light.Position = torchOrigin;
+                    if (_worldSpaceMousePosition.Y > torchOrigin.Y)
                     {
-                        _lookAngle = -3f;
+                        // mouse is too low down on screen, so dont update the torch rotation:
+                        return;
                     }
-                    else if(_lookAngle > 0f)
+                    else
                     {
-                        _lookAngle = 0f;
+                        // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
+                        _lookAngle = Math.Atan2(_worldSpaceMousePosition.Y - _light.Position.Y,
+                                                _worldSpaceMousePosition.X - _light.Position.X);
+                        // SET the rotation of the flashlight so that it faces the mouse cursor:
+                        _light.Rotation = (float)_lookAngle;
                     }
                 }
                 // player walking down
                 if ((_focusedEntity as Player).WalkDirection == Kernel.DOWN)
                 {
                     torchOriginOffest = new Vector2(13,-20);
-
-                    if (_lookAngle > 3f)
+                    torchOrigin = playerCentre + torchOriginOffest;
+                    // SET the flashlights position to the player centre plus offset:
+                    _light.Position = torchOrigin;
+                    if (_worldSpaceMousePosition.Y < torchOrigin.Y)
                     {
-                        _lookAngle = 3f;
+                        // mouse is too low down on screen, so dont update the torch rotation:
+                        return;
                     }
-                    else if (_lookAngle < 0f)
+                    else
                     {
-                        _lookAngle = 0f;
+                        // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
+                        _lookAngle = Math.Atan2(_worldSpaceMousePosition.Y - _light.Position.Y,
+                                                _worldSpaceMousePosition.X - _light.Position.X);
+                        // SET the rotation of the flashlight so that it faces the mouse cursor:
+                        _light.Rotation = (float)_lookAngle;
                     }
-
                 }
                 // player walking left
                 if ((_focusedEntity as Player).WalkDirection == Kernel.LEFT)
                 {
                     torchOriginOffest = new Vector2(-26,-18);
-
-                    if (_lookAngle > -1.5f)
+                    torchOrigin = playerCentre + torchOriginOffest;
+                    // SET the flashlights position to the player centre plus offset:
+                    _light.Position = torchOrigin;
+                    if (_worldSpaceMousePosition.X > torchOrigin.X)
                     {
-                        _lookAngle = -1.5f;
+                        // mouse is too low down on screen, so dont update the torch rotation:
+                        return;
                     }
-                    if (_lookAngle < 1.5f)
+                    else
                     {
-                        _lookAngle = 1.5f;
+                        // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
+                        _lookAngle = Math.Atan2(_worldSpaceMousePosition.Y - _light.Position.Y,
+                                                _worldSpaceMousePosition.X - _light.Position.X);
+                        // SET the rotation of the flashlight so that it faces the mouse cursor:
+                        _light.Rotation = (float)_lookAngle;
                     }
-
-
                 }
                 // player walking right
                 if ((_focusedEntity as Player).WalkDirection == Kernel.RIGHT)
                 {
                     torchOriginOffest = new Vector2(27,-18);
-
-                    if (_lookAngle > 1.5f)
+                    torchOrigin = playerCentre + torchOriginOffest;
+                    // SET the flashlights position to the player centre plus offset:
+                    _light.Position = torchOrigin;
+                    if (_worldSpaceMousePosition.X < torchOrigin.X)
                     {
-                        _lookAngle = 1.5f;
+                        // mouse is too low down on screen, so dont update the torch rotation:
+                        return;
                     }
-                    else if (_lookAngle < -1.5f)
+                    else
                     {
-                        _lookAngle = -1.5f;
+                        // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
+                        _lookAngle = Math.Atan2(_worldSpaceMousePosition.Y - _light.Position.Y,
+                                                _worldSpaceMousePosition.X - _light.Position.X);
+                        // SET the rotation of the flashlight so that it faces the mouse cursor:
+                        _light.Rotation = (float)_lookAngle;
                     }
                 }
-
-                Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth / 2),
-                                                   _focusedEntity.EntityLocn.Y + (_focusedEntity.EntitySprite.TextureHeight / 2));
-
-                // SET the flashlights position to the player centre plus offset:
-                _light.Position = playerCentre += torchOriginOffest;
-
-                
-
-                
-                // SET the rotation of the flashlight so that it faces the mouse cursor:
-                _light.Rotation = (float)_lookAngle;
-
-
-                Debug.WriteLine(_light.Rotation);
             }
 
         }
