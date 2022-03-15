@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.7, 14-03-2022
+/// Version: 1.8, 15-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -21,34 +21,57 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private EventHandler<OnUpdateEventArgs> _updateBehaviourHandler;
         // DECLARE an EventHandler for CollisionEvents:
         private EventHandler<OnCollisionEventArgs> _collisionBehaviourHandler;
-        // DECLARE a reference to IBehaviour, call it _playerBehaviour:
-        private IBehaviour _playerBehaviour;
+        // DECLARE a reference to IBehaviour, call it playerBehaviour:
+        private IBehaviour playerBehaviour;
         // DECLARE a float, call it 'moveSpeed':
         private float moveSpeed;
         // DECLARE a float, call it '_sprintModifier':
         private float _sprintModifier;
         // DECLARE an array of Keys[] called keysOfInterest. This will contain only the keys that we need to know about being pressed:
         private Keys[] keysOfInterest = { Keys.W, Keys.A, Keys.S, Keys.D, Keys.F, Keys.LeftShift };
-        // DECLARE a bool, call it 'isSprintReleased'. Used to flag when the user lets go off sprint:
-        private bool isSprintReleased;
-        // DECLARE a reference to a Flashlight, call it _flashlight:
-        private Flashlight _flashlight;
-        // DECLARE a reference to an IInventory, call it _inventory:
-        private IInventory _inventory;
+        // DECLARE a bool, call it 'isSprinting'. Used to flag when the user lets go off sprint:
+        private bool isSprinting;
+        // DECLARE a reference to a Flashlight, call it flashlight:
+        private Flashlight flashlight;
+        // DECLARE a reference to an IInventory, call it inventory:
+        private IInventory inventory;
+        // DECLARE a float, call it sprintTimer. Used to check how long the player has been sprinting:
+        private float sprintTimer;
+        // DECLARE a float, call it sprintDuration. Sets how long the player can sprint for before resting:
+        private float sprintDuration;
+
         #endregion
 
         #region PROPERTIES
         // DECLARE a get-set property for the Players Flashlight:
         public Flashlight Flashlight
         {
-            get { return _flashlight; }
-            set { _flashlight = value; }
+            get { return flashlight; }
+            set { flashlight = value; }
         }
 
         // DECLARE a get property for the Players Inventory:
         public IInventory Inventory
         {
-            get { return _inventory; }
+            get { return inventory; }
+        }
+        // DECLARE a get property for isSprinting:
+        public bool IsSprinting
+        {
+            get { return isSprinting; }
+            set { isSprinting = value; }
+        }
+        // DECLARE a get-set property for sprintTimer:
+        public float SprintTimer
+        {
+            get { return sprintTimer; }
+            set { sprintTimer = value; }
+        }
+        // DECLARE a get-set property for sprintDuration:
+        public float SprintDuration
+        {
+            get { return sprintDuration; }
+            set { sprintDuration = value; }
         }
         #endregion PROPERTIES
 
@@ -57,29 +80,32 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// </summary>
         public Player() : base(GameContent.GetAnimation(AnimationGroup.PlayerIdleDown))
         {
-            // INITALISE _playerBehaviour:
-            _playerBehaviour = new PlayerBehaviour();
+            // INITALISE playerBehaviour:
+            playerBehaviour = new PlayerBehaviour();
             // SET the Entity in PlayerBehaviour to point to this Player object:
-            _playerBehaviour.MyEntity = this;
+            playerBehaviour.MyEntity = this;
             // SUBSCRIBE the PlayerBehaviour to listen for update events published by Player:
-            _updateBehaviourHandler += (_playerBehaviour as IUpdateEventListener).OnUpdate;
+            _updateBehaviourHandler += (playerBehaviour as IUpdateEventListener).OnUpdate;
             // SUBSCRIBE the PlayerBehaviour to listen for collision events published by Player:
-            _collisionBehaviourHandler += (_playerBehaviour as ICollisionEventListener).OnCollision;
+            _collisionBehaviourHandler += (playerBehaviour as ICollisionEventListener).OnCollision;
 
             // SET PLAYER location in the world:
             this.EntityLocn = new Vector2(3000, 5500);
             // INITIALIZE moveSpeed to '1.5f':
-            this.moveSpeed = 10f;
+            this.moveSpeed = 1.5f;
             // SET _sprintModifier to 50% (1.5f):
             this._sprintModifier = 1.5f;
-            // SET isSprintReleased to false as default:
-            this.isSprintReleased = false;
+            // SET isSprinting to false as default:
+            this.isSprinting = false;
             // SET isCharacter to true:
             this.isCharacter = true;
             // INITALISE _inventory:
-            _inventory = new Inventory();
+            this.inventory = new Inventory();
             this.UName = "Player1";
-            Debug.WriteLine("Player Unique Name is: " + UName);
+            // INITIALISE timers:
+            this.sprintTimer = 0.0f;
+            // SET sprintDuration to 5 seconds:
+            this.sprintDuration = 5.0f;
         }
 
         /// <summary>
@@ -123,7 +149,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             switch (eventInformation.KeyInput)
             {
                 case Keys.W:
-                    if(isSprintReleased)
+                    if(isSprinting)
                     {
                         // MOVE player UP by movespeed:
                         this.EntityVelocity = new Vector2(0, -moveSpeed * _sprintModifier);
@@ -140,7 +166,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     }
                     break;
                 case Keys.A:
-                    if (isSprintReleased)
+                    if (isSprinting)
                     {
                         // MOVE player LEFT by movespeed:
                         this.EntityVelocity = new Vector2(-moveSpeed * _sprintModifier, 0);
@@ -156,7 +182,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     }
                     break;
                 case Keys.S:
-                    if (isSprintReleased)
+                    if (isSprinting)
                     {
                         // MOVE player DOWN by movespeed:
                         this.EntityVelocity = new Vector2(0, moveSpeed * _sprintModifier);
@@ -172,7 +198,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     }
                     break;
                 case Keys.D:
-                    if (isSprintReleased)
+                    if (isSprinting)
                     {
                         // MOVE player RIGHT by movespeed:
                         this.EntityVelocity = new Vector2(moveSpeed * _sprintModifier, 0);
@@ -202,9 +228,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             {
                 case Keys.F:
                     // SCHEDULE the Terminate Command for the Player Flashlight:
-                    _flashlight.ScheduleCommand(_flashlight.TerminateMe);
+                    flashlight.ScheduleCommand(flashlight.TerminateMe);
                     // REMOVE the _flashlight from the Penumbra Engine:
-                    Kernel.PENUMBRA.Lights.Remove(_flashlight.Light);
+                    Kernel.PENUMBRA.Lights.Remove(flashlight.Light);
 
                     // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
                     this.ScheduleCommand(RemoveMe);
@@ -213,7 +239,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     break;
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
-                    this.isSprintReleased = !isSprintReleased;
+                    this.isSprinting = !isSprinting;
 
                     break;
 

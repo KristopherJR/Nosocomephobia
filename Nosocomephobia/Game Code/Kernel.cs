@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 2.2, 14-03-2022
+/// Version: 2.6, 15-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>

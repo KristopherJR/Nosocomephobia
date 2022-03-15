@@ -11,7 +11,7 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 15-02-2022
+/// Version: 0.4, 15-02-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.GameLogic
 {
@@ -34,6 +34,33 @@ namespace Nosocomephobia.Game_Code.GameLogic
             }
             // UPDATE the Player's Flashlight:
             (MyEntity as Player).Flashlight.Update(args.GameTime);
+            // IF the Player is sprinting:
+            if((MyEntity as Player).IsSprinting)
+            {
+                // INCREMENT the sprintTimer by GameTime seconds:
+                (MyEntity as Player).SprintTimer += (float)args.GameTime.ElapsedGameTime.TotalSeconds;
+                // IF sprintTimer >= sprintDuration, disable sprinting:
+                if((MyEntity as Player).SprintTimer >= (MyEntity as Player).SprintDuration)
+                {
+                    (MyEntity as Player).IsSprinting = false;
+                }
+            }
+            else
+            {
+                // IF the player is resting, decrement their sprint timer:
+                if((MyEntity as Player).SprintTimer > 0.0f)
+                {
+                    // DECREMENT the sprintTimer by GameTime seconds:
+                    (MyEntity as Player).SprintTimer -= (float)args.GameTime.ElapsedGameTime.TotalSeconds;
+                }
+                // IF the sprintTimer drops below 0 seconds:
+                if((MyEntity as Player).SprintTimer < 0.0f)
+                {
+                    // RESET it to 0 seconds:
+                    (MyEntity as Player).SprintTimer = 0.0f;
+                }
+            }
+
         }
         /// <summary>
         /// Called whenever a Collision Event involving the Entity occurs.
