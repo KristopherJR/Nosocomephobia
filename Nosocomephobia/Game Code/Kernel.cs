@@ -11,13 +11,10 @@ using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Nosocomephobia.Game_Code.World;
 using Penumbra;
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 2.6, 15-03-2022
+/// Version: 2.8, 15-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -281,10 +278,6 @@ namespace Nosocomephobia
             _sceneManager.RefreshInputEvents();
             // SUBSCRIBE entities on the active scene graph to Collision events:
             _sceneManager.RefreshCollisionEvents();
-
-           
-
-
         }
 
 

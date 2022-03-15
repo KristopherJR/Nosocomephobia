@@ -2,6 +2,7 @@
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code;
+using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Nosocomephobia.Game_Code.World;
 using System;
 using System.Collections.Generic;
@@ -315,18 +316,30 @@ namespace Nosocomephobia.Engine_Code.Services
                         
                     }
                 }
-                // IF the distance between the monster and player is greater than 300 pixels:
-                if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) >= 300f)
-                {
-                    // MAKE the monster invisible
-                    (pathFinder as GameEntity).EntitySprite.Opacity = 0.0f;
-                }
-                else
-                {
-                    // MAKE the monster visible
-                    (pathFinder as GameEntity).EntitySprite.Opacity = 1.0f;
-                }
 
+                if (_target is Player)
+                {
+                    if (!(_target as Player).IsDestroyed)
+                    {
+                        // IF the distance between the monster and player is greater than 300 pixels:
+                        if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) >= 300f)
+                        {
+                            // MAKE the monster invisible
+                            (pathFinder as GameEntity).EntitySprite.Opacity = 0.0f;
+                        }
+                        else
+                        {
+                            // MAKE the monster visible
+                            (pathFinder as GameEntity).EntitySprite.Opacity = 1.0f;
+                        }
+                        // IF the distance between the monster and player is less than 50 pixels:
+                        if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) < 50f)
+                        {
+                            // KILL the player:
+                            (_target as Player).Kill();
+                        }
+                    }
+                }
             }
         }
         #endregion

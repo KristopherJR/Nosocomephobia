@@ -41,7 +41,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private float sprintDuration;
         // DECLARE a Vector2, call it walkDirection:
         private Vector2 walkDirection;
-
+        private bool isDestroyed;
         #endregion
 
         #region PROPERTIES
@@ -80,6 +80,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         {
             get { return walkDirection; }
         }
+        // DECLARE a get property for isDestroyed:
+        public bool IsDestroyed
+        {
+            get { return isDestroyed; }
+        }
         #endregion PROPERTIES
 
         /// <summary>
@@ -115,6 +120,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.sprintDuration = 5.0f;
             // SET walkDirection to (0,1) by default (meaning the Player is walking down):
             this.walkDirection = new Vector2(0, 1);
+            this.isDestroyed = false;
 
         }
 
@@ -130,6 +136,23 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             _updateBehaviourHandler.Invoke(this, new OnUpdateEventArgs(gameTime));
 
             
+        }
+
+        /// <summary>
+        /// Kills the Player.
+        /// </summary>
+        public void Kill()
+        {
+            // SCHEDULE the Terminate Command for the Player Flashlight:
+            flashlight.ScheduleCommand(flashlight.TerminateMe);
+            // REMOVE the _flashlight from the Penumbra Engine:
+            Kernel.PENUMBRA.Lights.Remove(flashlight.Light);
+            // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
+            this.ScheduleCommand(RemoveMe);
+            // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
+            this.ScheduleCommand(TerminateMe);
+
+            this.isDestroyed = true;
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
@@ -254,15 +277,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             switch (eventInformation.KeyReleased)
             {
                 case Keys.F:
-                    // SCHEDULE the Terminate Command for the Player Flashlight:
-                    flashlight.ScheduleCommand(flashlight.TerminateMe);
-                    // REMOVE the _flashlight from the Penumbra Engine:
-                    Kernel.PENUMBRA.Lights.Remove(flashlight.Light);
+                    
 
-                    // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
-                    this.ScheduleCommand(RemoveMe);
-                    // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
-                    this.ScheduleCommand(TerminateMe);
+                    // KILL the Player:
+                    this.Kill();
+                    
                     break;
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
