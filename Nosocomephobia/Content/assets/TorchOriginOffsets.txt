@@ -35,7 +35,7 @@ rotation range: (3,0)
 
 LEFT
 
-rotation range: (1.5,-1.5)
+rotation range: (-1.5,1.5)
 
 RIGHT
 
