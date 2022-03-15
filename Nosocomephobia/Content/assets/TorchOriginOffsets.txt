@@ -1,0 +1,27 @@
+UP
+
+centre = (29, 64)
+torch origin = (9, 14)
+offset = (-20,-50)
+
+DOWN
+
+centre = (29, 64)
+torch origin = (42, 44)
+offset = (13, -20)
+
+LEFT
+
+centre = (26, 64)
+torch origin = (0, 46)
+offset = (-26, -18)
+
+RIGHT
+
+centre = (29, 64)
+torch origin = (56, 46)
+offset = (27, -18)
+
+
+
+

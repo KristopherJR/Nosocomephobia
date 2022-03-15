@@ -34,6 +34,14 @@ namespace Nosocomephobia
         public static int SCREEN_WIDTH;
         // DECLARE a public static int to represent the Screen Height, call it 'SCREEN_HEIGHT':
         public static int SCREEN_HEIGHT;
+        // DECLARE a static Vector2, call it UP and set it to (0, -1):
+        public static Vector2 UP = new Vector2(0, -1);
+        // DECLARE a static Vector2, call it DOWN and set it to (0, 1):
+        public static Vector2 DOWN = new Vector2(0, 1);
+        // DECLARE a static Vector2, call it LEFT and set it to (-1, 0):
+        public static Vector2 LEFT = new Vector2(-1, 0);
+        // DECLARE a static Vector2, call it RIGHT and set it to (1, 0):
+        public static Vector2 RIGHT = new Vector2(1, 0);
 
         // DECLARE a const String, call it TILE_MAP_FLOOR_PATH. Set it to the File Path of the floor layer: 
         private const String TILE_MAP_FLOOR_PATH = "Content/3x-floors.csv";

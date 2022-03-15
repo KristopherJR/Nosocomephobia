@@ -39,6 +39,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private float sprintTimer;
         // DECLARE a float, call it sprintDuration. Sets how long the player can sprint for before resting:
         private float sprintDuration;
+        // DECLARE a Vector2, call it walkDirection:
+        private Vector2 walkDirection;
 
         #endregion
 
@@ -73,6 +75,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             get { return sprintDuration; }
             set { sprintDuration = value; }
         }
+        // DECLARE a get property for walkDirection:
+        public Vector2 WalkDirection
+        {
+            get { return walkDirection; }
+        }
         #endregion PROPERTIES
 
         /// <summary>
@@ -106,6 +113,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.sprintTimer = 0.0f;
             // SET sprintDuration to 5 seconds:
             this.sprintDuration = 5.0f;
+            // SET walkDirection to (0,1) by default (meaning the Player is walking down):
+            this.walkDirection = new Vector2(0, 1);
+
         }
 
         /// <summary>
@@ -155,6 +165,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(0, -moveSpeed * _sprintModifier);
                         // SET player animation to sprint UP:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintUp);
+                        // SET the walkDirection to upwards:
+                        this.walkDirection = Kernel.UP;
 
                     }
                     else
@@ -163,6 +175,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(0, -moveSpeed);
                         // SET player entityAnimation to walking UP:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkUp);
+                        // SET the walkDirection to upwards:
+                        this.walkDirection = Kernel.UP;
                     }
                     break;
                 case Keys.A:
@@ -172,6 +186,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(-moveSpeed * _sprintModifier, 0);
                         // SET player animation to sprint LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintLeft);
+                        // SET the walkDirection to left:
+                        this.walkDirection = Kernel.LEFT;
+
                     }
                     else
                     {
@@ -179,6 +196,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(-moveSpeed, 0);
                         // SET Sams entityAnimation to walking LEFT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkLeft);
+                        // SET the walkDirection to left:
+                        this.walkDirection = Kernel.LEFT;
                     }
                     break;
                 case Keys.S:
@@ -186,15 +205,19 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     {
                         // MOVE player DOWN by movespeed:
                         this.EntityVelocity = new Vector2(0, moveSpeed * _sprintModifier);
-                        // SET player animation to sprint LEFT:
+                        // SET player animation to sprint DOWN:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintDown);
+                        // SET the walkDirection to downwards:
+                        this.walkDirection = Kernel.DOWN;
                     }
                     else
                     {
                         // MOVE player DOWN by movespeed:
                         this.EntityVelocity = new Vector2(0, moveSpeed);
-                        // SET player entityAnimation to walking LEFT:
+                        // SET player entityAnimation to walking DOWN:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkDown);
+                        // SET the walkDirection to downwards:
+                        this.walkDirection = Kernel.DOWN;
                     }
                     break;
                 case Keys.D:
@@ -204,6 +227,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(moveSpeed * _sprintModifier, 0);
                         // SET Sams animation to sprint RIGHT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintRight);
+                        // SET the walkDirection to right:
+                        this.walkDirection = Kernel.RIGHT;
                     }
                     else
                     {
@@ -211,6 +236,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.EntityVelocity = new Vector2(moveSpeed, 0);
                         // SET player entityAnimation to walking RIGHT:
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkRight);
+                        // SET the walkDirection to right:
+                        this.walkDirection = Kernel.RIGHT;
                     }
                     break;
             }

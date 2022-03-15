@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Penumbra;
 using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 10-12-2021
+/// Version: 0.3, 15-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities
 { 
@@ -99,18 +100,47 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         /// <param name="gameTime">A snapshot of the GameTime.</param>
         public override void Update(GameTime gameTime)
         {
-            Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth/2),
-                                               _focusedEntity.EntityLocn.Y + (_focusedEntity.EntitySprite.TextureHeight/2));
-            // SET the flashlights position to the _focusedEntity location:
-            _light.Position = playerCentre;
+            Vector2 torchOriginOffest = new Vector2();
 
-            Vector2 worldSpaceMousePosition = GetMouseWorldPosition();
+            // VERIFY type safety:
+            if (_focusedEntity is Player)
+            {
+                // player walking up
+                if((_focusedEntity as Player).WalkDirection == Kernel.UP)
+                {
+                    torchOriginOffest = new Vector2(-20,-50);
+                }
+                // player walking down
+                if ((_focusedEntity as Player).WalkDirection == Kernel.DOWN)
+                {
+                    torchOriginOffest = new Vector2(13,-20);
+                }
+                // player walking left
+                if ((_focusedEntity as Player).WalkDirection == Kernel.LEFT)
+                {
+                    torchOriginOffest = new Vector2(-26,-18);
+                }
+                // player walking right
+                if ((_focusedEntity as Player).WalkDirection == Kernel.RIGHT)
+                {
+                    torchOriginOffest = new Vector2(27,-18);
+                }
 
-            // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
-            _lookAngle = Math.Atan2(worldSpaceMousePosition.Y - _light.Position.Y,
-                                    worldSpaceMousePosition.X - _light.Position.X);
-            // SET the rotation of the flashlight so that it faces the mouse cursor:
-            _light.Rotation = (float)_lookAngle;
+                Vector2 playerCentre = new Vector2(_focusedEntity.EntityLocn.X + (_focusedEntity.EntitySprite.TextureWidth / 2),
+                                                   _focusedEntity.EntityLocn.Y + (_focusedEntity.EntitySprite.TextureHeight / 2));
+
+                // SET the flashlights position to the player centre plus offset:
+                _light.Position = playerCentre += torchOriginOffest;
+
+                Vector2 worldSpaceMousePosition = GetMouseWorldPosition();
+
+                // CALCULATE the angle relative to the mouse pointer and flashlight in radians:
+                _lookAngle = Math.Atan2(worldSpaceMousePosition.Y - _light.Position.Y,
+                                        worldSpaceMousePosition.X - _light.Position.X);
+                // SET the rotation of the flashlight so that it faces the mouse cursor:
+                _light.Rotation = (float)_lookAngle;
+            }
+
         }
     }
 }
