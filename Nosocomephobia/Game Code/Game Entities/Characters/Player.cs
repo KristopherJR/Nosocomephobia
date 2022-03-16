@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
 using Nosocomephobia.Game_Code.GameLogic;
 using System;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -18,7 +16,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
     public class Player : AnimatedEntity, ICollidable, ICollisionResponder, IInputListener
     {
         #region FIELDS
+        // DECLARE a const float for the players footstep walking interval:
         private const float WALK_INTERVAL = 0.55f;
+        // DECLARE a const float for the players footstep sprinting interval:
         private const float SPRINT_INTERVAL = 0.35f;
         // DECLARE an EventHandler for UpdateEvents:
         private EventHandler<OnUpdateEventArgs> _updateBehaviourHandler;
@@ -143,7 +143,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.footstepInterval = WALK_INTERVAL;
             // SET isMoving to false by default:
             this.isMoving = false;
-
         }
 
         /// <summary>
@@ -156,8 +155,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             base.Update(gameTime);
             // INVOKE the Update Behaviour Handler to enact player update behaviour, pass in GameTime to the EventArgs:
             _updateBehaviourHandler.Invoke(this, new OnUpdateEventArgs(gameTime));
-
-            
         }
 
         /// <summary>
@@ -173,7 +170,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.ScheduleCommand(RemoveMe);
             // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
             this.ScheduleCommand(TerminateMe);
-
+            // FLAG that the player has been destroyed:
             this.isDestroyed = true;
         }
 

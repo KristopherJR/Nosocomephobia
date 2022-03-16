@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.3, 15-03-2022
+/// Version: 0.4, 16-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities
 { 
@@ -19,9 +19,13 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         #region FIELDS
         // DECLARE a Light to represent the player light source, call it _light:
         private Light _light;
+        // DECLARE a double for the look angle:
         private double _lookAngle;
+        // DECLARE a Vector2 for the world mouse position:
         private Vector2 _worldSpaceMousePosition;
+        // DECLARE a GameEntity for the _focusedEntity. This is parent of that holds the flashlight:
         private GameEntity _focusedEntity;
+        // DECALRE a reference to the games Camera:
         private Camera _gameCamera;
         #endregion
 
@@ -31,7 +35,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities
             get { return _light; }
         }
         #endregion
-
+        /// <summary>
+        /// Constructor for Flashlight.
+        /// </summary>
         public Flashlight()
         {
             // INITIALISE the flashlight as a Spotlight:
@@ -45,7 +51,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         {
             _gameCamera = c;
             // INITIALISE flashlight attributes:
-            _light.Scale = new Vector2(1000f);
+            _light.Scale = new Vector2(500f);
             _light.ShadowType = ShadowType.Solid;
             _light.Position = new Vector2(Kernel.SCREEN_WIDTH / 2, Kernel.SCREEN_HEIGHT / 2);
         }
