@@ -19,6 +19,78 @@
 #begin 3x-walls.csv
 /copy:3x-walls.csv
 
+#begin assets/audio/background_game.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:assets/audio/background_game.mp3
+
+#begin assets/audio/background_menu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:assets/audio/background_menu.mp3
+
+#begin assets/audio/door_unlock.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/door_unlock.mp3
+
+#begin assets/audio/footstep.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/footstep.mp3
+
+#begin assets/audio/monster_1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/monster_1.mp3
+
+#begin assets/audio/monster_2.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/monster_2.mp3
+
+#begin assets/audio/monster_3.2.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/monster_3.2.mp3
+
+#begin assets/audio/monster_3.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/monster_3.mp3
+
+#begin assets/audio/pickup_hand.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/pickup_hand.mp3
+
+#begin assets/audio/pickup_journal.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/pickup_journal.mp3
+
+#begin assets/audio/pickup_key.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/pickup_key.mp3
+
+#begin assets/audio/pickup_saw.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/pickup_saw.mp3
+
 #begin assets/Enemy_Character/Concept_Designs/Concepts&MB.png
 /importer:TextureImporter
 /processor:TextureProcessor

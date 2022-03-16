@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
@@ -159,6 +160,9 @@ namespace Nosocomephobia
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             // LOADING the game content:
             GameContent.LoadContent(Content);
+            // SET the game background music:
+            MediaPlayer.Play(GameContent.BackgroundGame);
+            MediaPlayer.IsRepeating = true;
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
             _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);

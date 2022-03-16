@@ -11,12 +11,19 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.4, 15-02-2022
+/// Version: 0.5, 16-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.GameLogic
 {
     public class PlayerBehaviour : NosocomephobiaBehaviour, ICollisionEventListener
     {
+        #region FIELDS
+        // DECLARE a bool to check if a footstep sound is playing:
+        private bool isFootstepSFXPlaying;
+        // DECLARE a float, call it waitTimer:
+        private float waitTimer;
+
+        #endregion
         /// <summary>
         /// Called on each update loop from Player. Enacts Update behaviour.
         /// </summary>
@@ -58,6 +65,30 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 {
                     // RESET it to 0 seconds:
                     (MyEntity as Player).SprintTimer = 0.0f;
+                }
+            }
+            // IF the player is moving:
+            if((MyEntity as Player).IsMoving)
+            {
+                // IF a footstep sound is playing:
+                if(isFootstepSFXPlaying)
+                {
+                    // INCREMENT waitTimer until it reaches footstepInterval:
+                    waitTimer += (float)args.GameTime.ElapsedGameTime.TotalSeconds;
+                    if(waitTimer >= (MyEntity as Player).FootstepInterval)
+                    {
+                        // RESET isFootstepSFXPlaying to false:
+                        isFootstepSFXPlaying = false;
+                        // RESET the waitTimer:
+                        waitTimer = 0.0f;
+                    }
+                }
+                else
+                {
+                    // PLAY the footstep SFX:
+                    GameContent.Footstep.Play();
+                    // FLAG that it is playing:
+                    isFootstepSFXPlaying = true;
                 }
             }
 

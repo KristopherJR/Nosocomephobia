@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
@@ -10,13 +11,15 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.8, 15-03-2022
+/// Version: 1.9, 16-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
     public class Player : AnimatedEntity, ICollidable, ICollisionResponder, IInputListener
     {
         #region FIELDS
+        private const float WALK_INTERVAL = 0.55f;
+        private const float SPRINT_INTERVAL = 0.35f;
         // DECLARE an EventHandler for UpdateEvents:
         private EventHandler<OnUpdateEventArgs> _updateBehaviourHandler;
         // DECLARE an EventHandler for CollisionEvents:
@@ -41,7 +44,12 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private float sprintDuration;
         // DECLARE a Vector2, call it walkDirection:
         private Vector2 walkDirection;
+        // DECLARE a bool to determine if the player has been killed, call it isDestroyed:
         private bool isDestroyed;
+        // DECLARE a float, call it footstepInterval:
+        private float footstepInterval;
+        // DECLARE a bool, call it isMoving:
+        private bool isMoving;
         #endregion
 
         #region PROPERTIES
@@ -85,6 +93,16 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         {
             get { return isDestroyed; }
         }
+        // DECLARE a get property for footstepInterval:
+        public float FootstepInterval
+        {
+            get { return footstepInterval; }
+        }
+        // DECLARE a get property for isMoving:
+        public bool IsMoving
+        {
+            get { return isMoving; }
+        }
         #endregion PROPERTIES
 
         /// <summary>
@@ -121,6 +139,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // SET walkDirection to (0,1) by default (meaning the Player is walking down):
             this.walkDirection = new Vector2(0, 1);
             this.isDestroyed = false;
+            // SET footstepInterval to walk by default:
+            this.footstepInterval = WALK_INTERVAL;
+            // SET isMoving to false by default:
+            this.isMoving = false;
 
         }
 
@@ -190,6 +212,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintUp);
                         // SET the walkDirection to upwards:
                         this.walkDirection = Kernel.UP;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to sprinting:
+                        this.footstepInterval = SPRINT_INTERVAL;
 
                     }
                     else
@@ -200,6 +226,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkUp);
                         // SET the walkDirection to upwards:
                         this.walkDirection = Kernel.UP;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to walking:
+                        this.footstepInterval = WALK_INTERVAL;
                     }
                     break;
                 case Keys.A:
@@ -211,6 +241,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintLeft);
                         // SET the walkDirection to left:
                         this.walkDirection = Kernel.LEFT;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to sprinting:
+                        this.footstepInterval = SPRINT_INTERVAL;
 
                     }
                     else
@@ -221,6 +255,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkLeft);
                         // SET the walkDirection to left:
                         this.walkDirection = Kernel.LEFT;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to walking:
+                        this.footstepInterval = WALK_INTERVAL;
                     }
                     break;
                 case Keys.S:
@@ -232,6 +270,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintDown);
                         // SET the walkDirection to downwards:
                         this.walkDirection = Kernel.DOWN;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to sprinting:
+                        this.footstepInterval = SPRINT_INTERVAL;
                     }
                     else
                     {
@@ -241,6 +283,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkDown);
                         // SET the walkDirection to downwards:
                         this.walkDirection = Kernel.DOWN;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to walking:
+                        this.footstepInterval = WALK_INTERVAL;
                     }
                     break;
                 case Keys.D:
@@ -252,6 +298,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerSprintRight);
                         // SET the walkDirection to right:
                         this.walkDirection = Kernel.RIGHT;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to sprinting:
+                        this.footstepInterval = SPRINT_INTERVAL;
                     }
                     else
                     {
@@ -261,6 +311,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                         this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerWalkRight);
                         // SET the walkDirection to right:
                         this.walkDirection = Kernel.RIGHT;
+                        // FLAG that the player is moving:
+                        this.isMoving = true;
+                        // SET the footstep interval to walking:
+                        this.footstepInterval = WALK_INTERVAL;
                     }
                     break;
             }
@@ -277,11 +331,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             switch (eventInformation.KeyReleased)
             {
                 case Keys.F:
-                    
-
                     // KILL the Player:
                     this.Kill();
-                    
                     break;
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
@@ -293,21 +344,25 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleUp);
+                    this.isMoving = false;
                     break;
                 case Keys.A:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleLeft);
+                    this.isMoving = false;
                     break;
                 case Keys.S:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleDown);
+                    this.isMoving = false;
                     break;
                 case Keys.D:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleRight);
+                    this.isMoving = false;
                     break; 
             }
         }

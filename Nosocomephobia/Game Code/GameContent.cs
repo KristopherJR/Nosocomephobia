@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Nosocomephobia.Engine_Code.Entities;
 using System.Collections.Generic;
 
@@ -44,6 +46,19 @@ namespace Nosocomephobia.Game_Code
         public const int TILE_SHEET_WIDTH = 800 / DEFAULT_TILE_WIDTH;
         // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
         public const int NUMBER_OF_TILES = 250;
+
+        public static Song BackgroundGame;
+        public static Song BackgroundMenu;
+        public static SoundEffect DoorUnlock;
+        public static SoundEffect Footstep;
+        public static SoundEffect Monster1;
+        public static SoundEffect Monster2;
+        public static SoundEffect Monster3;
+        public static SoundEffect Monster3_2;
+        public static SoundEffect PickupHand;
+        public static SoundEffect PickupJournal;
+        public static SoundEffect PickupKey;
+        public static SoundEffect PickupSaw;
 
         // DECLARE a static Dictionary to store all of the games animations. Reference each element via the AnimationGroup enum:
         private static Dictionary<AnimationGroup, Animation> animations;
@@ -134,6 +149,21 @@ namespace Nosocomephobia.Game_Code
             artefactSprites.Add("Hand", handSprite);
             artefactSprites.Add("SkeletonKey", skeletonKeySprite);
             artefactSprites.Add("Bonesaw", bonesaw);
+            #endregion
+
+            #region LOADING SOUND EFFECTS
+            BackgroundGame = cm.Load<Song>("assets/audio/background_game");
+            BackgroundMenu = cm.Load<Song>("assets/audio/background_menu");
+            DoorUnlock = cm.Load<SoundEffect>("assets/audio/door_unlock");
+            Footstep = cm.Load<SoundEffect>("assets/audio/footstep");
+            Monster1 = cm.Load<SoundEffect>("assets/audio/monster_1");
+            Monster2 = cm.Load<SoundEffect>("assets/audio/monster_2");
+            Monster3 = cm.Load<SoundEffect>("assets/audio/monster_3");
+            Monster3_2 = cm.Load<SoundEffect>("assets/audio/monster_3.2");
+            PickupHand = cm.Load<SoundEffect>("assets/audio/pickup_hand");
+            PickupJournal = cm.Load<SoundEffect>("assets/audio/pickup_journal");
+            PickupKey = cm.Load<SoundEffect>("assets/audio/pickup_key");
+            PickupSaw = cm.Load<SoundEffect>("assets/audio/pickup_saw");
             #endregion
 
         }
