@@ -1,3 +1,6 @@
 Audio provided by:
-https://soundcloud.com/dhsfx/sets/unnerving-ambient-sounds
+Background Music: https://soundcloud.com/dhsfx/sets/unnerving-ambient-sounds
 
+Monster: https://www.youtube.com/watch?v=Z-sSy8urj-c
+
+SFX: https://www.zapsplat.com/
