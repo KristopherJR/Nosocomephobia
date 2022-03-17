@@ -52,6 +52,7 @@ namespace Nosocomephobia.Game_Code
         public static SpriteFont Font;
         public static Texture2D MenuBackground;
         public static Texture2D StartButton;
+        public static Texture2D StartButtonHovered;
         public static Texture2D QuitButton;
         #endregion
 
@@ -101,6 +102,7 @@ namespace Nosocomephobia.Game_Code
             Font = cm.Load<SpriteFont>("assets/UI_Design/Font/Font");
             MenuBackground = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
             StartButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button");
+            StartButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected");
             QuitButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button");
             #endregion
 

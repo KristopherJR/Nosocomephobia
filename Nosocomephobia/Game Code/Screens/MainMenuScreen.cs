@@ -9,23 +9,21 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 17-03-2022
+/// Version: 0.2, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Screens
 {
     public class MainMenuScreen : Screen
     {
-        private List<Component> _components;
+        private Dictionary<string, Component> _components;
         public MainMenuScreen()
         {
             Button startGameButton = new Button(GameContent.StartButton, GameContent.Font);
-            startGameButton.Position = new Vector2(300, 300);
+            startGameButton.Position = new Vector2(75, 100);
             startGameButton.Click += StartGameButton_Click;
 
-            _components = new List<Component>()
-            {
-                startGameButton
-            };
+            _components = new Dictionary<string, Component>();
+            _components.Add("start_game_button", startGameButton);
         }
 
         private void StartGameButton_Click(object sender, EventArgs e)
@@ -39,9 +37,9 @@ namespace Nosocomephobia.Game_Code.Screens
 
             spriteBatch.Draw(GameContent.MenuBackground, new Rectangle(0, 0, GameContent.MenuBackground.Width, GameContent.MenuBackground.Height), Color.White);
             
-            foreach(Component component in _components)
+            foreach(KeyValuePair<string, Component> component in _components)
             {
-                component.Draw(gameTime, spriteBatch);
+                component.Value.Draw(gameTime, spriteBatch);
             }
             
             spriteBatch.End();
@@ -49,9 +47,24 @@ namespace Nosocomephobia.Game_Code.Screens
 
         public override void Update(GameTime gameTime)
         {
-            foreach(Component component in _components)
+            foreach (KeyValuePair<string, Component> component in _components)
             {
-                component.Update(gameTime);
+                component.Value.Update(gameTime);
+
+                if ((component.Value as Button).IsHovering)
+                {
+                    if(component.Key == "start_game_button")
+                    {
+                        (component.Value as Button).Texture = GameContent.StartButtonHovered; 
+                    }
+                }
+                else
+                {
+                    if (component.Key == "start_game_button")
+                    {
+                        (component.Value as Button).Texture = GameContent.StartButton;
+                    }
+                }
             }
         }
     }

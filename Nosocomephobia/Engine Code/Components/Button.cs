@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 /// <summary>
-/// Author: Oyyou, https://github.com/Oyyou/MonoGame_Tutorials/blob/master/MonoGame_Tutorials/Tutorial013/Controls/Button.cs
+/// Author: Kristopher Randle and Oyyou, https://github.com/Oyyou/MonoGame_Tutorials/blob/master/MonoGame_Tutorials/Tutorial013/Controls/Button.cs
+/// Version: 0.1, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Components
 {
@@ -28,6 +29,11 @@ namespace Nosocomephobia.Engine_Code.Components
 
         public event EventHandler Click;
 
+        public bool IsHovering
+        {
+            get { return _isHovering; } 
+        }
+
         public bool Clicked { get; private set; }
 
         public Color PenColour { get; set; }
@@ -43,6 +49,12 @@ namespace Nosocomephobia.Engine_Code.Components
         }
 
         public string Text { get; set; }
+
+        public Texture2D Texture
+        {
+            get { return _texture; }
+            set { _texture = value; }
+        }
 
         #endregion
 
