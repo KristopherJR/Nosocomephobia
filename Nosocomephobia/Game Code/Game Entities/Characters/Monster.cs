@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Game_Code.World;
 using Penumbra;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.5, 17-03-2022
+/// Version: 1.6, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -180,6 +181,53 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         {
             // MAKE the monster visible
             this.EntitySprite.Opacity = 1.0f;
+        }
+
+        /// <summary>
+        /// Teleports the Monster to a location near its Target.
+        /// </summary>
+        /// <param name="pTargetsTileLocation">Provides the index of the Tile that the Target is standing on.</param>
+        /// <param name="pNavigationGrid">The navigation grid that the Monster can teleport within.</param>
+        public void Teleport(Vector2 pTargetsTileLocation, TileMap pNavigationGrid)
+        {
+            // DECLARE an instance of Random:
+            Random random = new Random();
+            // GET a random number between 1-4:
+            int posOrNeg = random.Next(1, 5);
+            // DECLARE a randomX and randomY int:
+            int randomX = 0;
+            int randomY = 0;
+
+            // RANDOMISE if the tile will be negative or positive distance:
+            if(posOrNeg == 1)
+            {
+                randomX = random.Next(5,11);
+                randomY = random.Next(5,11);
+            }
+            if(posOrNeg == 2)
+            {
+                randomX = random.Next(-11,-5);
+                randomY = random.Next(5,11);
+            }
+            if (posOrNeg == 3)
+            {
+                randomX = random.Next(5,11);
+                randomY = random.Next(-11,-5);
+            }
+            if (posOrNeg == 4)
+            {
+                randomX = random.Next(-11,-5);
+                randomY = random.Next(-11,-5);
+            }
+
+            // SELECT a Tile near the target (between 5-10 tiles away):
+            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileLocation.X + randomX, (int)pTargetsTileLocation.Y + randomY);
+            // CHECK the Tile is valid and in bounds:
+            if(!teleportTile.IsCollidable)
+            {
+                // CHANGE Monster location to the new tile:
+                this.EntityLocn = teleportTile.EntityLocn;
+            }
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 17-03-2022
+/// Version: 1.6, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Services
 {
@@ -105,6 +105,37 @@ namespace Nosocomephobia.Engine_Code.Services
             }
             // RETURN the new destinationTile:
             return destinationTile;
+        }
+
+        private Vector2 FindTargetTileIndex()
+        {
+            // DECLARE a Vector2, call it targetTileIndex;
+            Vector2 targetTileIndex = new Vector2();
+            // DECLARE a bool, call it tileFound and set it to false:
+            bool tileFound = false;
+            // DECLARE a 2D array, call it navGrid. Set it to the TileMap in the navgiationGrid:
+            Tile[,] navGrid = navigationGrid.GetTileMap();
+
+
+            // WHILE the pathfinder does not have a destination tile:
+            while (!tileFound)
+            {
+
+                // DECLARE an int, call it destinationX. Set it to a random number between 0 - rows:
+                int destinationX = (int)(_target.EntityLocn.X / GameContent.DEFAULT_TILE_WIDTH) + 1;
+                // DECLARE an int, call it destinationY. Set it to a random number between 0 - columns:
+                int destinationY = (int)(_target.EntityLocn.Y / GameContent.DEFAULT_TILE_HEIGHT) + 2;
+                // IF the randomly selected tile is NOT collidable:
+                if (navGrid[destinationX, destinationY].IsCollidable == false) // Walkable tile
+                {
+                    // SET tileFound to true:
+                    tileFound = true;
+                    // STORE the newly selected tile as targetTileIndex:
+                    targetTileIndex = new Vector2(destinationX, destinationY);
+                }
+            }
+            // RETURN the new destinationTile:
+            return targetTileIndex;
         }
 
         /// <summary>
@@ -350,8 +381,8 @@ namespace Nosocomephobia.Engine_Code.Services
                                 // KILL the player:
                                 (_target as Player).Kill();
                             }
-                            // IF the distance between the monster and player is more than 1500 pixels:
-                            if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) > 1500f)
+                            // IF the distance between the monster and player is more than 1000 pixels:
+                            if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) > 1000f)
                             {
                                 if(!(pathFinder as Monster).DistantSFXPlayed)
                                 {
@@ -360,8 +391,23 @@ namespace Nosocomephobia.Engine_Code.Services
                                     // FLAG that the distant SFX was played:
                                     (pathFinder as Monster).DistantSFXPlayed = true;
                                 }
-                                // IF the monster has not teleported for at least 60 seconds:
                                 // TELEPORT closer to the player:
+                                (pathFinder as Monster).Teleport(FindTargetTileIndex(), navigationGrid);
+                                // REFRESH the monsters target location:
+                                // CALCULATE them a new Desintation Tile:
+                                Tile newDestinationTile = this.FindDestinationTile();
+                                // IF the pathFinder is a GameEntity:
+                                if (pathFinder is GameEntity)
+                                {
+                                    // CREATE a new Tile, call it currentTile and set it to the Tile at the PathFinders current location (Their start tile):
+                                    Tile currentTile = this.CalculateCurrentTileAtPosition((pathFinder as GameEntity).EntityLocn);
+                                    // DECLARE a List<Vector2>, call it newPath and set it to the returned path from the AStar Algorithm method:
+                                    List<Vector2> newPath = this.AStar(currentTile, newDestinationTile);
+                                    // SET the PathFinders path to the newly generated one:
+                                    pathFinder.Path = newPath;
+
+
+                                }
                             }
 
                         }

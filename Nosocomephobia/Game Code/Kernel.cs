@@ -16,7 +16,7 @@ using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 2.8, 15-03-2022
+/// Version: 3.0, 17-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
