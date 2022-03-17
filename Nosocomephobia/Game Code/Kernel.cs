@@ -34,6 +34,7 @@ namespace Nosocomephobia
         public static State STATE;
         // DECLARE a public static Boolean, call it 'RUNNING':
         public static Boolean RUNNING;
+        public static SoundEffectInstance BackgroundMusic;
         // DECLARE a PenumbraComponent, call it PENUMBRA:
         public static PenumbraComponent PENUMBRA;
         // DECLARE a public static int to represent the Screen Width, call it 'SCREEN_WIDTH':
@@ -178,10 +179,10 @@ namespace Nosocomephobia
             // LOADING the game content:
             GameContent.LoadContent(Content);
             // SET the game background music:
-            SoundEffectInstance backgroundMusic = GameContent.BackgroundGame.CreateInstance();
-            backgroundMusic.IsLooped = true;
-            backgroundMusic.Volume = 0.3f;
-            backgroundMusic.Play();
+            BackgroundMusic = GameContent.BackgroundMenu.CreateInstance();
+            BackgroundMusic.IsLooped = true;
+            BackgroundMusic.Volume = 0.3f;
+            BackgroundMusic.Play();
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
             _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
@@ -317,7 +318,10 @@ namespace Nosocomephobia
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            if(!RUNNING)
+            {
+                this.Exit();
+            }
 
             switch (STATE)
             {
@@ -369,10 +373,7 @@ namespace Nosocomephobia
         private void UpdateGame(GameTime gameTime)
         {
             // CALL the SceneManagers and CollisionManagers Update method if the program is running:
-            if (RUNNING)
-            {
-                _screens["Game"].Update(gameTime);
-            }
+            _screens["Game"].Update(gameTime);
         }
         private void UpdatePause(GameTime gameTime)
         {

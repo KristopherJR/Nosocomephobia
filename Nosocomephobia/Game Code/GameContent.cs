@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.3, 14-03-2022
+/// Version: 1.4, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code
 {
@@ -51,9 +51,11 @@ namespace Nosocomephobia.Game_Code
         #region MENUS
         public static SpriteFont Font;
         public static Texture2D MenuBackground;
+        public static Texture2D MenuTitle;
         public static Texture2D StartButton;
         public static Texture2D StartButtonHovered;
         public static Texture2D QuitButton;
+        public static Texture2D QuitButtonHovered;
         #endregion
 
         #region SOUND EFFECTS
@@ -100,10 +102,12 @@ namespace Nosocomephobia.Game_Code
 
             #region MENUS
             Font = cm.Load<SpriteFont>("assets/UI_Design/Font/Font");
+            MenuTitle = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text");
             MenuBackground = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
             StartButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button");
             StartButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected");
             QuitButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button");
+            QuitButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected");
             #endregion
 
             #region PLAYER ANIMATIONS
