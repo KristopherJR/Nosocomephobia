@@ -30,13 +30,13 @@ namespace Nosocomephobia.Game_Code
     public static class GameContent
     {
         #region FIELDS
-        // DECLARE a static Texture2D, call it _playerSpriteSheet:
-        public static Texture2D _playerSpriteSheet;
-        // DECLARE a static Texture2D, call it _monsterSpriteSheet:
-        public static Texture2D _monsterSpriteSheet;
-        // DECLARE a static Texture2D, call it _worldTileSheet:
-        public static Texture2D _worldTileSheet;
-        public static Texture2D MENU_BACKGROUND;
+        // DECLARE a static Texture2D, call it PlayerSpriteSheet:
+        public static Texture2D PlayerSpriteSheet;
+        // DECLARE a static Texture2D, call it MonsterSpriteSheet:
+        public static Texture2D MonsterSpriteSheet;
+        // DECLARE a static Texture2D, call it WorldTileSheet:
+        public static Texture2D WorldTileSheet;
+        
         // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 4fps:
         public const int DEFAULT_FRAMERATE = 4;
         // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 32:
@@ -48,6 +48,14 @@ namespace Nosocomephobia.Game_Code
         // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
         public const int NUMBER_OF_TILES = 250;
 
+        #region MENUS
+        public static SpriteFont Font;
+        public static Texture2D MenuBackground;
+        public static Texture2D StartButton;
+        public static Texture2D QuitButton;
+        #endregion
+
+        #region SOUND EFFECTS
         public static SoundEffect BackgroundGame;
         public static SoundEffect BackgroundMenu;
         public static SoundEffect DoorUnlock;
@@ -61,6 +69,7 @@ namespace Nosocomephobia.Game_Code
         public static SoundEffect PickupJournal;
         public static SoundEffect PickupKey;
         public static SoundEffect PickupSaw;
+        #endregion
 
         // DECLARE a static Dictionary to store all of the games animations. Reference each element via the AnimationGroup enum:
         private static Dictionary<AnimationGroup, Animation> animations;
@@ -82,52 +91,57 @@ namespace Nosocomephobia.Game_Code
             artefactSprites = new Dictionary<string, Sprite>();
 
             // LOAD Player's Spritesheet:
-            _playerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet");
+            PlayerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet");
             // LOAD Monster's Spritesheet:
-            _monsterSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation");
+            MonsterSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation");
             // LOAD the World Tile Sheet:
-            _worldTileSheet = cm.Load<Texture2D>("worldTilesheet32");
+            WorldTileSheet = cm.Load<Texture2D>("worldTilesheet32");
 
-            MENU_BACKGROUND = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
+            #region MENUS
+            Font = cm.Load<SpriteFont>("assets/UI_Design/Font/Font");
+            MenuBackground = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
+            StartButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button");
+            QuitButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button");
+            #endregion
 
             #region PLAYER ANIMATIONS
             // LOAD Player Idle Down:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 2, 0, 57, 128, 71, 0, AnimationGroup.PlayerIdleDown);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 2, 0, 57, 128, 71, 0, AnimationGroup.PlayerIdleDown);
             // LOAD Player Idle Up:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 1, 405, 57, 128, 71, 0, AnimationGroup.PlayerIdleUp);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 1, 405, 57, 128, 71, 0, AnimationGroup.PlayerIdleUp);
             // LOAD Player Idle Left:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 7, 270, 51, 128, 71, 0, AnimationGroup.PlayerIdleLeft);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 7, 270, 51, 128, 71, 0, AnimationGroup.PlayerIdleLeft);
             // LOAD Player Idle Right:
-            LoadAnimation(_playerSpriteSheet, 3, DEFAULT_FRAMERATE, 3, 135, 51, 128, 71, 0, AnimationGroup.PlayerIdleRight);
+            LoadAnimation(PlayerSpriteSheet, 3, DEFAULT_FRAMERATE, 3, 135, 51, 128, 71, 0, AnimationGroup.PlayerIdleRight);
 
             // LOAD Player Walking Down:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 5, 540, 55, 128, 71, 0, AnimationGroup.PlayerWalkDown);
+            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 5, 540, 55, 128, 71, 0, AnimationGroup.PlayerWalkDown);
             // LOAD Player Walking Up:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 675, 55, 128, 71, 0, AnimationGroup.PlayerWalkUp);
+            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 675, 55, 128, 71, 0, AnimationGroup.PlayerWalkUp);
             // LOAD Player Walking Left:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 4, 945, 57, 128, 71, 0, AnimationGroup.PlayerWalkLeft);
+            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 4, 945, 57, 128, 71, 0, AnimationGroup.PlayerWalkLeft);
             // LOAD Player Walking Right:
-            LoadAnimation(_playerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 810, 57, 128, 71, 0, AnimationGroup.PlayerWalkRight);
+            LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 810, 57, 128, 71, 0, AnimationGroup.PlayerWalkRight);
 
             // LOAD Player Sprinting Down:
-            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 6, 1080, 53, 128, 71, 0, AnimationGroup.PlayerSprintDown);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 6, 1080, 53, 128, 71, 0, AnimationGroup.PlayerSprintDown);
             // LOAD Player Sprinting Up:
-            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 1, 1215, 53, 128, 71, 0, AnimationGroup.PlayerSprintUp);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 1, 1215, 53, 128, 71, 0, AnimationGroup.PlayerSprintUp);
             // LOAD Player Sprinting Left:
-            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1485, 64, 128, 71, 0, AnimationGroup.PlayerSprintLeft);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1485, 64, 128, 71, 0, AnimationGroup.PlayerSprintLeft);
             // LOAD Player Sprinting Right:
-            LoadAnimation(_playerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1350, 64, 128, 71, 0, AnimationGroup.PlayerSprintRight);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1350, 64, 128, 71, 0, AnimationGroup.PlayerSprintRight);
             #endregion
 
             #region MONSTER ANIMATIONS
             // LOAD Monster Walking Down:
-            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 0, 64, 64, 74, 0, AnimationGroup.MonsterWalkDown);
+            LoadAnimation(MonsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 0, 64, 64, 74, 0, AnimationGroup.MonsterWalkDown);
             // LOAD Monster Walking Up:
-            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 228, 64, 128, 74, 0, AnimationGroup.MonsterWalkUp);
+            LoadAnimation(MonsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 228, 64, 128, 74, 0, AnimationGroup.MonsterWalkUp);
             // LOAD Monster Walking Left:
-            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 76, 128, 64, 131, 0, AnimationGroup.MonsterWalkLeft);
+            LoadAnimation(MonsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 76, 128, 64, 131, 0, AnimationGroup.MonsterWalkLeft);
             // LOAD Monster Walking Right:
-            LoadAnimation(_monsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 152, 128, 64, 131, 0, AnimationGroup.MonsterWalkRight);
+            LoadAnimation(MonsterSpriteSheet, 4, DEFAULT_FRAMERATE, 0, 152, 128, 64, 131, 0, AnimationGroup.MonsterWalkRight);
             #endregion
 
             #region LOADING TILESPRITES
@@ -227,7 +241,7 @@ namespace Nosocomephobia.Game_Code
         private static void LoadTileSprite(int x, int y, int width, int height, int tileID)
         {
             // CREATE a new Sprite, call it tempTileSprite and pass in the parameters:
-            Sprite tempTileSprite = new Sprite(_worldTileSheet, x, y, width, height);
+            Sprite tempTileSprite = new Sprite(WorldTileSheet, x, y, width, height);
             // ADD the tempTileSprite to the tileSprites, saving them with a tileID:
             tileSprites.Add(tileID, tempTileSprite);
         }

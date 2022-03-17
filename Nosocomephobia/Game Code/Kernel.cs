@@ -360,7 +360,7 @@ namespace Nosocomephobia
             }
 
         }
-
+        #region UPDATES
         private void UpdateMainMenu(GameTime gameTime)
         {
             _screens["Main_Menu"].Update(gameTime);
@@ -382,7 +382,9 @@ namespace Nosocomephobia
         {
 
         }
+        #endregion
 
+        #region DRAWS
         private void DrawMainMenu(GameTime gameTime)
         {
             _screens["Main_Menu"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
@@ -401,6 +403,6 @@ namespace Nosocomephobia
         {
 
         }
-
+        #endregion
     }
 }

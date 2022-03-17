@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Game_Code.Screens;
 using System;
 using System.Collections.Generic;
@@ -14,25 +15,43 @@ namespace Nosocomephobia.Game_Code.Screens
 {
     public class MainMenuScreen : Screen
     {
+        private List<Component> _components;
         public MainMenuScreen()
         {
+            Button startGameButton = new Button(GameContent.StartButton, GameContent.Font);
+            startGameButton.Position = new Vector2(300, 300);
+            startGameButton.Click += StartGameButton_Click;
 
+            _components = new List<Component>()
+            {
+                startGameButton
+            };
+        }
+
+        private void StartGameButton_Click(object sender, EventArgs e)
+        {
+            Kernel.STATE = State.Game;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(GameContent.MENU_BACKGROUND, new Rectangle(0, 0, GameContent.MENU_BACKGROUND.Width, GameContent.MENU_BACKGROUND.Height), Color.White);
-
+            spriteBatch.Draw(GameContent.MenuBackground, new Rectangle(0, 0, GameContent.MenuBackground.Width, GameContent.MenuBackground.Height), Color.White);
+            
+            foreach(Component component in _components)
+            {
+                component.Draw(gameTime, spriteBatch);
+            }
+            
             spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            foreach(Component component in _components)
             {
-                Kernel.STATE = State.Game;
+                component.Update(gameTime);
             }
         }
     }
