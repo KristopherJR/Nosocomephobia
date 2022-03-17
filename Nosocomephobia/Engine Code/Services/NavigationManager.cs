@@ -323,35 +323,45 @@ namespace Nosocomephobia.Engine_Code.Services
                     if (!(_target as Player).IsDestroyed)
                     {
                         // VERIFY type safety:
-                        if (pathFinder is GameEntity)
+                        if (pathFinder is Monster)
                         {
                             // IF the distance between the monster and player is greater than 300 pixels:
-                            if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) >= 300f)
+                            if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) >= 300f)
                             {
-                                // MAKE the monster invisible
-                                (pathFinder as GameEntity).EntitySprite.Opacity = 0.0f;
+                                // MAKE the monster invisible:
+                                (pathFinder as Monster).GoInvisible();
                             }
                             else
                             {
-                                // MAKE the monster visible
-                                (pathFinder as GameEntity).EntitySprite.Opacity = 1.0f;
-                                // VERIFY type safety:
-                                if (pathFinder is Monster)
-                                {
-                                    // IF the monster hasn't played a sound already:
-                                    if(!(pathFinder as Monster).SoundPlayed && (pathFinder as Monster).CanPlaySound)
-                                    {
-                                        // PLAY a random SoundEffect:
-                                        (pathFinder as Monster).PlayRandomSoundEffect();
+                                // REVEAL the monster:
+                                (pathFinder as Monster).Reveal();
 
-                                    }
-                                }
+                                // IF the monster hasn't played a sound already:
+                                if (!(pathFinder as Monster).SoundPlayed && (pathFinder as Monster).CanPlaySound)
+                                {
+                                    // PLAY a random SoundEffect:
+                                    (pathFinder as Monster).PlayRandomSoundEffect();
+
+                                } 
                             }
-                            // IF the distance between the monster and player is less than 50 pixels:
-                            if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) < 50f)
+                            // IF the distance between the monster and player is less than 75 pixels:
+                            if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) < 75f)
                             {
                                 // KILL the player:
                                 (_target as Player).Kill();
+                            }
+                            // IF the distance between the monster and player is more than 1500 pixels:
+                            if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) > 1500f)
+                            {
+                                if(!(pathFinder as Monster).DistantSFXPlayed)
+                                {
+                                    // PLAY the distant SoundEffect:
+                                    GameContent.Price_Distant.Play(0.4f, 0.0f, 0.0f);
+                                    // FLAG that the distant SFX was played:
+                                    (pathFinder as Monster).DistantSFXPlayed = true;
+                                }
+                                // IF the monster has not teleported for at least 60 seconds:
+                                // TELEPORT closer to the player:
                             }
 
                         }

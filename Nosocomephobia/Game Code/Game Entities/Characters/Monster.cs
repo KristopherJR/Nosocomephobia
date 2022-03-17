@@ -41,6 +41,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private float sfxTimer;
         // DECLARE a float, call it sfxInterval:
         private float sfxInterval;
+        // DECLARE a bool, call it distantSFXPlayed:
+        private bool distantSFXPlayed;
 
         #endregion
 
@@ -68,6 +70,13 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             get { return canPlaySound; }
             set { canPlaySound = value; }
         }
+
+        // DECLARE a get-set property for distantSFXPlayed:
+        public bool DistantSFXPlayed
+        {
+            get { return distantSFXPlayed; }
+            set { distantSFXPlayed = value; }
+        }
         #endregion
 
         /// <summary>
@@ -89,6 +98,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.soundEffects.Add(GameContent.Price_2);
             this.sfxInterval = 10f;
             this.canPlaySound = true;
+            this.distantSFXPlayed = false;
             // SET NPC's location in the world:
             this.EntityLocn = new Vector2(3000, 5000);
         }
@@ -158,6 +168,18 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     isWaiting = true;
                 }
             }
+        }
+
+        public void GoInvisible()
+        {
+            // MAKE the monster invisible
+            this.EntitySprite.Opacity = 0.0f;
+        }
+
+        public void Reveal()
+        {
+            // MAKE the monster visible
+            this.EntitySprite.Opacity = 1.0f;
         }
 
         /// <summary>

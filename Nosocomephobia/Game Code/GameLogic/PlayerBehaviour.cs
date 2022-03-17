@@ -86,7 +86,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 else
                 {
                     // PLAY the footstep SFX:
-                    GameContent.Footstep.Play();
+                    GameContent.Footstep.Play(0.5f,0.0f,0.0f);
                     // FLAG that it is playing:
                     isFootstepSFXPlaying = true;
                 }
@@ -116,7 +116,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 (MyEntity as Player).Inventory.Add((args.CollidedObject as IEntity).UName, (args.CollidedObject as Artefact));
 
                 // PLAY the Artefacts Pickup SFX:
-                (args.CollidedObject as Artefact).PickupSFX.Play(0.2f,0.0f,0.0f);
+                (args.CollidedObject as Artefact).PickupSFX.Play(0.15f,0.0f,0.0f);
 
                 // FLAG the artefact for removal from the scene by setting it as collected:
                 (args.CollidedObject as GameEntity).ScheduleCommand((args.CollidedObject as GameEntity).RemoveMe);
