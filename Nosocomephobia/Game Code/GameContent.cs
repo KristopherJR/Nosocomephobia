@@ -30,13 +30,6 @@ namespace Nosocomephobia.Game_Code
     public static class GameContent
     {
         #region FIELDS
-        // DECLARE a static Texture2D, call it PlayerSpriteSheet:
-        public static Texture2D PlayerSpriteSheet;
-        // DECLARE a static Texture2D, call it MonsterSpriteSheet:
-        public static Texture2D MonsterSpriteSheet;
-        // DECLARE a static Texture2D, call it WorldTileSheet:
-        public static Texture2D WorldTileSheet;
-        
         // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 4fps:
         public const int DEFAULT_FRAMERATE = 4;
         // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 32:
@@ -47,6 +40,17 @@ namespace Nosocomephobia.Game_Code
         public const int TILE_SHEET_WIDTH = 800 / DEFAULT_TILE_WIDTH;
         // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
         public const int NUMBER_OF_TILES = 250;
+
+        #region ENVIRONMENT
+        // DECLARE a static Texture2D, call it PlayerSpriteSheet:
+        public static Texture2D PlayerSpriteSheet;
+        // DECLARE a static Texture2D, call it MonsterSpriteSheet:
+        public static Texture2D MonsterSpriteSheet;
+        // DECLARE a static Texture2D, call it WorldTileSheet:
+        public static Texture2D WorldTileSheet;
+        public static Texture2D DoorClosed;
+        public static Texture2D DoorOpen;
+        #endregion
 
         #region MENUS
         // DECLARE all Menu Elements:
@@ -96,12 +100,16 @@ namespace Nosocomephobia.Game_Code
             tileSprites = new Dictionary<int, Sprite>();
             artefactSprites = new Dictionary<string, Sprite>();
 
+            #region ENVIRONMENT
             // LOAD Player's Spritesheet:
             PlayerSpriteSheet = cm.Load<Texture2D>("assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet");
             // LOAD Monster's Spritesheet:
             MonsterSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation");
             // LOAD the World Tile Sheet:
             WorldTileSheet = cm.Load<Texture2D>("worldTilesheet32");
+            DoorClosed = cm.Load<Texture2D>("assets/Environmental_Assets/door_closed");
+            DoorOpen = cm.Load<Texture2D>("assets/Environmental_Assets/door_open");
+            #endregion
 
             #region MENUS
             // LOAD all Menu Elements:

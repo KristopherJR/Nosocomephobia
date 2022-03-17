@@ -288,6 +288,7 @@ namespace Nosocomephobia
             IEntity handArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity skeletonKeyArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity bonesawArtefact = _entityManager.CreateEntity<Artefact>();
+            IEntity door = _entityManager.CreateEntity<Door>();
 
             // SET their sprites:
             (journalArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Journal");
@@ -306,12 +307,14 @@ namespace Nosocomephobia
             (handArtefact as GameEntity).EntityLocn = new Vector2(1780, 4275);
             (skeletonKeyArtefact as GameEntity).EntityLocn = new Vector2(5710, 3485);
             (bonesawArtefact as GameEntity).EntityLocn = new Vector2(4770, 6905);
+            (door as GameEntity).EntityLocn = new Vector2(2976,5665);
 
             // SPAWN them onto the Artefacts Layer in the Game SceneGraph:
             _sceneManager.Spawn("GameScene", "Artefacts", journalArtefact);
             _sceneManager.Spawn("GameScene", "Artefacts", handArtefact);
             _sceneManager.Spawn("GameScene", "Artefacts", skeletonKeyArtefact);
             _sceneManager.Spawn("GameScene", "Artefacts", bonesawArtefact);
+            _sceneManager.Spawn("GameScene", "Artefacts", door);
             #endregion ARTEFACTS
 
             // SUBSCRIBE entities on the active scene graph to Input events:

@@ -301,6 +301,30 @@
 /processorParam:TextureFormat=Color
 /build:assets/Environmental_Assets/artefact_pngs/wings_key.png
 
+#begin assets/Environmental_Assets/door_closed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/Environmental_Assets/door_closed.png
+
+#begin assets/Environmental_Assets/door_open.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/Environmental_Assets/door_open.png
+
 #begin assets/Environmental_Assets/furniture_tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor

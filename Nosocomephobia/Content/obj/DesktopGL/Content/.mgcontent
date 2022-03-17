@@ -35,6 +35,8 @@
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/skeleton_key.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/skull_key.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/artefact_pngs/wings_key.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/door_closed.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/door_open.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/furniture_tileset.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/planks_tileset.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/tiles_tileset.png</File>
@@ -83,6 +85,8 @@
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/worldTilesheet32.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
