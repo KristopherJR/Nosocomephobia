@@ -47,14 +47,14 @@ namespace Nosocomephobia.Game_Code
         // DECLARE a const int, call it NUMBER_OF_TILES. Represents the total number of individual tiles in the tilesheet:
         public const int NUMBER_OF_TILES = 250;
 
-        public static Song BackgroundGame;
-        public static Song BackgroundMenu;
+        public static SoundEffect BackgroundGame;
+        public static SoundEffect BackgroundMenu;
         public static SoundEffect DoorUnlock;
         public static SoundEffect Footstep;
         public static SoundEffect Monster1;
         public static SoundEffect Monster2;
-        public static SoundEffect Monster3;
         public static SoundEffect Monster3_2;
+        public static SoundEffect Price_2;
         public static SoundEffect PickupHand;
         public static SoundEffect PickupJournal;
         public static SoundEffect PickupKey;
@@ -152,14 +152,14 @@ namespace Nosocomephobia.Game_Code
             #endregion
 
             #region LOADING SOUND EFFECTS
-            BackgroundGame = cm.Load<Song>("assets/audio/background_game");
-            BackgroundMenu = cm.Load<Song>("assets/audio/background_menu");
+            BackgroundGame = cm.Load<SoundEffect>("assets/audio/background_game");
+            BackgroundMenu = cm.Load<SoundEffect>("assets/audio/background_menu");
             DoorUnlock = cm.Load<SoundEffect>("assets/audio/door_unlock");
             Footstep = cm.Load<SoundEffect>("assets/audio/footstep");
             Monster1 = cm.Load<SoundEffect>("assets/audio/monster_1");
             Monster2 = cm.Load<SoundEffect>("assets/audio/monster_2");
-            Monster3 = cm.Load<SoundEffect>("assets/audio/monster_3");
             Monster3_2 = cm.Load<SoundEffect>("assets/audio/monster_3.2");
+            Price_2 = cm.Load<SoundEffect>("assets/audio/price_2_filtered");
             PickupHand = cm.Load<SoundEffect>("assets/audio/pickup_hand");
             PickupJournal = cm.Load<SoundEffect>("assets/audio/pickup_journal");
             PickupKey = cm.Load<SoundEffect>("assets/audio/pickup_key");

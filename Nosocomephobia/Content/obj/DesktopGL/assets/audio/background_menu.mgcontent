@@ -3,10 +3,10 @@
   <SourceFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/background_menu.mp3</SourceFile>
   <SourceTime>2022-03-15T23:44:25.541446+00:00</SourceTime>
   <DestFile>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/bin/DesktopGL/assets/audio/background_menu.xnb</DestFile>
-  <DestTime>2022-03-16T16:15:24.287056+00:00</DestTime>
+  <DestTime>2022-03-17T01:15:43.0631009+00:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2020-08-10T17:17:54+01:00</ImporterTime>
-  <Processor>SongProcessor</Processor>
+  <Processor>SoundEffectProcessor</Processor>
   <ProcessorTime>2020-08-10T17:17:54+01:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
@@ -14,7 +14,5 @@
   </Parameters>
   <Dependencies />
   <BuildAsset />
-  <BuildOutput>
-    <string>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/bin/DesktopGL/assets/audio/background_menu.ogg</string>
-  </BuildOutput>
+  <BuildOutput />
 </PipelineBuildEvent>

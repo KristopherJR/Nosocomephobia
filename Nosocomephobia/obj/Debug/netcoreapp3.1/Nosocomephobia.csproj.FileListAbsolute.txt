@@ -481,3 +481,5 @@ D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephob
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\pickup_key.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\pickup_saw.ogg
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\pickup_saw.xnb
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\price_2_filtered.ogg
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\price_2_filtered.xnb

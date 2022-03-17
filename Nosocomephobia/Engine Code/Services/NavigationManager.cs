@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 15-03-2022
+/// Version: 1.3, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Services
 {
@@ -316,27 +316,44 @@ namespace Nosocomephobia.Engine_Code.Services
                         
                     }
                 }
-
+                // VERIFY type safety:
                 if (_target is Player)
                 {
+                    // IF the Player hasn't been killed:
                     if (!(_target as Player).IsDestroyed)
                     {
-                        // IF the distance between the monster and player is greater than 300 pixels:
-                        if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) >= 300f)
+                        // VERIFY type safety:
+                        if (pathFinder is GameEntity)
                         {
-                            // MAKE the monster invisible
-                            (pathFinder as GameEntity).EntitySprite.Opacity = 0.0f;
-                        }
-                        else
-                        {
-                            // MAKE the monster visible
-                            (pathFinder as GameEntity).EntitySprite.Opacity = 1.0f;
-                        }
-                        // IF the distance between the monster and player is less than 50 pixels:
-                        if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) < 50f)
-                        {
-                            // KILL the player:
-                            (_target as Player).Kill();
+                            // IF the distance between the monster and player is greater than 300 pixels:
+                            if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) >= 300f)
+                            {
+                                // MAKE the monster invisible
+                                (pathFinder as GameEntity).EntitySprite.Opacity = 0.0f;
+                            }
+                            else
+                            {
+                                // MAKE the monster visible
+                                (pathFinder as GameEntity).EntitySprite.Opacity = 1.0f;
+                                // VERIFY type safety:
+                                if (pathFinder is Monster)
+                                {
+                                    // IF the monster hasn't played a sound already:
+                                    if(!(pathFinder as Monster).SoundPlayed && (pathFinder as Monster).CanPlaySound)
+                                    {
+                                        // PLAY a random SoundEffect:
+                                        (pathFinder as Monster).PlayRandomSoundEffect();
+
+                                    }
+                                }
+                            }
+                            // IF the distance between the monster and player is less than 50 pixels:
+                            if (Vector2.Distance((pathFinder as GameEntity).EntityLocn, _target.EntityLocn) < 50f)
+                            {
+                                // KILL the player:
+                                (_target as Player).Kill();
+                            }
+
                         }
                     }
                 }

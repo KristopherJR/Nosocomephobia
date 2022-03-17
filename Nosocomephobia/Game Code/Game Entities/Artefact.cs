@@ -1,11 +1,13 @@
-﻿using Nosocomephobia.Engine_Code.Entities;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 14-03-2022
+/// Version: 0.3, 17-03-2022
 namespace Nosocomephobia.Game_Code.Game_Entities
 {
     public class Artefact : GameEntity, ICollidable
@@ -13,6 +15,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         #region FIELDS
         // DECLARE a boolean flag to determine if this Artefact has been collected:
         private bool _collected;
+        // DECLARE a SoundEffect, call it _pickupSFX:
+        private SoundEffect _pickupSFX;
         #endregion
 
         #region PROPERTIES
@@ -21,6 +25,12 @@ namespace Nosocomephobia.Game_Code.Game_Entities
         {
             get { return _collected; }
             set { _collected = value; }
+        }
+        // property for _pickupSFX:
+        public SoundEffect PickupSFX
+        {
+            get { return _pickupSFX; }
+            set { _pickupSFX = value; }
         }
         #endregion
         /// <summary>

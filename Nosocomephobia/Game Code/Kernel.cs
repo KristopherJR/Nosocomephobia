@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -47,7 +48,7 @@ namespace Nosocomephobia
         private const String TILE_MAP_COLLISION_PATH = "Content/3x-walls.csv";
 
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
-        private bool _devMode = false;
+        private bool _devMode = true;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -161,8 +162,10 @@ namespace Nosocomephobia
             // LOADING the game content:
             GameContent.LoadContent(Content);
             // SET the game background music:
-            MediaPlayer.Play(GameContent.BackgroundGame);
-            MediaPlayer.IsRepeating = true;
+            SoundEffectInstance backgroundMusic = GameContent.BackgroundGame.CreateInstance();
+            backgroundMusic.IsLooped = true;
+            backgroundMusic.Volume = 0.3f;
+            backgroundMusic.Play();
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
             _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
@@ -212,7 +215,7 @@ namespace Nosocomephobia
 
             #region MONSTER
             // REQUEST a new 'NPC' object from the EntityManager (uses EntityFactory to create) and call it monster:
-            IEntity monster = _entityManager.CreateEntity<NPC>();
+            IEntity monster = _entityManager.CreateEntity<Monster>();
             // SPAWN _monster into the 'GameSceneGraph' on the 'Entities' layer:
             _sceneManager.Spawn("GameScene", "Entities", monster);
             _navigationManager.NavigationGrid = _tileMapCollisions;
@@ -253,21 +256,31 @@ namespace Nosocomephobia
             #endregion TILES
 
             #region ARTEFACTS
+            // CREATE Artefacts with Entity Factory:
             IEntity journalArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity handArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity skeletonKeyArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity bonesawArtefact = _entityManager.CreateEntity<Artefact>();
 
+            // SET their sprites:
             (journalArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Journal");
             (handArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Hand");
             (skeletonKeyArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("SkeletonKey");
             (bonesawArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Bonesaw");
 
+            // SET their SFXs:
+            (journalArtefact as Artefact).PickupSFX = GameContent.PickupJournal;
+            (handArtefact as Artefact).PickupSFX = GameContent.PickupHand;
+            (skeletonKeyArtefact as Artefact).PickupSFX = GameContent.PickupKey;
+            (bonesawArtefact as Artefact).PickupSFX = GameContent.PickupSaw;
+
+            // SET their locations:
             (journalArtefact as GameEntity).EntityLocn = new Vector2(200, 7175);
             (handArtefact as GameEntity).EntityLocn = new Vector2(1780, 4275);
             (skeletonKeyArtefact as GameEntity).EntityLocn = new Vector2(5710, 3485);
             (bonesawArtefact as GameEntity).EntityLocn = new Vector2(4770, 6905);
 
+            // SPAWN them onto the Artefacts Layer in the Game SceneGraph:
             _sceneManager.Spawn("GameScene", "Artefacts", journalArtefact);
             _sceneManager.Spawn("GameScene", "Artefacts", handArtefact);
             _sceneManager.Spawn("GameScene", "Artefacts", skeletonKeyArtefact);

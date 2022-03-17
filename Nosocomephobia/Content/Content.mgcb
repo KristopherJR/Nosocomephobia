@@ -21,13 +21,13 @@
 
 #begin assets/audio/background_game.mp3
 /importer:Mp3Importer
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:assets/audio/background_game.mp3
 
 #begin assets/audio/background_menu.mp3
 /importer:Mp3Importer
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:assets/audio/background_menu.mp3
 
@@ -90,6 +90,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:assets/audio/pickup_saw.mp3
+
+#begin assets/audio/price_2_filtered.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/price_2_filtered.mp3
 
 #begin assets/Enemy_Character/Concept_Designs/Concepts&MB.png
 /importer:TextureImporter
