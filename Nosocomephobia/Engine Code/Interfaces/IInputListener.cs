@@ -7,7 +7,7 @@ using Nosocomephobia.Engine_Code.UserEventArgs;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IInputListener
+    public interface IInputListener
     {
         /// <summary>
         /// Event Handler for the event OnNewInput, fired from the InputManager. This will be triggered when a new input occurs. Method from Marc Price, Week 18 Input slides on BlackBoard.

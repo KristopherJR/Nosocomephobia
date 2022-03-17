@@ -10,9 +10,11 @@ using Nosocomephobia.Engine_Code.Services;
 using Nosocomephobia.Game_Code;
 using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
+using Nosocomephobia.Game_Code.Screens;
 using Nosocomephobia.Game_Code.World;
 using Penumbra;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -23,8 +25,13 @@ using System;
 
 namespace Nosocomephobia
 {
+    public enum State
+    {
+        MainMenu, Game, Pause, GameOver
+    }
     public class Kernel : Game
     {
+        public static State STATE;
         // DECLARE a public static Boolean, call it 'RUNNING':
         public static Boolean RUNNING;
         // DECLARE a PenumbraComponent, call it PENUMBRA:
@@ -76,6 +83,8 @@ namespace Nosocomephobia
 
         private HullMap _wallHullMap;
 
+        private Dictionary<string, Screen> _screens;
+
         /// <summary>
         /// Constructor for Kernel.
         /// </summary>
@@ -88,6 +97,8 @@ namespace Nosocomephobia
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            STATE = State.MainMenu;
+            _screens = new Dictionary<string, Screen>();
         }
 
         protected override void Initialize()
@@ -124,6 +135,11 @@ namespace Nosocomephobia
             PENUMBRA.Initialize();
             // INITALISE the base class:
             base.Initialize();
+            Screen mainMenuScreen = new MainMenuScreen();
+            Screen gameScreen = new GameScreen(_engineManager, _sceneManager, _camera);
+
+            _screens.Add("Main_Menu", mainMenuScreen);
+            _screens.Add("Game", gameScreen);
             // SET RUNNING to true:
             RUNNING = true;
         }
@@ -293,39 +309,98 @@ namespace Nosocomephobia
             _sceneManager.RefreshCollisionEvents();
         }
 
-
+        /// <summary>
+        /// Main Update method for Kernel. Changes based on State.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+
+            switch (STATE)
+            {
+                case State.MainMenu:
+                    UpdateMainMenu(gameTime);
+                    break;
+                case State.Game:
+                    UpdateGame(gameTime);
+                    break;
+                case State.Pause:
+                    UpdatePause(gameTime);
+                    break;
+                case State.GameOver:
+                    UpdateGameOver(gameTime);
+                    break;
+            }  
+            base.Update(gameTime);
+        }
+        /// <summary>
+        /// Main Draw method for Kernel. Changes based on State.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            
+            switch (STATE)
+            {
+                case State.MainMenu:
+                    DrawMainMenu(gameTime);
+                    break;
+                case State.Game:
+                    DrawGame(gameTime);
+                    break;
+                case State.Pause:
+                    DrawPause(gameTime);
+                    break;
+                case State.GameOver:
+                    DrawGameOver(gameTime);
+                    break;
+            }
+
+        }
+
+        private void UpdateMainMenu(GameTime gameTime)
+        {
+            _screens["Main_Menu"].Update(gameTime);
+
+        }
+        private void UpdateGame(GameTime gameTime)
+        {
             // CALL the SceneManagers and CollisionManagers Update method if the program is running:
             if (RUNNING)
             {
-                // UPDATE the EngineManager:
-                _engineManager.Update(gameTime);
-                // UPDATE the Camera:
-                _camera.Update(gameTime);
-                // UPDATE base class:
-                base.Update(gameTime);
+                _screens["Game"].Update(gameTime);
             }
         }
-
-        protected override void Draw(GameTime gameTime)
+        private void UpdatePause(GameTime gameTime)
         {
-            // SET the transform of the Penumbra engine to the Cameras Transform:
-            PENUMBRA.Transform = (_camera as Camera).Transform;
-            // BEGIN penumbras drawing cycle:
-            PENUMBRA.BeginDraw();
-            // SET the window to dark gray:
-            GraphicsDevice.Clear(Color.DarkGray);
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp,
-                               transformMatrix: (_camera as Camera).Transform);
+            
+        }
+        private void UpdateGameOver(GameTime gameTime)
+        {
 
-            _sceneManager.DrawSceneGraphs(_spriteBatch);
+        }
 
-            _spriteBatch.End();
+        private void DrawMainMenu(GameTime gameTime)
+        {
+            _screens["Main_Menu"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
+        }
+        private void DrawGame(GameTime gameTime)
+        {
 
+            _screens["Game"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
             base.Draw(gameTime);
         }
+        private void DrawPause(GameTime gameTime)
+        {
+
+        }
+        private void DrawGameOver(GameTime gameTime)
+        {
+
+        }
+
     }
 }

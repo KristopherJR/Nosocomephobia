@@ -7,7 +7,7 @@ using System;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IInputPublisher
+    public interface IInputPublisher
     {
         /// <summary>
         /// Allows a listener to Subscribe to the InputManager to watch for changes in input. Method from Marc Price, Week 18 Input slides on BlackBoard.

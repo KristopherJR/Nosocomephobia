@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
-    interface IInputManager : IInputPublisher, IService, IUpdatable
+    public interface IInputManager : IInputPublisher, IService, IUpdatable
     {
         // DECLARE a get property for Input Managers subscribers:
         List<IInputListener> Subscribers { get; }

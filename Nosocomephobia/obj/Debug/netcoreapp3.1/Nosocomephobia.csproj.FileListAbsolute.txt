@@ -484,3 +484,4 @@ D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephob
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\price_2_filtered.ogg
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\price_2_filtered.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\price_distant.xnb
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\UI_Design\Fonts\Font.xnb

@@ -36,6 +36,7 @@ namespace Nosocomephobia.Game_Code
         public static Texture2D _monsterSpriteSheet;
         // DECLARE a static Texture2D, call it _worldTileSheet:
         public static Texture2D _worldTileSheet;
+        public static Texture2D MENU_BACKGROUND;
         // DECLARE a const int, call it DEFAULT_FRAMERATE and set it to 4fps:
         public const int DEFAULT_FRAMERATE = 4;
         // DECLARE a const int, call it DEFAULT_TILE_WIDTH and set it to 32:
@@ -86,6 +87,8 @@ namespace Nosocomephobia.Game_Code
             _monsterSpriteSheet = cm.Load<Texture2D>("assets/Enemy_Character/Final_Assets/Asset_Pack_Monster_Animation");
             // LOAD the World Tile Sheet:
             _worldTileSheet = cm.Load<Texture2D>("worldTilesheet32");
+
+            MENU_BACKGROUND = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
 
             #region PLAYER ANIMATIONS
             // LOAD Player Idle Down:
