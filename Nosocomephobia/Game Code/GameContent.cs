@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.4, 17-03-2022
+/// Version: 1.5, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code
 {
@@ -49,6 +49,7 @@ namespace Nosocomephobia.Game_Code
         public const int NUMBER_OF_TILES = 250;
 
         #region MENUS
+        // DECLARE all Menu Elements:
         public static SpriteFont Font;
         public static Texture2D MenuBackground;
         public static Texture2D MenuTitle;
@@ -59,6 +60,7 @@ namespace Nosocomephobia.Game_Code
         #endregion
 
         #region SOUND EFFECTS
+        // DECLARE all SoundEffects:
         public static SoundEffect BackgroundGame;
         public static SoundEffect BackgroundMenu;
         public static SoundEffect DoorUnlock;
@@ -102,6 +104,7 @@ namespace Nosocomephobia.Game_Code
             WorldTileSheet = cm.Load<Texture2D>("worldTilesheet32");
 
             #region MENUS
+            // LOAD all Menu Elements:
             Font = cm.Load<SpriteFont>("assets/UI_Design/Font/Font");
             MenuTitle = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text");
             MenuBackground = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
@@ -177,6 +180,7 @@ namespace Nosocomephobia.Game_Code
             #endregion
 
             #region LOADING SOUND EFFECTS
+            // LOAD all SoundEffects:
             BackgroundGame = cm.Load<SoundEffect>("assets/audio/background_game");
             BackgroundMenu = cm.Load<SoundEffect>("assets/audio/background_menu");
             DoorUnlock = cm.Load<SoundEffect>("assets/audio/door_unlock");

@@ -18,13 +18,16 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 3.0, 17-03-2022
+/// Version: 3.1, 17-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
 
 namespace Nosocomephobia
 {
+    /// <summary>
+    /// DECLARE an enum for the games State, which is used to toggle between Screens.
+    /// </summary>
     public enum State
     {
         MainMenu, Game, Pause, GameOver
@@ -81,9 +84,9 @@ namespace Nosocomephobia
         private TileMap _tileMapFloor;
         // DECLARE a TileMap, call it '_tileMapCollisions':
         private TileMap _tileMapCollisions;
-
+        // DECLARE a HullMap, call it '_wallHullMap':
         private HullMap _wallHullMap;
-
+        // DECLARE a Dictionary<string, Screen>, call it _screens:
         private Dictionary<string, Screen> _screens;
 
         /// <summary>
@@ -94,7 +97,7 @@ namespace Nosocomephobia
         {
             // INTIALISE the EngineManager:
             _engineManager = pEngineManager;
-
+            // SET start-up values:
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -129,6 +132,7 @@ namespace Nosocomephobia
 
             // INTIALISE penumbra as a PenumbraComponent:
             PENUMBRA = new PenumbraComponent(this);
+            // SET the AmbientColor of Penumbra so that the scene is dark (10% light):
             PENUMBRA.AmbientColor = new Color(new Vector3(0.1f));
             // ADD penumbra to game components:
             Components.Add(PENUMBRA);
@@ -136,9 +140,11 @@ namespace Nosocomephobia
             PENUMBRA.Initialize();
             // INITALISE the base class:
             base.Initialize();
+            // CREATE a new Screen for the Main Menu:
             Screen mainMenuScreen = new MainMenuScreen();
+            // CREATE a new Screen for the Game:
             Screen gameScreen = new GameScreen(_engineManager, _sceneManager, _camera);
-
+            // ADD the new Screens to _screens:
             _screens.Add("Main_Menu", mainMenuScreen);
             _screens.Add("Game", gameScreen);
             // SET RUNNING to true:
@@ -228,22 +234,26 @@ namespace Nosocomephobia
             (player as Player).Flashlight.SetFocus(player as GameEntity);
             #endregion PLAYER
 
-            
-
             #region MONSTER
             // REQUEST a new 'NPC' object from the EntityManager (uses EntityFactory to create) and call it monster:
             IEntity monster = _entityManager.CreateEntity<Monster>();
-            // SPAWN _monster into the 'GameSceneGraph' on the 'Entities' layer:
+            // SPAWN monster into the 'GameSceneGraph' on the 'Entities' layer:
             _sceneManager.Spawn("GameScene", "Entities", monster);
+            // SET the monsters Navigation Gris to the collision map:
             _navigationManager.NavigationGrid = _tileMapCollisions;
+            // SET the monsters target to the player:
             _navigationManager.Target = player as GameEntity;
+            // ADD the monster as a path finder to the Navigation Manager:
             _navigationManager.AddPathFinder(monster as IPathFinder);
             #endregion MONSTER
 
             #region HULLS
+            // INITIALISE the HullMap and pass in the collision TileMap as a parameter:
             _wallHullMap = new HullMap(_tileMapCollisions);
+            // ITERATE throught the HullMap:
             foreach (Hull h in _wallHullMap.GetHulls())
             {
+                // ADD each Hull to the Penumbra Component:
                 PENUMBRA.Hulls.Add(h); // works fine, adds all 6,210 wall tiles as hulls
             }
             #endregion HULLS
@@ -320,9 +330,10 @@ namespace Nosocomephobia
                 Exit();
             if(!RUNNING)
             {
+                // EXIT the game if RUNNING is false:
                 this.Exit();
             }
-
+            // CHECK the program State and Update the appropriate screen for the corresponding State:
             switch (STATE)
             {
                 case State.MainMenu:
@@ -346,7 +357,7 @@ namespace Nosocomephobia
         /// <param name="gameTime">A reference to the GameTime.</param>
         protected override void Draw(GameTime gameTime)
         {
-            
+            // CHECK the program State and Draw the appropriate screen for the corresponding State:
             switch (STATE)
             {
                 case State.MainMenu:
@@ -365,20 +376,37 @@ namespace Nosocomephobia
 
         }
         #region UPDATES
+        /// <summary>
+        /// Updates the Main Menu Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void UpdateMainMenu(GameTime gameTime)
         {
+            // UPDATE the Main Menu Screen:
             _screens["Main_Menu"].Update(gameTime);
 
         }
+        /// <summary>
+        /// Updates the Game Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void UpdateGame(GameTime gameTime)
         {
-            // CALL the SceneManagers and CollisionManagers Update method if the program is running:
+            // UPDATE the Game Screen:
             _screens["Game"].Update(gameTime);
         }
+        /// <summary>
+        /// Updates the Pause Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void UpdatePause(GameTime gameTime)
         {
             
         }
+        /// <summary>
+        /// Updates the GameOver Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void UpdateGameOver(GameTime gameTime)
         {
 
@@ -386,20 +414,37 @@ namespace Nosocomephobia
         #endregion
 
         #region DRAWS
+        /// <summary>
+        /// Draws the Main Menu Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawMainMenu(GameTime gameTime)
         {
+            // DRAW the Main Menu Screen:
             _screens["Main_Menu"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
         }
+        /// <summary>
+        /// Draws the Game Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawGame(GameTime gameTime)
         {
-
+            // DRAW the Game Screen:
             _screens["Game"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
             base.Draw(gameTime);
         }
+        /// <summary>
+        /// Draws the Pause Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawPause(GameTime gameTime)
         {
 
         }
+        /// <summary>
+        /// Draws the Game Over Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawGameOver(GameTime gameTime)
         {
 
