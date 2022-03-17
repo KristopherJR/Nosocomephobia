@@ -66,6 +66,7 @@ namespace Nosocomephobia.Game_Code
         public static SoundEffect Monster1;
         public static SoundEffect Monster2;
         public static SoundEffect Monster3_2;
+        public static SoundEffect PageTurn;
         public static SoundEffect Price_2;
         public static SoundEffect Price_Distant;
         public static SoundEffect PickupHand;
@@ -183,6 +184,7 @@ namespace Nosocomephobia.Game_Code
             Monster1 = cm.Load<SoundEffect>("assets/audio/monster_1");
             Monster2 = cm.Load<SoundEffect>("assets/audio/monster_2");
             Monster3_2 = cm.Load<SoundEffect>("assets/audio/monster_3.2");
+            PageTurn = cm.Load<SoundEffect>("assets/audio/page_turn");
             Price_2 = cm.Load<SoundEffect>("assets/audio/price_2_filtered");
             Price_Distant = cm.Load<SoundEffect>("assets/audio/price_distant");
             PickupHand = cm.Load<SoundEffect>("assets/audio/pickup_hand");

@@ -1,37 +1,41 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Components;
-using Nosocomephobia.Game_Code.Screens;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.4, 17-03-2022
+/// Version: 0.5, 17-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Screens
 {
     public class MainMenuScreen : Screen
     {
+        #region FIELDS
         private Dictionary<string, Component> _components;
+        private bool startHovered;
+        private bool quitHovered;
+        #endregion
+
+        #region METHODS
         public MainMenuScreen()
         {
-
-
             Button startGameButton = new Button(GameContent.StartButton, GameContent.Font);
             startGameButton.Position = new Vector2(0, 300);
             startGameButton.Click += StartGameButton_Click;
 
             Button quitGameButton = new Button(GameContent.QuitButton, GameContent.Font);
-            quitGameButton.Position = new Vector2(0, 450);
+            quitGameButton.Position = new Vector2(5, 450);
             quitGameButton.Click += QuitGameButton_Click;
 
             _components = new Dictionary<string, Component>();
             _components.Add("start_game_button", startGameButton);
             _components.Add("quit_game_button", quitGameButton);
+
+            startHovered = false;
+            quitHovered = false;
         }
 
         private void StartGameButton_Click(object sender, EventArgs e)
@@ -60,7 +64,7 @@ namespace Nosocomephobia.Game_Code.Screens
             {
                 component.Value.Draw(gameTime, spriteBatch);
             }
-            
+
             spriteBatch.End();
         }
 
@@ -72,12 +76,23 @@ namespace Nosocomephobia.Game_Code.Screens
 
                 if ((component.Value as Button).IsHovering)
                 {
-                    if(component.Key == "start_game_button")
+                    if (component.Key == "start_game_button")
                     {
-                        (component.Value as Button).Texture = GameContent.StartButtonHovered; 
+                        if (!startHovered)
+                        {
+                            GameContent.PageTurn.Play(0.1f, 0.0f, 0.0f);
+                            startHovered = true;
+                        }
+                        (component.Value as Button).Texture = GameContent.StartButtonHovered;
+
                     }
                     if (component.Key == "quit_game_button")
                     {
+                        if (!quitHovered)
+                        {
+                            GameContent.PageTurn.Play(0.1f, 0.0f, 0.0f);
+                            quitHovered = true;
+                        }
                         (component.Value as Button).Texture = GameContent.QuitButtonHovered;
                     }
                 }
@@ -86,13 +101,16 @@ namespace Nosocomephobia.Game_Code.Screens
                     if (component.Key == "start_game_button")
                     {
                         (component.Value as Button).Texture = GameContent.StartButton;
+                        startHovered = false;
                     }
                     if (component.Key == "quit_game_button")
                     {
                         (component.Value as Button).Texture = GameContent.QuitButton;
+                        quitHovered = false;
                     }
                 }
             }
         }
+        #endregion
     }
 }
