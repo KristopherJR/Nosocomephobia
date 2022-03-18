@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
 using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
+using Nosocomephobia.Game_Code.World;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -103,8 +105,11 @@ namespace Nosocomephobia.Game_Code.GameLogic
             // VERIFY type safety - check the Entity is a GameEntity:
             if(MyEntity is GameEntity)
             {
-                // RESET MyEntities location to its last position:
-                (MyEntity as GameEntity).EntityLocn = (MyEntity as GameEntity).LastPosition;
+                if(args.CollidedObject.IsCollidable)
+                {
+                    // RESET MyEntities location to its last position:
+                    (MyEntity as GameEntity).EntityLocn = (MyEntity as GameEntity).LastPosition;
+                }    
                                                                  
             }
             if(args.CollidedObject is Artefact)
@@ -120,6 +125,24 @@ namespace Nosocomephobia.Game_Code.GameLogic
 
                 // FLAG the artefact for removal from the scene by setting it as collected:
                 (args.CollidedObject as GameEntity).ScheduleCommand((args.CollidedObject as GameEntity).RemoveMe);
+
+            }
+            if (args.CollidedObject is Door)
+            {
+                // CHECK the player has collected all Artefacts:
+                if ((MyEntity as Player).Inventory.GetCount() == 4)
+                {
+                    // CHECK the player has pressed Enter to unlock the door:
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        // IF the door is locked:
+                        if ((args.CollidedObject as Door).IsLocked)
+                        {
+                            // UNLOCK the door:
+                            (args.CollidedObject as Door).Unlock();
+                        }
+                    }
+                }
 
             }
         }

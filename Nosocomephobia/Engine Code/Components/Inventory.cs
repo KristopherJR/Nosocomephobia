@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 14-03-2022
+/// Version: 0.2, 18-03-2022
 namespace Nosocomephobia.Engine_Code.Components
 {
     /// <summary>
@@ -47,6 +47,14 @@ namespace Nosocomephobia.Engine_Code.Components
         {
             // REMOVE the Artefact from the storage:
             _storage.Remove(pName);
+        }
+        /// <summary>
+        /// Returns the number of items in the inventory.
+        /// </summary>
+        /// <returns>Returns the number of items in the inventory.</returns>
+        public int GetCount()
+        {
+            return _storage.Count;
         }
     }
 }

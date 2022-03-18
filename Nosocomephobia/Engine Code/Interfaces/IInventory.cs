@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 14-03-2022
+/// Version: 0.2, 18-03-2022
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
     /// <summary>
@@ -22,5 +22,10 @@ namespace Nosocomephobia.Engine_Code.Interfaces
         /// </summary>
         /// <param name="pName">The name to reference the Artefact by in the inventory.</param>
         void Remove(string pName);
+        /// <summary>
+        /// Returns the total number of items in the inventory.
+        /// </summary>
+        /// <returns>Returns the total number of items in the inventory.</returns>
+        int GetCount();
     }
 }

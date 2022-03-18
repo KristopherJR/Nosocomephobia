@@ -101,7 +101,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.canPlaySound = true;
             this.distantSFXPlayed = false;
             // SET NPC's location in the world:
-            this.EntityLocn = new Vector2(3000, 5000);
+            this.EntityLocn = new Vector2(3000, 5500);
         }
 
         /// <summary>
