@@ -30,13 +30,15 @@ namespace Nosocomephobia.Engine_Code.Services
         {
             get { return _services; }
         }
+
+        public bool Halt { get; set; }
         #endregion
         /// <summary>
         /// Constructor for class EngineManager.
         /// </summary>
         public EngineManager()
         {
-            // nothing for now
+            Halt = false;
         }
 
         /// <summary>
@@ -107,11 +109,15 @@ namespace Nosocomephobia.Engine_Code.Services
         /// <param name="pGameTime">a reference to the GameTime.</param>
         public void Update(GameTime pGameTime)
         {
-            // ITERATE through the _services Dictionary:
-            foreach(KeyValuePair<Type, IService> service in _services)
+            if(!Halt)
             {
-                // UPDATE each service:
-                (service.Value as IUpdatable).Update(pGameTime);
+                // ITERATE through the _services Dictionary:
+                foreach(KeyValuePair<Type, IService> service in _services)
+                {
+                    // UPDATE each service:
+                    (service.Value as IUpdatable).Update(pGameTime);
+                }
+
             }
         }
     }

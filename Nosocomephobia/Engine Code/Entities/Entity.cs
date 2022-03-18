@@ -17,9 +17,6 @@ namespace Nosocomephobia.Engine_Code.Entities
         // DECLARE a string, call it '_uName':
         private string _uName;
 
-        // DECLARE an instance of IBehaviour, call it _updateBehaviourHandler:
-        private IBehaviour _behaviour;
-
         // DECLARE an ICommand, call it _terminateMe:
         private ICommand _terminateMe;
         // DECLARE an ICommand, call it _removeMe:

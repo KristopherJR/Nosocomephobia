@@ -175,6 +175,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.ScheduleCommand(TerminateMe);
             // FLAG that the player has been destroyed:
             this.isDestroyed = true;
+            Kernel.STATE = State.GameOver;
         }
 
         #region IMPLEMENTATION OF ICollisionResponder

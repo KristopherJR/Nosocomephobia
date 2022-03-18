@@ -20,8 +20,6 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         #region FIELDS
         // DECLARE a List<Vector2>, call it path. This will contain the Monsters randomly calculate Path:
         private List<Vector2> path;
-        // DECLARE a Vector2, call it 'lastPosition'. Used to keep track of the Monster's position and reset it if it collides with something:
-        private Vector2 lastPosition;
         // DECLARE a int, call it i:
         private int i;
         // DECLARE a float, call it speed:

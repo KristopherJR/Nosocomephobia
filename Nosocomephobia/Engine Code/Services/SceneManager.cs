@@ -28,8 +28,6 @@ namespace Nosocomephobia.Engine_Code.Services
         private IInputManager _inputManager;
         // DECLARE an ICollisionManager, call it _collisionManager. Stores a reference to the Engines primary CollisionManager.
         private ICollisionManager _collisionManager;
-        // DECLARE a string, call it _previouslyActiveSceneGraph:
-        private string _previouslyActiveSceneGraph;
         #endregion
 
         #region PROPERTIES

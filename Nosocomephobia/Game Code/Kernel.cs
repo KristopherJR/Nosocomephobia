@@ -59,7 +59,7 @@ namespace Nosocomephobia
         private const String TILE_MAP_COLLISION_PATH = "Content/3x-walls.csv";
 
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
-        private bool _devMode = false;
+        private bool _devMode = true;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -144,9 +144,12 @@ namespace Nosocomephobia
             Screen mainMenuScreen = new MainMenuScreen();
             // CREATE a new Screen for the Game:
             Screen gameScreen = new GameScreen(_engineManager, _sceneManager, _camera);
+            // CREATE a new Screen for Game Over:
+            Screen gameOverScreen = new GameOverScreen();
             // ADD the new Screens to _screens:
             _screens.Add("Main_Menu", mainMenuScreen);
             _screens.Add("Game", gameScreen);
+            _screens.Add("GameOver", gameOverScreen);
             // SET RUNNING to true:
             RUNNING = true;
         }
@@ -344,6 +347,7 @@ namespace Nosocomephobia
                     break;
                 case State.Game:
                     UpdateGame(gameTime);
+                    base.Update(gameTime);
                     break;
                 case State.Pause:
                     UpdatePause(gameTime);
@@ -352,7 +356,7 @@ namespace Nosocomephobia
                     UpdateGameOver(gameTime);
                     break;
             }  
-            base.Update(gameTime);
+            
         }
         /// <summary>
         /// Main Draw method for Kernel. Changes based on State.
@@ -412,7 +416,8 @@ namespace Nosocomephobia
         /// <param name="gameTime">A reference to the GameTime.</param>
         private void UpdateGameOver(GameTime gameTime)
         {
-
+            // UPDATE the GameOver Screen:
+            _screens["GameOver"].Update(gameTime);
         }
         #endregion
 
@@ -442,7 +447,7 @@ namespace Nosocomephobia
         /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawPause(GameTime gameTime)
         {
-
+            
         }
         /// <summary>
         /// Draws the Game Over Screen.
@@ -450,7 +455,9 @@ namespace Nosocomephobia
         /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawGameOver(GameTime gameTime)
         {
-
+            (_engineManager as EngineManager).Halt = true;
+            // DRAW the GameOver Screen:
+            _screens["GameOver"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
         }
         #endregion
     }
