@@ -6,6 +6,9 @@
   <SourceFiles>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/background_game.mp3</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/background_menu.mp3</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/death_bone.mp3</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/death_gore.mp3</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/death_scream.mp3</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/door_unlock.mp3</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/footstep.mp3</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/monster_1.mp3</File>
@@ -85,6 +88,9 @@
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/worldTilesheet32.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

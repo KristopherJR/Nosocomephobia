@@ -162,6 +162,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// </summary>
         public void Kill()
         {
+            GameContent.DeathBone.Play(0.3f, 0.0f, 0.0f);
+            GameContent.DeathGore.Play(0.3f, 0.0f, 0.0f);
+            GameContent.DeathScream.Play(0.3f, 0.0f, 0.0f);
             // SCHEDULE the Terminate Command for the Player Flashlight:
             flashlight.ScheduleCommand(flashlight.TerminateMe);
             // REMOVE the _flashlight from the Penumbra Engine:

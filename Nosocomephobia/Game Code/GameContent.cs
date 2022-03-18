@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.5, 17-03-2022
+/// Version: 1.6, 18-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code
 {
@@ -67,6 +67,9 @@ namespace Nosocomephobia.Game_Code
         // DECLARE all SoundEffects:
         public static SoundEffect BackgroundGame;
         public static SoundEffect BackgroundMenu;
+        public static SoundEffect DeathBone;
+        public static SoundEffect DeathGore;
+        public static SoundEffect DeathScream;
         public static SoundEffect DoorUnlock;
         public static SoundEffect Footstep;
         public static SoundEffect Monster1;
@@ -191,6 +194,9 @@ namespace Nosocomephobia.Game_Code
             // LOAD all SoundEffects:
             BackgroundGame = cm.Load<SoundEffect>("assets/audio/background_game");
             BackgroundMenu = cm.Load<SoundEffect>("assets/audio/background_menu");
+            DeathBone = cm.Load<SoundEffect>("assets/audio/death_bone");
+            DeathGore = cm.Load<SoundEffect>("assets/audio/death_gore");
+            DeathScream = cm.Load<SoundEffect>("assets/audio/death_scream");
             DoorUnlock = cm.Load<SoundEffect>("assets/audio/door_unlock");
             Footstep = cm.Load<SoundEffect>("assets/audio/footstep");
             Monster1 = cm.Load<SoundEffect>("assets/audio/monster_1");

@@ -490,3 +490,9 @@ D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephob
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\page_turn.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\door_closed.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\Environmental_Assets\door_open.xnb
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_bone.ogg
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_bone.xnb
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_gore.ogg
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_gore.xnb
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_scream.ogg
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_scream.xnb

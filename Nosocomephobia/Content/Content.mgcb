@@ -31,6 +31,24 @@
 /processorParam:Quality=Best
 /build:assets/audio/background_menu.mp3
 
+#begin assets/audio/death_bone.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/death_bone.mp3
+
+#begin assets/audio/death_gore.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/death_gore.mp3
+
+#begin assets/audio/death_scream.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/audio/death_scream.mp3
+
 #begin assets/audio/door_unlock.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
