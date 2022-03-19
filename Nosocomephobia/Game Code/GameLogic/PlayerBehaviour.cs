@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
@@ -7,13 +6,10 @@ using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Nosocomephobia.Game_Code.World;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.5, 16-03-2022
+/// Version: 0.6, 19-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.GameLogic
 {
@@ -27,12 +23,18 @@ namespace Nosocomephobia.Game_Code.GameLogic
 
         #endregion
 
+        /// <summary>
+        /// Kills the Player.
+        /// </summary>
+        /// <param name="source">The Player.</param>
+        /// <param name="args">Death event information.</param>
         public void OnDeath(object source, EventArgs args)
         {
+            // PLAY the death Sound Effects:
             GameContent.DeathBone.Play(0.3f, 0.0f, 0.0f);
             GameContent.DeathGore.Play(0.3f, 0.0f, 0.0f);
             GameContent.DeathScream.Play(0.3f, 0.0f, 0.0f);
-            
+
             // SCHEDULE the Terminate Command for the Player Flashlight:
             (MyEntity as Player).Flashlight.ScheduleCommand((MyEntity as Player).Flashlight.TerminateMe);
             // REMOVE the _flashlight from the Penumbra Engine:
@@ -65,12 +67,12 @@ namespace Nosocomephobia.Game_Code.GameLogic
             // UPDATE the Player's Flashlight:
             (MyEntity as Player).Flashlight.Update(args.GameTime);
             // IF the Player is sprinting:
-            if((MyEntity as Player).IsSprinting)
+            if ((MyEntity as Player).IsSprinting)
             {
                 // INCREMENT the sprintTimer by GameTime seconds:
                 (MyEntity as Player).SprintTimer += (float)args.GameTime.ElapsedGameTime.TotalSeconds;
                 // IF sprintTimer >= sprintDuration, disable sprinting:
-                if((MyEntity as Player).SprintTimer >= (MyEntity as Player).SprintDuration)
+                if ((MyEntity as Player).SprintTimer >= (MyEntity as Player).SprintDuration)
                 {
                     (MyEntity as Player).IsSprinting = false;
                 }
@@ -78,27 +80,27 @@ namespace Nosocomephobia.Game_Code.GameLogic
             else
             {
                 // IF the player is resting, decrement their sprint timer:
-                if((MyEntity as Player).SprintTimer > 0.0f)
+                if ((MyEntity as Player).SprintTimer > 0.0f)
                 {
                     // DECREMENT the sprintTimer by GameTime seconds:
                     (MyEntity as Player).SprintTimer -= (float)args.GameTime.ElapsedGameTime.TotalSeconds;
                 }
                 // IF the sprintTimer drops below 0 seconds:
-                if((MyEntity as Player).SprintTimer < 0.0f)
+                if ((MyEntity as Player).SprintTimer < 0.0f)
                 {
                     // RESET it to 0 seconds:
                     (MyEntity as Player).SprintTimer = 0.0f;
                 }
             }
             // IF the player is moving:
-            if((MyEntity as Player).IsMoving)
+            if ((MyEntity as Player).IsMoving)
             {
                 // IF a footstep sound is playing:
-                if(isFootstepSFXPlaying)
+                if (isFootstepSFXPlaying)
                 {
                     // INCREMENT waitTimer until it reaches footstepInterval:
                     waitTimer += (float)args.GameTime.ElapsedGameTime.TotalSeconds;
-                    if(waitTimer >= (MyEntity as Player).FootstepInterval)
+                    if (waitTimer >= (MyEntity as Player).FootstepInterval)
                     {
                         // RESET isFootstepSFXPlaying to false:
                         isFootstepSFXPlaying = false;
@@ -109,7 +111,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 else
                 {
                     // PLAY the footstep SFX:
-                    GameContent.Footstep.Play(0.5f,0.0f,0.0f);
+                    GameContent.Footstep.Play(0.5f, 0.0f, 0.0f);
                     // FLAG that it is playing:
                     isFootstepSFXPlaying = true;
                 }
@@ -124,16 +126,16 @@ namespace Nosocomephobia.Game_Code.GameLogic
         public void OnCollision(object source, OnCollisionEventArgs args)
         {
             // VERIFY type safety - check the Entity is a GameEntity:
-            if(MyEntity is GameEntity)
+            if (MyEntity is GameEntity)
             {
-                if(args.CollidedObject.IsCollidable)
+                if (args.CollidedObject.IsCollidable)
                 {
                     // RESET MyEntities location to its last position:
                     (MyEntity as GameEntity).EntityLocn = (MyEntity as GameEntity).LastPosition;
-                }    
-                                                                 
+                }
+
             }
-            if(args.CollidedObject is Artefact)
+            if (args.CollidedObject is Artefact)
             {
                 // COLLIDED with an Artefact:
 
@@ -142,7 +144,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 (MyEntity as Player).Inventory.Add((args.CollidedObject as IEntity).UName, (args.CollidedObject as Artefact));
 
                 // PLAY the Artefacts Pickup SFX:
-                (args.CollidedObject as Artefact).PickupSFX.Play(0.15f,0.0f,0.0f);
+                (args.CollidedObject as Artefact).PickupSFX.Play(0.15f, 0.0f, 0.0f);
 
                 // FLAG the artefact for removal from the scene by setting it as collected:
                 (args.CollidedObject as GameEntity).ScheduleCommand((args.CollidedObject as GameEntity).RemoveMe);
