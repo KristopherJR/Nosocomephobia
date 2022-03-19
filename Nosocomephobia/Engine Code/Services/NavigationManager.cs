@@ -384,32 +384,38 @@ namespace Nosocomephobia.Engine_Code.Services
                             // IF the distance between the monster and player is more than 1000 pixels:
                             if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) > 1000f)
                             {
-                                if(!(pathFinder as Monster).DistantSFXPlayed)
+                                Vector2 oldMonsterLocation = (pathFinder as Monster).EntityLocn;
+                                try
                                 {
-                                    // PLAY the distant SoundEffect:
-                                    GameContent.Price_Distant.Play(0.4f, 0.0f, 0.0f);
-                                    // FLAG that the distant SFX was played:
-                                    (pathFinder as Monster).DistantSFXPlayed = true;
+                                    if (!(pathFinder as Monster).DistantSFXPlayed)
+                                    {
+                                        // PLAY the distant SoundEffect:
+                                        GameContent.Price_Distant.Play(0.4f, 0.0f, 0.0f);
+                                        // FLAG that the distant SFX was played:
+                                        (pathFinder as Monster).DistantSFXPlayed = true;
+                                    }
+                                    // TELEPORT closer to the player:
+                                    (pathFinder as Monster).Teleport(FindTargetTileIndex(), navigationGrid);
+                                    // REFRESH the monsters target location:
+                                    // CALCULATE them a new Desintation Tile:
+                                    Tile newDestinationTile = this.FindDestinationTile();
+                                    // IF the pathFinder is a GameEntity:
+                                    if (pathFinder is GameEntity)
+                                    {
+                                        // CREATE a new Tile, call it currentTile and set it to the Tile at the PathFinders current location (Their start tile):
+                                        Tile currentTile = this.CalculateCurrentTileAtPosition((pathFinder as GameEntity).EntityLocn);
+                                        // DECLARE a List<Vector2>, call it newPath and set it to the returned path from the AStar Algorithm method:
+                                        List<Vector2> newPath = this.AStar(currentTile, newDestinationTile);
+                                        // SET the PathFinders path to the newly generated one:
+                                        pathFinder.Path = newPath;
+                                    }
                                 }
-                                // TELEPORT closer to the player:
-                                (pathFinder as Monster).Teleport(FindTargetTileIndex(), navigationGrid);
-                                // REFRESH the monsters target location:
-                                // CALCULATE them a new Desintation Tile:
-                                Tile newDestinationTile = this.FindDestinationTile();
-                                // IF the pathFinder is a GameEntity:
-                                if (pathFinder is GameEntity)
+                                catch(Exception e)
                                 {
-                                    // CREATE a new Tile, call it currentTile and set it to the Tile at the PathFinders current location (Their start tile):
-                                    Tile currentTile = this.CalculateCurrentTileAtPosition((pathFinder as GameEntity).EntityLocn);
-                                    // DECLARE a List<Vector2>, call it newPath and set it to the returned path from the AStar Algorithm method:
-                                    List<Vector2> newPath = this.AStar(currentTile, newDestinationTile);
-                                    // SET the PathFinders path to the newly generated one:
-                                    pathFinder.Path = newPath;
-
-
+                                    // REVERT the teleportation if there was an issue:
+                                    (pathFinder as Monster).EntityLocn = oldMonsterLocation;
                                 }
                             }
-
                         }
                     }
                 }

@@ -184,15 +184,16 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <summary>
         /// Teleports the Monster to a location near its Target.
         /// </summary>
-        /// <param name="pTargetsTileLocation">Provides the index of the Tile that the Target is standing on.</param>
+        /// <param name="pTargetsTileIndex">Provides the index of the Tile that the Target is standing on.</param>
         /// <param name="pNavigationGrid">The navigation grid that the Monster can teleport within.</param>
-        public void Teleport(Vector2 pTargetsTileLocation, TileMap pNavigationGrid)
+        public void Teleport(Vector2 pTargetsTileIndex, TileMap pNavigationGrid)
         {
-            Vector2 randomDistance = RandomiseTeleportationDistance(pTargetsTileLocation, pNavigationGrid);
+            Vector2 randomDistance = RandomiseTeleportationDistance(pTargetsTileIndex, pNavigationGrid);
 
             // SELECT a Tile near the target (between 5-10 tiles away):
-            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileLocation.X + (int)randomDistance.X, 
-                                                               (int)pTargetsTileLocation.Y + (int)randomDistance.Y);
+            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileIndex.X + (int)randomDistance.X, 
+                                                               (int)pTargetsTileIndex.Y + (int)randomDistance.Y);
+
             // CHECK the Tile is valid and in bounds:
             if(!teleportTile.IsCollidable)
             {
@@ -205,7 +206,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// Selects a random distance of tiles away from the Player for the Monster to teleport to.
         /// </summary>
         /// <returns>A Vector 2 with the location of the teleportation Tile.</returns>
-        private Vector2 RandomiseTeleportationDistance(Vector2 pTargetsTileLocation, TileMap pNavigationGrid)
+        private Vector2 RandomiseTeleportationDistance(Vector2 pTargetsTileIndex, TileMap pNavigationGrid)
         {
             bool tileFound = false;
             // DECLARE an instance of Random:
@@ -241,10 +242,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     randomY = random.Next(-11, -5);
                 }
                 // IF the new X index is greater than 0 AND less than the width of the nav grid:
-                if ((int)pTargetsTileLocation.X + randomX > 0 && (int)pTargetsTileLocation.X + randomX < pNavigationGrid.GetTileMap().GetLength(0))
+                if ((int)pTargetsTileIndex.X + randomX > 0 && (int)pTargetsTileIndex.X + randomX < pNavigationGrid.GetTileMap().GetLength(0))
                 {
                     // CHECK the Y is within bounds as well:
-                    if ((int)pTargetsTileLocation.Y + randomY > 0 && (int)pTargetsTileLocation.Y + randomY < pNavigationGrid.GetTileMap().GetLength(1))
+                    if ((int)pTargetsTileIndex.Y + randomY > 0 && (int)pTargetsTileIndex.Y + randomY < pNavigationGrid.GetTileMap().GetLength(1))
                     {
                         // TILE is safe to teleport to, flag Tile found:
                         tileFound = true;

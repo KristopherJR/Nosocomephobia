@@ -64,8 +64,6 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 (MyEntity as GameEntity).LastPosition = (MyEntity as GameEntity).EntityLocn;
                 // MOVE Player by velocity:
                 (MyEntity as GameEntity).EntityLocn += (MyEntity as GameEntity).EntityVelocity;
-
-                Debug.WriteLine((MyEntity as GameEntity).EntityLocn);
             }
             // UPDATE the Player's Flashlight:
             (MyEntity as Player).Flashlight.Update(args.GameTime);

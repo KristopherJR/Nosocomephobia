@@ -4,7 +4,7 @@ using Nosocomephobia.Engine_Code.Interfaces;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 11-12-2021
+/// Version: 1.2, 19-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
@@ -15,6 +15,7 @@ namespace Nosocomephobia.Game_Code.World
         private bool _isValidTile;
         // DECLARE a bool, call it _isHull:
         private bool _isHull;
+        private int _tileID;
         #endregion
 
         #region PROPERTIES
@@ -45,7 +46,7 @@ namespace Nosocomephobia.Game_Code.World
             _isValidTile = true;
             // MAKE all tiles non-hulls by default:
             _isHull = false;
-
+            _tileID = tileID;
         }
 
         /// <summary>
