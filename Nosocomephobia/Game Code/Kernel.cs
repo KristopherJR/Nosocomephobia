@@ -30,7 +30,7 @@ namespace Nosocomephobia
     /// </summary>
     public enum State
     {
-        MainMenu, Game, Pause, GameOver
+        MainMenu, Game, Pause, GameOver, Victory
     }
     public class Kernel : Game
     {
@@ -146,10 +146,14 @@ namespace Nosocomephobia
             Screen gameScreen = new GameScreen(_engineManager, _sceneManager, _camera);
             // CREATE a new Screen for Game Over:
             Screen gameOverScreen = new GameOverScreen();
+            // CREATE a new Screen for Game Over:
+            Screen victoryScreen = new VictoryScreen();
             // ADD the new Screens to _screens:
             _screens.Add("Main_Menu", mainMenuScreen);
             _screens.Add("Game", gameScreen);
             _screens.Add("GameOver", gameOverScreen);
+            _screens.Add("Victory", victoryScreen);
+
             // SET RUNNING to true:
             RUNNING = true;
         }
@@ -355,6 +359,9 @@ namespace Nosocomephobia
                 case State.GameOver:
                     UpdateGameOver(gameTime);
                     break;
+                case State.Victory:
+                    UpdateVictory(gameTime);
+                    break;
             }  
             
         }
@@ -378,6 +385,9 @@ namespace Nosocomephobia
                     break;
                 case State.GameOver:
                     DrawGameOver(gameTime);
+                    break;
+                case State.Victory:
+                    DrawVictory(gameTime);
                     break;
             }
 
@@ -419,6 +429,15 @@ namespace Nosocomephobia
             // UPDATE the GameOver Screen:
             _screens["GameOver"].Update(gameTime);
         }
+        /// <summary>
+        /// Updates the Victory Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
+        private void UpdateVictory(GameTime gameTime)
+        {
+            // UPDATE the Victory Screen:
+            _screens["Victory"].Update(gameTime);
+        }
         #endregion
 
         #region DRAWS
@@ -455,9 +474,17 @@ namespace Nosocomephobia
         /// <param name="gameTime">A reference to the GameTime.</param>
         private void DrawGameOver(GameTime gameTime)
         {
-            (_engineManager as EngineManager).Halt = true;
             // DRAW the GameOver Screen:
             _screens["GameOver"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
+        }
+        /// <summary>
+        /// Draws the Victory Screen.
+        /// </summary>
+        /// <param name="gameTime">A reference to the GameTime.</param>
+        private void DrawVictory(GameTime gameTime)
+        {
+            // DRAW the Victory Screen:
+            _screens["Victory"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
         }
         #endregion
     }

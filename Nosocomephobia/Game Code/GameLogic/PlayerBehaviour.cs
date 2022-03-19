@@ -6,6 +6,7 @@ using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Nosocomephobia.Game_Code.World;
 using System;
+using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -63,6 +64,8 @@ namespace Nosocomephobia.Game_Code.GameLogic
                 (MyEntity as GameEntity).LastPosition = (MyEntity as GameEntity).EntityLocn;
                 // MOVE Player by velocity:
                 (MyEntity as GameEntity).EntityLocn += (MyEntity as GameEntity).EntityVelocity;
+
+                Debug.WriteLine((MyEntity as GameEntity).EntityLocn);
             }
             // UPDATE the Player's Flashlight:
             (MyEntity as Player).Flashlight.Update(args.GameTime);
@@ -116,6 +119,20 @@ namespace Nosocomephobia.Game_Code.GameLogic
                     isFootstepSFXPlaying = true;
                 }
             }
+            if((MyEntity as Player).EntityLocn.Y < 630)
+            {
+                // SCHEDULE the Terminate Command for the Player Flashlight:
+                (MyEntity as Player).Flashlight.ScheduleCommand((MyEntity as Player).Flashlight.TerminateMe);
+                // REMOVE the _flashlight from the Penumbra Engine:
+                Kernel.PENUMBRA.Lights.Remove((MyEntity as Player).Flashlight.Light);
+                // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
+                (MyEntity as Player).ScheduleCommand((MyEntity as Player).RemoveMe);
+                // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
+                (MyEntity as Player).ScheduleCommand((MyEntity as Player).TerminateMe);
+                // FLAG that the player has been destroyed:
+                (MyEntity as Player).IsDestroyed = true;
+                Kernel.STATE = State.Victory;
+            }
 
         }
         /// <summary>
@@ -153,7 +170,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
             if (args.CollidedObject is Door)
             {
                 // CHECK the player has collected all Artefacts:
-                if ((MyEntity as Player).Inventory.GetCount() == 4)
+                if ((MyEntity as Player).Inventory.GetCount() == 0)
                 {
                     // CHECK the player has pressed Enter to unlock the door:
                     if (Keyboard.GetState().IsKeyDown(Keys.Enter))

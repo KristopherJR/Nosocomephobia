@@ -188,44 +188,73 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// <param name="pNavigationGrid">The navigation grid that the Monster can teleport within.</param>
         public void Teleport(Vector2 pTargetsTileLocation, TileMap pNavigationGrid)
         {
-            // DECLARE an instance of Random:
-            Random random = new Random();
-            // GET a random number between 1-4:
-            int posOrNeg = random.Next(1, 5);
-            // DECLARE a randomX and randomY int:
-            int randomX = 0;
-            int randomY = 0;
-
-            // RANDOMISE if the tile will be negative or positive distance:
-            if(posOrNeg == 1)
-            {
-                randomX = random.Next(5,11);
-                randomY = random.Next(5,11);
-            }
-            if(posOrNeg == 2)
-            {
-                randomX = random.Next(-11,-5);
-                randomY = random.Next(5,11);
-            }
-            if (posOrNeg == 3)
-            {
-                randomX = random.Next(5,11);
-                randomY = random.Next(-11,-5);
-            }
-            if (posOrNeg == 4)
-            {
-                randomX = random.Next(-11,-5);
-                randomY = random.Next(-11,-5);
-            }
+            Vector2 randomDistance = RandomiseTeleportationDistance(pTargetsTileLocation, pNavigationGrid);
 
             // SELECT a Tile near the target (between 5-10 tiles away):
-            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileLocation.X + randomX, (int)pTargetsTileLocation.Y + randomY);
+            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileLocation.X + (int)randomDistance.X, 
+                                                               (int)pTargetsTileLocation.Y + (int)randomDistance.Y);
             // CHECK the Tile is valid and in bounds:
             if(!teleportTile.IsCollidable)
             {
                 // CHANGE Monster location to the new tile:
                 this.EntityLocn = teleportTile.EntityLocn;
             }
+        }
+
+        /// <summary>
+        /// Selects a random distance of tiles away from the Player for the Monster to teleport to.
+        /// </summary>
+        /// <returns>A Vector 2 with the location of the teleportation Tile.</returns>
+        private Vector2 RandomiseTeleportationDistance(Vector2 pTargetsTileLocation, TileMap pNavigationGrid)
+        {
+            bool tileFound = false;
+            // DECLARE an instance of Random:
+            Random random = new Random();
+
+            while(!tileFound)
+            {
+                // GET a random number between 1-4:
+                int posOrNeg = random.Next(1, 5);
+                // DECLARE a randomX and randomY int:
+                int randomX = 0;
+                int randomY = 0;
+
+                // RANDOMISE if the tile will be negative or positive distance:
+                if (posOrNeg == 1)
+                {
+                    randomX = random.Next(5, 11);
+                    randomY = random.Next(5, 11);
+                }
+                if (posOrNeg == 2)
+                {
+                    randomX = random.Next(-11, -5);
+                    randomY = random.Next(5, 11);
+                }
+                if (posOrNeg == 3)
+                {
+                    randomX = random.Next(5, 11);
+                    randomY = random.Next(-11, -5);
+                }
+                if (posOrNeg == 4)
+                {
+                    randomX = random.Next(-11, -5);
+                    randomY = random.Next(-11, -5);
+                }
+                // IF the new X index is greater than 0 AND less than the width of the nav grid:
+                if ((int)pTargetsTileLocation.X + randomX > 0 && (int)pTargetsTileLocation.X + randomX < pNavigationGrid.GetTileMap().GetLength(0))
+                {
+                    // CHECK the Y is within bounds as well:
+                    if ((int)pTargetsTileLocation.Y + randomY > 0 && (int)pTargetsTileLocation.Y + randomY < pNavigationGrid.GetTileMap().GetLength(1))
+                    {
+                        // TILE is safe to teleport to, flag Tile found:
+                        tileFound = true;
+                        return new Vector2(randomX, randomY);
+                    }
+
+                }
+
+            }
+            return new Vector2(1, 1);
         }
 
         /// <summary>

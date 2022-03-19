@@ -31,7 +31,7 @@ namespace Nosocomephobia.Game_Code.Screens
 
             _sceneManager.DrawSceneGraphs(spriteBatch);
 
-            spriteBatch.End();
+            spriteBatch.End();  
         }
 
         public override void Update(GameTime gameTime)

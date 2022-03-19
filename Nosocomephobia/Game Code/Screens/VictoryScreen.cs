@@ -8,11 +8,11 @@ using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.1, 18-03-2022
+/// Verison: 0.1, 19-03-22
 /// </summary>
 namespace Nosocomephobia.Game_Code.Screens
 {
-    public class GameOverScreen : Screen
+    public class VictoryScreen : Screen
     {
         #region FIELDS
         private Dictionary<string, Component> _components;
@@ -21,7 +21,10 @@ namespace Nosocomephobia.Game_Code.Screens
         #endregion
 
         #region METHODS
-        public GameOverScreen()
+        /// <summary>
+        /// Constructor for VictoryScreen.
+        /// </summary>
+        public VictoryScreen()
         {
             Button startGameButton = new Button(GameContent.StartButton, GameContent.Font);
             startGameButton.Position = new Vector2(0, 300);
@@ -31,14 +34,20 @@ namespace Nosocomephobia.Game_Code.Screens
             quitGameButton.Position = new Vector2(5, 450);
             quitGameButton.Click += QuitGameButton_Click;
 
+            Button sausageButton = new Button(GameContent.QuitButton, GameContent.Font);
+            sausageButton.Position = new Vector2(5, 600);
+            sausageButton.Click += QuitGameButton_Click;
+            sausageButton.Text = "SAUSAGE!";
+
             _components = new Dictionary<string, Component>();
             _components.Add("start_game_button", startGameButton);
             _components.Add("quit_game_button", quitGameButton);
+            _components.Add("sausage_button", sausageButton);
 
             _startHovered = false;
             _quitHovered = false;
-        }
 
+        }
         private void StartGameButton_Click(object sender, EventArgs e)
         {
             Kernel.STATE = State.Game;
