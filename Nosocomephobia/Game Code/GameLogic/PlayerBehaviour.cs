@@ -26,6 +26,27 @@ namespace Nosocomephobia.Game_Code.GameLogic
         private float waitTimer;
 
         #endregion
+
+        public void OnDeath(object source, EventArgs args)
+        {
+            GameContent.DeathBone.Play(0.3f, 0.0f, 0.0f);
+            GameContent.DeathGore.Play(0.3f, 0.0f, 0.0f);
+            GameContent.DeathScream.Play(0.3f, 0.0f, 0.0f);
+            
+            // SCHEDULE the Terminate Command for the Player Flashlight:
+            (MyEntity as Player).Flashlight.ScheduleCommand((MyEntity as Player).Flashlight.TerminateMe);
+            // REMOVE the _flashlight from the Penumbra Engine:
+            Kernel.PENUMBRA.Lights.Remove((MyEntity as Player).Flashlight.Light);
+            // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
+            (MyEntity as Player).ScheduleCommand((MyEntity as Player).RemoveMe);
+            // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
+            (MyEntity as Player).ScheduleCommand((MyEntity as Player).TerminateMe);
+            // FLAG that the player has been destroyed:
+            (MyEntity as Player).IsDestroyed = true;
+            Kernel.STATE = State.GameOver;
+        }
+
+
         /// <summary>
         /// Called on each update loop from Player. Enacts Update behaviour.
         /// </summary>

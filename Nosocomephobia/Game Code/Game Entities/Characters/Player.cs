@@ -9,7 +9,7 @@ using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.9, 16-03-2022
+/// Version: 2.0, 19-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -24,6 +24,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         private EventHandler<OnUpdateEventArgs> _updateBehaviourHandler;
         // DECLARE an EventHandler for CollisionEvents:
         private EventHandler<OnCollisionEventArgs> _collisionBehaviourHandler;
+        // DECLARE an EventHandler for DeathEvent:
+        private EventHandler<EventArgs> _deathBehaviourHandler;
         // DECLARE a reference to IBehaviour, call it playerBehaviour:
         private IBehaviour playerBehaviour;
         // DECLARE a float, call it 'moveSpeed':
@@ -92,6 +94,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         public bool IsDestroyed
         {
             get { return isDestroyed; }
+            set { isDestroyed = value; }
         }
         // DECLARE a get property for footstepInterval:
         public float FootstepInterval
@@ -118,6 +121,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             _updateBehaviourHandler += (playerBehaviour as IUpdateEventListener).OnUpdate;
             // SUBSCRIBE the PlayerBehaviour to listen for collision events published by Player:
             _collisionBehaviourHandler += (playerBehaviour as ICollisionEventListener).OnCollision;
+            // SUBSCRIBE the PlayerBehaviour to listen for the death event published by Player:
+            _deathBehaviourHandler += (playerBehaviour as PlayerBehaviour).OnDeath;
 
             // SET PLAYER location in the world:
             this.EntityLocn = new Vector2(3000, 6000);
@@ -162,20 +167,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
         /// </summary>
         public void Kill()
         {
-            GameContent.DeathBone.Play(0.3f, 0.0f, 0.0f);
-            GameContent.DeathGore.Play(0.3f, 0.0f, 0.0f);
-            GameContent.DeathScream.Play(0.3f, 0.0f, 0.0f);
-            // SCHEDULE the Terminate Command for the Player Flashlight:
-            flashlight.ScheduleCommand(flashlight.TerminateMe);
-            // REMOVE the _flashlight from the Penumbra Engine:
-            Kernel.PENUMBRA.Lights.Remove(flashlight.Light);
-            // FIRE the RemoveMe Command to remove the Entity from the SceneGraph:
-            this.ScheduleCommand(RemoveMe);
-            // FIRE the TerminateMe Command to remove the Entity from the EntityPool:
-            this.ScheduleCommand(TerminateMe);
-            // FLAG that the player has been destroyed:
-            this.isDestroyed = true;
-            Kernel.STATE = State.GameOver;
+            // INVOKE the Death Behaviour Handler to enact player death behaviour:
+            _deathBehaviourHandler.Invoke(this, new EventArgs());
         }
 
         #region IMPLEMENTATION OF ICollisionResponder
