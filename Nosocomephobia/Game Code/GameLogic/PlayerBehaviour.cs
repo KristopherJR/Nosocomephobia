@@ -156,7 +156,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
 
                 // ADD the artefact to the player inventory
 
-                (MyEntity as Player).Inventory.Add((args.CollidedObject as IEntity).UName, (args.CollidedObject as Artefact));
+                (MyEntity as Player).Inventory.Add((args.CollidedObject as Artefact));
 
                 // PLAY the Artefacts Pickup SFX:
                 (args.CollidedObject as Artefact).PickupSFX.Play(0.3f, 0.0f, 0.0f);

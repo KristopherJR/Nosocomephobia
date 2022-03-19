@@ -410,7 +410,7 @@ namespace Nosocomephobia.Engine_Code.Services
                                         pathFinder.Path = newPath;
                                     }
                                 }
-                                catch(Exception e)
+                                catch(Exception)
                                 {
                                     // REVERT the teleportation if there was an issue:
                                     (pathFinder as Monster).EntityLocn = oldMonsterLocation;

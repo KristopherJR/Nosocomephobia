@@ -1,8 +1,9 @@
 ﻿using Nosocomephobia.Game_Code.Game_Entities;
+using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 0.2, 18-03-2022
+/// Version: 0.3, 19-03-2022
 namespace Nosocomephobia.Engine_Code.Interfaces
 {
     /// <summary>
@@ -10,18 +11,19 @@ namespace Nosocomephobia.Engine_Code.Interfaces
     /// </summary>
     public interface IInventory
     {
+        // Get property for Storage:
+        List<Artefact> Storage { get; }
         /// <summary>
         /// Adds an Artefact to the Inventory.
         /// </summary>
-        /// <param name="pName">The name to reference the Artefact by in the inventory.</param>
         /// <param name="pArtefact">The artefact to store in the inventory.</param>
-        void Add(string pName, Artefact pArtefact);
+        void Add(Artefact pArtefact);
 
         /// <summary>
-        /// Removes an Artefact to the Inventory.
+        /// Removes an Artefact from the Inventory.
         /// </summary>
-        /// <param name="pName">The name to reference the Artefact by in the inventory.</param>
-        void Remove(string pName);
+        /// <param name="pArtefact">The Artefact to remove.</param>
+        void Remove(Artefact pArtefact);
         /// <summary>
         /// Returns the total number of items in the inventory.
         /// </summary>

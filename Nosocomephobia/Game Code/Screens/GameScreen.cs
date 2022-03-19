@@ -2,20 +2,28 @@
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Interfaces;
-
+using Nosocomephobia.Game_Code.Game_Entities.Characters;
+using System.Collections.Generic;
 
 namespace Nosocomephobia.Game_Code.Screens
 {
     public class GameScreen : Screen
     {
+        private Dictionary<string, Component> _components;
         private IEngineManager _engineManager;
         private ISceneManager _sceneManager;
         private Camera _camera;
-        public GameScreen(IEngineManager engineManager, ISceneManager sceneManager, Camera camera)
+        public GameScreen(IEngineManager engineManager, ISceneManager sceneManager, Camera camera, Player player)
         {
             _engineManager = engineManager;
             _sceneManager = sceneManager;
             _camera = camera;
+
+            InventoryHUD inventoryHUD = new InventoryHUD(GameContent.InventoryHUD, player, camera);
+            inventoryHUD.Location = new Vector2(0, 300);
+
+            _components = new Dictionary<string, Component>();
+            _components.Add("inventory_HUD", inventoryHUD);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
@@ -31,7 +39,12 @@ namespace Nosocomephobia.Game_Code.Screens
 
             _sceneManager.DrawSceneGraphs(spriteBatch);
 
-            spriteBatch.End();  
+            foreach (KeyValuePair<string, Component> component in _components)
+            {
+                component.Value.Draw(gameTime, spriteBatch);
+            }
+            spriteBatch.End();
+
         }
 
         public override void Update(GameTime gameTime)

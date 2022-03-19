@@ -61,6 +61,7 @@ namespace Nosocomephobia.Game_Code
         public static Texture2D StartButtonHovered;
         public static Texture2D QuitButton;
         public static Texture2D QuitButtonHovered;
+        public static Texture2D InventoryHUD;
         #endregion
 
         #region SOUND EFFECTS
@@ -123,6 +124,7 @@ namespace Nosocomephobia.Game_Code
             StartButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected");
             QuitButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button");
             QuitButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected");
+            InventoryHUD = cm.Load<Texture2D>("assets/UI_Design/Testing/HUD/HUD_01");
             #endregion
 
             #region PLAYER ANIMATIONS

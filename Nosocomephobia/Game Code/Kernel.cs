@@ -142,15 +142,12 @@ namespace Nosocomephobia
             base.Initialize();
             // CREATE a new Screen for the Main Menu:
             Screen mainMenuScreen = new MainMenuScreen();
-            // CREATE a new Screen for the Game:
-            Screen gameScreen = new GameScreen(_engineManager, _sceneManager, _camera);
             // CREATE a new Screen for Game Over:
             Screen gameOverScreen = new GameOverScreen();
             // CREATE a new Screen for Game Over:
             Screen victoryScreen = new VictoryScreen();
             // ADD the new Screens to _screens:
             _screens.Add("Main_Menu", mainMenuScreen);
-            _screens.Add("Game", gameScreen);
             _screens.Add("GameOver", gameOverScreen);
             _screens.Add("Victory", victoryScreen);
 
@@ -239,6 +236,10 @@ namespace Nosocomephobia
             (_camera as Camera).SetFocus(player as GameEntity);
             // SET _flashlight focus onto Player:
             (player as Player).Flashlight.SetFocus(player as GameEntity);
+
+            // CREATE a new Screen for the Game:
+            Screen gameScreen = new GameScreen(_engineManager, _sceneManager, _camera, player as Player);
+            _screens.Add("Game", gameScreen);
             #endregion PLAYER
 
             #region MONSTER

@@ -14,9 +14,17 @@ namespace Nosocomephobia.Engine_Code.Components
     public class Inventory : IInventory
     {
         #region FIELDS
-        // DECLARE a Dictionary<string, Artefact>, call it _storage:
-        private Dictionary<string, Artefact> _storage;
+        // DECLARE a List<Artefact>, call it _storage:
+        private List<Artefact> _storage;
         #endregion FIELDS
+
+        #region PROPERTIES
+        // Get property for Storage:
+        public List<Artefact> Storage
+        {
+            get { return _storage; }
+        }
+        #endregion
 
         /// <summary>
         /// Constructor for class Inventory
@@ -24,7 +32,7 @@ namespace Nosocomephobia.Engine_Code.Components
         public Inventory()
         {
             // INITIALISE _storage:
-            _storage = new Dictionary<string, Artefact>();
+            _storage = new List<Artefact>();
         }
 
         /// <summary>
@@ -32,21 +40,20 @@ namespace Nosocomephobia.Engine_Code.Components
         /// </summary>
         /// <param name="pName">The name to reference the Artefact by in the inventory.</param>
         /// <param name="pArtefact">The artefact to store in the inventory.</param>
-        public void Add(string pName, Artefact pArtefact)
+        public void Add(Artefact pArtefact)
         {
             // ADD the Artefact to the storage:
-            _storage.Add(pName, pArtefact);
-            Debug.WriteLine("ADDED " + pName + "TO INVENTORY");
+            _storage.Add(pArtefact);
         }
 
         /// <summary>
-        /// Removes an Artefact to the Inventory.
+        /// Removes an Artefact from the Inventory.
         /// </summary>
-        /// <param name="pName">The name to reference the Artefact by in the inventory.</param>
-        public void Remove(string pName)
+        /// <param name="pArtefact">The Artefact to remove.</param>
+        public void Remove(Artefact pArtefact)
         {
             // REMOVE the Artefact from the storage:
-            _storage.Remove(pName);
+            _storage.Remove(pArtefact);
         }
         /// <summary>
         /// Returns the number of items in the inventory.
