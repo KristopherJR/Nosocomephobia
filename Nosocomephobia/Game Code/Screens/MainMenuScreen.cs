@@ -44,7 +44,7 @@ namespace Nosocomephobia.Game_Code.Screens
             Kernel.BackgroundMusic.Stop();
             SoundEffectInstance gameMusic = GameContent.BackgroundGame.CreateInstance();
             gameMusic.IsLooped = true;
-            gameMusic.Volume = 0.3f;
+            gameMusic.Volume = 0.6f;
             gameMusic.Play();
         }
 
@@ -80,7 +80,7 @@ namespace Nosocomephobia.Game_Code.Screens
                     {
                         if (!startHovered)
                         {
-                            GameContent.PageTurn.Play(0.1f, 0.0f, 0.0f);
+                            GameContent.PageTurn.Play(0.2f, 0.0f, 0.0f);
                             startHovered = true;
                         }
                         (component.Value as Button).Texture = GameContent.StartButtonHovered;
@@ -90,7 +90,7 @@ namespace Nosocomephobia.Game_Code.Screens
                     {
                         if (!quitHovered)
                         {
-                            GameContent.PageTurn.Play(0.1f, 0.0f, 0.0f);
+                            GameContent.PageTurn.Play(0.2f, 0.0f, 0.0f);
                             quitHovered = true;
                         }
                         (component.Value as Button).Texture = GameContent.QuitButtonHovered;

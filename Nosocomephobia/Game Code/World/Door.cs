@@ -54,7 +54,7 @@ namespace Nosocomephobia.Game_Code.World
             // CHANGE the doors Sprite to unlocked:
             this.EntitySprite = new Sprite(GameContent.DoorOpen, 0, 0, GameContent.DoorOpen.Width, GameContent.DoorOpen.Height);
             // PLAY the unlock sfx:
-            GameContent.DoorUnlock.Play(0.3f,0.0f,0.0f);
+            GameContent.DoorUnlock.Play(0.6f,0.0f,0.0f);
             // FLAG that the door is no longer locked:
             _isLocked = false;
         }
@@ -69,7 +69,7 @@ namespace Nosocomephobia.Game_Code.World
             // CHANGE the doors Sprite to locked:
             this.EntitySprite = new Sprite(GameContent.DoorClosed, 0, 0, GameContent.DoorClosed.Width, GameContent.DoorClosed.Height);
             // PLAY the unlock sfx:
-            GameContent.DoorUnlock.Play(0.3f, 0.0f, 0.0f);
+            GameContent.DoorUnlock.Play(0.6f, 0.0f, 0.0f);
             // FLAG that the door is now locked:
             _isLocked = true;
         }

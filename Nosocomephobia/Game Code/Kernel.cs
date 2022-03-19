@@ -194,7 +194,7 @@ namespace Nosocomephobia
             // SET the game background music:
             BackgroundMusic = GameContent.BackgroundMenu.CreateInstance();
             BackgroundMusic.IsLooped = true;
-            BackgroundMusic.Volume = 0.3f;
+            BackgroundMusic.Volume = 0.6f;
             BackgroundMusic.Play();
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);

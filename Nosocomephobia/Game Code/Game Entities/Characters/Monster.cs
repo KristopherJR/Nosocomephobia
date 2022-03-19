@@ -272,7 +272,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // GET a random number for the size of the soundEffects List:
             int n = random.Next(soundEffects.Count);
             // PLAY a random SoundEffect:
-            soundEffects[n].Play(0.1f, 0.0f, 0.0f);
+            soundEffects[n].Play(0.2f, 0.0f, 0.0f);
         }
 
         /// <summary>
