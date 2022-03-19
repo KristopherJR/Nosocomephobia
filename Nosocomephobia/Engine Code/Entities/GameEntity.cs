@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Interfaces;
+using Nosocomephobia.Game_Code.World;
 using System;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.1, 15-03-2022
+/// Version: 1.2, 19-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Entities
 {
@@ -128,6 +129,16 @@ namespace Nosocomephobia.Engine_Code.Entities
                                           (int)(this.EntityLocn.Y + (this.EntitySprite.TextureHeight * 0.4)),
                                           (int)(this.EntitySprite.TextureWidth * 0.70),
                                           (int)(this.EntitySprite.TextureHeight * 0.60));
+                // RETURN the newHitBox:
+                return newHitBox;
+            }
+            else if(this is Door)
+            {
+                // CALCULATE a HitBox that fills the entire entity:
+                newHitBox = new Rectangle((int)(this.EntityLocn.X),
+                                          (int)(this.EntityLocn.Y),
+                                          (int)(this.EntitySprite.TextureWidth),
+                                          (int)(this.EntitySprite.TextureHeight));
                 // RETURN the newHitBox:
                 return newHitBox;
             }
