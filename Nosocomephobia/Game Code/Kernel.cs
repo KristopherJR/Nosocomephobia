@@ -359,6 +359,7 @@ namespace Nosocomephobia
 
             // SET their locations:
             _objectPlacementManager.RandomiseArtefactPlacements();
+            (door as GameEntity).EntityLocn = new Vector2(2976, 5665);
 
             // SPAWN them onto the Artefacts Layer in the Game SceneGraph:
             _sceneManager.Spawn("GameScene", "Artefacts", journalArtefact);
