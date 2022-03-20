@@ -9,13 +9,17 @@ using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 07-02-2022
+/// Version: 1.3, 20-03-2022
 /// </summary>
 namespace Nosocomephobia.Engine_Code.Components
 {
     public class Camera : Entity, IInputListener
     {
         #region FIELDS
+        // DECLARE a static float, call it MIN_ZOOM_ASPECT and set it to 0.5f:
+        private static float MIN_ZOOM_ASPECT = 0.5f;
+        // DECLARE a static float, call it MAX_ZOOM_ASPECT and set it to 1.2f:
+        private static float MAX_ZOOM_ASPECT = 1.2f;
         // DECLARE a Matrix, call it 'transform':
         private Matrix transform;
         // DECLARE a float, call it 'zoomAspect':
@@ -26,6 +30,7 @@ namespace Nosocomephobia.Engine_Code.Components
         private Viewport viewport;
         // DECLARE a GameEntity, call it 'focusedEntity':
         private GameEntity focusedEntity;
+        
         #endregion
         #region PROPERTIES
         public Matrix Transform
@@ -41,7 +46,7 @@ namespace Nosocomephobia.Engine_Code.Components
         {
             // INITIALIZE fields:
             transform = new Matrix();
-            zoomAspect = 2.0f;
+            zoomAspect = 1.0f;
             scrollSpeed = 0.1f;
         }
 
@@ -85,6 +90,19 @@ namespace Nosocomephobia.Engine_Code.Components
         {
             // SET zoomAspect to the scollValue in the eventInformation, * scrollSpeed:
             zoomAspect += eventInformation.ScrollValue * scrollSpeed;
+            
+            // IF the player has zoomed further than the minimum zoom allowed:
+            if(zoomAspect < MIN_ZOOM_ASPECT)
+            {
+                // RESET the zoom aspect to the minimum value:
+                zoomAspect = MIN_ZOOM_ASPECT;
+            }
+            // IF the player has zoomed further than the maximum zoom allowed:
+            if (zoomAspect > MAX_ZOOM_ASPECT)
+            {
+                // RESET the zoom aspect to the maximum value:
+                zoomAspect = MAX_ZOOM_ASPECT;
+            }
         }
         #region _
         public void OnNewInput(object sender, OnInputEventArgs eventInformation)
