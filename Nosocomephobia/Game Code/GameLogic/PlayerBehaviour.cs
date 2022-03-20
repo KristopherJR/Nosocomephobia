@@ -168,7 +168,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
             if (args.CollidedObject is Door)
             {
                 // CHECK the player has collected all Artefacts:
-                if ((MyEntity as Player).Inventory.GetCount() == 0)
+                if ((MyEntity as Player).Inventory.GetCount() == 4)
                 {
                     // CHECK the player has pressed Enter to unlock the door:
                     if (Keyboard.GetState().IsKeyDown(Keys.Enter))

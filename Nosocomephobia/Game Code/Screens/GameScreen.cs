@@ -9,21 +9,23 @@ namespace Nosocomephobia.Game_Code.Screens
 {
     public class GameScreen : Screen
     {
-        private Dictionary<string, Component> _components;
         private IEngineManager _engineManager;
         private ISceneManager _sceneManager;
         private Camera _camera;
+        private InventoryHUD _inventoryHUD;
+
+        public InventoryHUD InventoryHUD
+        {
+            get { return _inventoryHUD; }
+        }
         public GameScreen(IEngineManager engineManager, ISceneManager sceneManager, Camera camera, Player player)
         {
             _engineManager = engineManager;
             _sceneManager = sceneManager;
             _camera = camera;
 
-            InventoryHUD inventoryHUD = new InventoryHUD(GameContent.InventoryHUD, player, camera);
-            inventoryHUD.Location = new Vector2(0, 300);
 
-            _components = new Dictionary<string, Component>();
-            _components.Add("inventory_HUD", inventoryHUD);
+            _inventoryHUD = new InventoryHUD(GameContent.InventoryHUD, player);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
@@ -39,12 +41,7 @@ namespace Nosocomephobia.Game_Code.Screens
 
             _sceneManager.DrawSceneGraphs(spriteBatch);
 
-            foreach (KeyValuePair<string, Component> component in _components)
-            {
-                component.Value.Draw(gameTime, spriteBatch);
-            }
             spriteBatch.End();
-
         }
 
         public override void Update(GameTime gameTime)

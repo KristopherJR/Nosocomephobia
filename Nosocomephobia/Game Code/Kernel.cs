@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 3.1, 17-03-2022
+/// Version: 3.3, 20-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -63,6 +63,8 @@ namespace Nosocomephobia
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        // DECLARE a SpriteBatch for the InventoryHUD to be drawn onto separately, call it _hudSpriteBatch:
+        private SpriteBatch _hudSpriteBatch;
 
         // DECLARE a reference to an IEngineManager, call it _engineManager:
         private IEngineManager _engineManager;
@@ -185,7 +187,9 @@ namespace Nosocomephobia
         /// </summary>
         protected override void LoadContent()
         {
+            // INITALISE the SpriteBatches:
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _hudSpriteBatch = new SpriteBatch(GraphicsDevice);
             // LOADING the game content:
             GameContent.LoadContent(Content);
             // SET the game background music:
@@ -459,7 +463,10 @@ namespace Nosocomephobia
         {
             // DRAW the Game Screen:
             _screens["Game"].Draw(gameTime, _spriteBatch, this.GraphicsDevice);
+            // APPLY the Penumbra changes:
             base.Draw(gameTime);
+            // DRAW the InventoryHUD AFTER so that the Penumbra lighting does not affect the HUD:
+            (_screens["Game"] as GameScreen).InventoryHUD.Draw(gameTime, _hudSpriteBatch);
         }
         /// <summary>
         /// Draws the Pause Screen.
