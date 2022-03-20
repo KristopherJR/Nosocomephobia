@@ -54,9 +54,13 @@ namespace Nosocomephobia
         public static Vector2 RIGHT = new Vector2(1, 0);
 
         // DECLARE a const String, call it TILE_MAP_FLOOR_PATH. Set it to the File Path of the floor layer: 
-        private const String TILE_MAP_FLOOR_PATH = "Content/3x-floors-quadrants.csv";
-        // DECLARE a const String, call it TILE_MAP_COLLISION_PATH. Set it to the File Path of the collision layer:
-        private const String TILE_MAP_COLLISION_PATH = "Content/3x-walls.csv";
+        private const String TILE_MAP_FLOOR_PATH = "Content/nosocomephobia_Floor.csv";
+        // DECLARE a const String, call it TILE_MAP_WALLS_PATH. Set it to the File Path of the walls layer:
+        private const String TILE_MAP_WALLS_PATH = "Content/nosocomephobia_Walls.csv";
+        // DECLARE a const String, call it TILE_MAP_OBJECTS_PATH. Set it to the File Path of the objects layer:
+        private const String TILE_MAP_OBJECTS_NON_COLLIDABLE_PATH = "Content/nosocomephobia_Objects-Non-Collidable.csv";
+        // DECLARE a const String, call it TILE_MAP_OBJECTS_PATH. Set it to the File Path of the objects layer:
+        private const String TILE_MAP_OBJECTS_COLLIDABLE_PATH = "Content/nosocomephobia_Objects-Collidable.csv";
 
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
         private bool _devMode = true;
@@ -86,8 +90,12 @@ namespace Nosocomephobia
         private Camera _camera;
         // DECLARE a TileMap, call it '_tileMapFloor':
         private TileMap _tileMapFloor;
-        // DECLARE a TileMap, call it '_tileMapCollisions':
-        private TileMap _tileMapCollisions;
+        // DECLARE a TileMap, call it '_tileMapWalls':
+        private TileMap _tileMapWalls;
+        // DECLARE a TileMap, call it '_tileMapObjectsNonCollidable':
+        private TileMap _tileMapObjectsNonCollidable;
+        // DECLARE a TileMap, call it '_tileMapObjectsnCollidable':
+        private TileMap _tileMapObjectsCollidable;
         // DECLARE a HullMap, call it '_wallHullMap':
         private HullMap _wallHullMap;
         // DECLARE a Dictionary<string, Screen>, call it _screens:
@@ -201,7 +209,9 @@ namespace Nosocomephobia
             BackgroundMusic.Play();
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
-            _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
+            _tileMapWalls = new TileMap(TILE_MAP_WALLS_PATH, true);
+            _tileMapObjectsNonCollidable = new TileMap(TILE_MAP_OBJECTS_NON_COLLIDABLE_PATH, false);
+            _tileMapObjectsCollidable = new TileMap(TILE_MAP_OBJECTS_COLLIDABLE_PATH, true);
             _objectPlacementManager = new ObjectPlacementManager(_tileMapFloor);
             // CREATE the games SceneGraphs:
             this.CreateSceneGraphs();
@@ -220,8 +230,10 @@ namespace Nosocomephobia
             // CREATE Layers for GameScene:
             _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapFloor", 1);
             _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapWalls", 2);
-            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Artefacts", 3);
-            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Entities", 4);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapObjectsNonCollidable", 3);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("TileMapObjectsCollidable", 4);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Artefacts", 5);
+            _sceneManager.SceneGraphs["GameScene"].CreateLayer("Entities", 6);
         }
 
         private void SpawnGameEntities()
@@ -255,7 +267,7 @@ namespace Nosocomephobia
             // SPAWN monster into the 'GameSceneGraph' on the 'Entities' layer:
             _sceneManager.Spawn("GameScene", "Entities", monster);
             // SET the monsters Navigation Gris to the collision map:
-            _navigationManager.NavigationGrid = _tileMapCollisions;
+            _navigationManager.NavigationGrid = _tileMapWalls;
             // SET the monsters target to the player:
             _navigationManager.Target = player as GameEntity;
             // ADD the monster as a path finder to the Navigation Manager:
@@ -264,7 +276,7 @@ namespace Nosocomephobia
 
             #region HULLS
             // INITIALISE the HullMap and pass in the collision TileMap as a parameter:
-            _wallHullMap = new HullMap(_tileMapCollisions);
+            _wallHullMap = new HullMap(_tileMapWalls);
             // ITERATE throught the HullMap:
             foreach (Hull h in _wallHullMap.GetHulls())
             {
@@ -286,13 +298,35 @@ namespace Nosocomephobia
             }
 
             // FOREACH Tile in TileMap collision Layer:
-            foreach (Tile t in _tileMapCollisions.GetTileMap())
+            foreach (Tile t in _tileMapWalls.GetTileMap())
             {
                 // TEST that the tile is valid before spawning it to the scene graph:
                 if (t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
                     _sceneManager.Spawn("GameScene", "TileMapWalls", t);
+                }
+            }
+
+            // FOREACH Tile in TileMap objects non-collidable Layer:
+            foreach (Tile t in _tileMapObjectsNonCollidable.GetTileMap())
+            {
+                // TEST that the tile is valid before spawning it to the scene graph:
+                if (t.IsValidTile)
+                {
+                    // SPAWN the Tiles into the SceneGraph:
+                    _sceneManager.Spawn("GameScene", "TileMapObjectsNonCollidable", t);
+                }
+            }
+
+            // FOREACH Tile in TileMap objects collidable Layer:
+            foreach (Tile t in _tileMapObjectsCollidable.GetTileMap())
+            {
+                // TEST that the tile is valid before spawning it to the scene graph:
+                if (t.IsValidTile)
+                {
+                    // SPAWN the Tiles into the SceneGraph:
+                    _sceneManager.Spawn("GameScene", "TileMapObjectsCollidable", t);
                 }
             }
             #endregion TILES

@@ -497,3 +497,7 @@ D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephob
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_scream.ogg
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\assets\audio\death_scream.xnb
 D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\3x-floors-quadrants.csv
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\nosocomephobia_Floor.csv
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\nosocomephobia_Objects-Non-Collidable.csv
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\nosocomephobia_Walls.csv
+D:\University\Year 3\COMP3451 - Advanced Game Design\Nosocomephobia\Nosocomephobia\bin\Debug\netcoreapp3.1\Content\nosocomephobia_Objects-Collidable.csv

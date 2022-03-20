@@ -13,15 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin 3x-floors.csv
-/copy:3x-floors.csv
-
-#begin 3x-floors-quadrants.csv
-/copy:3x-floors-quadrants.csv
-
-#begin 3x-walls.csv
-/copy:3x-walls.csv
-
 #begin assets/audio/background_game.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -832,6 +823,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background03.png
+
+#begin nosocomephobia_Floor.csv
+/copy:nosocomephobia_Floor.csv
+
+#begin nosocomephobia_Objects-Collidable.csv
+/copy:nosocomephobia_Objects-Collidable.csv
+
+#begin nosocomephobia_Objects-Non-Collidable.csv
+/copy:nosocomephobia_Objects-Non-Collidable.csv
+
+#begin nosocomephobia_Walls.csv
+/copy:nosocomephobia_Walls.csv
 
 #begin tilesheet16.png
 /importer:TextureImporter
