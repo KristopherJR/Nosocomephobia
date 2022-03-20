@@ -16,6 +16,9 @@
 #begin 3x-floors.csv
 /copy:3x-floors.csv
 
+#begin 3x-floors-quadrants.csv
+/copy:3x-floors-quadrants.csv
+
 #begin 3x-walls.csv
 /copy:3x-walls.csv
 

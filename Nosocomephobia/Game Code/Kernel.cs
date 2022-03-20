@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 3.3, 20-03-2022
+/// Version: 3.4, 20-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -54,7 +54,7 @@ namespace Nosocomephobia
         public static Vector2 RIGHT = new Vector2(1, 0);
 
         // DECLARE a const String, call it TILE_MAP_FLOOR_PATH. Set it to the File Path of the floor layer: 
-        private const String TILE_MAP_FLOOR_PATH = "Content/3x-floors.csv";
+        private const String TILE_MAP_FLOOR_PATH = "Content/3x-floors-quadrants.csv";
         // DECLARE a const String, call it TILE_MAP_COLLISION_PATH. Set it to the File Path of the collision layer:
         private const String TILE_MAP_COLLISION_PATH = "Content/3x-walls.csv";
 
@@ -69,16 +69,18 @@ namespace Nosocomephobia
         // DECLARE a reference to an IEngineManager, call it _engineManager:
         private IEngineManager _engineManager;
 
-        // DECLARE an EntityManager, call it 'entityManager'. Store it as its interface IEntityManager:
+        // DECLARE an IEntityManager, call it 'entityManager':
         private IEntityManager _entityManager;
-        // DECLARE a SceneManager, call it '_sceneManager'. Store it as its interface ISceneManager:
+        // DECLARE an ISceneManager, call it '_sceneManager':
         private ISceneManager _sceneManager;
-        // DECLARE a CollisionManager, call it '_collisionManager'. Store it as its interface ICollisionManager:
+        // DECLARE an ICollisionManager, call it '_collisionManager':
         private ICollisionManager _collisionManager;
-        // DECLARE an InputManager, call it '_inputManager'. Store it as its interface IInputManager:
+        // DECLARE an IInputManager, call it '_inputManager':
         private IInputManager _inputManager;
-        // DECLARE an NavigationManager, call it '_navigationManager'. Store it as its interface INavigationManager:
+        // DECLARE an INavigationManager, call it '_navigationManager':
         private INavigationManager _navigationManager;
+        // DECLARE an IObjectPlacementManager, call it '_objectPlacementManager':
+        private IObjectPlacementManager _objectPlacementManager;
 
         // DECLARE an IEntity, call it '_camera':
         private Camera _camera;
@@ -200,6 +202,7 @@ namespace Nosocomephobia
             // INITALIZE tilemaps:
             _tileMapFloor = new TileMap(TILE_MAP_FLOOR_PATH, false);
             _tileMapCollisions = new TileMap(TILE_MAP_COLLISION_PATH, true);
+            _objectPlacementManager = new ObjectPlacementManager(_tileMapFloor);
             // CREATE the games SceneGraphs:
             this.CreateSceneGraphs();
             // SPAWN the game objects:
@@ -314,12 +317,14 @@ namespace Nosocomephobia
             (skeletonKeyArtefact as Artefact).PickupSFX = GameContent.PickupKey;
             (bonesawArtefact as Artefact).PickupSFX = GameContent.PickupSaw;
 
+            // ADD them to the ObjectPlacementManager:
+            _objectPlacementManager.Artefacts.Add(journalArtefact as Artefact);
+            _objectPlacementManager.Artefacts.Add(handArtefact as Artefact);
+            _objectPlacementManager.Artefacts.Add(skeletonKeyArtefact as Artefact);
+            _objectPlacementManager.Artefacts.Add(bonesawArtefact as Artefact);
+
             // SET their locations:
-            (journalArtefact as GameEntity).EntityLocn = new Vector2(200, 7175);
-            (handArtefact as GameEntity).EntityLocn = new Vector2(1780, 4275);
-            (skeletonKeyArtefact as GameEntity).EntityLocn = new Vector2(5710, 3485);
-            (bonesawArtefact as GameEntity).EntityLocn = new Vector2(4770, 6905);
-            (door as GameEntity).EntityLocn = new Vector2(2976,5665);
+            _objectPlacementManager.RandomiseArtefactPlacements();
 
             // SPAWN them onto the Artefacts Layer in the Game SceneGraph:
             _sceneManager.Spawn("GameScene", "Artefacts", journalArtefact);

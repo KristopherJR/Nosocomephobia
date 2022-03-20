@@ -7,7 +7,7 @@ using System.Linq;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 15-03-2022
+/// Version: 1.3, 20-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
@@ -64,6 +64,8 @@ namespace Nosocomephobia.Game_Code.World
                     bool isValidTile = true;
                     // DECLARE a bool, call it isHull and set it to true:
                     bool isHull = false;
+                    // DECLARe an int, call it quadrant:
+                    int quadrant = 0;
                     // IF tileIdParse < 0:
                     if (tileIdParse < 0)
                     {
@@ -79,8 +81,31 @@ namespace Nosocomephobia.Game_Code.World
                     {
                         isHull = true;
                     }
+                    // CHECK the tileID, if its 35 then the tile belongs to quadrant 1:
+                    if (tileIdParse == 35)
+                    {
+                        quadrant = 1;
+                    }
+                    // CHECK the tileID, if its 0 then the tile belongs to quadrant 2:
+                    if (tileIdParse == 0)
+                    {
+                        quadrant = 2;
+                    }
+                    // CHECK the tileID, if its 85 then the tile belongs to quadrant 3:
+                    if (tileIdParse == 85)
+                    {
+                        quadrant = 3;
+                    }
+                    // CHECK the tileID, if its 110 then the tile belongs to quadrant 4:
+                    if (tileIdParse == 110)
+                    {
+                        quadrant = 4;
+                    }
+                    
                     // DECLARE a Tile, call it newTile and pass in tileIdParse:
                     Tile newTile = new Tile(tileIdParse);
+                    // SET the tiles Quadrant:
+                    newTile.TileQuadrant = quadrant;
                     // SET newTile.IsCollidable to true if the layer is collidable and it's a valid tile, else false:
                     newTile.IsCollidable = isLayerCollidable && isValidTile;
                     // CHECK if the tile is valid based on its parse, if its not set the property to false:

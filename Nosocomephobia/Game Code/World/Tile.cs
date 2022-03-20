@@ -4,7 +4,7 @@ using Nosocomephobia.Engine_Code.Interfaces;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.2, 19-03-2022
+/// Version: 1.3, 20-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.World
 {
@@ -15,7 +15,10 @@ namespace Nosocomephobia.Game_Code.World
         private bool _isValidTile;
         // DECLARE a bool, call it _isHull:
         private bool _isHull;
+        // DECLARE an int, call it _tildID:
         private int _tileID;
+        // DECLARE an int, call it _tileQuadrant:
+        private int _tileQuadrant;
         #endregion
 
         #region PROPERTIES
@@ -30,6 +33,12 @@ namespace Nosocomephobia.Game_Code.World
         {
             get { return _isHull; }
             set { _isHull = value; }
+        }
+        // DECLARE a get-set property for _tileQuadrant:
+        public int TileQuadrant
+        {
+            get { return _tileQuadrant; }
+            set { _tileQuadrant = value; }
         }
         #endregion
 
