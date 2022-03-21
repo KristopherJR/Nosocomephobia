@@ -87,7 +87,7 @@ namespace Nosocomephobia.Game_Code.World
                         quadrant = 1;
                     }
                     // CHECK the tileID, if its 0 then the tile belongs to quadrant 2:
-                    if (tileIdParse == 0)
+                    if (tileIdParse == 110 || tileIdParse == 10)
                     {
                         quadrant = 2;
                     }
@@ -97,7 +97,7 @@ namespace Nosocomephobia.Game_Code.World
                         quadrant = 3;
                     }
                     // CHECK the tileID, if its 110 then the tile belongs to quadrant 4:
-                    if (tileIdParse == 110)
+                    if (tileIdParse == 0)
                     {
                         quadrant = 4;
                     }

@@ -334,28 +334,28 @@ namespace Nosocomephobia
             #region ARTEFACTS
             // CREATE Artefacts with Entity Factory:
             IEntity journalArtefact = _entityManager.CreateEntity<Artefact>();
-            IEntity handArtefact = _entityManager.CreateEntity<Artefact>();
-            IEntity skeletonKeyArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity bonesawArtefact = _entityManager.CreateEntity<Artefact>();
+            IEntity skeletonKeyArtefact = _entityManager.CreateEntity<Artefact>();
+            IEntity handArtefact = _entityManager.CreateEntity<Artefact>();
             IEntity door = _entityManager.CreateEntity<Door>();
 
             // SET their sprites:
             (journalArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Journal");
-            (handArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Hand");
-            (skeletonKeyArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("SkeletonKey");
             (bonesawArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Bonesaw");
+            (skeletonKeyArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("SkeletonKey");
+            (handArtefact as GameEntity).EntitySprite = GameContent.GetArtefactSprite("Hand");
 
             // SET their SFXs:
             (journalArtefact as Artefact).PickupSFX = GameContent.PickupJournal;
-            (handArtefact as Artefact).PickupSFX = GameContent.PickupHand;
-            (skeletonKeyArtefact as Artefact).PickupSFX = GameContent.PickupKey;
             (bonesawArtefact as Artefact).PickupSFX = GameContent.PickupSaw;
+            (skeletonKeyArtefact as Artefact).PickupSFX = GameContent.PickupKey;
+            (handArtefact as Artefact).PickupSFX = GameContent.PickupHand;
 
             // ADD them to the ObjectPlacementManager:
             _objectPlacementManager.Artefacts.Add(journalArtefact as Artefact);
-            _objectPlacementManager.Artefacts.Add(handArtefact as Artefact);
-            _objectPlacementManager.Artefacts.Add(skeletonKeyArtefact as Artefact);
             _objectPlacementManager.Artefacts.Add(bonesawArtefact as Artefact);
+            _objectPlacementManager.Artefacts.Add(skeletonKeyArtefact as Artefact);
+            _objectPlacementManager.Artefacts.Add(handArtefact as Artefact);
 
             // SET their locations:
             _objectPlacementManager.RandomiseArtefactPlacements();
