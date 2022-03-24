@@ -324,16 +324,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // RESPOND to new input, checking which key was released by the user:
             switch (eventInformation.KeyReleased)
             {
-                case Keys.F:
-                    // KILL the Player:
-                    this.Kill();
-                    break;
                 case Keys.LeftShift:
                     // FLAG the player has released sprint key:
                     this.isSprinting = !isSprinting;
-
                     break;
-
                 case Keys.W:
                     // STOP the players movement:
                     this.EntityVelocity = new Vector2(0, 0);
