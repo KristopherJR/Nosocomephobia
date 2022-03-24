@@ -15,6 +15,6 @@ namespace Nosocomephobia.Engine_Code.Exceptions
         /// Constructor for SceneGraphNotActiveException. Passes the error message to base.
         /// </summary>
         /// <param name="pMessage">The message to be passed with the Exception.</param>
-        public SceneGraphNotActiveException(string pMessage) : base(pMessage) {}
+        public SceneGraphNotActiveException(string pMessage) : base(pMessage) { }
     }
 }

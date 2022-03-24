@@ -132,7 +132,7 @@ namespace Nosocomephobia.Engine_Code.Entities
                 // RETURN the newHitBox:
                 return newHitBox;
             }
-            else if(this is Door)
+            else if (this is Door)
             {
                 // CALCULATE a HitBox that fills the entire entity:
                 newHitBox = new Rectangle((int)(this.EntityLocn.X),

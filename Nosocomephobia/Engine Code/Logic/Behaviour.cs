@@ -1,6 +1,5 @@
 ﻿using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
-using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -32,7 +31,7 @@ namespace Nosocomephobia.Engine_Code.Logic
         #region IMPLEMENTATION OF IUpdateEventListener
         public virtual void OnUpdate(object source, OnUpdateEventArgs args)
         {
-         
+
         }
         #endregion
 

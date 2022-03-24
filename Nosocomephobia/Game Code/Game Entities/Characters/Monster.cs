@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code.World;
-using Penumbra;
 using System;
 using System.Collections.Generic;
 
@@ -141,10 +139,10 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     // moving left
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.MonsterWalkLeft);
                 }
-                
+
                 // DECLARE a Vector2, call it newVelocity and set it to speed * direction:
                 Vector2 newVelocity = direction * speed;
-                
+
                 // ADD the velocity to the entity location:
                 this.EntityLocn += newVelocity;
                 // IF the Distance between the entity location and the current tile in the path is less than 0.5 (I.E the entity is close enough to its goal tile):
@@ -154,7 +152,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     i++;
                 }
                 // IF the player has moved through the entire path:
-                if (i == path.Count - (path.Count -2))
+                if (i == path.Count - (path.Count - 2))
                 {
                     // SET the entity velocity to 0:
                     entityVelocity = Vector2.Zero;
@@ -190,11 +188,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             Vector2 randomDistance = RandomiseTeleportationDistance(pTargetsTileIndex, pNavigationGrid);
 
             // SELECT a Tile near the target (between 5-10 tiles away):
-            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileIndex.X + (int)randomDistance.X, 
+            Tile teleportTile = pNavigationGrid.GetTileAtIndex((int)pTargetsTileIndex.X + (int)randomDistance.X,
                                                                (int)pTargetsTileIndex.Y + (int)randomDistance.Y);
 
             // CHECK the Tile is valid and in bounds:
-            if(!teleportTile.IsCollidable)
+            if (!teleportTile.IsCollidable)
             {
                 // CHANGE Monster location to the new tile:
                 this.EntityLocn = teleportTile.EntityLocn;
@@ -211,7 +209,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             // DECLARE an instance of Random:
             Random random = new Random();
 
-            while(!tileFound)
+            while (!tileFound)
             {
                 // GET a random number between 1-4:
                 int posOrNeg = random.Next(1, 5);
@@ -303,11 +301,11 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     idleTimer = 0.0f;
                 }
             }
-            if(soundPlayed)
+            if (soundPlayed)
             {
                 // INCREMENT sfxTimer by GameTime until it equals sfxInterval:
                 sfxTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if(sfxTimer >= sfxInterval)
+                if (sfxTimer >= sfxInterval)
                 {
                     // FLAG that the Monster is ready to play another SFX:
                     canPlaySound = true;

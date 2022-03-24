@@ -15,6 +15,6 @@ namespace Nosocomephobia.Engine_Code.Exceptions
         /// Constructor for ElementNotFoundException. Passes the error message to base.
         /// </summary>
         /// <param name="pMessage">The message to be passed with the Exception.</param>
-        public ElementNotFoundException(string pMessage) : base(pMessage) {}
+        public ElementNotFoundException(string pMessage) : base(pMessage) { }
     }
 }

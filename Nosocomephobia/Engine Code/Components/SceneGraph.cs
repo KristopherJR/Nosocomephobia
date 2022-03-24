@@ -39,8 +39,8 @@ namespace Nosocomephobia.Engine_Code.Components
 
         // get property for Entities:
         public IDictionary<string, ILayer> Layers
-        { 
-            get { return _layers; } 
+        {
+            get { return _layers; }
         }
         #endregion
 
@@ -64,7 +64,7 @@ namespace Nosocomephobia.Engine_Code.Components
         public void CreateLayer(string pLayerName, int pDrawOrder)
         {
             // CHECK that the name of the new Layer is unique:
-            if(_layers.ContainsKey(pLayerName))
+            if (_layers.ContainsKey(pLayerName))
             {
                 throw new NameNotUniqueException("The provided Layer name: " + pLayerName + " already exists within this SceneGraph.");
             }
@@ -90,10 +90,10 @@ namespace Nosocomephobia.Engine_Code.Components
             if (_isActive)
             {
                 // DRAW all entities in each layers, in order of each Layer Draw Order:
-                foreach(KeyValuePair<string, ILayer> layer in _layers)
+                foreach (KeyValuePair<string, ILayer> layer in _layers)
                 {
                     // CHECK the layer is active:
-                    if(layer.Value.IsActive)
+                    if (layer.Value.IsActive)
                     {
                         // DRAW the layer:
                         layer.Value.Draw(pSpriteBatch);
@@ -156,7 +156,7 @@ namespace Nosocomephobia.Engine_Code.Components
             {
                 // THROW an ElementNotFoundException:
                 throw new ElementNotFoundException("The specified layer: " + pLayerName + " does not exist in this SceneGraph.");
-            }   
+            }
         }
         #endregion
     }

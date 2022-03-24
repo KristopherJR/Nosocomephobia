@@ -48,7 +48,7 @@ namespace Nosocomephobia.Engine_Code.Entities
         public ICommand TerminateMe
         {
             get { return _terminateMe; }
-            set { _terminateMe = value; }   
+            set { _terminateMe = value; }
         }
         /// <summary>
         /// RemoveMe get-set property.

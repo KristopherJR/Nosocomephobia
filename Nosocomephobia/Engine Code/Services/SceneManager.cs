@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Components;
-using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Exceptions;
-using Nosocomephobia.Engine_Code.Factories;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.Logic;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -84,7 +81,7 @@ namespace Nosocomephobia.Engine_Code.Services
         public void CreateSceneGraph(string pSceneGraphName)
         {
             // CHECK if pName is a key already present in the _sceneGraphs Dictionary:
-            if(_sceneGraphs.ContainsKey(pSceneGraphName))
+            if (_sceneGraphs.ContainsKey(pSceneGraphName))
             {
                 // THROW a NameNotUniqueException:
                 throw new NameNotUniqueException("The specified name: " + pSceneGraphName + " is not unique.");
@@ -123,13 +120,13 @@ namespace Nosocomephobia.Engine_Code.Services
         public void DrawSceneGraphs(SpriteBatch pSpriteBatch)
         {
             // ITERATE through all SceneGraphs:
-            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
+            foreach (KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
             {
                 // CHECK that the specified SceneGraph is currently 'Active':
                 if (sceneGraph.Value.IsActive)
                 {
                     // DRAW each entity to the provided SpriteBatch:
-                    sceneGraph.Value.Draw(pSpriteBatch);  
+                    sceneGraph.Value.Draw(pSpriteBatch);
                 }
             }
         }
@@ -146,7 +143,7 @@ namespace Nosocomephobia.Engine_Code.Services
             if (_sceneGraphs.ContainsKey(pSceneGraphName))
             {
                 // CREATE a new ICommand, call it removeMe. Make the Command of type <string,string,string,int>. Pass in an action that points to this.Despawn and the newEntities unique name and ID:
-                ICommand removeMe = new Command<string,string,string,int>(this.Despawn, pSceneGraphName, pLayerName, pEntity.UName, pEntity.UID);
+                ICommand removeMe = new Command<string, string, string, int>(this.Despawn, pSceneGraphName, pLayerName, pEntity.UName, pEntity.UID);
                 // SET the ICommand TerminateMe in the newEntity to terminateMe:
                 (pEntity as IEntityInternal).RemoveMe = removeMe;
 
@@ -178,7 +175,7 @@ namespace Nosocomephobia.Engine_Code.Services
                     // IF the current entity matches the provided UID or UName:
                     if (_sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i].UName == pUName || _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i].UID == pUID)
                     {
-                        
+
                         // STORE a reference to matching Entity, call it entityToDespawn:
                         IEntity entityToDespawn = _sceneGraphs[pSceneGraphName].Layers[pLayerName].Entities[i];
                         if (_inputManager.Subscribers.Contains((entityToDespawn as IInputListener)))
@@ -188,7 +185,7 @@ namespace Nosocomephobia.Engine_Code.Services
                                                 (entityToDespawn as IInputListener).OnNewInput,
                                                 (entityToDespawn as IInputListener).OnKeyReleased,
                                                 (entityToDespawn as IInputListener).OnNewMouseInput);
-                        
+
                             // BREAK the for loop:
                             break;
                         }
@@ -217,10 +214,10 @@ namespace Nosocomephobia.Engine_Code.Services
         public void RefreshInputEvents()
         {
             // ITERATE through all SceneGraphs:
-            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
+            foreach (KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
             {
                 // CHECK which ones are active:
-                if(sceneGraph.Value.IsActive)
+                if (sceneGraph.Value.IsActive)
                 {
                     // IF The name of the active SceneGraph is "GameScene":
                     if (sceneGraph.Value.UName == "GameScene")
@@ -229,7 +226,7 @@ namespace Nosocomephobia.Engine_Code.Services
                         foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
                         {
                             // ITERATE through all entities in the layer:
-                            foreach(IEntity entity in layer.Value.Entities)
+                            foreach (IEntity entity in layer.Value.Entities)
                             {
                                 // CHECK if the current entity is of type 'Player':
                                 if (entity is Player)
@@ -264,10 +261,10 @@ namespace Nosocomephobia.Engine_Code.Services
                     if (sceneGraph.Value.UName == "GameScene")
                     {
                         // ITERATE through all layers in the SceneGraph:
-                        foreach(KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
+                        foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
                         {
                             _collisionManager.PopulateCollidables(layer.Value.Entities);
-                        }  
+                        }
                     }
                 }
             }
@@ -281,10 +278,10 @@ namespace Nosocomephobia.Engine_Code.Services
         private void MoveEntities(GameTime gameTime)
         {
             // ITERATE through all SceneGraphs:
-            foreach(KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
+            foreach (KeyValuePair<string, ISceneGraph> sceneGraph in _sceneGraphs)
             {
                 // CHECK that the SceneGraph is active:
-                if(sceneGraph.Value.IsActive == true)
+                if (sceneGraph.Value.IsActive == true)
                 {
                     // ITERATE through all Layers in that graph:
                     foreach (KeyValuePair<string, ILayer> layer in sceneGraph.Value.Layers)
@@ -293,7 +290,7 @@ namespace Nosocomephobia.Engine_Code.Services
                         layer.Value.Update(gameTime);
                     }
                 }
-            } 
+            }
         }
         #endregion
 

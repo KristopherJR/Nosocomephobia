@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-/// <summary>
+﻿/// <summary>
 /// Author: Kristopher J Randle
 /// Version: 0.1, 06-02-2022
 /// </summary>

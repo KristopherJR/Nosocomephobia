@@ -2,8 +2,6 @@
 using Nosocomephobia.Engine_Code.Exceptions;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.Logic;
-using Nosocomephobia.Game_Code.Game_Entities.Characters;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -67,7 +65,7 @@ namespace Nosocomephobia.Engine_Code.Services
         {
             // USE the EntityFactory to create a new IEntity of the specified type:
             IEntity newEntity = _entityFactory.Create<T>();
-            
+
             // CREATE a new ICommand, call it terminateMe. Make the Command of type <string,int>. Pass in an action that points to this.DestroyEntity and the newEntities unique name and ID:
             ICommand terminateMe = new Command<string, int>(this.DestroyEntity, newEntity.UName, newEntity.UID);
             // SET the ICommand TerminateMe in the newEntity to terminateMe:
@@ -90,7 +88,7 @@ namespace Nosocomephobia.Engine_Code.Services
         public IEntity CreateEntity<T>(string pUName) where T : IEntity, new()
         {
             // CHECK that the name provided does not already exist in the _entityPool:
-            for(int i = 0; i < _entityPool.Count; i++)
+            for (int i = 0; i < _entityPool.Count; i++)
             {
                 // IF the name is already in the Entity Pool:
                 if (_entityPool[i].UName == pUName)

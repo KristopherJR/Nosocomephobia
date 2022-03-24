@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Engine_Code.UserEventArgs;
-using System;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -30,7 +28,7 @@ namespace Nosocomephobia.Engine_Code.Components
         private Viewport viewport;
         // DECLARE a GameEntity, call it 'focusedEntity':
         private GameEntity focusedEntity;
-        
+
         #endregion
         #region PROPERTIES
         public Matrix Transform
@@ -90,9 +88,9 @@ namespace Nosocomephobia.Engine_Code.Components
         {
             // SET zoomAspect to the scollValue in the eventInformation, * scrollSpeed:
             zoomAspect += eventInformation.ScrollValue * scrollSpeed;
-            
+
             // IF the player has zoomed further than the minimum zoom allowed:
-            if(zoomAspect < MIN_ZOOM_ASPECT)
+            if (zoomAspect < MIN_ZOOM_ASPECT)
             {
                 // RESET the zoom aspect to the minimum value:
                 zoomAspect = MIN_ZOOM_ASPECT;

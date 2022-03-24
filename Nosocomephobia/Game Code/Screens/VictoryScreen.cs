@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Components;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle

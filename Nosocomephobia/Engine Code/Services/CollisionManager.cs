@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -81,11 +80,11 @@ namespace Nosocomephobia.Engine_Code.Services
             }
             for (int i = 0; i < collisionGraph.Count(); i++)
             {
-                if((collisionGraph[i] as IEntity).UName == uName)
+                if ((collisionGraph[i] as IEntity).UName == uName)
                 {
 
-                        collisionGraph.Remove(collisionGraph[i] as ICollisionResponder);
-                        Debug.WriteLine("COLLISION MANAGER: Successfully Removed All References to Object: " + uName);
+                    collisionGraph.Remove(collisionGraph[i] as ICollisionResponder);
+                    Debug.WriteLine("COLLISION MANAGER: Successfully Removed All References to Object: " + uName);
                 }
             }
         }

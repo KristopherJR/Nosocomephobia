@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using Nosocomephobia.Engine_Code.Entities;
 using System.Collections.Generic;
 
@@ -184,13 +183,13 @@ namespace Nosocomephobia.Game_Code
             LoadAnimation(PlayerSpriteSheet, 4, DEFAULT_FRAMERATE, 2, 810, 57, 128, 71, 0, AnimationGroup.PlayerWalkRight);
 
             // LOAD Player Sprinting Down:
-            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 6, 1080, 53, 128, 71, 0, AnimationGroup.PlayerSprintDown);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE * 2, 6, 1080, 53, 128, 71, 0, AnimationGroup.PlayerSprintDown);
             // LOAD Player Sprinting Up:
-            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 1, 1215, 53, 128, 71, 0, AnimationGroup.PlayerSprintUp);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE * 2, 1, 1215, 53, 128, 71, 0, AnimationGroup.PlayerSprintUp);
             // LOAD Player Sprinting Left:
-            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1485, 64, 128, 71, 0, AnimationGroup.PlayerSprintLeft);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE * 2, 0, 1485, 64, 128, 71, 0, AnimationGroup.PlayerSprintLeft);
             // LOAD Player Sprinting Right:
-            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE*2, 0, 1350, 64, 128, 71, 0, AnimationGroup.PlayerSprintRight);
+            LoadAnimation(PlayerSpriteSheet, 6, DEFAULT_FRAMERATE * 2, 0, 1350, 64, 128, 71, 0, AnimationGroup.PlayerSprintRight);
             #endregion
 
             #region MONSTER ANIMATIONS

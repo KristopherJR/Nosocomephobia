@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Factories;
 using Nosocomephobia.Engine_Code.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher Randle
@@ -77,7 +75,7 @@ namespace Nosocomephobia.Engine_Code.Services
             // INJECT the _inputManager and _collisionManager into the _sceneManager for use with handling SceneGraphs:
             sceneManager.InjectInputManager(inputManager);
             sceneManager.InjectCollisionManager(collisionManager);
-            
+
             // ADD the Engine Services to _services:
             _services.Add(typeof(IEntityManager), entityManager);
             _services.Add(typeof(ISceneManager), sceneManager);
@@ -109,10 +107,10 @@ namespace Nosocomephobia.Engine_Code.Services
         /// <param name="pGameTime">a reference to the GameTime.</param>
         public void Update(GameTime pGameTime)
         {
-            if(!Halt)
+            if (!Halt)
             {
                 // ITERATE through the _services Dictionary:
-                foreach(KeyValuePair<Type, IService> service in _services)
+                foreach (KeyValuePair<Type, IService> service in _services)
                 {
                     // UPDATE each service:
                     (service.Value as IUpdatable).Update(pGameTime);

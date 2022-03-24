@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Penumbra;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -29,17 +27,17 @@ namespace Nosocomephobia.Game_Code.World
             // INITIALISE _hulls:
             _hulls = new List<Hull>();
             // ITERATE through all Tiles in the TileMap:
-            foreach(Tile t in pTileMap.GetTileMap())
+            foreach (Tile t in pTileMap.GetTileMap())
             {
                 // IF the Tile is a valid Hull shape:
-                if(t.IsHull)
+                if (t.IsHull)
                 {
                     // CREATE a new Square Hull:
                     Hull newHull = new Hull(new Vector2(1.0f), new Vector2(-1.0f, 1.0f), new Vector2(-1.0f), new Vector2(1.0f, -1.0f)); // Square Hull
                     // SET the position of the Hull to the Tile: 
-                    newHull.Position = new Vector2(t.EntityLocn.X + (GameContent.DEFAULT_TILE_WIDTH/2), t.EntityLocn.Y + (GameContent.DEFAULT_TILE_HEIGHT/2));
-                    newHull.Scale = new Vector2(GameContent.DEFAULT_TILE_WIDTH-12,
-                                                GameContent.DEFAULT_TILE_HEIGHT-12);
+                    newHull.Position = new Vector2(t.EntityLocn.X + (GameContent.DEFAULT_TILE_WIDTH / 2), t.EntityLocn.Y + (GameContent.DEFAULT_TILE_HEIGHT / 2));
+                    newHull.Scale = new Vector2(GameContent.DEFAULT_TILE_WIDTH - 12,
+                                                GameContent.DEFAULT_TILE_HEIGHT - 12);
                     _hulls.Add(newHull);
                 }
             }

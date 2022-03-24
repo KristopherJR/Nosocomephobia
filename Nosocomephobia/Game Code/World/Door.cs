@@ -1,10 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
-using Nosocomephobia.Engine_Code.Entities;
+﻿using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
-using Nosocomephobia.Game_Code.Game_Entities.Characters;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -54,7 +49,7 @@ namespace Nosocomephobia.Game_Code.World
             // CHANGE the doors Sprite to unlocked:
             this.EntitySprite = new Sprite(GameContent.DoorOpen, 0, 0, GameContent.DoorOpen.Width, GameContent.DoorOpen.Height);
             // PLAY the unlock sfx:
-            GameContent.DoorUnlock.Play(0.6f,0.0f,0.0f);
+            GameContent.DoorUnlock.Play(0.6f, 0.0f, 0.0f);
             // FLAG that the door is no longer locked:
             _isLocked = false;
         }

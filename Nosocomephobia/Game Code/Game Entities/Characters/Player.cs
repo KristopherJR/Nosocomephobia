@@ -198,7 +198,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             switch (eventInformation.KeyInput)
             {
                 case Keys.W:
-                    if(isSprinting)
+                    if (isSprinting)
                     {
                         // MOVE player UP by movespeed:
                         this.EntityVelocity = new Vector2(0, -moveSpeed * _sprintModifier);
@@ -351,7 +351,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
                     this.EntityVelocity = new Vector2(0, 0);
                     this.entityAnimation = GameContent.GetAnimation(AnimationGroup.PlayerIdleRight);
                     this.isMoving = false;
-                    break; 
+                    break;
             }
         }
 

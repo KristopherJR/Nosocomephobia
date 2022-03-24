@@ -1,7 +1,4 @@
 ﻿using Nosocomephobia.Engine_Code.UserEventArgs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle

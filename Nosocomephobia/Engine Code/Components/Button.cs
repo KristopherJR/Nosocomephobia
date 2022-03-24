@@ -31,7 +31,7 @@ namespace Nosocomephobia.Engine_Code.Components
 
         public bool IsHovering
         {
-            get { return _isHovering; } 
+            get { return _isHovering; }
         }
 
         public bool Clicked { get; private set; }

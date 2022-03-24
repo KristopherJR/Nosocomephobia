@@ -6,7 +6,6 @@ using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Nosocomephobia.Game_Code.World;
 using System;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -117,7 +116,7 @@ namespace Nosocomephobia.Game_Code.GameLogic
                     isFootstepSFXPlaying = true;
                 }
             }
-            if((MyEntity as Player).EntityLocn.Y < 630)
+            if ((MyEntity as Player).EntityLocn.Y < 630)
             {
                 // SCHEDULE the Terminate Command for the Player Flashlight:
                 (MyEntity as Player).Flashlight.ScheduleCommand((MyEntity as Player).Flashlight.TerminateMe);

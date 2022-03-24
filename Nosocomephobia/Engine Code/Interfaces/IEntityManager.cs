@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 /// Author: Kristopher J Randle
 /// Version: 1.4, 06-02-2022
 /// </summary>

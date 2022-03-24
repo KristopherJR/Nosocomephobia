@@ -70,12 +70,12 @@ namespace Nosocomephobia.Game_Code.World
                     if (tileIdParse < 0)
                     {
                         // This section is used to stop invisible tiles being loaded into the TileMap:
-    
+
                         // SET tileIdParse to the total number of Tiles - 1:
                         tileIdParse = (GameContent.NUMBER_OF_TILES) - 1;
                         // SET isValidTile to false:
                         isValidTile = false;
-                        
+
                     }
                     else
                     {
@@ -101,7 +101,7 @@ namespace Nosocomephobia.Game_Code.World
                     {
                         quadrant = 4;
                     }
-                    
+
                     // DECLARE a Tile, call it newTile and pass in tileIdParse:
                     Tile newTile = new Tile(tileIdParse);
                     // SET the tiles Quadrant:
@@ -109,7 +109,7 @@ namespace Nosocomephobia.Game_Code.World
                     // SET newTile.IsCollidable to true if the layer is collidable and it's a valid tile, else false:
                     newTile.IsCollidable = isLayerCollidable && isValidTile;
                     // CHECK if the tile is valid based on its parse, if its not set the property to false:
-                    if(isValidTile == false)
+                    if (isValidTile == false)
                     {
                         newTile.IsValidTile = false;
                     }
@@ -183,7 +183,7 @@ namespace Nosocomephobia.Game_Code.World
             foreach (Tile t in tileMap)
             {
                 // IF the tile is valid:
-                if(t.IsValidTile)
+                if (t.IsValidTile)
                 {
                     // DRAW the Tile:
                     t.Draw(spriteBatch);

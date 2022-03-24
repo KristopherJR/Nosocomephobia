@@ -6,7 +6,6 @@ using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Nosocomephobia.Game_Code.World;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -305,7 +304,7 @@ namespace Nosocomephobia.Engine_Code.Services
             // THROW a new exception if the PathFinder couldn't calculate a path to the destination Tile:
             throw new Exception("PathFinder could not find a route to the destination Tile!");
         }
-        
+
         /// <summary>
         /// Calculates what Tile is at the current location and returns it:
         /// </summary>
@@ -344,7 +343,7 @@ namespace Nosocomephobia.Engine_Code.Services
                         // SET the PathFinders path to the newly generated one:
                         pathFinder.Path = newPath;
 
-                        
+
                     }
                 }
                 // VERIFY type safety:
@@ -373,7 +372,7 @@ namespace Nosocomephobia.Engine_Code.Services
                                     // PLAY a random SoundEffect:
                                     (pathFinder as Monster).PlayRandomSoundEffect();
 
-                                } 
+                                }
                             }
                             // IF the distance between the monster and player is less than 75 pixels:
                             if (Vector2.Distance((pathFinder as Monster).EntityLocn, _target.EntityLocn) < 75f)

@@ -60,10 +60,10 @@ namespace Nosocomephobia.Engine_Code.Services
         private void PopulateQuadrants()
         {
             // ITERATE through the _floorTileMap:
-            foreach(Tile tile in _floorTileMap.GetTileMap())
+            foreach (Tile tile in _floorTileMap.GetTileMap())
             {
                 // IF the Tile belongs to quadrant 1:
-                if(tile.TileQuadrant == 1)
+                if (tile.TileQuadrant == 1)
                 {
                     // ADD it to _quadrantOneTiles:
                     _quadrantOneTiles.Add(tile);

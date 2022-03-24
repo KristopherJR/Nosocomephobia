@@ -1,12 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Nosocomephobia.Engine_Code.Interfaces;
-using Nosocomephobia.Game_Code.Game_Entities;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -82,7 +76,7 @@ namespace Nosocomephobia.Engine_Code.Components
                                                      new Color(new Vector3(0.4f)));
 
             // ITERATE through all of the collected Artefacts in the Player Inventory:
-            for(int i = 0; i < _player.Inventory.GetCount(); i++)
+            for (int i = 0; i < _player.Inventory.GetCount(); i++)
             {
                 // GET a reference to the texture of the artefact that has been collected:
                 Texture2D artefactSpriteTexture = _player.Inventory.Storage[i].EntitySprite.SpriteSheetTexture;

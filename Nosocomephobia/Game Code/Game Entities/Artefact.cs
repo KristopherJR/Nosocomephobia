@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
-using Nosocomephobia.Game_Code.Game_Entities.Characters;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle

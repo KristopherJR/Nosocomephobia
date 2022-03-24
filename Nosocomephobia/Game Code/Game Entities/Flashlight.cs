@@ -2,18 +2,16 @@
 using Microsoft.Xna.Framework.Input;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
-using Nosocomephobia.Engine_Code.Interfaces;
 using Nosocomephobia.Game_Code.Game_Entities.Characters;
 using Penumbra;
 using System;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
 /// Version: 0.4, 16-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities
-{ 
+{
     public class Flashlight : GameEntity
     {
         #region FIELDS
@@ -43,7 +41,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
             // INITIALISE the flashlight as a Spotlight:
             _light = new Spotlight();
         }
-        
+
         /// <summary>
         /// METHOD: Sets up the players flashlight with a default size, shadowtype and centres it in the middle of the screen.
         /// </summary>
@@ -78,7 +76,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
             // SET focusedEntity to the parameter:
             this._focusedEntity = entity;
         }
-        
+
         /// <summary>
         /// Uses the Cameras position to gets the mouse position in world space.
         /// </summary>
@@ -118,9 +116,9 @@ namespace Nosocomephobia.Game_Code.Game_Entities
             if (_focusedEntity is Player)
             {
                 // player walking up
-                if((_focusedEntity as Player).WalkDirection == Kernel.UP)
+                if ((_focusedEntity as Player).WalkDirection == Kernel.UP)
                 {
-                    torchOriginOffest = new Vector2(-20,-50);
+                    torchOriginOffest = new Vector2(-20, -50);
                     torchOrigin = playerCentre + torchOriginOffest;
                     // SET the flashlights position to the player centre plus offset:
                     _light.Position = torchOrigin;
@@ -141,7 +139,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
                 // player walking down
                 if ((_focusedEntity as Player).WalkDirection == Kernel.DOWN)
                 {
-                    torchOriginOffest = new Vector2(13,-20);
+                    torchOriginOffest = new Vector2(13, -20);
                     torchOrigin = playerCentre + torchOriginOffest;
                     // SET the flashlights position to the player centre plus offset:
                     _light.Position = torchOrigin;
@@ -162,7 +160,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
                 // player walking left
                 if ((_focusedEntity as Player).WalkDirection == Kernel.LEFT)
                 {
-                    torchOriginOffest = new Vector2(-26,-18);
+                    torchOriginOffest = new Vector2(-26, -18);
                     torchOrigin = playerCentre + torchOriginOffest;
                     // SET the flashlights position to the player centre plus offset:
                     _light.Position = torchOrigin;
@@ -183,7 +181,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities
                 // player walking right
                 if ((_focusedEntity as Player).WalkDirection == Kernel.RIGHT)
                 {
-                    torchOriginOffest = new Vector2(27,-18);
+                    torchOriginOffest = new Vector2(27, -18);
                     torchOrigin = playerCentre + torchOriginOffest;
                     // SET the flashlights position to the player centre plus offset:
                     _light.Position = torchOrigin;

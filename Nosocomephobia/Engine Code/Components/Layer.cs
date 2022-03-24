@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -74,7 +72,7 @@ namespace Nosocomephobia.Engine_Code.Components
         public void Draw(SpriteBatch pSpriteBatch)
         {
             // ITERATE through all entities on the layer:
-            for(int i = 0; i < _entities.Count; i++)
+            for (int i = 0; i < _entities.Count; i++)
             {
                 // DRAW each Entity onto the SpriteBatch:
                 (_entities[i] as GameEntity).Draw(pSpriteBatch);
@@ -88,10 +86,10 @@ namespace Nosocomephobia.Engine_Code.Components
         public void Update(GameTime pGameTime)
         {
             // CHECK the current layer is active:
-            if(_isActive)
+            if (_isActive)
             {
                 // ITERATE through all entities on the layer:
-                foreach(IEntity entity in _entities)
+                foreach (IEntity entity in _entities)
                 {
                     // UPDATE each entity:
                     entity.Update(pGameTime);

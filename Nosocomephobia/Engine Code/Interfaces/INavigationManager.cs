@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Nosocomephobia.Engine_Code.Entities;
+﻿using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Game_Code.World;
-using System;
 using System.Collections.Generic;
 
 /// <summary>

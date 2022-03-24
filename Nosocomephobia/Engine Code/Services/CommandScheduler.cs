@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nosocomephobia.Engine_Code.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -54,7 +51,7 @@ namespace Nosocomephobia.Engine_Code.Services
         public void Update(GameTime pGameTime)
         {
             // IF there are commands in the Queue:
-            if(_scheduledCommands.Count > 0)
+            if (_scheduledCommands.Count > 0)
             {
                 // DEQUEUE the Command and Execute it:
                 (_scheduledCommands.Dequeue()).Execute();

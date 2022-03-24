@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nosocomephobia.Engine_Code.Components;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 /// Author: Kristopher J Randle
@@ -38,7 +36,7 @@ namespace Nosocomephobia.Game_Code.Screens
             // INITIALISE _components and add the new Button:
             _components = new Dictionary<string, Component>();
             _components.Add("quit_game_button", quitGameButton);
-            
+
             // SET _quitHovered to false by default:
             _quitHovered = false;
         }
@@ -69,7 +67,7 @@ namespace Nosocomephobia.Game_Code.Screens
             spriteBatch.Draw(GameContent.GameOverTitle, new Rectangle(30, 30, GameContent.GameOverTitle.Width, GameContent.GameOverTitle.Height), Color.White);
             spriteBatch.DrawString(GameContent.Font, "Looks like your lantern went out...", new Vector2(30, 280), Color.White);
             // CHECK if the player only scored 1:
-            if(Kernel.SCORE == 1)
+            if (Kernel.SCORE == 1)
             {
                 // IF they did change "artefacts" to "artefact" (non-plural):
                 spriteBatch.DrawString(GameContent.Font, "You collected " + Kernel.SCORE + " Artefact", new Vector2(30, 330), Color.White);

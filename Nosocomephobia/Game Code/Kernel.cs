@@ -137,7 +137,7 @@ namespace Nosocomephobia
             // INITIALIZE the Camera:
             _camera = _entityManager.CreateEntity<Camera>() as Camera;
             (_camera as Camera).InjectViewPort(_graphics.GraphicsDevice.Viewport);
-            
+
 
             // SUBSCRIBE the camera to listen for input events:
             _inputManager.Subscribe((_camera as Camera),
@@ -189,7 +189,7 @@ namespace Nosocomephobia
                 _graphics.IsFullScreen = true;
                 _graphics.ApplyChanges();
             }
-            
+
             // STORE the windows new width and height in the public static int fields for ease of access later:
             SCREEN_WIDTH = GraphicsDevice.Viewport.Width;
             SCREEN_HEIGHT = GraphicsDevice.Viewport.Height;
@@ -293,11 +293,11 @@ namespace Nosocomephobia
             foreach (Tile t in _tileMapFloor.GetTileMap())
             {
                 // TEST that the tile is valid before spawning it to the scene graph:
-                if(t.IsValidTile)
+                if (t.IsValidTile)
                 {
                     // SPAWN the Tiles into the SceneGraph:
                     _sceneManager.Spawn("GameScene", "TileMapFloor", t);
-                } 
+                }
             }
 
             // FOREACH Tile in TileMap collision Layer:
@@ -386,7 +386,7 @@ namespace Nosocomephobia
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if(!RUNNING)
+            if (!RUNNING)
             {
                 // EXIT the game if RUNNING is false:
                 this.Exit();
@@ -407,8 +407,8 @@ namespace Nosocomephobia
                 case State.Victory:
                     UpdateVictory(gameTime);
                     break;
-            }  
-            
+            }
+
         }
         /// <summary>
         /// Main Draw method for Kernel. Changes based on State.

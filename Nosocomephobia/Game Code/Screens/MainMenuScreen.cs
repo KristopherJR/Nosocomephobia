@@ -197,7 +197,7 @@ namespace Nosocomephobia.Game_Code.Screens
             // START the spritebatch:
             spriteBatch.Begin();
             // IF _drawMainMenu is true:
-            if(_drawMainMenu)
+            if (_drawMainMenu)
             {
                 // DRAW the main menu components:
                 spriteBatch.Draw(GameContent.MenuBackground, new Rectangle(0, 0, GameContent.MenuBackground.Width, GameContent.MenuBackground.Height), Color.White);
