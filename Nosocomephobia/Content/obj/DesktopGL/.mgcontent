@@ -4,6 +4,40 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected_White.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_White.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button_Selected.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Title.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected_White.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_White.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_button.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_Button_Selected.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Selected_Botton.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected_White.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_White.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Victory_Title.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button_Selected.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/How_To_Play_Info.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Level-Layout-Guide.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background011.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Font_&amp;_Buttons.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Moodboard.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/UI_Concepts.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Game_Over/GameOver_Background.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Game_Over/GameOver_Text.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_01.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_02.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/UI_Item_Bar_Test.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/background_game.mp3</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/background_menu.mp3</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/audio/death_bone.mp3</File>
@@ -44,6 +78,7 @@
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/planks_tileset.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/tiles_tileset.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Environmental_Assets/walls_tileset.png</File>
+    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Fonts/Font.spritefont</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy spite sheets.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_001.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player Character_Dummy Sprites/dummy sprite_back_002.png</File>
@@ -60,27 +95,6 @@
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/Player_Character_Assets/Nosocomephobia_Player_Character_Sprite_Sheet.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprite test in engine.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/Player_Character/sprites.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Font_&amp;_Buttons.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/Moodboard.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Concept_Art/UI_Concepts.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Font/Font.spritefont</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Paused_Text.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_button.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Resume_Button_Selected.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Selected_Botton.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_01.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/HUD_02.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/HUD/UI_Item_Bar_Test.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background011.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background01.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background02.png</File>
-    <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background03.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet16.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet32.png</File>
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/tilesheet48.png</File>
@@ -88,6 +102,27 @@
     <File>D:/University/Year 3/COMP3451 - Advanced Game Design/Nosocomephobia/Nosocomephobia/Content/worldTilesheet32.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

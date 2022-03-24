@@ -385,6 +385,13 @@
 /processorParam:TextureFormat=Color
 /build:assets/Environmental_Assets/walls_tileset.png
 
+#begin assets/Fonts/Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:assets/Fonts/Font.spritefont
+
 #begin assets/Player_Character/Player Character_Dummy Sprites/dummy spite sheets.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -613,14 +620,7 @@
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Concept_Art/UI_Concepts.png
 
-#begin assets/UI_Design/Font/Font.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:assets/UI_Design/Font/Font.spritefont
-
-#begin assets/UI_Design/Testing/Buttons_Text_Assets/Paused_Text.png
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -630,7 +630,139 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:assets/UI_Design/Testing/Buttons_Text_Assets/Paused_Text.png
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected_White.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected_White.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_White.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_White.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button_Selected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button_Selected.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button_Selected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button_Selected.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Title.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Title.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Title.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Title.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png
 
 #begin assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button.png
 /importer:TextureImporter
@@ -655,6 +787,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected_White.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected_White.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_White.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_White.png
 
 #begin assets/UI_Design/Testing/Buttons_Text_Assets/Resume_button.png
 /importer:TextureImporter
@@ -716,6 +872,30 @@
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected.png
 
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected_White.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected_White.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_White.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_White.png
+
 #begin assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -727,6 +907,66 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/Victory_Title.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/Victory_Title.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button.png
+
+#begin assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button_Selected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button_Selected.png
+
+#begin assets/UI_Design/Testing/Game_Over/GameOver_Background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Game_Over/GameOver_Background.png
+
+#begin assets/UI_Design/Testing/Game_Over/GameOver_Text.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Game_Over/GameOver_Text.png
 
 #begin assets/UI_Design/Testing/HUD/HUD_01.png
 /importer:TextureImporter
@@ -764,6 +1004,30 @@
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Testing/HUD/UI_Item_Bar_Test.png
 
+#begin assets/UI_Design/Testing/Main_Menu_Backgrounds/How_To_Play_Info.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Main_Menu_Backgrounds/How_To_Play_Info.png
+
+#begin assets/UI_Design/Testing/Main_Menu_Backgrounds/Level-Layout-Guide.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/UI_Design/Testing/Main_Menu_Backgrounds/Level-Layout-Guide.png
+
 #begin assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background011.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -787,42 +1051,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022.png
-
-#begin assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background01.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background01.png
-
-#begin assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background02.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background02.png
-
-#begin assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background03.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:assets/UI_Design/Testing/Pause_Menu_Backgrounds/Pause_Menu_Background03.png
 
 #begin nosocomephobia_Floor.csv
 /copy:nosocomephobia_Floor.csv

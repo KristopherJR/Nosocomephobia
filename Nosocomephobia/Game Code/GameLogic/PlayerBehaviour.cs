@@ -158,6 +158,9 @@ namespace Nosocomephobia.Game_Code.GameLogic
 
                 (MyEntity as Player).Inventory.Add((args.CollidedObject as Artefact));
 
+                // ADD to the score:
+                Kernel.SCORE++;
+
                 // PLAY the Artefacts Pickup SFX:
                 (args.CollidedObject as Artefact).PickupSFX.Play(0.3f, 0.0f, 0.0f);
 

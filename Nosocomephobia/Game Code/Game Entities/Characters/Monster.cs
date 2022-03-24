@@ -7,11 +7,10 @@ using Nosocomephobia.Game_Code.World;
 using Penumbra;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.6, 17-03-2022
+/// Version: 1.7, 24-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 {
@@ -99,7 +98,7 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
             this.canPlaySound = true;
             this.distantSFXPlayed = false;
             // SET NPC's location in the world:
-            this.EntityLocn = new Vector2(3000, 5500);
+            this.EntityLocn = new Vector2(3000, 6500);
         }
 
         /// <summary>

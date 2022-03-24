@@ -73,9 +73,6 @@ namespace Nosocomephobia.Engine_Code.Components
         {
             var colour = Color.White;
 
-            if (_isHovering)
-                colour = Color.Gray;
-
             spriteBatch.Draw(_texture, Rectangle, colour);
 
             if (!string.IsNullOrEmpty(Text))

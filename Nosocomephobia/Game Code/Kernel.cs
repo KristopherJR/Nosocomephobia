@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using Nosocomephobia.Engine_Code.Components;
 using Nosocomephobia.Engine_Code.Entities;
 using Nosocomephobia.Engine_Code.Interfaces;
@@ -18,7 +17,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 3.4, 20-03-2022
+/// Version: 3.5, 24-03-2022
 /// 
 /// Penumbra Author: Jaanus Varus
 /// </summary>
@@ -30,13 +29,15 @@ namespace Nosocomephobia
     /// </summary>
     public enum State
     {
-        MainMenu, Game, Pause, GameOver, Victory
+        MainMenu, Game, GameOver, Victory
     }
     public class Kernel : Game
     {
+        // DECLARE a reference to the State ENUM, call it STATE:
         public static State STATE;
         // DECLARE a public static Boolean, call it 'RUNNING':
         public static Boolean RUNNING;
+        // DECLARE a SoundEffectInstance, call it BackgroundMusic:
         public static SoundEffectInstance BackgroundMusic;
         // DECLARE a PenumbraComponent, call it PENUMBRA:
         public static PenumbraComponent PENUMBRA;
@@ -52,6 +53,8 @@ namespace Nosocomephobia
         public static Vector2 LEFT = new Vector2(-1, 0);
         // DECLARE a static Vector2, call it RIGHT and set it to (1, 0):
         public static Vector2 RIGHT = new Vector2(1, 0);
+        // DECLARE an int, call it SCORE:
+        public static int SCORE;
 
         // DECLARE a const String, call it TILE_MAP_FLOOR_PATH. Set it to the File Path of the floor layer: 
         private const String TILE_MAP_FLOOR_PATH = "Content/nosocomephobia_Floor.csv";
@@ -63,7 +66,7 @@ namespace Nosocomephobia
         private const String TILE_MAP_OBJECTS_COLLIDABLE_PATH = "Content/nosocomephobia_Objects-Collidable.csv";
 
         // DECLARE a bool to toggle between full screen and windowed for development purposes:
-        private bool _devMode = true;
+        private bool _devMode = false;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -398,9 +401,6 @@ namespace Nosocomephobia
                     UpdateGame(gameTime);
                     base.Update(gameTime);
                     break;
-                case State.Pause:
-                    UpdatePause(gameTime);
-                    break;
                 case State.GameOver:
                     UpdateGameOver(gameTime);
                     break;
@@ -424,9 +424,6 @@ namespace Nosocomephobia
                     break;
                 case State.Game:
                     DrawGame(gameTime);
-                    break;
-                case State.Pause:
-                    DrawPause(gameTime);
                     break;
                 case State.GameOver:
                     DrawGameOver(gameTime);
@@ -456,14 +453,6 @@ namespace Nosocomephobia
         {
             // UPDATE the Game Screen:
             _screens["Game"].Update(gameTime);
-        }
-        /// <summary>
-        /// Updates the Pause Screen.
-        /// </summary>
-        /// <param name="gameTime">A reference to the GameTime.</param>
-        private void UpdatePause(GameTime gameTime)
-        {
-            
         }
         /// <summary>
         /// Updates the GameOver Screen.
@@ -507,14 +496,6 @@ namespace Nosocomephobia
             base.Draw(gameTime);
             // DRAW the InventoryHUD AFTER so that the Penumbra lighting does not affect the HUD:
             (_screens["Game"] as GameScreen).InventoryHUD.Draw(gameTime, _hudSpriteBatch);
-        }
-        /// <summary>
-        /// Draws the Pause Screen.
-        /// </summary>
-        /// <param name="gameTime">A reference to the GameTime.</param>
-        private void DrawPause(GameTime gameTime)
-        {
-            
         }
         /// <summary>
         /// Draws the Game Over Screen.

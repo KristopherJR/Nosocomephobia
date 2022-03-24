@@ -126,8 +126,8 @@ namespace Nosocomephobia.Game_Code.Game_Entities.Characters
 
             // SET PLAYER location in the world:
             this.EntityLocn = new Vector2(3000, 6000);
-            // INITIALIZE moveSpeed to '1.5f':
-            this.moveSpeed = 10f;
+            // INITIALIZE moveSpeed to '3.0f':
+            this.moveSpeed = 3.0f;
             // SET _sprintModifier to 50% (1.5f):
             this._sprintModifier = 1.5f;
             // SET isSprinting to false as default:

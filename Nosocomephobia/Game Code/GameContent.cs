@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Author: Kristopher J Randle
-/// Version: 1.6, 18-03-2022
+/// Version: 1.7, 24-03-2022
 /// </summary>
 namespace Nosocomephobia.Game_Code
 {
@@ -56,12 +56,30 @@ namespace Nosocomephobia.Game_Code
         // DECLARE all Menu Elements:
         public static SpriteFont Font;
         public static Texture2D MenuBackground;
+        public static Texture2D LevelLayoutGuide;
+        public static Texture2D HowToPlayInfo;
         public static Texture2D MenuTitle;
+        public static Texture2D HTPTitle;
+        public static Texture2D VictoryTitle;
         public static Texture2D StartButton;
         public static Texture2D StartButtonHovered;
+        public static Texture2D StartButtonWhite;
+        public static Texture2D StartButtonHoveredWhite;
         public static Texture2D QuitButton;
         public static Texture2D QuitButtonHovered;
+        public static Texture2D QuitButtonWhite;
+        public static Texture2D QuitButtonHoveredWhite;
+        public static Texture2D HowToPlayButton;
+        public static Texture2D HowToPlayButtonHovered;
+        public static Texture2D ViewMapButton;
+        public static Texture2D ViewMapButtonHovered;
+        public static Texture2D BackButton;
+        public static Texture2D BackButtonHovered;
+        public static Texture2D BackButtonWhite;
+        public static Texture2D BackButtonHoveredWhite;
         public static Texture2D InventoryHUD;
+        public static Texture2D GameOverBackground;
+        public static Texture2D GameOverTitle;
         #endregion
 
         #region SOUND EFFECTS
@@ -117,14 +135,33 @@ namespace Nosocomephobia.Game_Code
 
             #region MENUS
             // LOAD all Menu Elements:
-            Font = cm.Load<SpriteFont>("assets/UI_Design/Font/Font");
+            Font = cm.Load<SpriteFont>("assets/Fonts/Font");
             MenuTitle = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Title_Text");
+            HTPTitle = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Title");
+            VictoryTitle = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Victory_Title");
             MenuBackground = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Main_Menu_Background022");
+            LevelLayoutGuide = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/Level-Layout-Guide");
+            HowToPlayInfo = cm.Load<Texture2D>("assets/UI_Design/Testing/Main_Menu_Backgrounds/How_To_Play_Info");
             StartButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button");
             StartButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected");
+            StartButtonWhite = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_White");
+            StartButtonHoveredWhite = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Start_Button_Selected_White");
             QuitButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button");
             QuitButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected");
+            QuitButtonWhite = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_White");
+            QuitButtonHoveredWhite = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Quit_Button_Selected_White");
+            ViewMapButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button");
+            ViewMapButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/View_Map_Button_Selected");
+            HowToPlayButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/HTP_Button");
+            HowToPlayButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/HTP_button_Selected");
+            BackButton = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button");
+            BackButtonHovered = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected");
+            BackButtonWhite = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_White");
+            BackButtonHoveredWhite = cm.Load<Texture2D>("assets/UI_Design/Testing/Buttons_Text_Assets/Back_Button_Selected_white");
             InventoryHUD = cm.Load<Texture2D>("assets/UI_Design/Testing/HUD/HUD_01");
+            GameOverBackground = cm.Load<Texture2D>("assets/UI_Design/Testing/Game_Over/GameOver_Background");
+            GameOverTitle = cm.Load<Texture2D>("assets/UI_Design/Testing/Game_Over/GameOver_Text");
+
             #endregion
 
             #region PLAYER ANIMATIONS

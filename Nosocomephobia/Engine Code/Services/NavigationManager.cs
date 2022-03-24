@@ -326,8 +326,6 @@ namespace Nosocomephobia.Engine_Code.Services
         /// <param name="gameTime">A Snapshot of the GameTime.</param>
         public void Update(GameTime gameTime)
         {
-            Debug.WriteLine(FindTargetTileIndex());
-
             // FOREACH PathFinder:
             foreach (IPathFinder pathFinder in pathFinders)
             {
